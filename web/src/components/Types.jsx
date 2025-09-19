@@ -1,7 +1,7 @@
 // src/components/Types.jsx
 import React, { useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
-import "./types.css";
+import "./Types.css";
 
 export default function Types() {
   const types = useMemo(
