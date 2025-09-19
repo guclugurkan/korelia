@@ -20,21 +20,40 @@ import rateLimit from 'express-rate-limit';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// --- crée l'app en premier ---
+const app = express();
 
+// --- CORS whitelist ---
 const allowed = [
   "http://localhost:5173",
-  "https://korelia-6qyf.vercel.app/"
+  "https://korelia-6qyf.vercel.app", // SANS slash final
+  "https://korelia.vercel.app",      // si tu as un domaine Vercel stable
 ];
 
-
-
-app.use(cors({
-  origin: (origin, cb) => {
-    if (!origin || allowed.includes(origin)) cb(null, true);
-    else cb(new Error("Not allowed by CORS"));
+// Option “origin” en fonction (gère aussi les previews *.vercel.app si tu veux)
+const corsOptions = {
+  origin(origin, cb) {
+    if (!origin) return cb(null, true); // autorise Postman/cURL
+    const ok = allowed.includes(origin) || /^https:\/\/.*\.vercel\.app$/.test(origin);
+    cb(ok ? null : new Error("Not allowed by CORS"));
   },
-  credentials: true
-}));
+  credentials: true,
+  methods: ["GET","POST","PUT","PATCH","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization","X-CSRF-Token","x-csrf-token"],
+  exposedHeaders: ["Content-Length"],
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
+
+
+
+
+
+
+
+
 
 
 const PORT = process.env.PORT || 4242;
@@ -51,8 +70,25 @@ const PRODUCTS_PATH = path.join(__dirname, 'products.json');
 
 function cookieOpts(days = 7){
   const maxAge = days * 24 * 3600 * 1000;
-  return { httpOnly: true, sameSite: 'lax', secure: isProd, maxAge };
+  return { httpOnly: true, sameSite: 'lax', secure: isProd, maxAge, path:'/' };
+
 }
+// /auth/csrf – cookie CSRF
+app.get('/auth/csrf', (req, res) => {
+  let token = req.cookies?.csrf_token;
+  if (!token) {
+    token = crypto.randomBytes(24).toString('hex');
+    res.cookie('csrf_token', token, {
+      sameSite: 'none',
+      secure: isProd,
+      maxAge: 2 * 60 * 60 * 1000,
+      path: '/',
+      httpOnly: true,
+    });
+  }
+  res.json({ csrf: token });
+});
+
 
 /* =======================
  * Rewards: catalogue + helpers
@@ -354,7 +390,7 @@ async function sendOrderShippedEmail(order) {
 /* ======================================================
  * 1) WEBHOOK Stripe (⚠️ AVANT express.json())
  * ====================================================== */
-const app = express();
+
 app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
   const sig = req.headers['stripe-signature'];
   if (!sig) return res.sendStatus(400);
