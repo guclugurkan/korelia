@@ -23,7 +23,7 @@ const __dirname = path.dirname(__filename);
 
 const allowed = [
   "http://localhost:5173",
-  "https://korelia.onrender.com/"
+  "https://korelia-6qyf.vercel.app/"
 ];
 
 
