@@ -26,7 +26,7 @@ const app = express();
 // --- CORS whitelist ---
 const allowed = [
   "http://localhost:5173",
-  "https://korelia-6qyf.vercel.app", // SANS slash final
+  "https://korelia-seven.vercel.app/", // SANS slash final
   "https://korelia.vercel.app",      // si tu as un domaine Vercel stable
 ];
 
