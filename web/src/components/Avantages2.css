@@ -1,0 +1,115 @@
+/* ===== Avantages2 — bloc avantages ===== */
+.avantages2{
+  /* variables locales (tu peux ajuster) */
+  --bg: #faf5ef;         /* fond crème très léger */
+  --card: #ffffff;       /* cartes */
+  --ink: #2f2f2f;        /* texte principal */
+  --muted: #6b6b6b;      /* texte secondaire */
+  --accent: #d94f3d;     /* accent (corail doux) */
+  --shadow: 0 6px 20px rgba(20,20,20,.1);
+  --radius: 16px;
+  width: 90%;
+  margin: 70px auto 0;
+  color: var(--ink);
+  padding: clamp(14px, 2vw, 14px);
+
+ 
+  display: flex;
+  flex-wrap: wrap;                
+  justify-content:space-around;
+  align-items: center;
+  gap:20px;
+}
+
+/* ===== Carte individuelle ===== */
+.avantages2 > div{
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 230px;
+  height: 230px;
+  background: var(--card);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 999px;
+  box-shadow: 0 12px 28px rgba(20,20,20,1);
+  padding: clamp(14px, 2vw, 18px);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+/* léger glossy au survol */
+.avantages2 > div::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(255,255,255,.04), transparent 60%);
+  pointer-events: none;
+  
+}
+.avantages2 > div:hover{
+  transform: translateY(-3px);
+  border-color: rgba(0,0,0,.12);
+  box-shadow: 0 12px 28px rgba(20,20,20,.2);
+}
+
+
+
+/* ===== Titres / sous-titres ===== */
+.avantages2 h3{
+  margin: 0;
+  font: 800 clamp(14px, 2vw, 16px)/1.2 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color: var(--ink);
+}
+.avantages2 h4{
+  margin: 4px 0 0;
+  font: 600 clamp(12px, 1.8vw, 13px)/1.3 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color: var(--muted);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px){
+  .avantages2{
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+}
+@media (max-width: 580px){
+  .avantages2{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Motion-safe */
+@media (prefers-reduced-motion: reduce){
+  .avantages2 > div{ transition: none; }
+}
+
+
+.avantages2 .delivery {
+    background: url('./img/avantages2img6.png') center no-repeat;
+    background-size: 100%;
+    background-color:#faebd7;   
+
+}
+
+.avantages2 .fidelitee {
+    background: url('./img/avantages2img3.png') center no-repeat;
+    background-size: 80% ;
+    background-color:antiquewhite;    
+}
+
+
+
+.avantages2 .livraisonOfferte {
+    background: url('./img/avantages2img4.png') center no-repeat;
+    background-size: 90%;
+    background-color:antiquewhite;   
+
+}
+
+.avantages2 .paiementSecurise {
+    background: url('./img/avantages2img5.png') center no-repeat;
+    background-size: 100%;
+    background-color:antiquewhite;   
+}

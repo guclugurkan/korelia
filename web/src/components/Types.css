@@ -1,0 +1,164 @@
+.types .bs-header{
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+.types .bs-header::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: #553421;          /* barre de séparation */
+}
+.bs-title {
+  font-family: "Arapey", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 40px;
+  color: #553421;
+}
+
+:root{
+  --ink:#2f2f2f;
+  --nude-50:#fffaf3;
+  --nude-100:#f7f2ea;
+  --gold-200:#e6dac8;
+  --types-gap:16px;
+  --radius:16px;
+  --shadow:0 6px 20px rgba(0,0,0,.06);
+  --inset:inset 0 1px 0 rgba(255,255,255,.6);
+}
+
+/* Conteneur du carrousel */
+.types-shell{ 
+  position:relative;
+  isolation:isolate;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Dégradés latéraux */
+.fade{ 
+  position:absolute;
+  inset-block:0;
+  width:64px;
+  pointer-events:none;
+  z-index:2; 
+}
+.fade-left{
+  left:0;
+  background:linear-gradient(90deg, var(--nude-50), transparent);
+  border-top-left-radius:var(--radius);
+  border-bottom-left-radius:var(--radius); 
+}
+.fade-right{ 
+  right:0;
+  background:linear-gradient(270deg, var(--nude-50), transparent);
+  border-top-right-radius:var(--radius); 
+  border-bottom-right-radius:var(--radius); 
+}
+
+/* Scroller */
+.types-scroller{
+  display:flex;
+  gap:var(--types-gap);
+  overflow-x:auto;
+  scroll-snap-type:x mandatory; 
+  scroll-behavior:smooth;
+  padding:8px; 
+  border:1px solid var(--gold-200); 
+  border-radius:calc(var(--radius) + 8px);
+  background:linear-gradient(180deg, var(--nude-50), var(--nude-100)); 
+  box-shadow:var(--shadow), var(--inset);
+}
+.types-scroller::-webkit-scrollbar{ display:none; }
+.types-scroller{ -ms-overflow-style:none; scrollbar-width:none; }
+
+/* Carte type */
+.type-card{
+  flex: 0 0 calc((100% - (4 * var(--types-gap))) / 5);
+  aspect-ratio: 1 / 1.5;         /* carré */
+  min-height: 180px;           /* fallback */
+  position: relative;
+  scroll-snap-align: start;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--gold-200);
+  box-shadow: var(--shadow), var(--inset);
+  background: linear-gradient(135deg, #faf6f2 0%, #f3ede7 100%);
+}
+.type-card:focus{ 
+  outline:2px solid #d8c8aa; 
+  outline-offset:3px; 
+  border-radius:var(--radius); 
+}
+
+/* Le lien remplit toute la carte */
+.type-link{ 
+  position:absolute; 
+  inset:0; 
+  display:block; 
+  text-decoration:none; 
+  color:inherit; 
+}
+
+/* Image de fond */
+.type-bg{
+  position:absolute; inset:0;
+  background-position:center; 
+  background-size:cover;
+  filter: grayscale(10%) contrast(0.95) brightness(0.95);
+  opacity: .8;
+}
+
+/* Overlay pour lisibilité */
+.type-overlay{
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.15), rgba(0,0,0,.35));
+  opacity:.55; 
+  transition: opacity .2s ease;
+}
+
+/* Nom centré */
+.type-name{
+  position:absolute; inset:0;
+  display:grid; place-items:center;
+  padding:10px; 
+  text-align:center;
+  color:#fff; 
+  font-weight:900; 
+  letter-spacing:.4px; 
+  text-transform:uppercase;
+  font-size: clamp(14px, 2.8vw, 18px); 
+  line-height:1.2;
+  z-index:1; 
+  text-shadow:0 2px 12px rgba(0,0,0,.45);
+}
+
+/* Hover */
+.type-card:hover .type-overlay{ opacity:.42; }
+.type-card:hover{ transform: translateY(-2px); transition: transform .15s ease; }
+
+/* Navigation boutons */
+.nav{ position:absolute; inset-block:0; display:flex; align-items:center; z-index:3; }
+.nav-left{ left:8px; }
+.nav-right{ right:8px; }
+.nav-btn{
+  display:grid; place-items:center; width:36px; height:36px; border-radius:999px;
+  background:rgba(255,255,255,.85); backdrop-filter:saturate(140%) blur(6px);
+  border:1px solid var(--gold-200); box-shadow:0 4px 12px rgba(0,0,0,.08);
+  color:#7a6a55; cursor:pointer; transition:transform .15s ease, background .2s ease;
+}
+.nav-btn:hover{ transform:translateY(-1px); background:#fff; }
+
+/* Réactivité */
+@media (max-width: 1200px){ .type-card{ flex-basis: calc((100% - (3 * var(--types-gap))) / 4); } }
+@media (max-width: 900px){ .type-card{ flex-basis: calc((100% - (2 * var(--types-gap))) / 3); } }
+@media (max-width: 640px){ .type-card{ flex-basis: calc((100% - (1 * var(--types-gap))) / 2); } }
+@media (max-width: 400px){ .type-card{ flex-basis: 100%; } }
+
+/* On cache l’ancien rendu (thumb/label) */
+.type-card .label{ display:none; }
+.thumb{ display:none; }

@@ -1,0 +1,112 @@
+/* Palette douce */
+:root{
+  --beige-100:#f3ece4;
+  --beige-200:#eadfce;
+  --ink:#1b1b1b;
+  --muted:#6f6f6f;
+  --brand:#111827;
+  --border:#eee;
+  --white:#fff;
+}
+
+.merci-wrap{
+  background:#fff;
+}
+
+.merci-container{
+  width:90%;
+  margin:0 auto;
+  padding:16px 0 28px;
+  display:grid;
+  gap:12px;
+}
+
+/* Cards génériques */
+.card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.05);
+  padding:16px;
+}
+.card.center{ text-align:center; }
+.card.soft{ background:var(--beige-100); border-color:var(--beige-200); }
+
+.title{ margin:0; font-size:clamp(22px,2.2vw,28px); color:var(--ink); }
+.card-title{ margin:0 0 8px; color:var(--ink); font-size:18px; }
+.muted{ color:var(--muted); }
+.small{ font-size:12px; }
+.error{ color:#b42318; }
+
+.actions{
+  display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
+}
+
+/* Boutons */
+.btn-primary{
+  display:inline-block;
+  padding:10px 14px;
+  background:var(--brand);
+  color:#fff; border:0; border-radius:10px; cursor:pointer;
+  text-decoration:none; font-weight:700;
+}
+.btn-ghost{
+  display:inline-block;
+  padding:10px 14px;
+  background:var(--beige-100);
+  color:var(--ink);
+  border:1px solid var(--beige-200);
+  border-radius:10px;
+  text-decoration:none; cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+}
+.hero-left{ display:flex; align-items:center; gap:12px; }
+.check{
+  width:40px; height:40px; border-radius:999px;
+  background:#d1fae5; color:#065f46; display:grid; place-items:center; font-weight:900;
+}
+.hero-actions{ display:flex; gap:8px; }
+
+/* Perks */
+.perks{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap;
+}
+.perks-left{ display:flex; gap:12px; align-items:flex-start; }
+.gift{ font-size:26px; line-height:1; }
+.perks-actions{ display:flex; gap:8px; align-items:center; }
+
+/* Grid 3 colonnes sur desktop */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+/* Rows */
+.row{
+  display:flex; justify-content:space-between; gap:12px; padding:6px 0;
+}
+.row-label{ color:#444; }
+.sep{ border:none; border-top:1px solid var(--border); margin:8px 0; }
+
+/* Items */
+.items{ list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+.item{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.i-name{ font-weight:700; color:var(--ink); }
+.i-sub{ margin-top:2px; }
+
+/* Address */
+.addr{ white-space:pre-wrap; font-style:normal; line-height:1.5; }
+
+/* Loading */
+.big-emoji{ font-size:36px; }
+
+/* Responsive */
+@media (max-width: 920px){
+  .grid{ grid-template-columns:1fr; }
+  .hero{ align-items:flex-start; }
+}

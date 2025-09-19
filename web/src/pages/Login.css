@@ -1,0 +1,165 @@
+/* Palette douce “skincare” */
+:root{
+  --beige-50:  #faf6f1;
+  --beige-100: #f3ece4;
+  --beige-200: #eadfce;
+  --ink:       #1b1b1b;
+  --text:      #3d3d3d;
+  --muted:     #6f6f6f;
+  --brand:     #111827; /* bouton principal sombre chic */
+  --error:     #b42318;
+  --white:     #fff;
+}
+
+/* Wrapper */
+.login-wrap{
+  min-height: 100dvh;
+  width: 100%;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  
+}
+
+/* Carte */
+.login-card{
+  width: 680px;
+  background: var(--white);
+  border: 1px solid #eee;
+  border-radius: 18px;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.06),
+    0 2px 8px rgba(0,0,0,.04);
+  overflow: hidden;
+}
+
+
+/* Côté formulaire (droit) */
+.form-side{
+  padding: 32px;
+
+}
+
+.form-title{
+
+  margin: 8px 0 18px;
+  font-size: clamp(22px, 2.3vw, 26px);
+  color: var(--ink);
+  text-align: center;
+  
+}
+
+/* Erreur */
+.form-error{
+  background: #fdecea;
+  color: var(--error);
+  border: 1px solid #f7d4cf;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin: 0 0 12px;
+}
+
+/* Form */
+.form-grid{
+  display: grid;
+  gap: 14px;
+}
+
+.field > span{
+  display: inline-block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.field input{
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.field input::placeholder{ color: #a3a3a3; }
+
+.field input:focus{
+  border-color: var(--beige-200);
+  box-shadow: 0 0 0 4px rgba(234,223,206,.4);
+  background: #fff;
+}
+
+/* Mot de passe + toggle */
+.pwd-box{
+  position: relative;
+  display: grid;
+}
+.pwd-toggle{
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  opacity: .8;
+}
+.pwd-toggle:hover{ opacity: 1; }
+
+/* Boutons */
+.btn-primary{
+  appearance: none;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-weight: 700;
+  background: var(--brand);
+  color: #fff;
+  cursor: pointer;
+  transition: transform .06s ease, opacity .15s ease, box-shadow .15s ease;
+  box-shadow: 0 6px 18px rgba(17,24,39,.18);
+}
+.btn-primary:hover{ transform: translateY(-1px); }
+.btn-primary:disabled{
+  opacity: .65;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Liens secondaires */
+.links{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 14px;
+}
+.links .link{
+  color: var(--ink);
+  text-underline-offset: 3px;
+}
+.links .link:hover{ text-decoration: underline; }
+.links .sep{ opacity: .5; }
+
+.home-link{
+  margin-top: 4px;
+}
+.btn-ghost{
+  display: inline-block;
+  padding: 10px 14px;
+  background: var(--beige-100);
+  color: var(--ink);
+  border: 1px solid var(--beige-200);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background .15s ease, transform .06s ease;
+}
+.btn-ghost:hover{
+  background: var(--beige-200);
+  transform: translateY(-1px);
+}

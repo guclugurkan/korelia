@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Raleway:wght@400;600&display=swap');
+
+.header {
+    background-color:#FFF8F4; /* fond pastel */
+    color: #8B6F47;
+    width: 90%;
+    height: 80px;
+    border-radius: 50px; /* coins arrondis chic */
+    box-shadow: 0 4px 12px rgba(139, 111, 71, 0.1); /* ombre douce */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    margin: 20px auto;
+    font-family: 'Raleway', sans-serif;
+}
+
+.nomDuSite h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  color: #8B6F47;
+}
+
+.recherche {
+  position: relative;
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 25px;
+  padding: 5px 10px;
+  border: 1px solid #DABFAA;
+}
+
+ .recherche input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  font-family: 'Raleway', sans-serif;
+  background: transparent;
+}
+
+.recherche .rButton {
+  height: 30px;
+  width: 30px;
+  background-color: transparent;
+  border: none;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.recherche .rButton:hover {
+  opacity: 1;
+}
+
+.boutonDeNavigation {
+  display: flex;
+  align-items: center;
+}
+
+.boutonDeNavigation a,
+.boutonDeNavigation button {
+  height: 35px;
+  width: 35px;
+  margin-left: 12px;
+  border: none;
+  background: transparent;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  
+}
+
+
+.boutonDeNavigation a:hover,
+.boutonDeNavigation button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.sr-only {
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); border:0;
+}
+
+/* Autocomplete */
+.search-suggest{
+  
+  position: absolute;
+  top: 70px;
+  
+  background:#fff; border:1px solid #eee; border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  margin-top:6px; padding:8px; z-index:1000;
+}
+.search-suggest .group + .group{ border-top:1px solid #f3f3f3; margin-top:6px; padding-top:6px; }
+.search-suggest .title{ font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
+.search-suggest .item{
+  display:flex; align-items:center; gap:6px;
+  width:100%; text-align:left; padding:8px 10px; border-radius:8px; border:0; background:#fff; cursor:pointer;
+}
+.search-suggest .item:hover{ background:#f9fafb; }
+.search-suggest .item-name{ font-weight:600; color:#111827; }
+.search-suggest .item-meta{ color:#6b7280; font-size:12px; }
+.search-suggest .empty{ padding:8px; color:#6b7280; font-size:14px; }

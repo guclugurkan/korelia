@@ -1,0 +1,32 @@
+.track-page{ width:90%; max-width:760px; margin:64px auto; color:#2f2f2f; }
+.track-hero h1{ font-size:32px; margin:0 0 6px; color:#553421; text-transform:uppercase; }
+.track-hero p{ margin:0 0 18px; color:#6b5f50; }
+
+.track-card{
+  border:1px solid #e6dac8; border-radius:16px;
+  background:linear-gradient(180deg,#fffaf3,#f7f2ea);
+  box-shadow:0 8px 24px rgba(0,0,0,.06), inset 0 1px 0 rgba(255,255,255,.6);
+  padding:16px;
+}
+.track-form{ display:grid; gap:10px; margin-bottom:12px; }
+.row{ display:grid; gap:6px; }
+.row label{ font-weight:700; font-size:13px; color:#3a332a; }
+.row input{
+  border:1px solid #e6dac8; border-radius:12px; padding:10px 12px; background:#fff; font:500 14px ui-sans-serif,system-ui;
+}
+.btn{
+  background:#9b7f41; border:1px solid #cdb68f; color:#fff; border-radius:999px;
+  padding:10px 16px; font-weight:800; cursor:pointer;
+}
+.btn:hover{ filter:brightness(.96); }
+
+.result h2{ font-size:18px; margin:10px 0 8px; color:#3a332a; }
+.muted{ color:#6b5f50; }
+.steps{ list-style:none; padding:0; margin:10px 0; display:grid; gap:8px; }
+.steps li{ display:flex; align-items:center; gap:8px; color:#3a332a; font-weight:600; }
+.steps .dot{
+  width:10px; height:10px; border-radius:999px;
+  border:2px solid #9b7f41; display:inline-block;
+}
+.steps li.done .dot{ background:#9b7f41; }
+.steps li.done{ color:#2f2f2f; }

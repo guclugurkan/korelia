@@ -1,0 +1,26 @@
+.headerAll {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+    background-color:#FFF8F4; /* fond pastel */
+    
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.headerAll .header {
+    margin-bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.headerAll .header2 {
+    background-color:#FFF8F4; /* fond pastel */
+    box-shadow: none;
+}
+
+.nomDuSite a {
+    text-decoration: none;
+}
+

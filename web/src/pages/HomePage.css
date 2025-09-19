@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Raleway:wght@400;600&display=swap');
+
+
+* {
+    margin: 0;
+    padding : 0;
+    box-sizing: border-box;
+}
+
+.marques {
+    
+    width: 90%;
+    margin: 20px auto;
+    height: 70px;
+}
+
+
+.pointSysteme {
+ 
+    width: 90%;
+    margin: 20px auto;
+    height: 50vh;
+}
+
+.pack {
+  
+    width: 90%;
+    margin: 20px auto;
+    height: 50vh;
+}
+
+.conseil {
+   
+    width: 90%;
+    margin: 20px auto;
+    height: 50vh;
+}
+
+.blog {
+   
+    width: 90%;
+    margin: 20px auto;
+    height: 50vh;
+}
+
+.footer1 {
+    
+    width: 100%;
+    margin: 0 auto;
+    height: 50vh;
+}
+
+
+
+
+
+
+
+
+
+

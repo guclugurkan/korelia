@@ -1,0 +1,31 @@
+.pack-container{ width:min(1100px,92%); margin:0 auto; padding:20px 0 32px; }
+.pack-breadcrumb{ font-size:13px; margin-bottom:12px; }
+.pack-breadcrumb a{ color:#6b7280; text-decoration:none; }
+.pack-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.pack-card{ background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:12px; }
+.pack-gallery .pack-main-img{ position:relative; }
+.pack-main-img img{ width:100%; border-radius:12px; }
+.pack-discount{ position:absolute; top:10px; left:10px; background:#111; color:#fff; padding:4px 8px; border-radius:8px; }
+.pack-nav{ position:absolute; top:50%; transform:translateY(-50%); background:#fff; border:1px solid #ddd; border-radius:50%; width:30px; height:30px; cursor:pointer; }
+.pack-nav.prev{ left:5px; } .pack-nav.next{ right:5px; }
+.pack-thumbs{ display:flex; gap:6px; margin-top:8px; }
+.pack-thumb{ border:1px solid #ddd; border-radius:8px; padding:0; }
+.pack-thumb img{ width:60px; height:60px; object-fit:cover; border-radius:8px; }
+.pack-thumb.is-active{ outline:2px solid #111; }
+.pack-meta .pack-brand{ font-size:12px; text-transform:uppercase; color:#6b7280; font-weight:700; }
+.pack-title{ font-size:24px; margin:8px 0; }
+.pack-price-row{ display:flex; align-items:baseline; gap:10px; }
+.pack-price{ font-size:22px; font-weight:700; }
+.pack-compare{ font-size:14px; color:#6b7280; }
+.pack-cta{ margin-top:12px; background:#111; color:#fff; border:none; padding:10px 16px; border-radius:8px; cursor:pointer; }
+.pack-block h3{ margin-top:16px; font-size:18px; }
+.pack-list{ padding-left:20px; }
+.pack-section{ margin-top:20px; }
+.pack-steps{ padding-left:20px; line-height:1.6; }
+.pack-items{ display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+.pack-item{ text-decoration:none; color:inherit; }
+.pack-thumb-img img{ width:100%; border-radius:8px; object-fit:cover; }
+.pack-item-meta{ margin-top:6px; }
+.pack-item-brand{ font-size:12px; color:#6b7280; }
+.pack-item-name{ font-weight:700; }
+.pack-item-price{ font-size:14px; font-weight:600; }

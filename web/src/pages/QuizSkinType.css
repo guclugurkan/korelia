@@ -1,0 +1,57 @@
+/* src/pages/QuizSkinType.css */
+.quiz-wrap { background:#fff; }
+.quiz-container{ width:90%; max-width:980px; margin:0 auto; padding:18px 0 32px; }
+
+.muted{ color:#6b7280; }
+
+.quiz-head h1{ margin: 6px 0 4px; }
+.quiz-progress{ display:grid; gap:6px; margin:10px 0 16px; }
+.quiz-progress .bar{
+  height:10px; border-radius:999px; background:#f3f4f6; overflow:hidden; border:1px solid #eee;
+}
+.quiz-progress .fill{ height:100%; width:0; background:#111827; transition:width .2s ease; }
+.quiz-progress .hint{ font-size:13px; color:#6b7280; }
+
+.card{
+  background:#fff; border:1px solid #eee; border-radius:12px;
+  box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.quiz-card{ padding:16px; display:grid; gap:12px; }
+.q-title{ font-size:18px; font-weight:700; }
+.q-options{ display:grid; gap:8px; }
+.q-btn{
+  border:1px solid #e5e7eb; background:#fff; padding:12px; border-radius:10px; cursor:pointer; text-align:left;
+}
+.q-btn:hover{ border-color:#111827; }
+
+.q-nav{ display:flex; align-items:center; gap:8px; }
+.q-nav .spacer{ flex:1; }
+
+.btn-primary{
+  display:inline-block; padding:12px 16px; border-radius:12px;
+  background:#111827; color:#fff; border:0; cursor:pointer; font-weight:700;
+}
+.btn-ghost{
+  display:inline-block; padding:10px 12px; border-radius:10px;
+  background:#f3ece4; color:#1b1b1b; border:1px solid #eadfce; cursor:pointer;
+}
+.btn-link{ color:#111827; text-decoration:underline; }
+
+.quiz-result{ padding:16px; display:grid; gap:16px; }
+.res-top{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
+.res-kpi{ background:#fafafa; border:1px solid #eee; border-radius:10px; padding:12px; }
+.res-label{ font-size:12px; color:#6b7280; margin-bottom:6px; }
+.res-value{ font-weight:800; font-size:18px; }
+.res-tags{ display:flex; flex-wrap:wrap; gap:6px; }
+.tag{ background:#eef2ff; border:1px solid #dfe5ff; color:#223; font-weight:700; padding:4px 10px; border-radius:999px; font-size:12px; }
+
+.res-advice h2{ margin:0 0 6px; }
+.res-advice ul{ margin:0; padding-left:18px; display:grid; gap:6px; }
+
+.res-cta{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.res-more{ font-size:13px; color:#6b7280; }
+
+@media (max-width: 780px){
+  .res-top{ grid-template-columns: 1fr; }
+}

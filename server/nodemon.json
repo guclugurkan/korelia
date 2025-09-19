@@ -1,0 +1,3 @@
+{
+  "ignore": ["orders.json", "products.json", "processedEvents.json"]
+}

@@ -1,0 +1,1238 @@
+[
+  {
+    "id": "cs_test_b1D3k0oC0uZrJiejwYzkcyEo1F8VHxCOpsLDQIeXnWeqXWwv41JOAEiqBL",
+    "payment_status": "paid",
+    "amount_total": 3190,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "Skin1004-mdgscr-centella-tone-brhtng-capsl-ampl",
+        "qty": 2
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-08-30T14:14:35.155Z",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-08-30T14:14:35.155Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 31
+  },
+  {
+    "id": "cs_test_b1WfwVGQ18jRU6CouGgLB9iKxiuoeh5bkvqbF756SOkpaefNZqR9eM091M",
+    "payment_status": "paid",
+    "amount_total": 4470,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "anua-cleansing-oil",
+        "qty": 2
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T11:02:59.752Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S2rypP7tRkRV6sZxGm1K9wW",
+    "status": "preparing",
+    "status_history": [
+      {
+        "at": "2025-09-02T11:02:59.752Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:51:27.258Z",
+        "status": "preparing",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 44
+  },
+  {
+    "id": "cs_test_b1DeUi16LwEPLFGOld9kPVmq1FpZOdHTzkfwq8xYJOvlcT2hmkoNZKyzLk",
+    "payment_status": "paid",
+    "amount_total": 10950,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "anua-htlf-toner",
+        "qty": 5
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T11:54:13.118Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S2smhP7tRkRV6sZCobUMdx4",
+    "status": "delivered",
+    "status_history": [
+      {
+        "at": "2025-09-02T11:54:13.118Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:51:19.315Z",
+        "status": "delivered",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 109
+  },
+  {
+    "id": "cs_test_b1FFGCEdWTh39ptlDpjCwc8HmRrwukVM82zZlDljy8vIC9L8ZVzSUKpVGR",
+    "payment_status": "paid",
+    "amount_total": 7960,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "anua-cleansing-oil",
+        "qty": 4
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T12:06:01.300Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S2sxUP7tRkRV6sZEhquJvIP",
+    "status": "preparing",
+    "status_history": [
+      {
+        "at": "2025-09-02T12:06:01.300Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:51:37.521Z",
+        "status": "preparing",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:51:37.978Z",
+        "status": "preparing",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:51:38.596Z",
+        "status": "preparing",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:51:40.808Z",
+        "status": "canceled",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:51:42.976Z",
+        "status": "preparing",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 79
+  },
+  {
+    "id": "cs_test_b1jZTyOFRZEjIjhFJU5Tt0guQMrNpaqHASpbn8dJganxl9rEoKeMXMlw8N",
+    "payment_status": "paid",
+    "amount_total": 4470,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "anua-cleansing-oil",
+        "qty": 2
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T12:23:05.602Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      },
+      "phone": null
+    },
+    "shipping_option": "shr_1S2tEhP7tRkRV6sZqPyRUpul",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-02T12:23:05.602Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 44
+  },
+  {
+    "id": "cs_test_b1gA1IRwKIC6InC7nPD6WkLWsQaYpMIc3PmKSyn4fR6W8U8qo8ToI2Jxb2",
+    "payment_status": "paid",
+    "amount_total": 2140,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "anua-htlf-pore-deep",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T13:49:35.525Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      },
+      "phone": null
+    },
+    "shipping_option": "shr_1S2uaJP7tRkRV6sZC3D0Ldbr",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-02T13:49:35.525Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 21
+  },
+  {
+    "id": "cs_test_b1xYpGdPBNVQhTY3rvWj8gUHU8XS8AaNllByb5myvIGWk7FiGNcAlfW94b",
+    "payment_status": "paid",
+    "amount_total": 6540,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "anua-htlf-pore-deep",
+        "qty": 1
+      },
+      {
+        "id": "anua-niacnmd-10-4-serum",
+        "qty": 2
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T14:20:00.670Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      },
+      "phone": null
+    },
+    "shipping_option": "shr_1S2v3mP7tRkRV6sZyiUOoLdY",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-02T14:20:00.670Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 65
+  },
+  {
+    "id": "cs_test_b19fuaa1q0C4bHDY2Kdmf18yoPjGpKZf2eEBOeutl6Y41Wc8MGJKgF3A8w",
+    "payment_status": "paid",
+    "amount_total": 10520,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "anua-htlf-pore-deep",
+        "qty": 1
+      },
+      {
+        "id": "anua-niacnmd-10-4-serum",
+        "qty": 2
+      },
+      {
+        "id": "anua-cleansing-oil",
+        "qty": 2
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T14:34:53.084Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      },
+      "phone": null
+    },
+    "shipping_option": "shr_1S2vIAP7tRkRV6sZtC6TSg5U",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-02T14:34:53.084Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 105
+  },
+  {
+    "id": "cs_test_b1eyI85UFgyhPzWGiHNlApKsP0yEdrF8qCeX6DX8Nz1WYDjbqVFKAl4mO8",
+    "payment_status": "paid",
+    "amount_total": 2480,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "anua-cleansing-oil",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T14:39:51.423Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      },
+      "phone": null
+    },
+    "shipping_option": "shr_1S2vN3P7tRkRV6sZ6ItDVPI7",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-02T14:39:51.423Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 24
+  },
+  {
+    "id": "cs_test_b1FTI6FrB7YVrZpRFLpjtd3tBmpX1wJgE62aelcQdrAEsjzQ1kkJXZcQtR",
+    "payment_status": "paid",
+    "amount_total": 2390,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "skin1004-mdgscr-centella-cream",
+        "qty": 2
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T22:16:05.814Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      },
+      "phone": null
+    },
+    "shipping_option": "shr_1S32UOP7tRkRV6sZRDDzg4dI",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-02T22:16:05.814Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 23
+  },
+  {
+    "id": "cs_test_b1JlizAp4TdMbWMsNAz7ESDw25GtFnlMte5elSREctDFx1KycuBPyDSRIJ",
+    "payment_status": "paid",
+    "amount_total": 3340,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "skin1004-mdgscr-centella-cream",
+        "qty": 3
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T22:18:50.099Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      },
+      "phone": null
+    },
+    "shipping_option": "shr_1S32X8P7tRkRV6sZvG5Rh6LM",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-02T22:18:50.099Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 33
+  },
+  {
+    "id": "cs_test_b1dMjoNvD6R1ZJvVTqxPKATGyKTs1bVqd67WwIqL9gQtZTtRVS5wRMFmOs",
+    "payment_status": "paid",
+    "amount_total": 4990,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "anua-peach-70-niacin-serum",
+        "qty": 2
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T22:20:25.350Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      },
+      "phone": null
+    },
+    "shipping_option": "shr_1S32YfP7tRkRV6sZeFwmMKWI",
+    "status": "shipped",
+    "status_history": [
+      {
+        "at": "2025-09-02T22:20:25.350Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:46:48.910Z",
+        "status": "shipped",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 49
+  },
+  {
+    "id": "cs_test_b17roTryAG81tgCutSZR2Edh34ygkLA0o2g42Eod0M7mtcBgeffNgJDa7e",
+    "payment_status": "paid",
+    "amount_total": 2740,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "anua-peach-70-niacin-serum",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T22:26:06.586Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      },
+      "phone": null
+    },
+    "shipping_option": "shr_1S32e8P7tRkRV6sZ5l8dOVJn",
+    "status": "preparing",
+    "status_history": [
+      {
+        "at": "2025-09-02T22:26:06.586Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:45:53.373Z",
+        "status": "preparing",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 27
+  },
+  {
+    "id": "cs_test_b171VAEHhkdclJ2MkeRXQ46TgP6UKldi3DXMGoJVAPd8heccrgWUyrXIOZ",
+    "payment_status": "paid",
+    "amount_total": 1440,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "skin1004-mdgscr-centella-cream",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T22:35:02.994Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      },
+      "phone": null
+    },
+    "shipping_option": "shr_1S32mpP7tRkRV6sZmwdHpfhK",
+    "status": "shipped",
+    "status_history": [
+      {
+        "at": "2025-09-02T22:35:02.994Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:45:50.561Z",
+        "status": "shipped",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 14
+  },
+  {
+    "id": "cs_test_b1KELdlcrt5KUwVguOFy8IgOAitj7M122rAOGKPyTMLM3Her3nOuxj5dHl",
+    "payment_status": "paid",
+    "amount_total": 1440,
+    "amount_subtotal": 950,
+    "shipping_cost": 490,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "skin1004-mdgscr-centella-cream",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T22:40:13.307Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S32ruP7tRkRV6sZ90d5fE29",
+    "client_reference_id": null,
+    "user_id": null,
+    "status": "shipped",
+    "status_history": [
+      {
+        "at": "2025-09-02T22:40:13.307Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:45:48.218Z",
+        "status": "shipped",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 9
+  },
+  {
+    "id": "cs_test_b14YlR1e33L60jdrivs7yUAtZkIRQ4GSIyIZsCIiQIGns6fs5NfECkWUkz",
+    "payment_status": "paid",
+    "amount_total": 1440,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "items": [
+      {
+        "id": "skin1004-mdgscr-centella-cream",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T22:54:01.307Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      },
+      "phone": null
+    },
+    "shipping_option": "shr_1S335BP7tRkRV6sZgUo3ii9y",
+    "status": "shipped",
+    "status_history": [
+      {
+        "at": "2025-09-02T22:54:01.307Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:45:45.223Z",
+        "status": "shipped",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 14
+  },
+  {
+    "id": "cs_test_b1RqZD7Ewnerk1YbshM3arBIh62pirpoVRA9eQwBGE6VyZl4JDWmyn7OY5",
+    "payment_status": "paid",
+    "amount_total": 1440,
+    "amount_subtotal": 950,
+    "shipping_cost": 490,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "skin1004-mdgscr-centella-cream",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-02T22:54:53.570Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S3362P7tRkRV6sZaWIjn5lm",
+    "client_reference_id": null,
+    "user_id": null,
+    "status": "preparing",
+    "status_history": [
+      {
+        "at": "2025-09-02T22:54:53.570Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:37:33.286Z",
+        "status": "preparing",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 9
+  },
+  {
+    "id": "cs_test_b1d5yrK7jEnodZ9qqbxa3sf2RX56szunSe1LNkqHMjpEx1zHdZGfiYoAB4",
+    "payment_status": "paid",
+    "amount_total": 1440,
+    "amount_subtotal": 950,
+    "shipping_cost": 490,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "skin1004-mdgscr-centella-cream",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-03T09:33:34.346Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S3D4CP7tRkRV6sZTmaSP1h5",
+    "client_reference_id": null,
+    "user_id": null,
+    "status": "delivered",
+    "status_history": [
+      {
+        "at": "2025-09-03T09:33:34.346Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:37:35.919Z",
+        "status": "delivered",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 9
+  },
+  {
+    "id": "cs_test_b1bZvxwF4dQSMNc55h50kYyhor1E88oFjCdFn2YRNPg0IoyD88rPhDPeEQ",
+    "payment_status": "paid",
+    "amount_total": 3340,
+    "amount_subtotal": 2850,
+    "shipping_cost": 490,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "skin1004-mdgscr-centella-cream",
+        "qty": 3
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-04T22:27:11.615Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S3lcLP7tRkRV6sZTTqzMXbM",
+    "client_reference_id": null,
+    "user_id": null,
+    "status": "preparing",
+    "status_history": [
+      {
+        "at": "2025-09-04T22:27:11.615Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:45:40.855Z",
+        "status": "preparing",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 28
+  },
+  {
+    "id": "cs_test_b1x6m00GXceZ60fJQhdGIMefH5mCvA69RX7E90dj5DLMnaONzGgeGVYJqp",
+    "payment_status": "paid",
+    "amount_total": 5850,
+    "amount_subtotal": 5850,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "skin1004-mdgscr-centella-poremizing-quick-clay-stick-mask",
+        "qty": 3
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-04T22:44:40.433Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S3ltGP7tRkRV6sZEZo8aVId",
+    "client_reference_id": null,
+    "user_id": null,
+    "status": "shipped",
+    "status_history": [
+      {
+        "at": "2025-09-04T22:44:40.433Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:45:35.987Z",
+        "status": "canceled",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:45:38.972Z",
+        "status": "shipped",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T13:48:53.702Z",
+        "status": "shipped",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "tracking": {
+      "carrier": "Bpost",
+      "number": "123456789",
+      "url": "https://www.youtube.com/"
+    },
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 58
+  },
+  {
+    "id": "cs_test_b1vhK117ImkenMPa1UJo7DRDzkO5EmmMbwgX8fS5kmWGxhRs48hMu1B7Qu",
+    "payment_status": "paid",
+    "amount_total": 7800,
+    "amount_subtotal": 7800,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "skin1004-mdgscr-centella-poremizing-quick-clay-stick-mask",
+        "qty": 4
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-04T22:55:40.213Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S3m3xP7tRkRV6sZVqxVHpXU",
+    "client_reference_id": null,
+    "user_id": null,
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-04T22:55:40.213Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:17:32.211Z",
+        "status": "preparing",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:17:37.492Z",
+        "status": "shipped",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:35:57.020Z",
+        "status": "delivered",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T13:09:07.742Z",
+        "status": "preparing",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T13:09:27.557Z",
+        "status": "shipped",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T13:11:59.239Z",
+        "status": "paid",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 78
+  },
+  {
+    "id": "cs_test_b1fNzsdmwj0FbodvyTcFugdMaXnrxnrmJoFeeGrY4n5gG1nVIQU2hXQvp0",
+    "payment_status": "paid",
+    "amount_total": 9750,
+    "amount_subtotal": 9750,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "test22@gmail.com",
+    "customer_name": "test22",
+    "items": [
+      {
+        "id": "skin1004-mdgscr-centella-poremizing-quick-clay-stick-mask",
+        "qty": 5
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-04T23:03:11.287Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S3mB5P7tRkRV6sZU3K9MwgO",
+    "client_reference_id": null,
+    "user_id": "8a39acee-a50c-4635-af7e-a936a013e10e",
+    "status": "delivered",
+    "status_history": [
+      {
+        "at": "2025-09-04T23:03:11.287Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:17:25.989Z",
+        "status": "delivered",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1lcjjG5E0PCUPHYD9mAqP6AluPXt0Zxw6jnIMyvYliVitdkGrA23Y0QRr",
+    "payment_status": "paid",
+    "amount_total": 9250,
+    "amount_subtotal": 9750,
+    "shipping_cost": -500,
+    "currency": "eur",
+    "email": "test22@gmail.com",
+    "customer_name": "test22",
+    "items": [
+      {
+        "id": "skin1004-mdgscr-centella-poremizing-quick-clay-stick-mask",
+        "qty": 5
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-05T11:35:02.281Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S3xuUP7tRkRV6sZ2feETeRR",
+    "client_reference_id": null,
+    "user_id": "8a39acee-a50c-4635-af7e-a936a013e10e",
+    "status": "delivered",
+    "status_history": [
+      {
+        "at": "2025-09-05T11:35:02.281Z",
+        "status": "paid",
+        "by": "system"
+      },
+      {
+        "at": "2025-09-09T12:15:48.796Z",
+        "status": "preparing",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:15:51.776Z",
+        "status": "shipped",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:17:14.318Z",
+        "status": "delivered",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:35:47.807Z",
+        "status": "shipped",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:45:31.205Z",
+        "status": "preparing",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:58:11.376Z",
+        "status": "shipped",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:58:13.887Z",
+        "status": "canceled",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T12:58:16.326Z",
+        "status": "paid",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T18:04:48.975Z",
+        "status": "shipped",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      },
+      {
+        "at": "2025-09-09T18:05:03.507Z",
+        "status": "delivered",
+        "by": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1fRw5psLM3yhpDKZrUK6ErnmPhsW8r0Y54MJht6ycKu3zb7OPNTLaTIEQ",
+    "payment_status": "paid",
+    "amount_total": 4670,
+    "amount_subtotal": 4180,
+    "shipping_cost": 490,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "anua-htlf-toner",
+        "qty": 1
+      },
+      {
+        "id": "anua-cleansing-oil",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-11T17:41:59.910Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S6EVCP7tRkRV6sZNHF3H5DG",
+    "client_reference_id": null,
+    "user_id": null,
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-11T17:41:59.910Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 41
+  },
+  {
+    "id": "cs_test_b1NvFw9bNFV9EZg3TWtxXobqsC9bSRkIwYuVL8T6zuhqHDmqPBLmteSaps",
+    "payment_status": "paid",
+    "amount_total": 4670,
+    "amount_subtotal": 4180,
+    "shipping_cost": 490,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "anua-htlf-toner",
+        "qty": 1
+      },
+      {
+        "id": "anua-cleansing-oil",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-11T18:01:27.540Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S6Eo0P7tRkRV6sZulQCZHMF",
+    "client_reference_id": null,
+    "user_id": null,
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-11T18:01:27.540Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true,
+    "rewards_points": 41
+  },
+  {
+    "id": "cs_test_b110ZK3TE32ZnEXLopAel3CPvV4BLbIe2HwIKljYwrETu8P36K3vDYt7Zh",
+    "payment_status": "paid",
+    "amount_total": 6170,
+    "amount_subtotal": 6170,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "test123@gmail.com",
+    "customer_name": "Aleyna Akin",
+    "items": [
+      {
+        "id": "anua-htlf-toner",
+        "qty": 1
+      },
+      {
+        "id": "anua-cleansing-oil",
+        "qty": 2
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-11T21:37:59.766Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S6IAPP7tRkRV6sZFYuWxANW",
+    "client_reference_id": null,
+    "user_id": null,
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-11T21:37:59.766Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1PbMd4a3jLDGLQbAE8PccdBSfN1d0whcOv7dmIFaJwqQX2s6AWDdP9c29",
+    "payment_status": "paid",
+    "amount_total": 6170,
+    "amount_subtotal": 6170,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "test1234@gmail.com",
+    "customer_name": "Aleyna Akin",
+    "items": [
+      {
+        "id": "anua-htlf-toner",
+        "qty": 1
+      },
+      {
+        "id": "anua-cleansing-oil",
+        "qty": 2
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-11T21:59:05.029Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S6IVCP7tRkRV6sZ9HjWXbIm",
+    "client_reference_id": null,
+    "user_id": null,
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-11T21:59:05.029Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "b10acfff-59a6-4f60-bfc9-fef7e7d260b4",
+    "rewards_backfill_done": true,
+    "rewards_points": 61
+  },
+  {
+    "id": "cs_test_b1yq5rMJeroZEWjavJpoX8WPMMUihwMnPigIJR4GxvfPZ1XJ60IQB7GGna",
+    "payment_status": "paid",
+    "amount_total": 8360,
+    "amount_subtotal": 8360,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "test12345@gmail.com",
+    "customer_name": "Aleyna Akin",
+    "items": [
+      {
+        "id": "anua-htlf-toner",
+        "qty": 2
+      },
+      {
+        "id": "anua-cleansing-oil",
+        "qty": 2
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-11T22:41:15.605Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1S6JASP7tRkRV6sZoMpkU7wN",
+    "client_reference_id": null,
+    "user_id": null,
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-11T22:41:15.605Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_pending_for_email": "test12345@gmail.com",
+    "rewards_credited_user_id": "197ea50c-3556-4001-ac0a-1c8aad4b5440",
+    "rewards_backfill_done": true,
+    "rewards_points": 83
+  }
+]

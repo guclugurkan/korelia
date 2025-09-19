@@ -1,0 +1,268 @@
+:root{
+  --bg: #faf5ef;          /* crème clair */
+  --card: #ffffff;        /* carte */
+  --ink: #2f2f2f;         /* texte principal (anthracite) */
+  --muted: #6b6b6b;       /* texte secondaire */
+  --accent: #d94f3d;      /* accent (rappel Medicube) */
+  --shadow: 0 6px 20px rgba(20,20,20,.08);
+  --radius: 18px;
+  --inner-w: min(560px, 92%);   /* largeur max du contenu interne */
+}
+
+.avantages{
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  /* évite l’étirement vertical indésirable */
+  align-items: stretch;
+  font-size: 14px;
+  margin-bottom: 70px;
+  gap: 18px;
+}
+
+/* BLOC 1 */
+.avantages1{
+  width: 50%;
+  aspect-ratio: 1500 / 1000;
+  background: url("./img/avantagesBG7.png") center / cover no-repeat #f3e6d5;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(200, 80, 120, 0.12);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+
+
+
+/* BLOC 2 */
+
+    /* Skin */
+.cta-skin{
+  width: 50%;
+  aspect-ratio: 1500 / 1000;
+  background-color: rgb(250, 251, 246);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+    /* Tabs */
+.cta-tabs{
+   --h: clamp(36px, 5vw, 42px);         /* hauteur des boutons */
+  --px: clamp(14px, 2.2vw, 18px);      /* padding horizontal des boutons */
+
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background: rgba(231, 227, 227, .4);
+  padding: 6px;
+  border-radius: 999px;
+  justify-content: center;
+   position: relative;
+  isolation: isolate;   
+}
+.cta-tab{
+  appearance: none;
+  border: 0;
+  padding: 8px 14px;
+  border: 1px solid rgb(196, 195, 145);
+  border-radius: 999px;
+  font: 600 14px/1 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  background: transparent;
+  cursor: pointer;
+  color: var(--muted);
+}
+.cta-tab.is-active{
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+
+
+.cta-tabs::after{
+
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 5px;                           
+  height: var(--h);
+  width: calc(50% - 5px);              
+  transform: translate(var(--thumb-x, 0%), -50%);
+  transition: transform .25s ease;
+
+  background: linear-gradient(180deg, #fff, #f6f6f6);
+  border: 1px solid rgba(0,0,0,.14);
+  border-radius: 999px;
+  box-shadow:
+    0 1px 1px rgba(255,255,255,.6) inset,
+    0 6px 16px rgba(0,0,0,.08);
+}
+
+/* Les boutons passent au-dessus, sans fond propre (c’est le thumb qui fait le fond) */
+.cta-tabs .cta-tab{
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  border-color: transparent;
+}
+.cta-tabs .cta-tab.is-active{
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Position du thumb selon l’onglet actif */
+.cta-tabs:has(.cta-tab:nth-child(1).is-active){ --thumb-x: 0%; }
+.cta-tabs:has(.cta-tab:nth-child(2).is-active){ --thumb-x: 100%; }
+
+
+    /* Panels */
+.cta-panels{
+  width: 85%;
+  height: 85%;
+ 
+}
+
+
+
+
+    /* Card */ 
+.cta-card{
+ 
+  aspect-ratio: 1500/1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+ 
+  
+  background-size: contain;
+  text-decoration: none;
+  padding: clamp(16px, 2.5vw, 24px);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 20px rgba(0,0,0,.16);
+  
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  
+}
+.cta-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(20,20,20,.12);
+  border-color: rgba(0,0,0,.12);
+}
+.cta-card:focus-visible{
+  box-shadow: 0 0 0 3px rgba(217,79,61,.25), var(--shadow);
+}
+.cta-card.is-quiz{
+  background: url('./img/quizzimg2.png');
+  background-size: contain;
+}
+.cta-card.is-guide{
+  background: url('./img/guideimg1.png');
+  background-size: contain;
+}
+
+
+
+    /* title */
+.cta-title{
+  margin: 6px 0 0;
+  font: 700 clamp(18px, 2.8vw, 24px)/1.2 "Playfair Display", Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  width: 50%;
+  height: 40%;
+}
+
+
+  /* text */ 
+.cta-text{
+  margin: 6px 0 0;
+  font: 500 15px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color: var(--muted);
+  width: 50%;
+}
+.cta-content {
+  display: flex;
+  width: 100%;
+}
+
+/* Titre accessible caché j'sais pas pq il le met wallay */
+.visually-hidden{
+  position:absolute!important; height:1px;width:1px;overflow:hidden;
+  clip:rect(1px,1px,1px,1px); white-space:nowrap;
+}
+
+
+
+
+
+
+
+
+
+/* Réduit le mouvement pour les utilisateurs qui le préfèrent */
+@media (prefers-reduced-motion: reduce){
+  .cta-card:hover{ transform: none; }
+}
+
+/* Responsive : on empile, on libère le ratio de la colonne texte pour laisser respirer */
+@media (max-width: 900px){
+  .avantages{
+    flex-direction: column;
+    align-items: center;
+  }
+  .avantages1,
+  .cta-skin{
+    width: 100%;
+  
+  }
+  .cta-skin{
+    aspect-ratio: 1500/1000;   /* la hauteur suit le contenu sur mobile */
+    max-height: none;     /* plus de plafond strict */
+  }
+}
+
+
+
+
+
+
+.cta-btn {
+  align-self: flex-start;
+  margin-top: auto; /* pousse le bouton en bas de la carte */
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font: 600 15px/1 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  background-color: #c64232; /* un peu plus foncé au hover */
+}
+.cta-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(217,79,61,.3), 0 6px 16px rgba(0,0,0,.12);
+}
+
+
+/* Position spécifique */
+.btn-left {
+  align-self: flex-start;
+}
+.btn-right {
+  align-self: flex-end;
+}
+
+.avantages1:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(200, 80, 120, 0.14);
+}

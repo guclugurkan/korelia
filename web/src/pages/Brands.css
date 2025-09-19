@@ -1,0 +1,70 @@
+.brandsPage-wrap { background:#fff; color:#111; }
+
+/* Hero */
+.brandsPage-hero{
+  width:90%; max-width:1180px; margin:0 auto; padding:24px 0 8px;
+}
+.brandsPage-hero h1{
+  margin:0 0 6px; font-size:36px; text-transform:uppercase; color:#553421;
+}
+.brandsPage-hero p{ color:#6b7280; margin:0; }
+
+/* Grille */
+.brandsPage-grid{
+  width:90%; max-width:1180px; margin:0 auto; padding:14px 0 30px;
+  display:grid; gap:14px;
+  grid-template-columns: repeat(5, 1fr);
+}
+@media (max-width: 1100px){ .brandsPage-grid{ grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 900px){ .brandsPage-grid{ grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 680px){ .brandsPage-grid{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px){ .brandsPage-grid{ grid-template-columns: 1fr; } }
+
+/* Tuile marque */
+.brandsPage-card{
+  aspect-ratio: 1 / 1;
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  box-shadow: 0 8px 24px rgba(0,0,0,.05);
+  background: linear-gradient(135deg, #faf6f2 0%, #f3ede7 100%);
+}
+
+/* Lien */
+.brandsPage-link{
+  position:absolute; inset:0; display:block;
+  text-decoration: none;
+}
+
+/* Image de fond */
+.brandsPage-bg{
+  position:absolute; inset:0;
+  background-position:center; background-size:cover;
+  filter: grayscale(10%) contrast(0.9) brightness(0.9);
+  opacity: 0.7;
+}
+.brandsPage-overlay{
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.12), rgba(0,0,0,.35));
+  opacity: 0.55;
+  transition: opacity .2s ease;
+}
+
+/* Nom */
+.brandsPage-name{
+  position:absolute; inset:0;
+  display:grid; place-items:center;
+  padding: 10px;
+  text-align:center;
+  color:#fff; font-weight:900; letter-spacing:.4px;
+  text-transform:uppercase;
+  font-size: clamp(16px, 3.2vw, 22px);
+  line-height:1.2;
+  z-index: 1;
+  text-shadow: 0 2px 12px rgba(0,0,0,.45);
+}
+
+/* Hover */
+.brandsPage-card:hover .brandsPage-overlay{ opacity:.4; }
+.brandsPage-card:hover { transform: translateY(-2px); transition: transform .15s ease; }

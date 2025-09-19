@@ -1,0 +1,30 @@
+# Node
+node_modules/
+web/node_modules/
+server/node_modules/
+
+# Builds
+dist/
+build/
+web/dist/
+server/dist/
+
+# Env
+.env
+.env.*.local
+
+# OS / IDE / logs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Données sensibles côté serveur (évite de les committer)
+server/orders.json
+server/users.json
+server/processedEvents.json
+
+
+web/.env
+server/.env

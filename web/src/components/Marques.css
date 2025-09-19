@@ -1,0 +1,146 @@
+.marques.marques--six{
+  --gap: 20px;
+  --radius: 8px;
+  --card: #fff;
+  --ink: #2f2f2f;
+  --shadow: 0 6px 20px rgba(0,0,0,.28);
+
+  width: min(900px, 92vw);
+  height: auto;
+  margin: 0 auto;
+  color: var(--ink);
+  margin-bottom: 70px;
+}
+
+/* Grille 3×3 avec zones nommées :
+   "one two three"
+   "big big six"
+   "big big nine"
+*/
+.marques-grid-six{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  grid-template-areas:
+    "one two three"
+    "big big six"
+    "big big nine";
+  gap: 20px;
+}
+
+/* Placement des 6 items */
+.area-one   { grid-area: one; }
+.area-two   { grid-area: two; }
+.area-three { grid-area: three; }
+.area-big   { grid-area: big; 
+}   /* ← occupe 4578 (2×2) */
+.area-six   { grid-area: six; }
+.area-nine  { grid-area: nine; }
+
+/* Carte + nom */
+.brand-card{ display: grid; grid-template-rows: auto auto; gap: 8px; }
+.brand-name{
+  text-align: center;
+  font: 700 15px/1.2 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color: var(--ink);
+}
+
+/* Tuile carrée avec swap au survol */
+.brand-tile{
+  position: relative; display: block; overflow: hidden;
+  aspect-ratio: 1 / 1;                  /* carré parfait */
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+/* Images superposées (logo par défaut + logo/visuel hover) */
+.brand-img{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;                  /* logos non rognés */
+  background: #fafafa;
+  transition: opacity .25s ease, transform .25s ease, filter .25s ease;
+}
+.brand-img.primary  { opacity: 1;  transform: scale(1.00); }
+.brand-img.secondary{ opacity: 0;  transform: scale(1.06); filter: saturate(110%); }
+
+.brand-tile:hover .brand-img.primary  { opacity: 0; transform: scale(1.06); }
+.brand-tile:hover .brand-img.secondary{ opacity: 1; transform: scale(1.00); }
+
+/* Responsive : on garde la géométrie en 3 colonnes puis on passe à 2/1 si besoin */
+@media (max-width: 980px){
+  .marques-grid-six{
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "one   two"
+      "three big"
+      "six   nine"; /* 9 en grand sur 2 colonnes, ajuste si tu préfères */
+  }
+}
+@media (max-width: 560px){
+  .marques-grid-six{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "one"
+      "two"
+      "three"
+      "big"
+      "six"
+      "nine";
+  }
+}
+
+
+/* Le "big" occupe toute la hauteur de sa zone 2×2 */
+.brand-card.area-big{
+  height: 100%;                 /* l’article s’étire sur toute la zone grid */
+  display: grid;
+  grid-template-rows: 1fr auto; /* 1) tuile prend tout l’espace, 2) nom en bas */
+}
+
+/* La tuile du "big" remplit la hauteur disponible (on enlève le ratio carré) */
+.brand-card.area-big .brand-tile{
+  height: 100%;
+  aspect-ratio: auto;           /* important : sinon elle reste carrée et n’étire pas */
+}
+
+/* Les images à l’intérieur suivent la tuile étirée et restent contenues */
+.brand-card.area-big .brand-img{
+  object-fit: cover;
+  object-position: center;
+  background: transparent; /* optionnel, évite un fond gris/blanc */
+}
+
+
+
+.marques  .bs-header{
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+.marques  .bs-header::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background:#553421;          /* barre noire */
+}
+.bs-title {
+  font-family: "Arapey", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color : #553421;
+}
+.bs-title {
+  font-family: "Arapey", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 40px;
+  color : #553421;
+}
+

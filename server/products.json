@@ -1,0 +1,2170 @@
+[
+  {
+    "id": "anua-heartleaf-pore-control-cleansing-oil",
+    "slug": "anua-heartleaf-pore-control-cleansing-oil",
+    "name": "Heartleaf Pore Control Cleansing Oil",
+    "brand": "ANUA",
+    "price_cents": 1990,
+    
+    "images":[
+      "/img/anua/product2/img1.jpg",
+      "/img/anua/product2/img2.png",
+      "/img/anua/product2/img3.png",
+      "/img/anua/product2/img4.png",
+      "/img/anua/product2/img5.png"
+    ],
+    "stock": 50,
+    "skin_types": [
+      "mixte", "grasse", "sensible", "tous"
+    ],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "anua-heartleaf-quercetinol-pore-deep-cleansing-foam",
+    "slug": "anua-heartleaf-quercetinol-pore-deep-cleansing-foam",
+    "name": "Heartleaf Quercetinol Pore Deep Cleansing Foam",
+    "brand": "ANUA",
+    "price_cents": 1650,
+    "images":[
+      "/img/anua/product3/img1.jpg",
+      "/img/anua/product3/img2.png",
+      "/img/anua/product3/img3.png",
+      "/img/anua/product3/img4.png",
+      "/img/anua/product3/img5.png"
+    ],
+    "stock": 50,
+    "skin_types": [
+      "mixte", "grasse", "acnéique"
+    ],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "anua-heartleaf-70-daily-relief-lotion",
+    "slug": "anua-heartleaf-70-daily-relief-lotion",
+    "name": "Heartleaf 70% Daily Relief Lotion",
+    "brand": "ANUA",
+    "price_cents": 2395,
+    "image": "/anuaimg1.jpg",
+    "stock": 50,
+    "skin_types": [
+      "mixte",
+      "sensible",
+      "grasse"
+    ],
+    "category": "toner"
+  },
+
+  {
+    "id": "anua-heartleaf-77-soothing-toner",
+    "slug": "anua-heartleaf-77-soothing-toner",
+    "name": "Heartleaf 77% Soothing Toner",
+    "brand": "ANUA",
+    "price_cents": 2190,
+   
+    "images":[
+      "/img/anua/product1/img1.jpg",
+      "/img/anua/product1/img2.png",
+      "/img/anua/product1/img3.png",
+      "/img/anua/product1/img4.png",
+      "/img/anua/product1/img5.png"
+    ],
+    "stock": 50,
+    "skin_types": [
+      "mixte", "sensible", "grasse", "acnéique"
+    ],
+    "category": "toner",
+    "description": "Huile démaquillante douce à l’Heartleaf pour désobstruer les pores sans décaper.",
+    "highlights": [
+      "Dissout le maquillage et la crème solaire",
+      "Régule l’excès de sébum",
+      "Convient aux peaux sensibles"
+    ],
+    "how_to_use": [
+      "Sur peau sèche, masser 1–2 pompes sur l’ensemble du visage",
+      "Émulsionner avec un peu d’eau jusqu’à blanchiment",
+      "Rincer abondamment puis suivre avec un nettoyant aqueux"
+    ],
+    "ingredients": "Glycine Soja Oil, Helianthus Annuus Seed Oil, ...",
+    "volume_ml": 200,
+    "made_in": "Corée du Sud"
+
+  },
+
+  {
+    "id": "anua-heartleaf-80-moisture-soothing-ampoule",
+    "slug": "anua-heartleaf-80-moisture-soothing-ampoule",
+    "name": "Heartleaf 80% Moisture Soothing Ampoule",
+    "brand": "ANUA",
+    "price_cents": 2495,
+    "image": "/anuaimg1.jpg",
+    "stock": 50,
+    "skin_types": [
+      "mixte",
+      "sensible",
+      "acnéique",
+      "grasse"
+    ],
+    "category": "serum"
+  },
+
+  {
+    "id": "anua-peach-70-niacinamide-serum",
+    "slug": "anua-peach-70-niacinamide-serum",
+    "name": "Peach 70% Niacin Serum",
+    "brand": "ANUA",
+    "price_cents": 2250,
+    "images":[
+      "/img/anua/product6/img1.jpg",
+      "/img/anua/product6/img2.png",
+      "/img/anua/product6/img3.png",
+      "/img/anua/product6/img4.png",
+      "/img/anua/product6/img5.png"
+    ],
+    "stock": 50,
+    "skin_types": [
+      "mixte",
+      "terne",
+      "grasse",
+      "peau à imperfections pigmentées"
+    ],
+    "category": "serum"
+  },
+  
+  {
+    "id": "anua-green-lemon-vita-c-serum",
+    "slug": "anua-green-lemon-vita-c-serum",
+    "name": "Green Lemon Vita C Serum",
+    "brand": "ANUA",
+    "price_cents": 9999,
+    "image": "/anuaimg1.jpg",
+    "stock": 50,
+    "skin_types": [
+      "tous",
+      "terne",
+      "anti-taches"
+    ],
+    "category": "serum"
+  },
+
+  {
+    "id": "anua-heartleaf-70-soothing-cream",
+    "slug": "anua-heartleaf-70-soothing-cream",
+    "name": "Heartleaf 70% Soothing Cream",
+    "brand": "ANUA",
+    "price_cents": 9999,
+    "image": "/anuaimg1.jpg",
+    "stock": 50,
+    "skin_types": [
+      "mixte",
+      "grasse",
+      "sensible"
+    ],
+    "category": "crème"
+  },
+  
+  {
+    "id": "anua-heartleaf-70-intense-calming-cream",
+    "slug": "anua-heartleaf-70-intense-calming-cream",
+    "name": "Heartleaf 70% Intense Calming Cream",
+    "brand": "ANUA",
+    "price_cents": 3190,
+    "image": "/anuaimg1.jpg",
+    "stock": 50,
+    "skin_types": [
+      "sèche",
+      "sensible",
+      "déshydratée"
+    ],
+    "category": "crème"
+  },
+
+  {
+    "id": "anua-heartleaf-silky-moisture-sun-cream-spf50-pa",
+    "slug": "anua-heartleaf-silky-moisture-sun-cream-spf50-pa",
+    "name": "Heartleaf Silky Moisture Sun Cream SPF50+ PA++++",
+    "brand": "ANUA",
+    "price_cents": 3190,
+    "images":[
+      "/img/anua/product4/img1.jpg",
+      "/img/anua/product4/img2.png",
+      "/img/anua/product4/img3.png",
+      "/img/anua/product4/img4.png",
+      "/img/anua/product4/img5.png"
+    ],
+    "stock": 50,
+    "skin_types": [
+      "tous"
+      
+      
+    ],
+    "category": "SPF"
+  },
+
+    {
+    "id": "anua-niacinamide-10-txa-4-serum",
+    "slug": "anua-niacinamide-10-txa-4-serum",
+    "name": "Niacinamide 10% + TXA 4% Serum",
+    "brand": "ANUA",
+    "price_cents": 2445,
+    "images":[
+      "/img/anua/product5/img1.jpg",
+      "/img/anua/product5/img2.png",
+      "/img/anua/product5/img3.png",
+      "/img/anua/product5/img4.png",
+      "/img/anua/product5/img5.png"
+    ],
+    "stock": 50,
+    "skin_types": [
+      "terne",
+      "hyperpigmentées",
+      "mixte",
+      "grasse"
+      
+    ],
+    "category": "serum"
+  },
+  
+  {
+    "id": "anua-heartleaf-77-clear-pad",
+    "slug": "anua-heartleaf-77-clear-pad",
+    "name": "Heartleaf 77% Clear Pad",
+    "brand": "ANUA",
+    "price_cents": 2195,
+    "image": "/anuaimg1.jpg",
+    "stock": 50,
+    "skin_types": [
+      "grasse",
+      "mixte",
+      "acnéique"
+    ],
+    "category": "toner"
+  },
+
+  {
+    "id": "anua-rice-70-glow-milky-toner",
+    "slug": "anua-rice-70-glow-milky-toner",
+    "name": "Rice 70% Glow Milky Toner",
+    "brand": "ANUA",
+    "price_cents": 2495,
+    "image": "/anuaimg1.jpg",
+    "stock": 50,
+    "skin_types": [
+      "sèche",
+      "terne",
+      "déshydratée"
+    ]
+  },
+  
+
+
+
+
+
+
+
+
+
+  
+  {
+    "id": "boj-relief-sun-rice-probiotics",
+    "slug": "boj-relief-sun-rice-probiotics",
+    "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["tous", "sèche", "mixte", "sensible"],
+    "category": "SPF",
+    "images":[
+      "/img/boj/product1/img1.jpg",
+      "/img/boj/product1/img2.png",
+      "/img/boj/product1/img3.png",
+      "/img/boj/product1/img4.png",
+      "/img/bon/product1/img5.png"
+    ]
+
+  },
+
+  {
+    "id": "boj-glow-serum-propolis-niacinamide",
+    "slug": "boj-glow-serum-propolis-niacinamide",
+    "name": "Glow Serum : Propolis + Niacinamide 30ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "acnéique", "déshydratée"],
+    "category": "serum"
+  },
+
+  {
+    "id": "boj-dynasty-cream",
+    "slug": "boj-dynasty-cream",
+    "name": "Dynasty Cream Intensive 50ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "normale", "mixte"],
+    "category": "crème"
+  },
+
+  {
+    "id": "boj-revive-eye-serum-ginseng-retinal",
+    "slug": "boj-revive-eye-serum-ginseng-retinal",
+    "name": "Revive Eye Serum : Ginseng + Retinal 30ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mature", "sèche", "anti-âge"],
+    "category": "serum",
+    "images":[
+      "/img/boj/product2/img1.jpg",
+      "/img/boj/product2/img2.png",
+      "/img/boj/product2/img3.png",
+      "/img/boj/product2/img4.png",
+      "/img/bon/product2/img5.png"
+    ]
+  },
+
+  {
+    "id": "boj-matte-sun-stick-mugwort-camellia",
+    "slug": "boj-matte-sun-stick-mugwort-camellia",
+    "name": "Matte Sun Stick Mugwort + Camellia SPF50+ PA++++ 18g",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "mixte"],
+    "category": "SPF"
+  },
+
+  {
+    "id": "boj-ginseng-essence-water",
+    "slug": "boj-ginseng-essence-water",
+    "name": "Ginseng Essence Water Concentrated Hydrating Essence 150ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mature", "terne"],
+    "category": "toner"
+  },
+
+  {
+    "id": "boj-red-bean-refreshing-pore-mask",
+    "slug": "boj-red-bean-refreshing-pore-mask",
+    "name": "Red Bean Refreshing Pore Mask 140ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "mixte", "pores-visibles"],
+    "category": "masque"
+  },
+
+  {
+    "id": "boj-revive-serum-ginseng-snail",
+    "slug": "boj-revive-serum-ginseng-snail",
+    "name": "Revive Serum : Ginseng + Snail Mucin 30ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mature", "déshydratée"],
+    "category": "serum"
+  },
+
+  {
+    "id": "boj-green-plum-refreshing-cleanser",
+    "slug": "boj-green-plum-refreshing-cleanser",
+    "name": "Green Plum Refreshing Cleanser 100ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "sensible"],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "boj-glow-deep-serum-rice-arbutin",
+    "slug": "boj-glow-deep-serum-rice-arbutin",
+    "name": "Glow Deep Serum : Rice + Arbutin 30ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["terne", "anti-taches", "tous"],
+    "category": "serum"
+  },
+
+  {
+    "id": "boj-centella-asiatica-calming-mask",
+    "slug": "boj-centella-asiatica-calming-mask",
+    "name": "Centella Asiatica Calming Mask 25ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sensible", "mixte", "grasse"],
+    "category": "masque"
+  },
+
+  {
+    "id": "boj-ginseng-cleansing-oil",
+    "slug": "boj-ginseng-cleansing-oil",
+    "name": "Ginseng Cleansing Oil 210ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["tous", "sèche", "sensible"],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "boj-radiance-cleansing-balm",
+    "slug": "boj-radiance-cleansing-balm",
+    "name": "Radiance Cleansing Balm 100ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["tous", "sèche", "sensible"],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "boj-calming-serum-green-tea-panthenol",
+    "slug": "boj-calming-serum-green-tea-panthenol",
+    "name": "Calming Serum : Green Tea + Panthenol 30ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sensible", "mixte", "réactive"],
+    "category": "serum"
+  },
+
+  {
+    "id": "boj-ginseng-moist-sun-serum",
+    "slug": "boj-ginseng-moist-sun-serum",
+    "name": "Ginseng Moist Sun Serum SPF50+ PA++++ 50ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mature", "déshydratée"],
+    "category": "SPF"
+  },
+
+  {
+    "id": "boj-relief-sun-aqua-fresh-rice-b5",
+    "slug": "boj-relief-sun-aqua-fresh-rice-b5",
+    "name": "Relief Sun Aqua Fresh Rice + B5 SPF50+ PA++++ 50ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "sensible"],
+    "category": "SPF"
+  },
+
+  {
+    "id": "boj-ground-rice-honey-glow-mask",
+    "slug": "boj-ground-rice-honey-glow-mask",
+    "name": "Ground Rice and Honey Glow Mask 150ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "terne", "sensible"],
+    "category": "masque"
+  },
+
+  {
+    "id": "boj-glow-replenishing-rice-milk",
+    "slug": "boj-glow-replenishing-rice-milk",
+    "name": "Glow Replenishing Rice Milk 150ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "terne", "déshydratée"],
+    "category": "toner"
+  },
+
+  {
+    "id": "boj-hanbang-serum-discovery-kit",
+    "slug": "boj-hanbang-serum-discovery-kit",
+    "name": "Hanbang Serum Discovery Kit",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["tous"],
+    "category": "kit"
+  },
+
+  {
+    "id": "boj-green-plum-refreshing-toner",
+    "slug": "boj-green-plum-refreshing-toner",
+    "name": "Green Plum Refreshing Toner AHA + BHA 150ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "mixte", "acnéique", "terne"],
+    "category": "toner"
+  },
+
+  {
+    "id": "boj-red-bean-water-gel",
+    "slug": "boj-red-bean-water-gel",
+    "name": "Red Bean Water Gel 100ml",
+    "brand": "Beauty of Joseon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "mixte"],
+    "category": "crème"
+  },
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "id": "cosrx-acne-pimple-master-patch",
+    "slug": "cosrx-acne-pimple-master-patch",
+    "name": "Acne Pimple Master Patch",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["acnéique", "mixte", "grasse"],
+    "category": "patch"
+  },
+
+  {
+    "id": "cosrx-advanced-snail-96-mucin-power-essence",
+    "slug": "cosrx-advanced-snail-96-mucin-power-essence",
+    "name": "Advanced Snail 96 Mucin Power Essence 100ml",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "sensible", "déshydratée"],
+    "category": "essence"
+  },
+
+  {
+    "id": "cosrx-aloe-soothing-sun-cream",
+    "slug": "cosrx-aloe-soothing-sun-cream",
+    "name": "Aloe Soothing Sun Cream SPF50+ PA++++ 50ml",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mixte", "sensible"],
+    "category": "SPF"
+  },
+
+  {
+    "id": "cosrx-advanced-snail-92-all-in-one-cream",
+    "slug": "cosrx-advanced-snail-92-all-in-one-cream",
+    "name": "Advanced Snail 92 All in One Cream 100ml",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "sensible", "déshydratée"],
+    "category": "crème"
+  },
+
+  {
+    "id": "cosrx-low-ph-good-morning-gel-cleanser",
+    "slug": "cosrx-low-ph-good-morning-gel-cleanser",
+    "name": "Low pH Good Morning Gel Cleanser 150ml",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "sensible"],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "cosrx-salicylic-acid-daily-gentle-cleanser",
+    "slug": "cosrx-salicylic-acid-daily-gentle-cleanser",
+    "name": "Salicylic Acid Daily Gentle Cleanser 150ml",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "acnéique"],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "cosrx-bha-blackhead-power-liquid",
+    "slug": "cosrx-bha-blackhead-power-liquid",
+    "name": "BHA Blackhead Power Liquid 100ml",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "acnéique", "pores-visibles"],
+    "category": "serum"
+  },
+
+  {
+    "id": "cosrx-aha-bha-clarifying-treatment-toner",
+    "slug": "cosrx-aha-bha-clarifying-treatment-toner",
+    "name": "AHA/BHA Clarifying Treatment Toner 150ml",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "mixte", "acnéique", "terne"],
+    "category": "toner"
+  },
+
+  {
+    "id": "cosrx-propolis-synergy-toner",
+    "slug": "cosrx-propolis-synergy-toner",
+    "name": "Full Fit Propolis Synergy Toner 150ml",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "terne", "mature"],
+    "category": "toner"
+  },
+
+  {
+    "id": "cosrx-advanced-snail-peptide-eye-cream",
+    "slug": "cosrx-advanced-snail-peptide-eye-cream",
+    "name": "Advanced Snail Peptide Eye Cream 25ml",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mature", "anti-âge"],
+    "category": "crème"
+  },
+
+  {
+    "id": "cosrx-clear-fit-master-patch",
+    "slug": "cosrx-clear-fit-master-patch",
+    "name": "Clear Fit Master Patch",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["acnéique", "mixte", "grasse"],
+    "category": "patch"
+  },
+
+  {
+    "id": "cosrx-rice-overnight-spa-mask",
+    "slug": "cosrx-rice-overnight-spa-mask",
+    "name": "Ultimate Nourishing Rice Overnight Spa Mask 60ml",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "terne", "déshydratée"],
+    "category": "masque"
+  },
+
+  {
+    "id": "cosrx-clear-pad-bha",
+    "slug": "cosrx-clear-pad-bha",
+    "name": "One Step Original Clear Pad BHA (70 pads)",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "acnéique", "mixte"],
+    "category": "toner"
+  },
+
+  {
+    "id": "cosrx-oil-free-ultra-moisturizing-lotion",
+    "slug": "cosrx-oil-free-ultra-moisturizing-lotion",
+    "name": "Oil Free Ultra Moisturizing Lotion 100ml",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "sensible"],
+    "category": "crème"
+  },
+
+  {
+    "id": "cosrx-two-in-one-poreless-power-liquid",
+    "slug": "cosrx-two-in-one-poreless-power-liquid",
+    "name": "Two in One Poreless Power Liquid 100ml",
+    "brand": "COSRX",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "mixte", "pores-visibles"],
+    "category": "toner"
+  },
+
+
+
+
+
+
+
+
+
+  
+  {
+    "id": "iunik-calendula-complete-cleansing-oil",
+    "slug": "iunik-calendula-complete-cleansing-oil",
+    "name": "Calendula Complete Cleansing Oil",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["tous", "sensible", "sèche"],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "iunik-centella-bubble-cleansing-foam",
+    "slug": "iunik-centella-bubble-cleansing-foam",
+    "name": "Centella Bubble Cleansing Foam",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "sensible"],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "iunik-vitamin-hyaluronic-acid-vitalizing-toner",
+    "slug": "iunik-vitamin-hyaluronic-acid-vitalizing-toner",
+    "name": "Vitamin Hyaluronic Acid Vitalizing Toner",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "déshydratée", "terne"],
+    "category": "toner"
+  },
+
+  {
+    "id": "iunik-rose-galactomyces-essential-toner",
+    "slug": "iunik-rose-galactomyces-essential-toner",
+    "name": "Rose Galactomyces Essential Toner",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "pores-visibles"],
+    "category": "toner"
+  },
+
+  {
+    "id": "iunik-tea-tree-relief-serum",
+    "slug": "iunik-tea-tree-relief-serum",
+    "name": "Tea Tree Relief Serum",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["acnéique", "grasse", "sensible"],
+    "category": "serum"
+  },
+
+  {
+    "id": "iunik-beta-glucan-power-moisture-serum",
+    "slug": "iunik-beta-glucan-power-moisture-serum",
+    "name": "Beta-Glucan Power Moisture Serum",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "déshydratée", "sensible"],
+    "category": "serum"
+  },
+
+  {
+    "id": "iunik-propolis-vitamin-synergy-serum",
+    "slug": "iunik-propolis-vitamin-synergy-serum",
+    "name": "Propolis Vitamin Synergy Serum",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "terne", "déshydratée"],
+    "category": "serum"
+  },
+
+  {
+    "id": "iunik-black-snail-restore-serum",
+    "slug": "iunik-black-snail-restore-serum",
+    "name": "Black Snail Restore Serum",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "abîmée", "mature"],
+    "category": "serum"
+  },
+
+  {
+    "id": "iunik-centella-calming-gel-cream",
+    "slug": "iunik-centella-calming-gel-cream",
+    "name": "Centella Calming Gel Cream",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "mixte", "sensible"],
+    "category": "crème"
+  },
+
+  {
+    "id": "iunik-beta-glucan-daily-moisture-cream",
+    "slug": "iunik-beta-glucan-daily-moisture-cream",
+    "name": "Beta-Glucan Daily Moisture Cream",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "déshydratée", "sensible"],
+    "category": "crème"
+  },
+
+  {
+    "id": "iunik-propolis-vitamin-sleeping-mask",
+    "slug": "iunik-propolis-vitamin-sleeping-mask",
+    "name": "Propolis Vitamin Sleeping Mask",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "terne", "mixte"],
+    "category": "masque"
+  },
+
+  {
+    "id": "iunik-lime-moisture-mild-peeling-gel",
+    "slug": "iunik-lime-moisture-mild-peeling-gel",
+    "name": "Lime Moisture Mild Peeling Gel",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "terne"],
+    "category": "exfoliant"
+  },
+
+  {
+    "id": "iunik-centella-calming-daily-sunscreen-spf50",
+    "slug": "iunik-centella-calming-daily-sunscreen-spf50",
+    "name": "Centella Calming Daily Sunscreen SPF50+ PA++++",
+    "brand": "iUNIK",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["tous", "sensible", "mixte"],
+    "category": "SPF"
+  },
+
+
+
+
+
+
+
+
+
+
+
+  
+  {
+    "id": "skin1004-madagascar-centella-light-cleansing-oil",
+    "slug": "skin1004-madagascar-centella-light-cleansing-oil",
+    "name": "Madagascar Centella Light Cleansing Oil",
+    "brand": "SKIN1004",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["tous", "mixte", "sensible"],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-ampoule-foam",
+    "slug": "skin1004-madagascar-centella-ampoule-foam",
+    "name": "Madagascar Centella Ampoule Foam",
+    "brand": "SKIN1004",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "sensible"],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-toning-toner",
+    "slug": "skin1004-madagascar-centella-toning-toner",
+    "name": "Madagascar Centella Toning Toner",
+    "brand": "SKIN1004",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "acnéique", "sensible"],
+    "category": "toner"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-hyalucica-blue-serum",
+    "slug": "skin1004-madagascar-centella-hyalucica-blue-serum",
+    "name": "Madagascar Centella Hyalu-Cica Blue Serum",
+    "brand": "SKIN1004",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "déshydratée", "sensible"],
+    "category": "serum"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-ampoule",
+    "slug": "skin1004-madagascar-centella-ampoule",
+    "name": "Madagascar Centella Ampoule",
+    "brand": "SKIN1004",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sensible", "mixte", "sèche"],
+    "category": "serum"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-cream",
+    "slug": "skin1004-madagascar-centella-cream",
+    "name": "Madagascar Centella Cream",
+    "brand": "SKIN1004",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "sensible", "déshydratée"],
+    "category": "crème"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-soothing-cream",
+    "slug": "skin1004-madagascar-centella-soothing-cream",
+    "name": "Madagascar Centella Soothing Cream",
+    "brand": "SKIN1004",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "sensible"],
+    "category": "crème"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-hyalu-cica-water-fit-sun-serum",
+    "slug": "skin1004-madagascar-centella-hyalu-cica-water-fit-sun-serum",
+    "name": "Madagascar Centella Hyalu-Cica Water-Fit Sun Serum SPF50+ PA++++",
+    "brand": "SKIN1004",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["tous", "sensible", "mixte"],
+    "category": "SPF"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-tone-brightening-capsule-ampoule",
+    "slug": "skin1004-madagascar-centella-tone-brightening-capsule-ampoule",
+    "name": "Madagascar Centella Tone Brightening Capsule Ampoule",
+    "brand": "SKIN1004",
+    "price_cents": 1595,
+    "stock": 8,
+    "skin_types": ["terne", "anti-taches", "mixte", "sèche"],
+    "category": "serum"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-watergel-sheet-ampoule-mask",
+    "slug": "skin1004-madagascar-centella-watergel-sheet-ampoule-mask",
+    "name": "Madagascar Centella Watergel Sheet Ampoule Mask",
+    "brand": "SKIN1004",
+    "price_cents": 235,
+    "stock": 10,
+    "skin_types": ["sensible", "mixte", "sèche"],
+    "category": "masque"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-travel-kit",
+    "slug": "skin1004-madagascar-centella-travel-kit",
+    "name": "Madagascar Centella Travel Kit",
+    "brand": "SKIN1004",
+    "price_cents": 2790,
+    "stock": 0,
+    "skin_types": ["tous"],
+    "category": "kit"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-probio-cica-intensive-ampoule",
+    "slug": "skin1004-madagascar-centella-probio-cica-intensive-ampoule",
+    "name": "Madagascar Centella Probio-Cica Intensive Ampoule",
+    "brand": "SKIN1004",
+    "price_cents": 2790,
+    "stock": 10,
+    "skin_types": ["sensible", "sèche", "déshydratée"],
+    "category": "serum"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-hyalu-cica-sleeping-pack",
+    "slug": "skin1004-madagascar-centella-hyalu-cica-sleeping-pack",
+    "name": "Madagascar Centella Hyalu-Cica Sleeping Pack",
+    "brand": "SKIN1004",
+    "price_cents": 1090,
+    "stock": 10,
+    "skin_types": ["sèche", "mixte", "déshydratée"],
+    "category": "masque"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-poremizing-fresh-ampoule",
+    "slug": "skin1004-madagascar-centella-poremizing-fresh-ampoule",
+    "name": "Madagascar Centella Poremizing Fresh Ampoule",
+    "brand": "SKIN1004",
+    "price_cents": 2490,
+    "stock": 10,
+    "skin_types": ["grasse", "mixte", "pores-visibles"],
+    "category": "serum"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-probio-cica-enrich-cream",
+    "slug": "skin1004-madagascar-centella-probio-cica-enrich-cream",
+    "name": "Madagascar Centella Probio-Cica Enrich Cream",
+    "brand": "SKIN1004",
+    "price_cents": 1590,
+    "stock": 10,
+    "skin_types": ["sèche", "sensible", "mature"],
+    "category": "crème"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-tea-trica-spot-cover-patch",
+    "slug": "skin1004-madagascar-centella-tea-trica-spot-cover-patch",
+    "name": "Madagascar Centella Tea-Trica Spot Cover Patch",
+    "brand": "SKIN1004",
+    "price_cents": 550,
+    "stock": 10,
+    "skin_types": ["acnéique", "grasse"],
+    "category": "patch"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-air-fit-suncream-light-spf30",
+    "slug": "skin1004-madagascar-centella-air-fit-suncream-light-spf30",
+    "name": "Madagascar Centella Air-Fit Suncream Light SPF30 PA++++",
+    "brand": "SKIN1004",
+    "price_cents": 1950,
+    "stock": 10,
+    "skin_types": ["mixte", "grasse"],
+    "category": "SPF"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-poremizing-light-gel-cream",
+    "slug": "skin1004-madagascar-centella-poremizing-light-gel-cream",
+    "name": "Madagascar Centella Poremizing Light Gel Cream",
+    "brand": "SKIN1004",
+    "price_cents": 1990,
+    "stock": 10,
+    "skin_types": ["grasse", "mixte"],
+    "category": "crème"
+  },
+
+  {
+    "id": "skin1004-madagascar-centella-poremizing-quick-clay-stick-mask",
+    "slug": "skin1004-madagascar-centella-poremizing-quick-clay-stick-mask",
+    "name": "Madagascar Centella Poremizing Quick Clay Stick Mask",
+    "brand": "SKIN1004",
+    "price_cents": 1950,
+    "stock": 0,
+    "skin_types": ["grasse", "mixte", "acnéique"],
+    "category": "masque"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  {
+    "id": "somebymi-aha-bha-pha-30days-miracle-cleansing-bar",
+    "slug": "somebymi-aha-bha-pha-30days-miracle-cleansing-bar",
+    "name": "AHA BHA PHA 30 Days Miracle Cleansing Bar",
+    "brand": "Some By Mi",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "acnéique", "mixte"],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "somebymi-aha-bha-pha-30days-miracle-foam",
+    "slug": "somebymi-aha-bha-pha-30days-miracle-foam",
+    "name": "AHA BHA PHA 30 Days Miracle Foam",
+    "brand": "Some By Mi",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "acnéique", "mixte"],
+    "category": "nettoyant"
+  },
+
+  {
+    "id": "somebymi-aha-bha-pha-30days-miracle-toner",
+    "slug": "somebymi-aha-bha-pha-30days-miracle-toner",
+    "name": "AHA BHA PHA 30 Days Miracle Toner",
+    "brand": "Some By Mi",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "acnéique", "mixte", "terne"],
+    "category": "toner"
+  },
+
+  {
+    "id": "somebymi-aha-bha-pha-30days-miracle-serum",
+    "slug": "somebymi-aha-bha-pha-30days-miracle-serum",
+    "name": "AHA BHA PHA 30 Days Miracle Serum",
+    "brand": "Some By Mi",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "acnéique", "mixte"],
+    "category": "serum"
+  },
+
+  {
+    "id": "somebymi-aha-bha-pha-30days-miracle-cream",
+    "slug": "somebymi-aha-bha-pha-30days-miracle-cream",
+    "name": "AHA BHA PHA 30 Days Miracle Cream",
+    "brand": "Some By Mi",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "acnéique", "mixte"],
+    "category": "crème"
+  },
+
+  {
+    "id": "somebymi-yuja-niacin-brightening-toner",
+    "slug": "somebymi-yuja-niacin-brightening-toner",
+    "name": "Yuja Niacin 30 Days Brightening Toner",
+    "brand": "Some By Mi",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["terne", "anti-taches", "mixte"],
+    "category": "toner"
+  },
+
+  {
+    "id": "somebymi-yuja-niacin-brightening-serum",
+    "slug": "somebymi-yuja-niacin-brightening-serum",
+    "name": "Yuja Niacin 30 Days Brightening Serum",
+    "brand": "Some By Mi",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["terne", "anti-taches", "mixte"],
+    "category": "serum"
+  },
+
+  {
+    "id": "somebymi-yuja-niacin-brightening-sleeping-mask",
+    "slug": "somebymi-yuja-niacin-brightening-sleeping-mask",
+    "name": "Yuja Niacin Brightening Sleeping Mask",
+    "brand": "Some By Mi",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["terne", "sèche", "mixte"],
+    "category": "masque"
+  },
+
+  {
+    "id": "somebymi-snail-truecica-miracle-repair-serum",
+    "slug": "somebymi-snail-truecica-miracle-repair-serum",
+    "name": "Snail Truecica Miracle Repair Serum",
+    "brand": "Some By Mi",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["abîmée", "sensible", "mature"],
+    "category": "serum"
+  },
+
+  {
+    "id": "somebymi-snail-truecica-miracle-repair-cream",
+    "slug": "somebymi-snail-truecica-miracle-repair-cream",
+    "name": "Snail Truecica Miracle Repair Cream",
+    "brand": "Some By Mi",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["abîmée", "sèche", "sensible"],
+    "category": "crème"
+  },
+
+
+
+
+
+
+
+
+
+  
+  {
+    "id": "medicube-collagen-night-wrapping-mask",
+    "slug": "medicube-collagen-night-wrapping-mask",
+    "name": "Collagen Night Wrapping Mask 75ml",
+    "brand": "Medicube",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mature", "déshydratée"],
+    "category": "masque"
+  },
+
+  {
+    "id": "medicube-collagen-jelly-cream",
+    "slug": "medicube-collagen-jelly-cream",
+    "name": "Collagen Jelly Cream 110ml",
+    "brand": "Medicube",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mature", "sensible"],
+    "category": "crème"
+  },
+
+  {
+    "id": "medicube-triple-collagen-serum-40",
+    "slug": "medicube-triple-collagen-serum-40",
+    "name": "Triple Collagen Serum 4.0 55ml",
+    "brand": "Medicube",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mature", "anti-âge"],
+    "category": "serum"
+  },
+
+  {
+    "id": "medicube-zero-pore-pad-20",
+    "slug": "medicube-zero-pore-pad-20",
+    "name": "Zero Pore Pad 2.0 70pcs",
+    "brand": "Medicube",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "pores-visibles", "acnéique"],
+    "category": "toner"
+  },
+
+  {
+    "id": "medicube-deep-vita-c-capsule-cream",
+    "slug": "medicube-deep-vita-c-capsule-cream",
+    "name": "Deep Vita C Capsule Cream 55g",
+    "brand": "Medicube",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["terne", "anti-taches", "mature"],
+    "category": "crème"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  {
+    "id": "biodance-bio-collagen-real-deep-mask",
+    "slug": "biodance-bio-collagen-real-deep-mask",
+    "name": "Bio Collagen-Real Deep Mask - 4 Sheets (34g)",
+    "brand": "Biodance",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mature", "déshydratée"],
+    "category": "masque"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "id": "dralthea-reveratrol-345na-intensive-repair-cream",
+    "slug": "dralthea-reveratrol-345na-intensive-repair-cream",
+    "name": "Reveratrol 345NA Intensive Repair Cream 50ml",
+    "brand": "Dr Althea",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mature", "sensible"],
+    "category": "crème"
+  },
+
+  {
+    "id": "dralthea-vitamin-c-boosting-serum",
+    "slug": "dralthea-vitamin-c-boosting-serum",
+    "name": "Vitamin C Boosting Serum 30ml",
+    "brand": "Dr Althea",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["terne", "anti-taches", "mature"],
+    "category": "serum"
+  },
+
+  {
+    "id": "dralthea-147-cream-barrier",
+    "slug": "dralthea-147-cream-barrier",
+    "name": "147 Cream Barrier 50ml",
+    "brand": "Dr Althea",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sensible", "sèche", "déshydratée"],
+    "category": "crème"
+  },
+
+  {
+    "id": "dralthea-pure-grinding-cleansing-balm",
+    "slug": "dralthea-pure-grinding-cleansing-balm",
+    "name": "Pure Grinding Cleansing Balm 50ml",
+    "brand": "Dr Althea",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["tous", "sèche", "sensible"],
+    "category": "nettoyant"
+  },
+
+
+
+
+
+
+
+
+
+
+  {
+    "id": "mixsoon-bean-essence-30ml",
+    "slug": "mixsoon-bean-essence-30ml",
+    "name": "Bean Essence 30ml",
+    "brand": "Mixsoon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "peau-terne"],
+    "category": "essence"
+  },
+
+  {
+    "id": "mixsoon-bean-essence-50ml",
+    "slug": "mixsoon-bean-essence-50ml",
+    "name": "Bean Essence 50ml",
+    "brand": "Mixsoon",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "grasse", "peau-terne"],
+    "category": "essence"
+  },
+
+
+
+  
+
+
+
+
+
+
+
+  
+  {
+    "id": "laneige-lip-sleeping-mask-berry",
+    "slug": "laneige-lip-sleeping-mask-berry",
+    "name": "Lip Sleeping Mask (Berry) 20g",
+    "brand": "Laneige",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["tous"],
+    "category": "masque"
+  },
+
+  {
+    "id": "laneige-water-sleeping-mask",
+    "slug": "laneige-water-sleeping-mask",
+    "name": "Water Sleeping Mask 70ml",
+    "brand": "Laneige",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mixte", "déshydratée"],
+    "category": "masque"
+  },
+
+  {
+    "id": "laneige-water-bank-blue-hyaluronic-cream",
+    "slug": "laneige-water-bank-blue-hyaluronic-cream",
+    "name": "Water Bank Blue Hyaluronic Cream 50ml",
+    "brand": "Laneige",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "déshydratée", "mixte"],
+    "category": "crème"
+  },
+
+
+
+
+
+
+
+
+
+  
+  {
+    "id": "imfrom-rice-toner",
+    "slug": "imfrom-rice-toner",
+    "name": "Rice Toner 150ml",
+    "brand": "I'm From",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "terne", "déshydratée"],
+    "category": "toner"
+  },
+
+  {
+    "id": "imfrom-rice-cream",
+    "slug": "imfrom-rice-cream",
+    "name": "Rice Cream 50ml",
+    "brand": "I'm From",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "sensible", "terne"],
+    "category": "crème"
+  },
+
+
+
+
+
+
+
+
+
+
+  
+  {
+    "id": "roundlab-dokdo-toner",
+    "slug": "roundlab-dokdo-toner",
+    "name": "1025 Dokdo Toner 200ml",
+    "brand": "Round Lab",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "sensible", "déshydratée"],
+    "category": "toner"
+  },
+
+  {
+    "id": "roundlab-birch-juice-moisturizing-toner",
+    "slug": "roundlab-birch-juice-moisturizing-toner",
+    "name": "Birch Juice Moisturizing Toner 300ml",
+    "brand": "Round Lab",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mixte", "déshydratée"],
+    "category": "toner"
+  },
+
+  {
+    "id": "roundlab-birch-juice-moisturizing-cream",
+    "slug": "roundlab-birch-juice-moisturizing-cream",
+    "name": "Birch Juice Moisturizing Cream 80ml",
+    "brand": "Round Lab",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "déshydratée", "sensible"],
+    "category": "crème"
+  },
+
+  {
+    "id": "roundlab-birch-juice-moisturizing-sun-cream",
+    "slug": "roundlab-birch-juice-moisturizing-sun-cream",
+    "name": "Birch Juice Moisturizing Sun Cream SPF50+ PA++++",
+    "brand": "Round Lab",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["tous", "sensible", "sèche"],
+    "category": "SPF"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  {
+    "id": "haruharu-black-rice-hyaluronic-toner",
+    "slug": "haruharu-black-rice-hyaluronic-toner",
+    "name": "Black Rice Hyaluronic Toner 150ml",
+    "brand": "Haruharu Wonder",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mixte", "déshydratée"],
+    "category": "toner"
+  },
+
+  {
+    "id": "haruharu-black-rice-hyaluronic-cream",
+    "slug": "haruharu-black-rice-hyaluronic-cream",
+    "name": "Black Rice Hyaluronic Cream 50ml",
+    "brand": "Haruharu Wonder",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "sensible", "déshydratée"],
+    "category": "crème"
+  },
+
+  {
+    "id": "haruharu-black-rice-hyaluronic-serum",
+    "slug": "haruharu-black-rice-hyaluronic-serum",
+    "name": "Black Rice Hyaluronic Serum 50ml",
+    "brand": "Haruharu Wonder",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "mature", "déshydratée"],
+    "category": "serum"
+  },
+
+
+
+
+
+
+
+
+
+
+
+  
+  {
+    "id": "torriden-dive-in-low-molecular-hyaluronic-toner",
+    "slug": "torriden-dive-in-low-molecular-hyaluronic-toner",
+    "name": "Dive-In Low Molecular Hyaluronic Acid Toner 300ml",
+    "brand": "Torriden",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "déshydratée", "sensible"],
+    "category": "toner"
+  },
+
+  {
+    "id": "torriden-dive-in-low-molecular-hyaluronic-serum",
+    "slug": "torriden-dive-in-low-molecular-hyaluronic-serum",
+    "name": "Dive-In Low Molecular Hyaluronic Acid Serum 50ml",
+    "brand": "Torriden",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "déshydratée", "mixte"],
+    "category": "serum"
+  },
+
+  {
+    "id": "torriden-dive-in-cream",
+    "slug": "torriden-dive-in-cream",
+    "name": "Dive-In Cream 100ml",
+    "brand": "Torriden",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "déshydratée", "sensible"],
+    "category": "crème"
+  },
+
+  {
+    "id": "torriden-dive-in-soothing-cream",
+    "slug": "torriden-dive-in-soothing-cream",
+    "name": "Dive-In Soothing Cream 100ml",
+    "brand": "Torriden",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["mixte", "sensible", "grasse"],
+    "category": "crème"
+  },
+
+  {
+    "id": "torriden-dive-in-mask",
+    "slug": "torriden-dive-in-mask",
+    "name": "Dive-In Sheet Mask (Hyaluronic Acid) - 1pc",
+    "brand": "Torriden",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["sèche", "déshydratée"],
+    "category": "masque"
+  },
+
+  {
+    "id": "torriden-balanceful-toner",
+    "slug": "torriden-balanceful-toner",
+    "name": "Balanceful Toner 200ml (PHA + BHA)",
+    "brand": "Torriden",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "mixte", "acnéique"],
+    "category": "toner"
+  },
+
+  {
+    "id": "torriden-balanceful-serum",
+    "slug": "torriden-balanceful-serum",
+    "name": "Balanceful Serum 50ml (PHA + BHA)",
+    "brand": "Torriden",
+    "price_cents": 9999,
+    "stock": 50,
+    "skin_types": ["grasse", "mixte", "acnéique", "pores-visibles"],
+    "category": "serum"
+  },
+
+
+
+
+
+
+
+
+
+  {
+  "id": "pack-peau-seche-complet",
+  "slug": "pack-peau-seche-complet",
+  "name": "Pack Peau Sèche – Version Complète",
+  "type": "pack",
+  "images":[
+      "/img/packtestimg1.png",
+      "/img/anua/product1/img2.png",
+      "/img/anua/product1/img3.png",
+      "/img/anua/product1/img4.png",
+      "/img/anua/product1/img5.png"
+    ],
+
+  "category": "pack",
+  "advantages": [
+    "Hydratation intense & durable",
+    "Répare et renforce la barrière cutanée",
+    "Fini souple et confortable",
+    "Routine complète jour & nuit"
+  ],
+  "how_to": [
+    "1) Démaquillage / Nettoyage huileux (soir uniquement) : BOJ Ginseng Cleansing Oil – appliquer 2 à 3 pressions sur mains sèches, masser délicatement le visage 1 minute pour dissoudre maquillage/impuretés, puis ajouter un peu d’eau pour émulsionner et rincer à l’eau tiède.",
+    "2) Nettoyage doux (matin et soir, après l’huile le soir) : utiliser un gel nettoyant adapté (ex. COSRX Low pH Good Morning Cleanser si disponible) pour éliminer les résidus et laisser la peau propre sans tiraillement.",
+    "3) Toner / Essence : I’m From Rice Toner – appliquer 3 à 5 gouttes sur les mains ou un coton, tapoter doucement sur le visage et le cou. Possibilité de superposer 2 à 3 couches (technique du ‘layering’) si la peau est très sèche.",
+    "4) Sérum : COSRX Advanced Snail 96 Mucin Power Essence – prendre 1 à 2 pompes, appliquer sur peau encore légèrement humide, masser doucement jusqu’à absorption complète. Insister sur les zones sèches ou marquées.",
+    "5) Crème : BOJ Dynasty Cream – prélever une noisette, réchauffer entre les doigts, appliquer en massant légèrement puis tapoter pour sceller l’hydratation. Peut s’utiliser matin et soir.",
+    "6) Protection solaire (matin uniquement) : COSRX Aloe Soothing Sun Cream SPF50 – appliquer l’équivalent de deux phalanges (quantité généreuse) sur tout le visage, le cou et le décolleté. Réappliquer toutes les 2–3h en cas d’exposition prolongée."
+  ],
+  "products_included": [
+    "boj-ginseng-cleansing-oil",
+    "imfrom-rice-toner",
+    "cosrx-advanced-snail-96-mucin-power-essence",
+    "boj-dynasty-cream",
+    "cosrx-aloe-soothing-sun-cream"
+  ]
+}
+
+,
+
+{
+  "id": "pack-peau-seche-budget",
+  "slug": "pack-peau-seche-budget",
+  "name": "💧 Pack Peau Sèche – Standard",
+  "products": [
+    "cosrx-low-ph-good-morning-gel-cleanser",
+    "anua-rice-70-glow-milky-toner",
+    "iunik-beta-glucan-power-moisture-serum",
+    "iunik-beta-glucan-daily-moisture-cream",
+    "cosrx-aloe-soothing-sun-cream"
+  ],
+  "price_cents": 5499,
+  "stock": 15,
+  "category": "pack",
+  "description": "Routine hydratante complète pour peaux sèches à petit budget. Nettoyant doux, toner nourrissant au riz, sérum hydratant intense, crème riche et solaire hydratant.",
+  "advantages": [
+    "Hydratation quotidienne abordable",
+    "Sérum riche en bêta-glucan (effet apaisant et réparateur)",
+    "Crème nourrissante sans fini gras",
+    "Protection solaire adaptée aux peaux sèches"
+  ],
+  "images": ["/img/packtestimg1.png"],
+  "how_to": [
+  "1) Nettoyage (matin & soir) : COSRX Low pH Good Morning Gel Cleanser – prélever une noisette de produit, faire mousser entre les mains puis appliquer sur peau humide. Masser doucement pendant 30 à 40 secondes, en insistant sur les zones sèches avec légers mouvements circulaires. Rincer à l’eau tiède et sécher la peau en tapotant avec une serviette douce.",
+  "2) Toner (matin & soir) : Anua Rice 70 Glow Milky Toner – verser 4 à 5 gouttes dans les paumes ou sur un coton doux. Appliquer uniformément sur le visage et le cou. Pour plus de confort, superposer 2 à 3 couches (‘layering’) en tapotant légèrement jusqu’à absorption.",
+  "3) Sérum (matin & soir) : iUNIK Beta-Glucan Power Serum – déposer 2 à 3 gouttes dans la main, appliquer sur peau légèrement humide. Masser en mouvements circulaires et insister sur les zones sèches (joues, contour de la bouche).",
+  "4) Crème (matin & soir) : iUNIK Beta-Glucan Daily Moisture Cream – prélever une noisette, chauffer entre les doigts puis appliquer uniformément sur le visage et le cou. Masser légèrement puis tapoter pour sceller l’hydratation.",
+  "5) SPF (matin uniquement) : COSRX Aloe Soothing Sun Cream – appliquer une quantité généreuse (équivalent de deux phalanges) sur tout le visage et le cou. Étaler uniformément et renouveler toutes les 2 à 3 heures en cas d’exposition au soleil."
+]
+
+}
+,
+
+{
+  "id": "pack-peau-grasse-acneique-standard",
+  "slug": "pack-peau-grasse-acneique-standard",
+  "name": "🧴 Pack Peau Grasse & Acnéique – Standard",
+  "products": [
+    "cosrx-salicylic-acid-daily-gentle-cleanser",
+    "boj-green-plum-refreshing-toner",
+    "somebymi-aha-bha-pha-30days-miracle-serum",
+    "anua-heartleaf-70-soothing-cream",
+    "boj-matte-sun-stick-mugwort-camellia"
+  ],
+  "price_cents": 5999,
+  "stock": 12,
+  "category": "pack",
+  "description": "Routine simple et efficace pour peaux grasses et acnéiques : nettoyant purifiant, toner exfoliant doux, sérum anti-imperfections, crème légère apaisante et protection solaire matifiante.",
+  "advantages": [
+    "Contrôle l’excès de sébum",
+    "Exfolie en douceur pour prévenir les points noirs",
+    "Réduit les imperfections et cicatrices",
+    "Fini mat grâce au sun stick"
+  ],
+  "images": ["/img/packtestimg1.png"],
+  "how_to": [
+  "1) Nettoyage (matin & soir) : COSRX Salicylic Acid Daily Gentle Cleanser – appliquer une petite noisette sur peau humide, masser doucement pendant 30 à 40 secondes en insistant sur la zone T (front, nez, menton) et les zones sujettes aux imperfections. Rincer abondamment à l’eau tiède.",
+  "2) Toner (matin & soir) : BOJ Green Plum Refreshing Toner – imbiber un coton ou déposer 3 à 4 gouttes dans les mains propres. Appliquer uniformément sur le visage et tapoter pour aider à l’absorption. Pour peau sensible, limiter à 1 fois par jour.",
+  "3) Sérum (matin & soir ou seulement soir si peau sensible) : Some By Mi AHA-BHA-PHA Miracle Serum – agiter le flacon, déposer 2 à 3 gouttes sur le visage et masser doucement. Insister sur les zones avec boutons et cicatrices. Peut picoter légèrement, c’est normal.",
+  "4) Crème (matin & soir) : Anua Heartleaf 70% Soothing Cream – appliquer une fine couche sur le visage entier. Texture légère adaptée aux peaux grasses. Masser puis tapoter doucement.",
+  "5) SPF (matin uniquement) : BOJ Matte Sun Stick – appliquer directement le stick en glissant sur tout le visage, en insistant sur zone T et nez. Réappliquer toutes les 2 à 3 heures, notamment si exposition prolongée."
+]
+
+}
+,
+
+{
+  "id": "pack-peau-grasse-acneique-complet",
+  "slug": "pack-peau-grasse-acneique-complet",
+  "name": "🧴 Pack Peau Grasse & Acnéique – Complet",
+  "products": [
+    "anua-heartleaf-pore-control-cleansing-oil",
+    "cosrx-low-ph-good-morning-gel-cleanser",
+    "somebymi-aha-bha-pha-30days-miracle-toner",
+    "cosrx-clear-pad-bha",
+    "anua-niacinamide-10-txa-4-serum",
+    "skin1004-madagascar-centella-soothing-cream",
+    "roundlab-birch-juice-moisturizing-sun-cream"
+  ],
+  "price_cents": 8999,
+  "stock": 10,
+  "category": "pack",
+  "description": "Routine complète pour peaux grasses et acnéiques : double nettoyage, exfoliation douce, pads purifiants, sérum anti-taches et sébum, crème apaisante et protection solaire légère.",
+  "advantages": [
+    "Double nettoyage pour purifier en profondeur",
+    "Exfoliation ciblée anti-points noirs",
+    "Sérum niacinamide pour réguler le sébum et réduire les taches",
+    "Apaisement grâce à la centella",
+    "Protection solaire légère et non grasse"
+  ],
+  "images": ["/img/packtestimg1.png"],
+  "how_to": [
+  "1) Démaquillage (soir uniquement) : Anua Heartleaf Cleansing Oil – appliquer 2 à 3 pressions sur mains sèches, masser doucement le visage pendant 1 minute. Ajouter un peu d’eau pour émulsionner, puis rincer soigneusement.",
+  "2) Nettoyant doux (matin & soir, après l’huile le soir) : COSRX Low pH Good Morning Gel Cleanser – une noisette sur peau humide, masser 30 secondes puis rincer.",
+  "3) Toner (matin & soir) : Some By Mi AHA-BHA-PHA Miracle Toner – imbiber un coton, passer délicatement sur tout le visage en évitant le contour des yeux. Laisser pénétrer avant de continuer.",
+  "4) Pads exfoliants (2 à 3x/semaine, le soir) : COSRX Clear Pad – prendre un disque, passer délicatement sur l’ensemble du visage après le nettoyage, en insistant sur la zone T. Ne pas rincer.",
+  "5) Sérum (matin & soir) : Anua Niacinamide 10% + TXA 4% – déposer 2 à 3 gouttes sur tout le visage. Masser doucement jusqu’à absorption complète. Contribue à réduire les taches et réguler le sébum.",
+  "6) Crème (matin & soir) : Skin1004 Madagascar Centella Soothing Cream – prélever une noisette et appliquer uniformément. Texture apaisante adaptée aux peaux à tendance acnéique.",
+  "7) SPF (matin uniquement) : Round Lab Birch Juice Sun Cream – appliquer une quantité généreuse sur le visage et le cou. Renouveler toutes les 2 à 3 heures si exposition prolongée."
+]
+
+
+}
+,
+
+{
+  "id": "pack-peau-sensible-standard",
+  "slug": "pack-peau-sensible-standard",
+  "name": "🌿 Pack Peau Sensible & Réactive – Standard",
+  "products": [
+    "boj-green-plum-refreshing-cleanser",
+    "anua-heartleaf-77-soothing-toner",
+    "boj-calming-serum-green-tea-panthenol",
+    "iunik-centella-calming-gel-cream",
+    "skin1004-madagascar-centella-hyalu-cica-water-fit-sun-serum"
+  ],
+  "price_cents": 5999,
+  "stock": 12,
+  "category": "pack",
+  "description": "Routine simple et douce pour apaiser les peaux sensibles et réactives : nettoyant non agressif, toner apaisant, sérum calmant, crème légère et solaire hydratant à la centella.",
+  "advantages": [
+    "Apaise immédiatement les rougeurs",
+    "Renforce la barrière cutanée",
+    "Formules douces et sans irritation",
+    "Hydratation légère adaptée aux peaux sensibles"
+  ],
+  "images": ["/img/packs/peau-sensible-standard-1.jpg", "/img/packs/peau-sensible-standard-2.jpg"],
+  "how_to": [
+  "1) Nettoyage (matin & soir) : BOJ Green Plum Refreshing Cleanser – appliquer une petite noisette sur peau humide, masser doucement 20 à 30 secondes. Rincer abondamment et sécher sans frotter.",
+  "2) Toner (matin & soir) : Anua Heartleaf 77% Soothing Toner – déposer 3 à 4 gouttes dans les mains et appliquer en pressant doucement sur la peau. Peut être utilisé en ‘coton compressé’ sur les zones rouges pendant 2-3 minutes.",
+  "3) Sérum (matin & soir) : BOJ Calming Serum Green Tea + Panthenol – déposer 2 à 3 gouttes et masser délicatement. Insister sur les zones sujettes aux rougeurs.",
+  "4) Crème (matin & soir) : iUNIK Centella Calming Gel Cream – appliquer une noisette sur tout le visage, masser légèrement. Texture gel fraîche et légère.",
+  "5) SPF (matin uniquement) : Skin1004 Hyalu-Cica Sun Serum – appliquer 2 phalanges sur visage et cou. Réappliquer toutes les 2 à 3 heures si nécessaire."
+]
+
+
+}
+,
+
+{
+  "id": "pack-peau-sensible-complet",
+  "slug": "pack-peau-sensible-complet",
+  "name": "🌿 Pack Peau Sensible & Réactive – Complet",
+  "products": [
+    "anua-heartleaf-pore-control-cleansing-oil",
+    "cosrx-low-ph-good-morning-gel-cleanser",
+    "torriden-dive-in-low-molecular-hyaluronic-toner",
+    "boj-centella-asiatica-calming-mask",
+    "skin1004-madagascar-centella-ampoule",
+    "dralthea-147-cream-barrier",
+    "roundlab-birch-juice-moisturizing-sun-cream"
+  ],
+  "price_cents": 8999,
+  "stock": 8,
+  "category": "pack",
+  "description": "Routine complète pour peaux sensibles et réactives : double nettoyage doux, hydratation apaisante, masque calmant, ampoule réparatrice, crème barrière et solaire doux.",
+  "advantages": [
+    "Double nettoyage doux et respectueux",
+    "Hydratation profonde sans irritation",
+    "Masque apaisant en cas de crise",
+    "Crème barrière pour renforcer la peau"
+  ],
+  "images": ["/img/packs/peau-sensible-complet-1.jpg", "/img/packs/peau-sensible-complet-2.jpg"],
+  "how_to": [
+  "1) Démaquillage (soir uniquement) : Anua Cleansing Oil – appliquer 2 pressions sur mains sèches, masser doucement 1 minute. Ajouter de l’eau pour émulsionner et rincer.",
+  "2) Nettoyant doux (matin & soir) : COSRX Low pH Good Morning Gel Cleanser – une noisette sur peau humide, masser 30 secondes puis rincer.",
+  "3) Toner (matin & soir) : Torriden Dive-In Hyaluronic Toner – appliquer 3 à 4 gouttes sur les mains, tapoter sur tout le visage. Peut être superposé en 2 couches si besoin.",
+  "4) Masque (1 à 2x/semaine, soir) : BOJ Centella Calming Mask – appliquer la feuille sur visage propre, laisser poser 15 à 20 minutes. Retirer et tapoter l’excédent jusqu’à absorption.",
+  "5) Sérum (matin & soir) : Skin1004 Centella Ampoule – appliquer 2 à 3 gouttes uniformément sur le visage et le cou.",
+  "6) Crème (matin & soir) : Dr Althea 147 Barrier Cream – prélever une noisette et masser délicatement. Idéale pour restaurer la barrière cutanée.",
+  "7) SPF (matin uniquement) : Round Lab Birch Sun Cream – appliquer une couche généreuse, renouveler toutes les 2 à 3 heures si exposition solaire."
+]
+
+}
+,
+
+{
+  "id": "pack-anti-age-standard",
+  "slug": "pack-anti-age-standard",
+  "name": "✨ Pack Anti-Âge & Raffermissant – Standard",
+  "products": [
+    "boj-ginseng-cleansing-oil",
+    "cosrx-propolis-synergy-toner",
+    "medicube-triple-collagen-serum-40",
+    "cosrx-advanced-snail-92-all-in-one-cream",
+    "boj-ginseng-moist-sun-serum"
+  ],
+  "price_cents": 6999,
+  "stock": 10,
+  "category": "pack",
+  "description": "Routine simple pour lisser les rides et améliorer l’élasticité : huile nettoyante antioxydante, toner nourrissant, sérum collagène, crème régénérante au snail et solaire hydratant au ginseng.",
+  "advantages": [
+    "Riche en antioxydants et collagène",
+    "Stimule l’élasticité et repulpe la peau",
+    "Hydrate en profondeur",
+    "Protège du vieillissement causé par le soleil"
+  ],
+  "images": ["/img/packs/anti-age-standard-1.jpg", "/img/packs/anti-age-standard-2.jpg"],
+  "how_to": [
+  "1) Démaquillage (soir uniquement) : BOJ Ginseng Cleansing Oil – appliquer 2 pressions sur mains sèches, masser 1 minute pour dissoudre impuretés. Émulsionner avec un peu d’eau puis rincer.",
+  "2) Toner (matin & soir) : COSRX Propolis Synergy Toner – verser 4 à 5 gouttes dans les mains ou sur un coton, appliquer uniformément et tapoter doucement.",
+  "3) Sérum (matin & soir) : Medicube Triple Collagen Serum – appliquer 2 à 3 pompes sur le visage. Masser en insistant sur les zones marquées (pattes d’oie, rides du front).",
+  "4) Crème (matin & soir) : COSRX Snail 92 All-in-One Cream – appliquer une noisette et masser uniformément. Texture nourrissante et réparatrice.",
+  "5) SPF (matin uniquement) : BOJ Ginseng Moist Sun Serum – appliquer une quantité généreuse sur tout le visage, cou et décolleté. Renouveler en cas d’exposition prolongée."
+]
+
+}
+,
+
+{
+  "id": "pack-anti-age-complet",
+  "slug": "pack-anti-age-complet",
+  "name": "✨ Pack Anti-Âge & Raffermissant – Complet",
+  "products": [
+    "dralthea-pure-grinding-cleansing-balm",
+    "cosrx-low-ph-good-morning-gel-cleanser",
+    "boj-ginseng-essence-water",
+    "medicube-triple-collagen-serum-40",
+    "boj-revive-serum-ginseng-snail",
+    "boj-revive-eye-serum-ginseng-retinal",
+    "medicube-collagen-jelly-cream",
+    "boj-relief-sun-rice-probiotics"
+  ],
+  "price_cents": 9999,
+  "stock": 7,
+  "category": "pack",
+  "description": "Routine complète anti-âge et raffermissante : double nettoyage doux, essence au ginseng, sérums collagène et snail, contour des yeux au retinal, crème repulpante et solaire hydratant.",
+  "advantages": [
+    "Double sérum ciblé collagène + snail",
+    "Contour des yeux anti-rides au retinal",
+    "Crème enrichie en collagène",
+    "Protège et nourrit en profondeur"
+  ],
+  "images": ["/img/packs/anti-age-complet-1.jpg", "/img/packs/anti-age-complet-2.jpg"],
+  "how_to": [
+  "1) Démaquillage (soir uniquement) : Dr Althea Cleansing Balm – prélever une noisette, masser 1 minute pour dissoudre maquillage et impuretés. Émulsionner à l’eau, puis rincer.",
+  "2) Nettoyant doux (matin & soir) : COSRX Low pH Good Morning Cleanser – appliquer une noisette sur peau humide, masser 30 secondes, rincer.",
+  "3) Essence (matin & soir) : BOJ Ginseng Essence Water – appliquer 3 à 4 gouttes, tapoter délicatement jusqu’à absorption complète.",
+  "4) Sérum 1 (matin & soir) : Medicube Collagen Serum – appliquer 2 pompes sur tout le visage. Masser en mouvements ascendants.",
+  "5) Sérum 2 (soir) : BOJ Revive Serum Ginseng + Snail – déposer 2 gouttes sur zones marquées. Texture légèrement visqueuse qui pénètre en profondeur.",
+  "6) Contour des yeux (soir) : BOJ Eye Serum Ginseng + Retinal – prélever une demi-pompe, appliquer sous les yeux en tapotant délicatement avec l’annulaire.",
+  "7) Crème (matin & soir) : Medicube Collagen Jelly Cream – appliquer une noisette sur visage et cou, masser jusqu’à absorption.",
+  "8) SPF (matin uniquement) : BOJ Relief Sun Rice + Probiotics – appliquer une quantité généreuse, renouveler toutes les 2 à 3 heures en cas d’exposition."
+]
+
+}
+,
+
+{
+  "id": "pack-eclat-anti-taches-standard",
+  "slug": "pack-eclat-anti-taches-standard",
+  "name": "🌟 Pack Éclat & Anti-Taches – Standard",
+  "products": [
+    "anua-heartleaf-quercetinol-pore-deep-cleansing-foam",
+    "boj-glow-replenishing-rice-milk",
+    "anua-niacinamide-10-txa-4-serum",
+    "imfrom-rice-cream",
+    "boj-relief-sun-rice-probiotics"
+  ],
+  "price_cents": 6499,
+  "stock": 10,
+  "category": "pack",
+  "description": "Routine standard pour raviver l’éclat et réduire les taches : nettoyant doux, toner au riz, sérum niacinamide + TXA, crème nourrissante et solaire hydratant au riz.",
+  "advantages": [
+    "Teint plus lumineux dès 2–3 semaines",
+    "Cible taches et marques post-acné",
+    "Hydratation confortable sans effet gras",
+    "Protection UV quotidienne pour prévenir la repigmentation"
+  ],
+  "images": ["/img/packs/eclat-standard-1.jpg", "/img/packs/eclat-standard-2.jpg"],
+  "how_to": [
+  "1) Nettoyage (matin & soir) : Anua Quercetinol Foam – prélever une noisette, faire mousser et masser 30 secondes sur peau humide. Rincer à l’eau tiède.",
+  "2) Toner (matin & soir) : BOJ Glow Replenishing Rice Milk – appliquer 4 à 5 gouttes, tapoter doucement. Pour un boost d’éclat, superposer 2 couches le soir.",
+  "3) Sérum (matin & soir) : Anua Niacinamide 10% + TXA 4% – déposer 2 à 3 gouttes sur le visage, masser en insistant sur les zones tachées. Peut être utilisé sous un autre sérum.",
+  "4) Crème (matin & soir) : I’m From Rice Cream – prélever une noisette, appliquer en massant puis tapoter légèrement. Apporte un fini lumineux.",
+  "5) SPF (matin uniquement) : BOJ Relief Sun Rice + Probiotics – appliquer généreusement sur visage et cou. Réappliquer si exposition prolongée."
+]
+
+}
+,
+
+{
+  "id": "pack-eclat-anti-taches-complet",
+  "slug": "pack-eclat-anti-taches-complet",
+  "name": "🌟 Pack Éclat & Anti-Taches – Complet",
+  "products": [
+    "boj-radiance-cleansing-balm",
+    "cosrx-low-ph-good-morning-gel-cleanser",
+    "somebymi-yuja-niacin-brightening-toner",
+    "cosrx-bha-blackhead-power-liquid",
+    "somebymi-yuja-niacin-brightening-serum",
+    "boj-glow-deep-serum-rice-arbutin",
+    "medicube-deep-vita-c-capsule-cream",
+    "roundlab-birch-juice-moisturizing-sun-cream"
+  ],
+  "price_cents": 9999,
+  "stock": 8,
+  "category": "pack",
+  "description": "Routine complète anti-taches et éclat : double nettoyage, toner à la vitamine C, exfoliant doux, sérums Yuja et Arbutin, crème à la vitamine C et protection solaire hydratante.",
+  "advantages": [
+    "Double nettoyage pour booster l’éclat",
+    "Exfoliation BHA pour lisser le grain de peau",
+    "Synergie Vitamine C + Arbutine",
+    "Solaire hydratant pour prévenir les rechutes pigmentaires"
+  ],
+  "images": ["/img/packs/eclat-complet-1.jpg", "/img/packs/eclat-complet-2.jpg"],
+  "how_to": [
+  "1) Baume démaquillant (soir) : BOJ Radiance Cleansing Balm – appliquer une noisette, masser 1 minute, émulsionner puis rincer.",
+  "2) Gel nettoyant (matin & soir, après le baume le soir) : COSRX Low pH Good Morning Cleanser – masser doucement 30 secondes puis rincer.",
+  "3) Toner (matin & soir) : Some By Mi Yuja Niacin Brightening Toner – imbiber un coton, appliquer uniformément, tapoter jusqu’à absorption.",
+  "4) Exfoliant (2–3x/semaine le soir) : COSRX BHA Blackhead Power Liquid – appliquer 1 à 2 pompes sur coton, passer sur le visage en évitant yeux et lèvres.",
+  "5) Sérum 1 (matin) : Some By Mi Yuja Serum – appliquer 2 à 3 gouttes, masser délicatement.",
+  "6) Sérum 2 (soir) : BOJ Glow Deep Serum Rice + Arbutin – appliquer 2 à 3 gouttes, insister sur les zones tachées.",
+  "7) Crème (matin & soir) : Medicube Deep Vita C Capsule Cream – prélever une noisette, masser jusqu’à absorption complète.",
+  "8) SPF (matin uniquement) : Round Lab Birch Sun Cream – appliquer une quantité généreuse, renouveler toutes les 2 à 3 heures en cas d’exposition."
+]
+
+}
+,
+
+{
+  "id": "pack-peau-mixte-standard",
+  "slug": "pack-peau-mixte-standard",
+  "name": "🌸 Pack Peau Mixte – Standard",
+  "products": [
+    "cosrx-low-ph-good-morning-gel-cleanser",
+    "anua-heartleaf-77-soothing-toner",
+    "torriden-dive-in-low-molecular-hyaluronic-serum",
+    "skin1004-madagascar-centella-poremizing-light-gel-cream",
+    "roundlab-birch-juice-moisturizing-sun-cream"
+  ],
+  "price_cents": 6499,
+  "stock": 12,
+  "category": "pack",
+  "description": "Routine simple et équilibrée pour peaux mixtes : nettoyant doux, toner apaisant, sérum hydratant léger, gel-crème centella et solaire hydratant mais non gras.",
+  "advantages": [
+    "Équilibre zone T et joues",
+    "Hydratation légère non comédogène",
+    "Gel-crème frais qui ne graisse pas",
+    "Solaire confortable au quotidien"
+  ],
+  "images": ["/img/packs/mixte-standard-1.jpg", "/img/packs/mixte-standard-2.jpg"],
+  "how_to": [
+  "1) Nettoyage (matin & soir) : COSRX Low pH Cleanser – appliquer une noisette, masser doucement 30 à 40 secondes. Insister sur la zone T, rincer soigneusement.",
+  "2) Toner (matin & soir) : Anua Heartleaf 77 – appliquer 3 à 4 gouttes, tapoter doucement. En été, une seule couche suffit; en hiver, superposer 2 couches.",
+  "3) Sérum (matin & soir) : Torriden Dive-In Hyaluronic Serum – déposer 2 à 3 gouttes, appliquer sur tout le visage. Idéal pour hydrater les joues sans graisser la zone T.",
+  "4) Crème (matin & soir) : Skin1004 Poremizing Light Gel Cream – appliquer une fine couche. Insister sur les joues, appliquer très peu sur la zone T.",
+  "5) SPF (matin uniquement) : Round Lab Birch Sun Cream – appliquer 2 phalanges, renouveler en journée si exposition."
+]
+
+}
+,
+
+{
+  "id": "pack-peau-mixte-complet",
+  "slug": "pack-peau-mixte-complet",
+  "name": "🌸 Pack Peau Mixte – Complet",
+  "products": [
+    "boj-radiance-cleansing-balm",
+    "anua-heartleaf-quercetinol-pore-deep-cleansing-foam",
+    "boj-green-plum-refreshing-toner",
+    "cosrx-two-in-one-poreless-power-liquid",
+    "anua-peach-70-niacin-serum",
+    "skin1004-madagascar-centella-poremizing-fresh-ampoule",
+    "boj-red-bean-water-gel",
+    "boj-relief-sun-aqua-fresh-rice-b5"
+  ],
+  "price_cents": 9999,
+  "stock": 8,
+  "category": "pack",
+  "description": "Routine complète pour peaux mixtes : double nettoyage, toner exfoliant doux, soin des pores, sérums éclat et équilibre, gel hydratant léger et solaire frais non comédogène.",
+  "advantages": [
+    "Double nettoyage pour une peau nette",
+    "Toner AHA/BHA très doux pour lisser",
+    "Action pores + éclat (niacinamide/peach)",
+    "Hydratation légère au fini frais"
+  ],
+  "images": ["/img/packs/mixte-complet-1.jpg", "/img/packs/mixte-complet-2.jpg"],
+  "how_to": [
+  "1) Baume (soir uniquement) : BOJ Radiance Cleansing Balm – prélever une noisette, masser 1 minute, émulsionner et rincer.",
+  "2) Nettoyant moussant (matin & après baume) : Anua Quercetinol Foam – appliquer une noisette, masser 30 secondes, rincer.",
+  "3) Toner (matin & soir) : BOJ Green Plum Refreshing Toner – appliquer sur coton ou dans les mains, tapoter doucement.",
+  "4) Pores (1x/jour, de préférence le soir) : COSRX Two in One Poreless Power Liquid – appliquer 1 à 2 pompes sur un coton et passer sur la zone T.",
+  "5) Sérum éclat (matin) : Anua Peach 70 Niacin Serum – appliquer 2 à 3 gouttes, masser doucement.",
+  "6) Ampoule pores (soir) : Skin1004 Poremizing Fresh Ampoule – appliquer 2 à 3 gouttes sur zones grasses et poreuses.",
+  "7) Gel hydratant (matin & soir) : BOJ Red Bean Water Gel – appliquer une fine couche, idéal pour équilibre hydratation/sébum.",
+  "8) SPF (matin uniquement) : BOJ Relief Sun Aqua Fresh – appliquer une quantité généreuse, renouveler si exposition."
+]
+
+}
+,
+
+{
+  "id": "pack-decouverte-standard",
+  "slug": "pack-decouverte-standard",
+  "name": "🌍 Pack Découverte K-Beauty – Standard",
+  "products": [
+    "cosrx-low-ph-good-morning-gel-cleanser",
+    "anua-heartleaf-77-soothing-toner",
+    "boj-glow-serum-propolis-niacinamide",
+    "skin1004-madagascar-centella-soothing-cream",
+    "boj-relief-sun-rice-probiotics"
+  ],
+  "price_cents": 5999,
+  "stock": 20,
+  "category": "pack",
+  "description": "Routine simple pour découvrir la K-beauty : nettoyant culte, toner apaisant, sérum éclat, crème réparatrice et solaire hydratant best-seller.",
+  "advantages": [
+    "Universel et facile à adopter",
+    "Actifs doux mais efficaces",
+    "Textures légères et agréables",
+    "Parfait premier pas dans la K-beauty"
+  ],
+  "images": ["/img/packs/decouverte-standard-1.jpg", "/img/packs/decouverte-standard-2.jpg"],
+  "how_to": [
+  "1) Nettoyage (matin & soir) : COSRX Low pH Cleanser – appliquer une noisette, masser 30 secondes, rincer abondamment.",
+  "2) Toner (matin & soir) : Anua Heartleaf 77 – appliquer 3 à 4 gouttes, tapoter doucement. Peut être utilisé en compresse sur zones rouges.",
+  "3) Sérum (matin & soir) : BOJ Glow Serum – appliquer 2 à 3 gouttes sur le visage, masser doucement. Convient à tous les types de peaux.",
+  "4) Crème (matin & soir) : Skin1004 Centella Cream – appliquer une noisette sur visage et cou. Apaisante et universelle.",
+  "5) SPF (matin uniquement) : BOJ Relief Sun Rice + Probiotics – appliquer généreusement, renouveler toutes les 2 à 3 heures en cas d’exposition."
+]
+
+}
+,
+
+{
+  "id": "pack-decouverte-complet",
+  "slug": "pack-decouverte-complet",
+  "name": "🌍 Pack Découverte K-Beauty – Complet",
+  "products": [
+    "boj-radiance-cleansing-balm",
+    "cosrx-low-ph-good-morning-gel-cleanser",
+    "roundlab-birch-juice-moisturizing-toner",
+    "torriden-dive-in-low-molecular-hyaluronic-serum",
+    "laneige-water-bank-blue-hyaluronic-cream",
+    "boj-relief-sun-rice-probiotics",
+    "laneige-water-sleeping-mask"
+  ],
+  "price_cents": 10999,
+  "stock": 10,
+  "category": "pack",
+  "description": "Routine complète pour découvrir la K-beauty : double nettoyage, toner hydratant, sérum universel, crème premium, solaire culte et masque iconique de Laneige.",
+  "advantages": [
+    "Expérience K-beauty complète (7 étapes)",
+    "Hydratation profonde et textures premium",
+    "Convient à la majorité des peaux",
+    "Idéal en coffret cadeau"
+  ],
+  "images": ["/img/packs/decouverte-complet-1.jpg", "/img/packs/decouverte-complet-2.jpg"],
+  "how_to": [
+  "1) Démaquillage (soir uniquement) : BOJ Radiance Cleansing Balm – appliquer une noisette, masser 1 minute, émulsionner et rincer.",
+  "2) Nettoyant doux (matin & après baume) : COSRX Low pH Good Morning Cleanser – masser doucement 30 secondes puis rincer.",
+  "3) Toner (matin & soir) : Round Lab Birch Toner – appliquer 3 à 4 gouttes sur mains propres, tapoter délicatement jusqu’à absorption.",
+  "4) Sérum (matin & soir) : Torriden Dive-In Serum – appliquer 2 à 3 gouttes sur le visage, masser doucement.",
+  "5) Crème (matin & soir) : Laneige Water Bank Blue Hyaluronic Cream – appliquer une noisette sur le visage, masser doucement pour sceller l’hydratation.",
+  "6) SPF (matin uniquement) : BOJ Relief Sun Rice + Probiotics – appliquer généreusement, renouveler en journée si exposition.",
+  "7) Masque de nuit (2 à 3x/semaine) : Laneige Water Sleeping Mask – appliquer une fine couche en dernière étape le soir, laisser agir toute la nuit et rincer le matin."
+]
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+ 
+  
+]

@@ -1,0 +1,278 @@
+Catégorie : 
+    1. Pack Routine complète : réduction de 10% sur tout les packs
+    2. Produits : Huile nettoyante, nettoyant, toner, etc...
+    3. Conseils & Test  : 
+        1. Tu découvres la skin care coréenne? Clique ici !
+        2. Tu cherches une routine adaptée à ta peau? fait notre test
+    4. Compose ton pack; profite d'une réduction de 10% 
+    5. Marques : Produits classés par les marques les plus connues
+    6. Nos avantages : Je vais parler des packs, des points bonus, des réductions, etc.
+
+
+
+Avantages : 
+    1. Nous offrons des produits à partir de 50 € d'achat
+    2. Vous gagnez 50 points dès la création de votre compte
+    3. Commande expédié le jour même
+    4. Livraison offerte à partir de 50 € d'achat
+    5. Des packs pour une routine complète : 
+        1. nous avons préparés des packs pour votre peau avec tout les détails
+        2. Profitez d'une réduction supplémentaire de 10% sur les packs ! 
+    6. Possibilité de composez ton propre pack et de profitez d'une réduction de 10%
+
+Je vais mettre 2 avantages en haut, 4 en bas
+
+
+
+
+
+Design : 
+
+1 : Header1 ==> Korelia, barre de recherche, bouton de profil, favori, panier, langue;
+2 : Header2 ==> Bouton de navigation : Pack routine, compose ton pack, etc.;
+3 : Panneau ==> Grand panneau attirant;
+4 : 2 Avantages (voir + jsp) dans 2 panneau attirant;
+5 : Rubrique "Best Sellers" avec une dizaine de produit;
+8 : 4 Avantages  dans 4 panneau attirant ou sur une seule ligne, à voir;
+9 : Conseil : 2 div, une pour se documenter, l'autre pour faire le quizz;
+
+6 : Les marques : Le nom des marques, avec possibilité de cliqué dessus;
+7 : Les Packs : 4 packs, avec possibilité de voir le pack, ou voir tout les packs;
+11 : Blog, j'sais pas quoi mettre, j'vais faire mes recherches
+12 : footer, on verra bien une fois arrivé là;
+
+
+
+
+Stripe : stripe listen --forward-to localhost:4242/webhook
+
+
+
+
+
+curl -X POST http://localhost:4242/admin/promote \
+  -H "Content-Type: application/json" \
+  -H "X-Setup-Token: quelque_chose_de_long_et_secret" \
+  -d '{"email":"guclugrkn@gmail.com"}'
+
+
+
+  Invoke-RestMethod -Method Post -Uri "http://localhost:4242/admin/promote" `
+  -Headers @{ "Content-Type" = "application/json"; "X-Setup-Token" = "quelque_chose_de_long_et_secret" } `
+  -Body '{"email":"guclugrkn@gmail.com"}'
+
+
+
+
+
+
+
+
+Admin OK
+Validation email OK
+Réinitialisation mdp OK
+
+Favoris
+Historique de commandes
+Avis produits
+Codes promo/ bon de réduction
+
+Statut des commandes : en préparation / expédiée/ livrée ...
+Factures PDF
+Suivi Livraison
+
+
+Dashboard chiffres clés 
+Gestion du catalogue : ajouter/supprimer etc
+Alertes stock faible : Notification 
+
+
+Emails automatiques : newsletter, relance panier abandonné, recommandations produit etc
+
+
+Déploiement : hébergement en ligne, nom de domaine, stockage DB 
+
+
+
+
+
+Ce qu’il te reste à faire (roadmap complète)
+
+Stabilité & sécurité
+
+Uniformiser tous les appels POST/PUT/PATCH/DELETE via fetchWithCsrf.
+
+Ne plus régénérer le CSRF si déjà présent (tu l’as fait ✅).
+
+Forcer secure:true pour les cookies en prod (HTTPS) ✅ déjà dans ton code.
+
+Mettre REQUIRE_EMAIL_VERIFIED=1 en prod si tu veux forcer l’email vérifié avant login.
+
+Admin
+
+Ajout des emails “préparation” et “expédiée” ✅ (si tu as collé le code).
+
+(Optionnel) Dans AdminOrders, champ “tracking” (carrier/number/url) quand on passe en “Expédiée”.
+
+Un petit toast visuel “Statut mis à jour” (UX).
+
+Mon Compte
+
+OrdersPanel: utiliser order.status (déjà envoyé par l’API) pour le stepper ✅ (tu as la version).
+
+Afficher le tracking si présent (transporteur, numéro, lien) quand statut = “Expédiée”.
+
+Drawer “Mes infos” : utiliser fetchWithCsrf dans AuthContext pour saveName/saveAddress/changePassword (pour être 100% CSRF-proof).
+
+Catalogue / Fiche Produit / BestSellers
+
+Tous les fetch vers VITE_API_URL.
+
+Bouton “favoris” (coeur) sur les cards et sur la fiche produit (tu l’as amorcé).
+
+(Optionnel) Badge “plus que X en stock”.
+
+Page Favoris
+
+Refonte UI (beige/chic), bouton “Ajouter au panier”, “Retirer”, “Retirer tout”, header/footer, vide-state sympa. ⬇️ (code fourni).
+
+Paiement & Webhooks
+
+Vérifier que ton endpoint webhook est public (Stripe Dashboard) et secret bien rempli (prod).
+
+Vérifier la persistance des fichiers JSON (volumes / backups).
+
+Qualité
+
+SEO (titres, metas, OpenGraph).
+
+RGPD: pages “Confidentialité”, “CGV”.
+
+Monitoring (console erreur front, logs serveur).
+
+Tests basiques (casser les paniers, statuts, rewards, reset pwd).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A FAIRE : 
+
+
+1. Préparer des packs routines:
+    a.Je dois faire les packs routines
+    b.Je dois faire une page pour chaque pack avec explication détaillé
+    c.Sur HomePage, je dois faire un truc pour aller aux pack
+
+2. Compose ton pack: Je dois faire un système pour créer un pack: 
+    Avec possibilité de donné un nom et l'ajouté dans ses Favoris
+
+3. Conseil & Diagnostics : 
+    a: Je dois faire un gros guide de skincare coréenne
+    b. Je dois faire un jolie quizz avec une logique pour savoir le type de peau de la personne
+
+4. Nos Avantages : Je dois expliquer clairement dans une page le système de point et les cadeaux que je donne
+
+5. Une page pour lister toutes les marques que j'ai avec possibilité de rechercher
+
+6. Une fois que tout ça est en place, je dois faire la navigation complète de la page sur le header
+
+7. L'image de fond de la homepage, peut être aligner le texte
+
+8. faire toutes les routes sur la page pour naviguer n'importe ou
+
+9. Les produits catalogue/bestsellers : je dois rajouter une 2eme image avec possibilité de cliquer pour ajouter aux panier
+
+10. La page produit : je dois la faire complètement avec tout les détails et tout les images 
+
+11. Routine Skincare : Je dois refaire les blocs correctement, avec possibilité d'appuyer ou 
+    au hover je dois expliquer comment ça marche.
+
+12. Korelia Blog, je dois écrire tout les blogs 
+
+13. footer : je dois faire un truc plus correct avec toutes les routes
+
+14. Page confidentialité mention légales cookies etc
+
+15. Ajouter quelque chose pour voir le nombre de personnes qui se sont connecté sur la page
+
+14. Mise en page pour version mobile
+
+15. Verification de toutes les routes et la sécurité
+
+
+Une fois que tout est fini, je dois perfectionner chaque page.
+
+
+
+1. OK
+1.A OK
+1.b OK
+1.c OK
+
+2.OK
+3.
+3.A OK
+3.B OK
+
+4. OK
+5. OK
+6. OK
+7.
+8.OK
+9.
+10.
+11.OK
+12.
+13. 
+14.
+15.
+
+
+
+
+
+
+
+
+
+PACK 
+
+
+
+Pack Peau Sèche – Version Complète (standard)
+
+Nettoyant
+
+Beauty of Joseon – Ginseng Cleansing Oil → nettoie en douceur sans décaper, parfait pour peaux sèches.
+
+
+Toner / Essence
+
+I’m From – Rice Toner → riche, hydratant, booste l’éclat et nourrit.
+
+Sérum
+
+COSRX Advanced Snail 96 Mucin Essence → réparation + hydratation profonde.
+
+
+Crème
+
+Beauty of Joseon Dynasty Cream → riche, nourrit et protège.
+
+
+SPF
+
+COSRX Aloe Soothing Sun Cream SPF50 → hydratant et protecteur.
+
+
+
