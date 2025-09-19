@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import { useCart } from "../cart/CartContext";
 import { useAuth } from "../auth/AuthContext";
 import { useFavorites } from "../favorites/FavoritesContext";
-import "./product.css";
+import "./Product.css";
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:4242";
 const fmtEur = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
