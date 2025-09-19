@@ -1,6 +1,6 @@
 // src/blog/BlogPost.jsx  (page article)
 import { useParams, Link } from "react-router-dom";
-import { posts } from "./blogData";
+import { posts } from "/src/blog/blogdata.js";
 import "./Blog.css";
 
 // mini parser markdown ultra simple (titres, gras, listes, citation)
