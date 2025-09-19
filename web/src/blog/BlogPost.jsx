@@ -1,4 +1,4 @@
-// web/src/blog/Blog.jsx
+// web/src/blog/BlogPost.jsx
 import { Link } from "react-router-dom";
 import { posts } from "./blogdata.js";
 import "./Blog.css";
