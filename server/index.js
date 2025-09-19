@@ -20,75 +20,125 @@ import rateLimit from 'express-rate-limit';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// --- crée l'app en premier ---
+/* =======================
+ * App & Config de base
+ * ======================= */
 const app = express();
+const PORT = process.env.PORT || 4242;
+const isProd = process.env.NODE_ENV === 'production';
 
-// --- CORS whitelist ---
+app.set('trust proxy', 1); // requis pour secure cookies derrière proxy
+
+/* =======================
+ * CORS (⚠️ pas de slash final dans Origin)
+ * ======================= */
 const allowed = [
-  "http://localhost:5173",
-  "https://korelia-seven.vercel.app/", // SANS slash final
-  "https://korelia.vercel.app",      // si tu as un domaine Vercel stable
+  'http://localhost:5173',
+  'https://korelia-hazel.vercel.app', // <— remplace/complète avec ton sous-domaine Vercel
+  'https://korelia.vercel.app',       // (optionnel) domaine stable Vercel
 ];
 
-// Option “origin” en fonction (gère aussi les previews *.vercel.app si tu veux)
 const corsOptions = {
   origin(origin, cb) {
     if (!origin) return cb(null, true); // autorise Postman/cURL
-    const ok = allowed.includes(origin) || /^https:\/\/.*\.vercel\.app$/.test(origin);
-    cb(ok ? null : new Error("Not allowed by CORS"));
+    const ok =
+      allowed.includes(origin) ||
+      /^https:\/\/.*\.vercel\.app$/.test(origin); // autorise les previews Vercel
+    cb(ok ? null : new Error('Not allowed by CORS'));
   },
   credentials: true,
-  methods: ["GET","POST","PUT","PATCH","DELETE","OPTIONS"],
-  allowedHeaders: ["Content-Type","Authorization","X-CSRF-Token","x-csrf-token"],
-  exposedHeaders: ["Content-Length"],
+  methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization','X-CSRF-Token','x-csrf-token'],
+  exposedHeaders: ['Content-Length'],
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.options('*', cors(corsOptions)); // preflight
+
+// --- CORS safety net: ensure headers on ALL responses, even 401/403
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  // si l'origine est autorisée par ta whitelist, on renvoie les headers
+  const allowed = [
+    "http://localhost:5173",
+    "https://korelia.vercel.app",
+    "https://korelia-hazel.vercel.app",
+  ];
+  const isPreviewVercel = /^https:\/\/.*\.vercel\.app$/i.test(String(origin || ""));
+  if (origin && (allowed.includes(origin) || isPreviewVercel)) {
+    res.header("Access-Control-Allow-Origin", origin);
+    res.header("Vary", "Origin");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-CSRF-Token, x-csrf-token");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS");
+  }
+  // Répond proprement aux preflights (au cas où)
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
 
 
 
 
+/* =======================
+ * Utilitaires généraux
+ * ======================= */
+const sleep = (ms) => new Promise(r=>setTimeout(r,ms));
+function sha256(s){ return crypto.createHash('sha256').update(String(s)).digest('hex'); }
+function isEmail(s){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s||'').toLowerCase()); }
+function clampString(s, max=200){ s = String(s||''); return s.length > max ? s.slice(0,max) : s; }
+function randomToken(n=24){ return crypto.randomBytes(n).toString('hex'); }
 
-
-
-
-
-
-
-const PORT = process.env.PORT || 4242;
-
-const isProd = process.env.NODE_ENV === 'production';
-
+/* =======================
+ * Fichiers data
+ * ======================= */
 const USERS_PATH    = path.join(__dirname, 'users.json');
 const ORDERS_PATH   = path.join(__dirname, 'orders.json');
 const PRODUCTS_PATH = path.join(__dirname, 'products.json');
 
-/* =======================
- * CORS / Cookies
- * ======================= */
+async function readJson(file, fallback = []) {
+  try { return JSON.parse(await fs.readFile(file, 'utf-8')); }
+  catch (e) { if (e.code === 'ENOENT') return fallback; throw e; }
+}
+async function writeJson(file, data) {
+  const tmp = file + '.' + crypto.randomBytes(4).toString('hex') + '.tmp';
+  await fs.writeFile(tmp, JSON.stringify(data, null, 2));
+  await fs.rename(tmp, file);
+}
 
+/* =======================
+ * Cookies & helpers
+ * ======================= */
 function cookieOpts(days = 7){
   const maxAge = days * 24 * 3600 * 1000;
-  return { httpOnly: true, sameSite: 'lax', secure: isProd, maxAge, path:'/' };
-
+  // Cross-site → SameSite=None; Secure en prod
+  return { httpOnly: true, sameSite: 'none', secure: isProd, maxAge, path:'/' };
 }
-// /auth/csrf – cookie CSRF
-app.get('/auth/csrf', (req, res) => {
-  let token = req.cookies?.csrf_token;
-  if (!token) {
-    token = crypto.randomBytes(24).toString('hex');
-    res.cookie('csrf_token', token, {
-      sameSite: 'none',
-      secure: isProd,
-      maxAge: 2 * 60 * 60 * 1000,
-      path: '/',
-      httpOnly: true,
-    });
-  }
-  res.json({ csrf: token });
-});
 
+function signToken(userPayload){
+  return jwt.sign({
+    id: userPayload.id,
+    email: userPayload.email,
+    role: userPayload.role || 'user',
+    token_version: userPayload.token_version || 0,
+  }, process.env.JWT_SECRET, { expiresIn: '7d' });
+}
+
+async function readUsers(){ return readJson(USERS_PATH, []); }
+async function writeUsers(list){ await writeJson(USERS_PATH, list); }
+
+function getUserSafe(u){
+  return {
+    id: u.id,
+    email: u.email,
+    name: u.name || '',
+    role: u.role || 'user',
+    createdAt: u.createdAt,
+    email_verified: !!u.email_verified
+  };
+}
 
 /* =======================
  * Rewards: catalogue + helpers
@@ -120,50 +170,6 @@ async function saveUsersMutate(fn){
   await writeUsers(updated);
   return updated;
 }
-
-async function backfillRewardsForEmail(email, userId){
-  const key = String(email || '').trim().toLowerCase();
-  if (!key || !userId) return { credited: 0, orders: 0 };
-
-  // charge commandes
-  let orders = await readJson(ORDERS_PATH, []);
-  let credited = 0;
-  let count = 0;
-
-  for (const o of orders) {
-    // skip si pas payée
-    const isPaid = (o.payment_status || 'paid') === 'paid';
-    if (!isPaid) continue;
-
-    // email match ?
-    const em = String(o.email || '').toLowerCase();
-    if (!em || em !== key) continue;
-
-    // déjà créditée ? on évite double crédit
-    if (o.rewards_credited_user_id || o.rewards_backfill_done) continue;
-
-    const euros = Math.floor((o.amount_subtotal ?? o.amount_total ?? 0) / 100);
-    if (euros <= 0) continue;
-
-    // crédite l'utilisateur
-    const ok = await addPointsByUserId(userId, euros, 'order_backfill', { orderId: o.id });
-    if (!ok) continue;
-
-    // marque la commande comme créditée (anti doublon)
-    o.rewards_credited_user_id = userId;
-    o.rewards_backfill_done = true;
-    o.rewards_points = (o.rewards_points || 0) + euros;
-
-    credited += euros;
-    count += 1;
-  }
-
-  if (count > 0) {
-    await writeJson(ORDERS_PATH, orders);
-  }
-  return { credited, orders: count };
-}
-
 async function addPointsByUserId(userId, delta, reason, extra = {}){
   let changed = false;
   await saveUsersMutate(users => {
@@ -191,6 +197,31 @@ async function addPointsByEmail(email, delta, reason, extra = {}){
   });
   return changed;
 }
+async function backfillRewardsForEmail(email, userId){
+  const key = String(email || '').trim().toLowerCase();
+  if (!key || !userId) return { credited: 0, orders: 0 };
+  let orders = await readJson(ORDERS_PATH, []);
+  let credited = 0;
+  let count = 0;
+  for (const o of orders) {
+    const isPaid = (o.payment_status || 'paid') === 'paid';
+    if (!isPaid) continue;
+    const em = String(o.email || '').toLowerCase();
+    if (!em || em !== key) continue;
+    if (o.rewards_credited_user_id || o.rewards_backfill_done) continue;
+    const euros = Math.floor((o.amount_subtotal ?? o.amount_total ?? 0) / 100);
+    if (euros <= 0) continue;
+    const ok = await addPointsByUserId(userId, euros, 'order_backfill', { orderId: o.id });
+    if (!ok) continue;
+    o.rewards_credited_user_id = userId;
+    o.rewards_backfill_done = true;
+    o.rewards_points = (o.rewards_points || 0) + euros;
+    credited += euros;
+    count += 1;
+  }
+  if (count > 0) { await writeJson(ORDERS_PATH, orders); }
+  return { credited, orders: count };
+}
 
 /* =======================
  * Stripe & Mail
@@ -210,187 +241,9 @@ const mailer = nodemailer.createTransport({
   catch (e) { console.error('❌ SMTP KO :', e?.message || e); }
 })();
 
-/* =======================
- * Utils JSON, auth & validations
- * ======================= */
-async function readJson(file, fallback = []) {
-  try { return JSON.parse(await fs.readFile(file, 'utf-8')); }
-  catch (e) { if (e.code === 'ENOENT') return fallback; throw e; }
-}
-async function writeJson(file, data) {
-  const tmp = file + '.' + crypto.randomBytes(4).toString('hex') + '.tmp';
-  await fs.writeFile(tmp, JSON.stringify(data, null, 2));
-  await fs.rename(tmp, file);
-}
-const sleep = (ms) => new Promise(r=>setTimeout(r,ms));
-function sha256(s){ return crypto.createHash('sha256').update(String(s)).digest('hex'); }
-function isEmail(s){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s||'').toLowerCase()); }
-function clampString(s, max=200){ s = String(s||''); return s.length > max ? s.slice(0,max) : s; }
-
-function signToken(userPayload){
-  return jwt.sign({
-    id: userPayload.id,
-    email: userPayload.email,
-    role: userPayload.role || 'user',
-    token_version: userPayload.token_version || 0,
-  }, process.env.JWT_SECRET, { expiresIn: '7d' });
-}
-
-async function readUsers(){ return readJson(USERS_PATH, []); }
-async function writeUsers(list){ await writeJson(USERS_PATH, list); }
-
-function getUserSafe(u){
-  return {
-    id: u.id,
-    email: u.email,
-    name: u.name || '',
-    role: u.role || 'user',
-    createdAt: u.createdAt,
-    email_verified: !!u.email_verified
-  };
-}
-
-/* --- CSRF (double-submit cookie) --- */
-function randomToken(n=24){ return crypto.randomBytes(n).toString('hex'); }
-function csrfProtect(req, res, next){
-  const method = (req.method || '').toUpperCase();
-  if (['GET','HEAD','OPTIONS'].includes(method)) return next();
-  if (req.path.startsWith('/webhook')) return next(); // Stripe
-  const header = req.headers['x-csrf-token'];
-  const cookie = req.cookies?.csrf_token;
-  if (!header || !cookie || header !== cookie) {
-    return res.status(403).json({ error: 'CSRF token invalide' });
-  }
-  next();
-}
-
-/* --- Auth middlewares avec token_version --- */
-async function authRequired(req, res, next){
-  const token = req.cookies?.token || (req.headers.authorization||'').replace(/^Bearer\s+/, '');
-  try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-    const users = await readUsers();
-    const me = users.find(u => u.id === payload.id);
-    if (!me) return res.status(401).json({ error: 'Non authentifié' });
-    if ((me.token_version || 0) !== (payload.token_version || 0)) {
-      return res.status(401).json({ error: 'Session expirée' });
-    }
-    req.user = payload;
-    next();
-  } catch {
-    res.status(401).json({ error: 'Non authentifié' });
-  }
-}
-async function adminRequired(req, res, next){
-  await authRequired(req, res, async () => {
-    if ((req.user.role || 'user') !== 'admin') return res.status(403).json({ error: 'Accès admin requis' });
-    next();
-  });
-}
-function optionalAuth(req, res, next){
-  const token = req.cookies?.token || (req.headers.authorization||'').replace(/^Bearer\s+/, '');
-  try { req.user = jwt.verify(token, process.env.JWT_SECRET); } catch {}
-  next();
-}
-
-/* =======================
- * Emails (order, reset, verify)
- * ======================= */
-async function sendOrderEmail(order) {
-  if (!order?.email) return;
-  const total = (order.amount_total || 0) / 100;
-  const currency = (order.currency || 'eur').toUpperCase();
-
-  const itemsHtml = (Array.isArray(order.items) && order.items.length
-    ? order.items.map(it => `<li><strong>${it.name || ('Produit #'+it.id)}</strong> × ${it.qty}</li>`).join('')
-    : Array.isArray(order.stripe_line_items) ? order.stripe_line_items.map(li => `<li><strong>${li.name}</strong> × ${li.qty ?? li.quantity ?? 1}</li>`).join('') : ''
-  ) || '<li>(Détails indisponibles)</li>';
-
-  const addr = order.shipping?.address;
-  const addressHtml = addr ? `
-    <p style="margin:0">${order.shipping?.name || order.customer_name || ''}</p>
-    <p style="margin:0">${addr.line1 || ''}${addr.line2 ? ', ' + addr.line2 : ''}</p>
-    <p style="margin:0">${addr.postal_code || ''} ${addr.city || ''}</p>
-    <p style="margin:0">${addr.country || ''}</p>
-    ${order.shipping?.phone ? `<p style="margin:0">Tél : ${order.shipping.phone}</p>` : ''}
-  ` : '<p>(Adresse non fournie)</p>';
-
-  const html = `
-    <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;max-width:640px;margin:auto">
-      <h2>Merci pour votre commande 🎉</h2>
-      <p>Numéro de commande : <strong>${order.id}</strong></p>
-      <h3>Récapitulatif</h3>
-      <ul>${itemsHtml}</ul>
-      <p>Sous-total : <strong>${((order.amount_subtotal||0)/100).toFixed(2)} ${currency}</strong></p>
-      <p>Livraison : <strong>${((order.shipping_cost||0)/100).toFixed(2)} ${currency}</strong></p>
-      <p style="font-size:18px">Total : <strong>${total.toFixed(2)} ${currency}</strong></p>
-      <h3>Livraison</h3>
-      ${addressHtml}
-      <hr/>
-      <p>Besoin d’aide ? Répondez à cet email.</p>
-    </div>
-  `;
-  const info = await mailer.sendMail({
-    from: process.env.MAIL_FROM || 'Korelia <no-reply@korelia.shop>',
-    to: order.email,
-    subject: `Confirmation de commande ${order.id} — Korelia`,
-    html
-  });
-  const preview = nodemailer.getTestMessageUrl(info);
-  if (preview) console.log('🔗 Aperçu Ethereal (order):', preview);
-}
-
-async function sendOrderPreparingEmail(order) {
-  if (!order?.email) return;
-  const html = `
-    <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;max-width:640px;margin:auto">
-      <h2>Bonne nouvelle 🎉</h2>
-      <p>Ta commande <strong>${order.id}</strong> est maintenant <strong>en préparation</strong> dans notre atelier.</p>
-      <p>Nous te tiendrons informé(e) dès qu’elle sera expédiée.</p>
-      <p style="color:#666">Besoin d’aide ? Réponds à cet email.</p>
-    </div>
-  `;
-  const info = await mailer.sendMail({
-    from: process.env.MAIL_FROM || 'Korelia <no-reply@korelia.shop>',
-    to: order.email,
-    subject: `Ta commande ${order.id} est en préparation — Korelia`,
-    html
-  });
-  const preview = nodemailer.getTestMessageUrl(info);
-  if (preview) console.log('🔗 Aperçu Ethereal (preparing):', preview);
-}
-
-async function sendOrderShippedEmail(order) {
-  if (!order?.email) return;
-
-  const t = order.tracking || {};
-  const trackingHtml = (t.number || t.url || t.carrier) ? `
-    <h3>Suivi colis</h3>
-    <p style="margin:0">${t.carrier ? `Transporteur : <strong>${t.carrier}</strong><br/>` : ''}${t.number ? `N° : <strong>${t.number}</strong><br/>` : ''}${t.url ? `Lien : <a href="${t.url}">${t.url}</a>` : ''}</p>
-  ` : `<p style="color:#666">Le suivi sera disponible d’ici peu.</p>`;
-
-  const html = `
-    <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;max-width:640px;margin:auto">
-      <h2>Ça y est, c’est parti 🚚</h2>
-      <p>Ta commande <strong>${order.id}</strong> a été <strong>expédiée</strong>.</p>
-      ${trackingHtml}
-      <p style="color:#666">Merci pour ta confiance 🤍</p>
-    </div>
-  `;
-  const info = await mailer.sendMail({
-    from: process.env.MAIL_FROM || 'Korelia <no-reply@korelia.shop>',
-    to: order.email,
-    subject: `Ta commande ${order.id} a été expédiée — Korelia`,
-    html
-  });
-  const preview = nodemailer.getTestMessageUrl(info);
-  if (preview) console.log('🔗 Aperçu Ethereal (shipped):', preview);
-}
-
 /* ======================================================
  * 1) WEBHOOK Stripe (⚠️ AVANT express.json())
  * ====================================================== */
-
 app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
   const sig = req.headers['stripe-signature'];
   if (!sig) return res.sendStatus(400);
@@ -527,8 +380,6 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res)
 /* ======================================================
  * 2) Middlewares globaux (APRES le webhook)
  * ====================================================== */
-app.set('trust proxy', 1);
-
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
@@ -544,25 +395,25 @@ app.use(helmet({
 }));
 if (isProd) app.use(helmet.hsts({ maxAge: 15552000 }));
 
-
 app.use(cookieParser());
 
-// --- Unique endpoint CSRF (GET) AVANT activation du middleware ---
+// ✅ UNIQUE endpoint CSRF (GET) — ne pas le dupliquer ailleurs
 app.get('/auth/csrf', (req, res) => {
-  // Réutilise le token existant s'il existe, sinon en génère un nouveau
   let token = req.cookies?.csrf_token;
   if (!token) {
     token = randomToken(24);
     res.cookie('csrf_token', token, {
-      sameSite: 'lax',
+      sameSite: 'none',
       secure: isProd,
-      maxAge: 2 * 60 * 60 * 1000
+      maxAge: 2 * 60 * 60 * 1000,
+      path: '/',
+      httpOnly: true,
     });
   }
   res.json({ csrf: token });
 });
 
-// Active express.json() APRÈS le webhook, et APRÈS /auth/csrf
+// Parsers
 app.use(express.json());
 
 // rate limit global
@@ -573,7 +424,18 @@ app.use(rateLimit({
   legacyHeaders: false
 }));
 
-// ⚠️ Activer la protection CSRF après avoir défini /auth/csrf
+// ⚠️ Protection CSRF après /auth/csrf
+function csrfProtect(req, res, next){
+  const method = (req.method || '').toUpperCase();
+  if (['GET','HEAD','OPTIONS'].includes(method)) return next();
+  if (req.path.startsWith('/webhook')) return next(); // Stripe
+  const header = req.headers['x-csrf-token'];
+  const cookie = req.cookies?.csrf_token;
+  if (!header || !cookie || header !== cookie) {
+    return res.status(403).json({ error: 'CSRF token invalide' });
+  }
+  next();
+}
 app.use(csrfProtect);
 
 /* =======================
@@ -622,7 +484,28 @@ app.post('/auth/login', loginGuard);
 /* =======================
  * AUTH + Email verify + Reset
  * ======================= */
-// Register
+function optionalAuth(req, res, next){
+  const token = req.cookies?.token || (req.headers.authorization||'').replace(/^Bearer\s+/, '');
+  try { req.user = jwt.verify(token, process.env.JWT_SECRET); } catch {}
+  next();
+}
+async function authRequired(req, res, next){
+  const token = req.cookies?.token || (req.headers.authorization||'').replace(/^Bearer\s+/, '');
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const users = await readUsers();
+    const me = users.find(u => u.id === payload.id);
+    if (!me) return res.status(401).json({ error: 'Non authentifié' });
+    if ((me.token_version || 0) !== (payload.token_version || 0)) {
+      return res.status(401).json({ error: 'Session expirée' });
+    }
+    req.user = payload;
+    next();
+  } catch {
+    res.status(401).json({ error: 'Non authentifié' });
+  }
+}
+
 app.post('/auth/register', async (req, res) => {
   const { email, password, name } = req.body || {};
   if(!email || !password) return res.status(400).json({ error: 'Email et mot de passe requis' });
@@ -657,10 +540,11 @@ app.post('/auth/register', async (req, res) => {
   users.push(user);
   await writeUsers(users);
 
+  // (optionnel) email vérification — suppose sendVerificationEmail défini ailleurs
   try { await sendVerificationEmail(user, rawToken); }
   catch (e) { console.warn('⚠️ Email vérification non envoyé:', e?.message || e); }
 
-  // Backfill: crédite automatiquement les commandes invité associées à cet email
+  // Backfill commandes invité
   let backfillInfo = { credited: 0, orders: 0 };
   try {
     backfillInfo = await backfillRewardsForEmail(user.email, user.id);
@@ -674,11 +558,10 @@ app.post('/auth/register', async (req, res) => {
   const token = signToken({ id: user.id, email: user.email, role: user.role, token_version: user.token_version });
   res.cookie('token', token, cookieOpts(7)).json({
     ...getUserSafe(user),
-    rewards_backfill: backfillInfo, // renvoyé au front
+    rewards_backfill: backfillInfo,
   });
 });
 
-// Login
 app.post('/auth/login', async (req, res) => {
   const { email, password } = req.body || {};
   const users = await readUsers();
@@ -698,7 +581,7 @@ app.post('/auth/login', async (req, res) => {
     return res.status(403).json({ error: 'Email non vérifié. Vérifie ta boîte mail.' });
   }
 
-  // 🔁 Backfill à la connexion (au cas où il y avait des commandes invité avant la création du compte)
+  // Backfill à la connexion
   try {
     const info = await backfillRewardsForEmail(user.email, user.id);
     if (info.orders > 0) {
@@ -712,12 +595,10 @@ app.post('/auth/login', async (req, res) => {
   res.cookie('token', token, cookieOpts(7)).json(getUserSafe(user));
 });
 
-// Logout courant
 app.post('/auth/logout', (req, res) => {
   res.clearCookie('token', cookieOpts()).json({ ok: true });
 });
 
-// Me (profil léger)
 app.get('/me', authRequired, async (req, res) => {
   const users = await readUsers();
   const me = users.find(u => u.id === req.user.id);
@@ -725,7 +606,6 @@ app.get('/me', authRequired, async (req, res) => {
   res.json(getUserSafe(me));
 });
 
-// Mettre à jour le nom
 app.put('/me', authRequired, async (req, res) => {
   try {
     const { name } = req.body || {};
@@ -740,7 +620,6 @@ app.put('/me', authRequired, async (req, res) => {
   }
 });
 
-// Changer le mot de passe (+ invalidation sessions)
 app.post('/me/change-password', authRequired, async (req, res) => {
   try {
     const { current_password, new_password } = req.body || {};
@@ -765,7 +644,6 @@ app.post('/me/change-password', authRequired, async (req, res) => {
   }
 });
 
-// Logout partout
 app.post('/me/sessions/revoke-all', authRequired, async (req, res) => {
   const users = await readUsers();
   const idx = users.findIndex(u => u.id === req.user.id);
@@ -777,55 +655,7 @@ app.post('/me/sessions/revoke-all', authRequired, async (req, res) => {
   res.clearCookie('token', cookieOpts()).json({ ok: true });
 });
 
-// --- /me/orders : renvoie les commandes de l'utilisateur (par id ou email) ---
-app.get('/me/orders', authRequired, async (req, res) => {
-  try {
-    const orders = await readJson(ORDERS_PATH, []);
-    // On matche en priorité par user_id (si metadata user était envoyé au checkout),
-    // sinon on fallback par email.
-    const mine = orders
-      .filter(o => (o.user_id && o.user_id === req.user.id) || (o.email && req.user.email && o.email.toLowerCase() === req.user.email.toLowerCase()))
-      .sort((a,b)=> (a.createdAt < b.createdAt ? 1 : -1));
-    res.json(mine);
-  } catch (e) {
-    res.status(500).json({ error: 'Impossible de charger vos commandes' });
-  }
-});
-
-// --- Adresse utilisateur (lecture/écriture) ---
-app.get('/me/address', authRequired, async (req, res) => {
-  const users = await readUsers();
-  const me = users.find(u => u.id === req.user.id);
-  if (!me) return res.status(404).json({ error: 'Utilisateur introuvable' });
-
-  const addr = me.shipping_address || null;
-  const phone = me.phone || "";
-  res.json(addr ? { ...addr, phone } : { name:"", line1:"", line2:"", postal_code:"", city:"", country:"BE", phone:"" });
-});
-
-app.put('/me/address', authRequired, async (req, res) => {
-  const { name="", line1="", line2="", postal_code="", city="", country="BE", phone="" } = req.body || {};
-  // petites validations / nettoyage
-  const clean = {
-    name: clampString(name, 120),
-    line1: clampString(line1, 160),
-    line2: clampString(line2, 160),
-    postal_code: clampString(postal_code, 20),
-    city: clampString(city, 120),
-    country: String(country || "BE").toUpperCase().slice(0, 2),
-  };
-  const users = await readUsers();
-  const idx = users.findIndex(u => u.id === req.user.id);
-  if (idx === -1) return res.status(404).json({ error: 'Utilisateur introuvable' });
-
-  users[idx].shipping_address = clean;
-  users[idx].phone = clampString(phone, 40);
-  await writeUsers(users);
-
-  res.json({ ok: true });
-});
-
-// Resend verification
+// (optionnel) endpoints email verify/reset — supposent sendVerificationEmail / sendPasswordResetEmail définis
 app.post('/auth/resend-verification', authRequired, async (req, res) => {
   const users = await readUsers();
   const idx = users.findIndex(u => u.id === req.user.id);
@@ -844,7 +674,6 @@ app.post('/auth/resend-verification', authRequired, async (req, res) => {
   res.json({ ok: true });
 });
 
-// Verify email (HTML par défaut, JSON si ?json=1)
 app.get('/auth/verify-email', async (req, res) => {
   const token = String(req.query.token || '');
   if (!token) {
@@ -873,7 +702,6 @@ app.get('/auth/verify-email', async (req, res) => {
   res.send('<h1>Email vérifié ✅</h1><p>Tu peux fermer cet onglet et retourner sur la boutique.</p>');
 });
 
-// Forgot / Reset
 app.post('/auth/forgot-password', async (req, res) => {
   const { email } = req.body || {};
   if (!email) return res.status(400).json({ error: 'Email requis' });
@@ -901,6 +729,7 @@ app.post('/auth/forgot-password', async (req, res) => {
     return res.json({ ok: true });
   }
 });
+
 app.get('/auth/check-reset', async (req, res) => {
   const token = String(req.query.token || '');
   if (!token) return res.status(400).json({ error: 'Token manquant' });
@@ -915,6 +744,7 @@ app.get('/auth/check-reset', async (req, res) => {
 
   res.json({ ok: true });
 });
+
 app.post('/auth/reset-password', async (req, res) => {
   const { token, new_password } = req.body || {};
   if (!token || !new_password) return res.status(400).json({ error: 'Token et new_password requis' });
@@ -934,7 +764,7 @@ app.post('/auth/reset-password', async (req, res) => {
 
     users[idx].password_hash = await bcrypt.hash(String(new_password), 10);
     users[idx].password_reset.used = true;
-    users[idx].token_version = (users[idx].token_version || 0) + 1; // invalider anciennes sessions si la personne était loggée
+    users[idx].token_version = (users[idx].token_version || 0) + 1; // invalider anciennes sessions si loggé
     await writeUsers(users);
 
     return res.json({ ok: true });
@@ -950,6 +780,7 @@ app.post('/auth/reset-password', async (req, res) => {
 app.get('/rewards/catalog', (req, res) => {
   res.json(REWARD_TIERS);
 });
+
 app.get('/me/rewards', authRequired, async (req, res) => {
   const users = await readUsers();
   const me = users.find(u => u.id === req.user.id);
@@ -957,6 +788,7 @@ app.get('/me/rewards', authRequired, async (req, res) => {
   ensureRewardsShape(me);
   res.json({ points: me.points, history: me.rewards_history.slice(0,100), tiers: REWARD_TIERS });
 });
+
 app.post('/rewards/redeem', authRequired, async (req, res) => {
   try{
     const { tier } = req.body || {};
@@ -997,6 +829,7 @@ app.post('/rewards/redeem', authRequired, async (req, res) => {
     return res.status(500).json({ error: 'Impossible de créer le code' });
   }
 });
+
 app.post('/reviews/add', authRequired, async (req, res) => {
   const { productId, rating = 5, content = "" } = req.body || {};
   if (!productId) return res.status(400).json({ error: 'productId requis' });
@@ -1034,7 +867,7 @@ async function reloadProducts() {
   PRODUCT_BY_ID = Object.fromEntries(products.map(p => [String(p.id), p]));
   PRODUCT_BY_SLUG = Object.fromEntries(products.map(p => [String(p.slug), p]));
 }
-// Produits (public)
+
 app.get('/api/products', (req, res) => {
   res.json(products.map(p => ({
     id: String(p.id),
@@ -1044,7 +877,6 @@ app.get('/api/products', (req, res) => {
     image: p.image || null,
     price_cents: cents(p),
     stock: Number.isFinite(p.stock) ? p.stock : null,
-    // 👇👇 Ajouts pour le catalogue
     category: p.category || null,
     skin_types: Array.isArray(p.skin_types) ? p.skin_types : [],
     tags: Array.isArray(p.tags) ? p.tags : [],
@@ -1060,7 +892,14 @@ app.get('/api/products/:slug', (req, res) => {
 /* =======================
  * Admin (rôle requis)
  * ======================= */
+async function adminRequired(req, res, next){
+  await authRequired(req, res, async () => {
+    if ((req.user.role || 'user') !== 'admin') return res.status(403).json({ error: 'Accès admin requis' });
+    next();
+  });
+}
 function csvEscape(v){ if (v===null||v===undefined) return ''; const s=String(v); return /[",\n\r]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s; }
+
 app.get('/admin/orders', adminRequired, async (req, res) => {
   try {
     const orders = await readJson(ORDERS_PATH, []);
@@ -1080,6 +919,7 @@ app.get('/admin/orders', adminRequired, async (req, res) => {
     res.json(orders);
   } catch { res.status(500).json({ error: 'Impossible de lire les commandes' }); }
 });
+
 app.get('/admin/orders.csv', adminRequired, async (req, res) => {
   try {
     let orders = await readJson(ORDERS_PATH, []);
@@ -1109,6 +949,7 @@ app.get('/admin/orders.csv', adminRequired, async (req, res) => {
     res.send(csv);
   } catch { res.status(500).json({ error: 'Impossible de générer le CSV' }); }
 });
+
 app.get('/admin/products', adminRequired, async (req, res) => {
   try {
     const list = products.map(p => ({
@@ -1118,6 +959,7 @@ app.get('/admin/products', adminRequired, async (req, res) => {
     res.json(list);
   } catch { res.status(500).json({ error: 'Impossible de lire les produits' }); }
 });
+
 app.put('/admin/products/:id/stock', adminRequired, async (req, res) => {
   try {
     const id = String(req.params.id);
@@ -1135,198 +977,19 @@ app.put('/admin/products/:id/stock', adminRequired, async (req, res) => {
 });
 
 /* =======================
- *  Admin — STATS (rôle requis)
- * ======================= */
-app.get('/admin/stats', adminRequired, async (req, res) => {
-  try {
-    const orders = await readJson(ORDERS_PATH, []);
-    // Tri du plus récent au plus ancien
-    orders.sort((a,b)=> (a.createdAt < b.createdAt ? 1 : -1));
-
-    const now = new Date();
-    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-    const dayMs = 24*3600*1000;
-
-    // bornes
-    const since7  = now.getTime() - 7 * dayMs;
-    const since30 = now.getTime() - 30 * dayMs;
-
-    const isPaid = (o) => (o.payment_status || 'paid') === 'paid';
-
-    // Aggrégats
-    let revAll = 0, rev30 = 0, rev7 = 0, revToday = 0;
-    let nAll = 0, n30 = 0, n7 = 0, nToday = 0;
-
-    // Top produits (par qty & par CA)
-    const byProduct = new Map(); // key: id or name
-    const pushItem = (key, name, qty, revenue_cents) => {
-      if (!key) key = name || 'unknown';
-      const k = String(key);
-      const cur = byProduct.get(k) || { key: k, name: name || String(k), qty: 0, revenue_cents: 0 };
-      cur.qty += qty || 0;
-      cur.revenue_cents += revenue_cents || 0;
-      byProduct.set(k, cur);
-    };
-
-    // Séries par jour sur 30 jours
-    const days = [];
-    for (let i=29; i>=0; i--){
-      const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i);
-      const id = d.toISOString().slice(0,10); // YYYY-MM-DD
-      days.push({ id, ts: d.getTime(), revenue_cents: 0, orders: 0 });
-    }
-    const dayIndex = new Map(days.map((d,idx)=>[d.id, idx]));
-
-    for (const o of orders) {
-      if (!isPaid(o)) continue;
-      const ts = new Date(o.createdAt || o.created_at || 0).getTime();
-      const amt = Number(o.amount_total || 0);
-
-      // KPIs
-      revAll += amt; nAll++;
-      if (ts >= since30) { rev30 += amt; n30++; }
-      if (ts >= since7)  { rev7  += amt; n7++;  }
-      if (ts >= startOfToday) { revToday += amt; nToday++; }
-
-      // Série journalière
-      const dayId = new Date(ts).toISOString().slice(0,10);
-      const idx = dayIndex.get(dayId);
-      if (idx !== undefined) {
-        days[idx].revenue_cents += amt;
-        days[idx].orders += 1;
-      }
-
-      // Top produits (de préférence à partir de o.items : {id, qty, price?})
-      if (Array.isArray(o.items) && o.items.length) {
-        for (const it of o.items) {
-          const qty = Number(it.qty || 0);
-          const unit_cents = Number(it.price_cents || it.priceCents || 0);
-          const name = it.name || `#${it.id}`;
-          const revenue_cents = unit_cents * qty || 0;
-          pushItem(it.id || name, name, qty, revenue_cents);
-        }
-      } else if (Array.isArray(o.stripe_line_items) && o.stripe_line_items.length) {
-        for (const li of o.stripe_line_items) {
-          const qty = Number(li.qty ?? li.quantity ?? 1);
-          // `amount_subtotal` de Stripe est le sous-total de la ligne en cents
-          const revenue_cents = Number(li.amount_subtotal || 0);
-          const name = li.name || 'Produit';
-          pushItem(name, name, qty, revenue_cents);
-        }
-      }
-    }
-
-    const topByQty = Array.from(byProduct.values())
-      .sort((a,b)=> b.qty - a.qty)
-      .slice(0,10);
-
-    const topByRevenue = Array.from(byProduct.values())
-      .sort((a,b)=> b.revenue_cents - a.revenue_cents)
-      .slice(0,10);
-
-    const recentOrders = orders.slice(0, 10).map(o => ({
-      id: o.id,
-      createdAt: o.createdAt || o.created_at,
-      email: o.email || null,
-      amount_total: o.amount_total || 0,
-      currency: (o.currency || 'eur').toLowerCase(),
-      payment_status: o.payment_status || 'paid',
-      items_count:
-        (Array.isArray(o.items) && o.items.reduce((s, it)=>s+Number(it.qty||0),0)) ||
-        (Array.isArray(o.stripe_line_items) && o.stripe_line_items.reduce((s, li)=>s+Number(li.qty??li.quantity??1),0)) ||
-        0
-    }));
-
-    res.json({
-      kpis: {
-        revenue_today_cents: revToday, orders_today: nToday,
-        revenue_7d_cents: rev7, orders_7d: n7,
-        revenue_30d_cents: rev30, orders_30d: n30,
-        revenue_all_cents: revAll, orders_all: nAll,
-        avg_order_30d_cents: n30 ? Math.round(rev30 / n30) : 0
-      },
-      series_30d: days,       // [{id:'YYYY-MM-DD', revenue_cents, orders}]
-      top_by_qty: topByQty,   // [{key,name,qty,revenue_cents}]
-      top_by_revenue: topByRevenue,
-      recent_orders: recentOrders
-    });
-  } catch (err) {
-    console.error('stats error:', err);
-    res.status(500).json({ error: 'Impossible de calculer les stats' });
-  }
-});
-
-// Liste blanche des statuts permis
-const ORDER_STATUS_ALLOWED = ['paid','preparing','shipped','delivered','canceled'];
-
-/**
- * PATCH /admin/orders/:id/status
- * Body: { status: 'preparing' | 'shipped' | 'delivered' | 'canceled' | 'paid' }
- */
-app.patch('/admin/orders/:id/status', adminRequired, async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { status, tracking } = req.body || {};
-    if (!ORDER_STATUS_ALLOWED.includes(status)) {
-      return res.status(400).json({ error: 'Statut invalide' });
-    }
-
-    const orders = await readJson(ORDERS_PATH, []);
-    const idx = orders.findIndex(o => o.id === id);
-    if (idx === -1) return res.status(404).json({ error: 'Commande introuvable' });
-
-    if (!orders[idx].status) orders[idx].status = 'paid';
-    if (!Array.isArray(orders[idx].status_history)) orders[idx].status_history = [];
-
-    orders[idx].status = status;
-    orders[idx].status_history.push({ at: new Date().toISOString(), status, by: req.user?.id || 'admin' });
-
-    // merge tracking si fourni
-    if (tracking && (tracking.carrier || tracking.number || tracking.url)) {
-      orders[idx].tracking = {
-        ...(orders[idx].tracking || {}),
-        carrier: tracking.carrier || "",
-        number:  tracking.number  || "",
-        url:     tracking.url     || ""
-      };
-    }
-
-    await writeJson(ORDERS_PATH, orders);
-
-    if (status === 'preparing') await sendOrderPreparingEmail(orders[idx]);
-    if (status === 'shipped')   await sendOrderShippedEmail(orders[idx]); // inclure tracking
-
-    return res.json({ ok: true, id, status, tracking: orders[idx].tracking || null });
-  } catch (e) {
-    console.error('update status error:', e);
-    return res.status(500).json({ error: 'Impossible de mettre à jour le statut' });
-  }
-});
-
-/* =======================
  * Checkout + Merci
  * ======================= */
-
-// --- Helper commun: validation stricte d’un code promo Stripe (EUR) ---
 async function validatePromoOrThrow({ code, items_total_cents }) {
   const promoCodeRaw = String(code || "").trim();
   if (!promoCodeRaw) throw new Error("Code requis");
-
-  // 1) chercher un PromotionCode actif, correspondant exactement
   const found = await stripe.promotionCodes.list({ code: promoCodeRaw, active: true, limit: 1 });
   const promo = found?.data?.[0];
   if (!promo) throw new Error("Code promo invalide ou inactif.");
-
-  // 2) coupon valide ?
   const coupon = promo.coupon;
   if (!coupon?.valid) throw new Error("Ce code promo a expiré.");
-
-  // 3) non saturé ?
   if (promo.max_redemptions && promo.times_redeemed >= promo.max_redemptions) {
     throw new Error("Ce code promo n’est plus disponible.");
   }
-
-  // 4) restrictions mini + devise EUR
   const min = promo.restrictions?.minimum_amount || 0;
   const minCur = (promo.restrictions?.minimum_amount_currency || "eur").toLowerCase();
   if (min > 0) {
@@ -1336,37 +999,26 @@ async function validatePromoOrThrow({ code, items_total_cents }) {
       throw new Error(`Montant minimum ${euros} € requis pour ce code.`);
     }
   }
-
-  // 5) si amount_off fixe, devise EUR requise
   if (coupon.amount_off && String(coupon.currency).toLowerCase() !== "eur") {
     throw new Error("Ce code promo n’est pas valable pour cette devise.");
   }
-
-  // OK
   return { promo, coupon };
 }
 
-// --- Endpoint "Appliquer" : vérifie le code AVANT de lancer Stripe ---
 app.post('/api/validate-promo', async (req, res) => {
   try {
     const items = req.body.items || [];       // [{id, qty}]
     const code  = (req.body.promo_code || "").trim();
-
-    // sous-total articles (comme dans le checkout)
     const items_total_cents = items.reduce((s, {id, qty}) => {
       const p = PRODUCT_BY_ID[String(id)];
       return s + (p ? cents(p) * qty : 0);
     }, 0);
-
     const { promo, coupon } = await validatePromoOrThrow({ code, items_total_cents });
-
-    // petite description pour le front
     let desc = "";
     if (coupon.amount_off) desc = `-${(coupon.amount_off/100).toFixed(2)} €`;
     else if (coupon.percent_off) desc = `-${coupon.percent_off}%`;
     const min = promo.restrictions?.minimum_amount || 0;
     const minNote = min ? ` (dès ${(min/100).toFixed(2)} €)` : "";
-
     return res.json({
       ok: true,
       promotion_code_id: promo.id,
@@ -1431,6 +1083,7 @@ app.post('/api/create-checkout-session', optionalAuth, async (req, res) => {
       }
     }
 
+    const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card', 'bancontact'],

@@ -3,14 +3,11 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import "./BestSellers.css";
 import { useCart } from "../cart/CartContext";
-import FavoriteButton from "../components/FavoriteButton";
+import FavoriteButton from "./FavoriteButton"; // composant dans le même dossier
+import { apiGet } from "../lib/api"; // alias @ → src (vite.config.js) ; sinon '../lib/api'
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:4242";
+// Nombre d’articles par page du carrousel
 const perPage = 4;
-
-function apiUrl(p) {
-  return `${String(API).replace(/\/$/, '')}/${String(p).replace(/^\//, '')}`;
-}
 
 /** <<< Choisis ici tes 16 best-sellers (slugs/ids) >>> */
 const POPULAR_IDS = [
@@ -77,13 +74,11 @@ export default function BestSellers() {
         setErr("");
         setLoading(true);
 
-        // 1) Récupère la liste courte
-        const r = await fetch(apiUrl(`${API}/api/products`));
-        if (!r.ok) throw new Error("API produits indisponible");
-        const data = await r.json();
+        // 1) Liste des produits
+        const list = await apiGet("/api/products");
 
-        // 2) Filtre + ordre
-        const baseArr = (Array.isArray(data) ? data : []).filter((p) => {
+        // 2) Filtre + ordre selon POPULAR_IDS
+        const baseArr = (Array.isArray(list) ? list : []).filter((p) => {
           const idOrSlug = String(p.slug || p.id || "");
           return POPULAR_IDS.includes(idOrSlug);
         });
@@ -93,8 +88,7 @@ export default function BestSellers() {
           return ia - ib;
         });
 
-        // 3) ENRICHISSEMENT : pour ceux qui n'ont pas au moins 2 images,
-        //    on appelle /api/products/:slug pour récupérer images[0..]
+        // 3) Enrichissement : récupère les images manquantes via /api/products/:slug
         const enriched = await Promise.all(
           baseArr.map(async (p) => {
             const hasTwo = Array.isArray(p.images) && p.images.length >= 2;
@@ -102,28 +96,19 @@ export default function BestSellers() {
 
             try {
               const key = String(p.slug || p.id);
-              const r2 = await fetch(`${API}/api/products/${key}`);
-              if (!r2.ok) return p; // on garde tel quel si ça rate
-              const full = await r2.json();
+              const full = await apiGet(`/api/products/${key}`);
 
               const images = Array.isArray(full.images) ? full.images : p.images;
               const image = full.image ?? p.image;
 
               return { ...p, images, image };
             } catch {
-              return p;
+              return p; // on garde tel quel si ça rate
             }
           })
         );
 
         setAll(enriched);
-
-        // DEBUG utile : voir ce que le front utilisera réellement
-        // console.table(enriched.map(p => ({
-        //   id: p.slug || p.id,
-        //   primary: collectImages(p, 2)[0],
-        //   hover: collectImages(p, 2)[1] ?? "(none)"
-        // })));
       } catch (e) {
         setErr(e.message || "Erreur");
       } finally {
