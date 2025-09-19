@@ -87,14 +87,14 @@
 
 
 .avantages2 .delivery {
-    background: url('./img/avantages2img6.png') center no-repeat;
+    background: url('/img/avantages2img6.png') center no-repeat;
     background-size: 100%;
     background-color:#faebd7;   
 
 }
 
 .avantages2 .fidelitee {
-    background: url('./img/avantages2img3.png') center no-repeat;
+    background: url('/img/avantages2img3.png') center no-repeat;
     background-size: 80% ;
     background-color:antiquewhite;    
 }
@@ -102,14 +102,14 @@
 
 
 .avantages2 .livraisonOfferte {
-    background: url('./img/avantages2img4.png') center no-repeat;
+    background: url('/img/avantages2img4.png') center no-repeat;
     background-size: 90%;
     background-color:antiquewhite;   
 
 }
 
 .avantages2 .paiementSecurise {
-    background: url('./img/avantages2img5.png') center no-repeat;
+    background: url('/img/avantages2img5.png') center no-repeat;
     background-size: 100%;
     background-color:antiquewhite;   
 }

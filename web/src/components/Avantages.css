@@ -25,7 +25,7 @@
 .avantages1{
   width: 50%;
   aspect-ratio: 1500 / 1000;
-  background: url("./img/avantagesBG7.png") center / cover no-repeat #f3e6d5;
+  background: url("/img/avantagesBG7.png") center / cover no-repeat #f3e6d5;
   border-radius: var(--radius);
   box-shadow: 0 6px 18px rgba(200, 80, 120, 0.12);
   transition: transform 0.22s ease, box-shadow 0.22s ease;
@@ -157,11 +157,11 @@
   box-shadow: 0 0 0 3px rgba(217,79,61,.25), var(--shadow);
 }
 .cta-card.is-quiz{
-  background: url('./img/quizzimg2.png');
+  background: url('/img/quizzimg2.png');
   background-size: contain;
 }
 .cta-card.is-guide{
-  background: url('./img/guideimg1.png');
+  background: url('/img/guideimg1.png');
   background-size: contain;
 }
 
