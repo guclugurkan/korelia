@@ -6,13 +6,15 @@ import HeaderAll from "../components/HeaderAll";
 import Footer from "../components/Footer";
 import "./Favoris.css";
 
-const euro = (cents) => (Number(cents || 0) / 100).toFixed(2) + " €";
+const fmtEur = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
 
-function normalizeImgPath(p) {
+/** Respecte BASE_URL (prod sous sous-chemin) pour tes assets du dossier public/ */
+function publicAsset(p) {
   if (!p) return null;
   if (/^https?:\/\//i.test(p)) return p;
-  if (p.startsWith("/")) return p;
-  return "/" + String(p).replace(/^(\.\/|\.\.\/)+/, "");
+  const base = import.meta.env.BASE_URL || "/";
+  const rel = String(p).replace(/^(\.\/|\.\.\/)+/, "").replace(/^\/+/, "");
+  return (base.endsWith("/") ? base : base + "/") + rel;
 }
 
 const fallbackImg =
@@ -40,15 +42,16 @@ export default function FavoriPage() {
       id: String(p.id),
       name: p.name,
       price_cents: Number(p.price_cents || 0),
-      image: normalizeImgPath(p.image) || fallbackImg,
-      slug: p.slug || null
+      image: publicAsset(p.image) || fallbackImg,
+      slug: p.slug || null,
+      brand: p.brand || "",
     };
     add(item, 1);
   };
 
   return (
     <main className="fav-wrap">
-      <HeaderAll/>
+      <HeaderAll />
 
       <section className="fav-container">
         <div className="fav-head">
@@ -56,14 +59,18 @@ export default function FavoriPage() {
             <h1 className="fav-title">Mes favoris</h1>
             <p className="fav-sub">
               {favorites.length
-                ? `${favorites.length} article${favorites.length > 1 ? "s" : ""} enregistré${favorites.length > 1 ? "s" : ""}.`
+                ? `${favorites.length} article${favorites.length > 1 ? "s" : ""} enregistré${
+                    favorites.length > 1 ? "s" : ""
+                  }.`
                 : "Aucun favori pour le moment."}
             </p>
           </div>
 
           {favorites.length > 0 && (
             <div className="fav-actions">
-              <Link to="/catalogue" className="btn-ghost">← Continuer mes achats</Link>
+              <Link to="/catalogue" className="btn-ghost">
+                ← Continuer mes achats
+              </Link>
               <button className="btn-danger" onClick={clear}>
                 Retirer tout
               </button>
@@ -73,15 +80,19 @@ export default function FavoriPage() {
 
         {favorites.length === 0 ? (
           <div className="fav-empty">
-            <div className="empty-illustration" aria-hidden>🤍</div>
+            <div className="empty-illustration" aria-hidden>
+              🤍
+            </div>
             <h2>Ta liste est encore vide</h2>
             <p>Ajoute des produits que tu aimes pour les retrouver facilement.</p>
-            <Link to="/catalogue" className="btn-primary">Découvrir le catalogue</Link>
+            <Link to="/catalogue" className="btn-primary">
+              Découvrir le catalogue
+            </Link>
           </div>
         ) : (
           <div className="fav-grid" role="list">
             {favorites.map((f) => {
-              const img = normalizeImgPath(f.image) || fallbackImg;
+              const img = publicAsset(f.image) || fallbackImg;
               const slug = f.slug || String(f.id);
 
               return (
@@ -100,14 +111,18 @@ export default function FavoriPage() {
                       src={img}
                       alt={f.name}
                       loading="lazy"
-                      onError={(e) => { e.currentTarget.src = fallbackImg; }}
+                      onError={(e) => {
+                        e.currentTarget.src = fallbackImg;
+                      }}
                     />
                   </Link>
 
                   <div className="fav-meta">
                     {f.brand && <div className="brand">{f.brand}</div>}
-                    <Link to={`/produit/${slug}`} className="name">{f.name}</Link>
-                    <div className="price">{euro(f.price_cents)}</div>
+                    <Link to={`/produit/${slug}`} className="name">
+                      {f.name}
+                    </Link>
+                    <div className="price">{fmtEur.format(Number(f.price_cents || 0) / 100)}</div>
                   </div>
 
                   <div className="fav-cta">
@@ -125,7 +140,7 @@ export default function FavoriPage() {
         )}
       </section>
 
-      <Footer/>
+      <Footer />
     </main>
   );
 }

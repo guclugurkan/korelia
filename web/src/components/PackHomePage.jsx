@@ -1,11 +1,11 @@
 // src/components/PackHomePage.jsx
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import "./BestSellers.css"; // on réutilise le même CSS
+import "./BestSellers.css"; // on réutilise le même CSS (cartes, .thumb, .img.primary/.secondary, flèches, dots…)
 import { useCart } from "../cart/CartContext";
 import FavoriteButton from "../components/FavoriteButton";
+import { apiGet } from "../lib/api";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:4242";
 const perPage = 4;
 
 const fallbackImg =
@@ -55,9 +55,7 @@ export default function PackHomePage() {
         setLoading(true);
 
         // 1) Liste brute
-        const r = await fetch(`${API}/api/products`);
-        if (!r.ok) throw new Error("API produits indisponible");
-        const data = await r.json();
+        const data = await apiGet("/api/products");
 
         const onlyPacks = (Array.isArray(data) ? data : []).filter(
           (p) => String(p.category || "").toLowerCase() === "pack"
@@ -70,9 +68,7 @@ export default function PackHomePage() {
             if (hasTwo) return p;
             try {
               const key = String(p.slug || p.id);
-              const r2 = await fetch(`${API}/api/products/${key}`);
-              if (!r2.ok) return p;
-              const full = await r2.json();
+              const full = await apiGet(`/api/products/${key}`);
               const images = Array.isArray(full.images) ? full.images : p.images;
               const image = full.image ?? p.image;
               return { ...p, images, image };
@@ -163,12 +159,16 @@ export default function PackHomePage() {
     >
       {/* Titre centré + barre dessous */}
       <div className="bs-header">
-        <h1 id="packs-title" className="bs-title">Packs routines</h1>
+        <h1 id="packs-title" className="bs-title">
+          Packs routines
+        </h1>
       </div>
 
       {/* Scène avec flèches */}
       <div className="bs-stage">
-        <button className="bs-arrow left" onClick={prev} aria-label="Packs précédents" type="button">‹</button>
+        <button className="bs-arrow left" onClick={prev} aria-label="Packs précédents" type="button">
+          ‹
+        </button>
 
         <div
           id="packs-grid"
@@ -194,7 +194,9 @@ export default function PackHomePage() {
                     src={imgPrimary}
                     alt={`${p.brand || "Pack"} ${p.name}`}
                     loading="lazy"
-                    onError={(e) => { e.currentTarget.src = fallbackImg; }}
+                    onError={(e) => {
+                      e.currentTarget.src = fallbackImg;
+                    }}
                   />
                   {/* Image au hover */}
                   <img
@@ -202,7 +204,9 @@ export default function PackHomePage() {
                     src={imgHover}
                     alt=""
                     loading="lazy"
-                    onError={(e) => { e.currentTarget.src = fallbackImg; }}
+                    onError={(e) => {
+                      e.currentTarget.src = fallbackImg;
+                    }}
                   />
 
                   {/* Badge -10% pack (visuel simple) */}
@@ -216,7 +220,7 @@ export default function PackHomePage() {
                       fontSize: 12,
                       fontWeight: 800,
                       padding: "4px 8px",
-                      borderRadius: 999
+                      borderRadius: 999,
                     }}
                   >
                     -10% pack
@@ -250,7 +254,9 @@ export default function PackHomePage() {
           })}
         </div>
 
-        <button className="bs-arrow right" onClick={next} aria-label="Packs suivants" type="button">›</button>
+        <button className="bs-arrow right" onClick={next} aria-label="Packs suivants" type="button">
+          ›
+        </button>
       </div>
 
       {/* Dots + CTA */}
@@ -263,11 +269,16 @@ export default function PackHomePage() {
               aria-label={`Aller à la page ${i + 1}`}
               aria-selected={i === page}
               role="tab"
-              onClick={() => { setDir(i > page ? "next" : "prev"); setPage(i); }}
+              onClick={() => {
+                setDir(i > page ? "next" : "prev");
+                setPage(i);
+              }}
             />
           ))}
         </div>
-        <Link className="bs-more" to="/catalogue?cat=pack&catLabel=pack">Voir tous les packs</Link>
+        <Link className="bs-more" to="/catalogue?cat=pack&catLabel=pack">
+          Voir tous les packs
+        </Link>
       </div>
     </section>
   );

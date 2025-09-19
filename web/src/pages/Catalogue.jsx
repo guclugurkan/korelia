@@ -4,26 +4,26 @@ import { Link, useLocation } from "react-router-dom";
 import HeaderAll from "../components/HeaderAll";
 import Footer from "../components/Footer";
 import "./Catalogue.css";
-import "./../components/BestSellers.css"; // <-- réutilise le CSS .thumb .img.primary/.secondary
-import FavoriteButton from "../components/FavoriteButton";
+import "./../components/BestSellers.css"; // réutilise le CSS .thumb .img.primary/.secondary
+import { apiGet } from "../lib/api";
 
 // --- Héros de marque
 const BRAND_HERO = {
-  "ANUA":             "/img/hero/brands/anua-hero.jpg",
+  ANUA:             "/img/hero/brands/anua-hero.jpg",
   "Beauty of Joseon": "/img/hero/brands/beauty-of-joseon-hero.jpg",
-  "Biodance":         "/img/hero/brands/biodance-hero.jpg",
-  "COSRX":            "/img/hero/brands/cosrx-hero.jpg",
-  "Dr Althea":        "/img/hero/brands/dr-althea-hero.jpg",
-  "Haruharu Wonder":  "/img/hero/brands/haruharu-wonder-hero.jpg",
-  "I'm From":         "/img/hero/brands/im-from-hero.jpg",
-  "iUNIK":            "/img/hero/brands/iunik-hero.jpg",
-  "Laneige":          "/img/hero/brands/laneige-hero.jpg",
-  "Medicube":         "/img/hero/brands/medicube-hero.jpg",
-  "Mixsoon":          "/img/hero/brands/mixsoon-hero.jpg",
-  "Round Lab":        "/img/hero/brands/round-lab-hero.jpg",
-  "SKIN1004":         "/img/hero/brands/skin1004-hero.jpg",
-  "Some By Mi":       "/img/hero/brands/some-by-mi-hero.jpg",
-  "Torriden":         "/img/hero/brands/torriden-hero.jpg",
+  Biodance:         "/img/hero/brands/biodance-hero.jpg",
+  COSRX:            "/img/hero/brands/cosrx-hero.jpg",
+  "Dr Althea":      "/img/hero/brands/dr-althea-hero.jpg",
+  "Haruharu Wonder": "/img/hero/brands/haruharu-wonder-hero.jpg",
+  "I'm From":       "/img/hero/brands/im-from-hero.jpg",
+  iUNIK:            "/img/hero/brands/iunik-hero.jpg",
+  Laneige:          "/img/hero/brands/laneige-hero.jpg",
+  Medicube:         "/img/hero/brands/medicube-hero.jpg",
+  Mixsoon:          "/img/hero/brands/mixsoon-hero.jpg",
+  "Round Lab":      "/img/hero/brands/round-lab-hero.jpg",
+  SKIN1004:         "/img/hero/brands/skin1004-hero.jpg",
+  "Some By Mi":     "/img/hero/brands/some-by-mi-hero.jpg",
+  Torriden:         "/img/hero/brands/torriden-hero.jpg",
 };
 const GLOBAL_HERO = "/img/hero/all-brands-hero.jpg";
 
@@ -38,13 +38,13 @@ function BrandHero({ brand, category }) {
   const brandSrc = brand && BRAND_HERO[brand] ? BRAND_HERO[brand] : null;
   const src = catSrc || brandSrc || GLOBAL_HERO;
 
-  const label = category ? String(category) : (brand ? brand : "Toutes les marques");
-  const badge = category ? "Pack" : (brand ? "Marque" : "Catalogue");
-  const title = category ? `Nos ${String(category)}s` : (brand || "Découvre nos produits");
+  const label = category ? String(category) : brand ? brand : "Toutes les marques";
+  const badge = category ? "Pack" : brand ? "Marque" : "Catalogue";
+  const title = category ? `Nos ${String(category)}s` : brand || "Découvre nos produits";
 
   return (
     <section className="cat-hero" role="img" aria-label={label}>
-      <img src={src} alt="" onError={(e)=>{ e.currentTarget.style.display="none"; }} />
+      <img src={publicAsset(src)} alt="" onError={(e) => { e.currentTarget.style.display = "none"; }} />
       <div className="cat-hero-overlay" />
       <div className="cat-hero-inner">
         <div className="cat-hero-badge">{badge}</div>
@@ -58,7 +58,6 @@ function BrandHero({ brand, category }) {
 }
 
 // --- Utils
-const API = import.meta.env.VITE_API_URL || "http://localhost:4242";
 const fmtEur = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
 const PAGE_SIZE_DEFAULT = 12;
 
@@ -95,7 +94,8 @@ function collectImages(entity, max = 2) {
 function slugify(s) {
   return String(s || "")
     .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 }
@@ -104,7 +104,8 @@ function slugify(s) {
 function norm(s) {
   return String(s || "")
     .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 }
 
 export default function Catalogue() {
@@ -135,9 +136,8 @@ export default function Catalogue() {
       try {
         setErr("");
         setLoading(true);
-        const r = await fetch(`${API}/api/products`, { headers: { Accept: "application/json" } });
-        if (!r.ok) throw new Error("API produits indisponible");
-        const data = await r.json();
+
+        const data = await apiGet("/api/products");
         if (cancelled) return;
 
         const arr = Array.isArray(data) ? data : [];
@@ -149,9 +149,7 @@ export default function Catalogue() {
             if (hasTwo) return p;
             try {
               const key = String(p.slug || p.id);
-              const r2 = await fetch(`${API}/api/products/${key}`);
-              if (!r2.ok) return p;
-              const full = await r2.json();
+              const full = await apiGet(`/api/products/${key}`);
               const images = Array.isArray(full.images) ? full.images : p.images;
               const image = full.image ?? p.image;
               return { ...p, images, image };
@@ -175,15 +173,34 @@ export default function Catalogue() {
         if (!cancelled) setLoading(false);
       }
     })();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   // Facettes
   const facets = useMemo(() => {
-    const brands = Array.from(new Set(items.map((p) => p.brand).filter(Boolean)))
-      .sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" }));
+    const brands = Array.from(new Set(items.map((p) => p.brand).filter(Boolean))).sort((a, b) =>
+      a.localeCompare(b, "fr", { sensitivity: "base" })
+    );
 
-    const KNOWN_SKINS = ["grasse","mixte","sèche","sensible","normale","acnéique","déshydratée","mature","terne","pores-visibles","anti-âge","anti-taches","abîmée","réactive","tous"];
+    const KNOWN_SKINS = [
+      "grasse",
+      "mixte",
+      "sèche",
+      "sensible",
+      "normale",
+      "acnéique",
+      "déshydratée",
+      "mature",
+      "terne",
+      "pores-visibles",
+      "anti-âge",
+      "anti-taches",
+      "abîmée",
+      "réactive",
+      "tous",
+    ];
     const skinSet = new Set();
     for (const p of items) {
       if (Array.isArray(p.skin_types)) p.skin_types.forEach((s) => s && skinSet.add(String(s)));
@@ -195,7 +212,9 @@ export default function Catalogue() {
         });
       }
     }
-    const skinTypes = Array.from(skinSet).sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" }));
+    const skinTypes = Array.from(skinSet).sort((a, b) =>
+      a.localeCompare(b, "fr", { sensitivity: "base" })
+    );
 
     const catSet = new Set(
       items
@@ -203,7 +222,9 @@ export default function Catalogue() {
         .filter(Boolean)
         .map(String)
     );
-    const categories = Array.from(catSet).sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" }));
+    const categories = Array.from(catSet).sort((a, b) =>
+      a.localeCompare(b, "fr", { sensitivity: "base" })
+    );
 
     return { brands, skinTypes, categories };
   }, [items]);
@@ -213,7 +234,7 @@ export default function Catalogue() {
     if (brandSel.size === 1) return Array.from(brandSel)[0];
     const q = String(search || "").trim().toLowerCase();
     if (!q) return null;
-    const exact = facets.brands.find(b => b.toLowerCase() === q);
+    const exact = facets.brands.find((b) => b.toLowerCase() === q);
     return exact || null;
   }, [brandSel, search, facets.brands]);
 
@@ -232,7 +253,10 @@ export default function Catalogue() {
     const skinSlug = sp.get("skin") || "";
     const skinLabel = sp.get("skinLabel") || "";
 
-    if (q) { setSearch(q); setPage(1); }
+    if (q) {
+      setSearch(q);
+      setPage(1);
+    }
 
     if (catSlug || catLabel) {
       setTimeout(() => {
@@ -248,9 +272,7 @@ export default function Catalogue() {
 
     if (brandParam) {
       setTimeout(() => {
-        const foundBrand = facets.brands.find(
-          b => b.toLowerCase() === brandParam.toLowerCase()
-        );
+        const foundBrand = facets.brands.find((b) => b.toLowerCase() === brandParam.toLowerCase());
         const value = foundBrand || brandParam;
         setBrandSel(new Set([String(value)]));
         setPage(1);
@@ -261,7 +283,7 @@ export default function Catalogue() {
       setTimeout(() => {
         const target = skinLabel || skinSlug;
         const foundSkin = facets.skinTypes.find(
-          s => String(s).toLowerCase() === String(target).toLowerCase()
+          (s) => String(s).toLowerCase() === String(target).toLowerCase()
         );
         const value = foundSkin || target;
         setSkinSel(new Set([String(value)]));
@@ -293,8 +315,10 @@ export default function Catalogue() {
           p.category || p.type || p.product_type,
           ...(Array.isArray(p.skin_types) ? p.skin_types : []),
           ...(Array.isArray(p.tags) ? p.tags : []),
-        ].filter(Boolean).map(norm);
-        return fields.some(f => f.includes(q));
+        ]
+          .filter(Boolean)
+          .map(norm);
+        return fields.some((f) => f.includes(q));
       });
     }
 
@@ -355,30 +379,54 @@ export default function Catalogue() {
       pills.push({
         type: "search",
         label: `Recherche: “${search.trim()}”`,
-        onRemove: () => { setSearch(""); setPage(1); },
+        onRemove: () => {
+          setSearch("");
+          setPage(1);
+        },
       });
     }
     if (brandSel.size) {
       for (const b of brandSel) {
         pills.push({
-          type: "brand", value: b, label: `Marque: ${b}`,
-          onRemove: () => { const n = new Set(brandSel); n.delete(b); setBrandSel(n); setPage(1); }
+          type: "brand",
+          value: b,
+          label: `Marque: ${b}`,
+          onRemove: () => {
+            const n = new Set(brandSel);
+            n.delete(b);
+            setBrandSel(n);
+            setPage(1);
+          },
         });
       }
     }
     if (skinSel.size) {
       for (const s of skinSel) {
         pills.push({
-          type: "skin", value: s, label: `Peau: ${s}`,
-          onRemove: () => { const n = new Set(skinSel); n.delete(s); setSkinSel(n); setPage(1); }
+          type: "skin",
+          value: s,
+          label: `Peau: ${s}`,
+          onRemove: () => {
+            const n = new Set(skinSel);
+            n.delete(s);
+            setSkinSel(n);
+            setPage(1);
+          },
         });
       }
     }
     if (catSel.size) {
       for (const c of catSel) {
         pills.push({
-          type: "cat", value: c, label: `Type: ${c}`,
-          onRemove: () => { const n = new Set(catSel); n.delete(c); setCatSel(n); setPage(1); }
+          type: "cat",
+          value: c,
+          label: `Type: ${c}`,
+          onRemove: () => {
+            const n = new Set(catSel);
+            n.delete(c);
+            setCatSel(n);
+            setPage(1);
+          },
         });
       }
     }
@@ -390,7 +438,11 @@ export default function Catalogue() {
       pills.push({
         type: "price",
         label: `Prix: ${fmtEur.format(priceMin)} – ${fmtEur.format(priceMax)}`,
-        onRemove: () => { setPriceMin(globalMin); setPriceMax(globalMax || 0); setPage(1); }
+        onRemove: () => {
+          setPriceMin(globalMin);
+          setPriceMax(globalMax || 0);
+          setPage(1);
+        },
       });
     }
     if (sort !== "reco") {
@@ -398,7 +450,10 @@ export default function Catalogue() {
       pills.push({
         type: "sort",
         label: `Tri: ${map[sort] || sort}`,
-        onRemove: () => { setSort("reco"); setPage(1); }
+        onRemove: () => {
+          setSort("reco");
+          setPage(1);
+        },
       });
     }
     return pills;
@@ -426,9 +481,17 @@ export default function Catalogue() {
       <div className="cat-container">
         {/* Barre mobile */}
         <div className="cat-mobile-bar">
-          <button className="btn-ghost" onClick={() => setMobileFiltersOpen(true)}>Filtres</button>
+          <button className="btn-ghost" onClick={() => setMobileFiltersOpen(true)}>
+            Filtres
+          </button>
           <div className="cat-mobile-sort">
-            <select value={sort} onChange={(e) => { setSort(e.target.value); setPage(1); }}>
+            <select
+              value={sort}
+              onChange={(e) => {
+                setSort(e.target.value);
+                setPage(1);
+              }}
+            >
               <option value="reco">Tri: Recommandé</option>
               <option value="price_asc">Prix: croissant</option>
               <option value="price_desc">Prix: décroissant</option>
@@ -442,7 +505,9 @@ export default function Catalogue() {
           <aside className={`filters ${mobileFiltersOpen ? "is-open" : ""}`}>
             <div className="filters-head">
               <div className="title">Filtres</div>
-              <button className="filters-close" onClick={() => setMobileFiltersOpen(false)}>✕</button>
+              <button className="filters-close" onClick={() => setMobileFiltersOpen(false)}>
+                ✕
+              </button>
             </div>
 
             <div className="filters-body">
@@ -452,14 +517,23 @@ export default function Catalogue() {
                 <input
                   placeholder="Produit, marque, type, peau…"
                   value={search}
-                  onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setPage(1);
+                  }}
                 />
               </div>
 
               {/* Tri (desktop) */}
               <div className="facet desktop-only">
                 <div className="facet-title">Tri</div>
-                <select value={sort} onChange={(e) => { setSort(e.target.value); setPage(1); }}>
+                <select
+                  value={sort}
+                  onChange={(e) => {
+                    setSort(e.target.value);
+                    setPage(1);
+                  }}
+                >
                   <option value="reco">Recommandé</option>
                   <option value="price_asc">Prix: croissant</option>
                   <option value="price_desc">Prix: décroissant</option>
@@ -536,7 +610,10 @@ export default function Catalogue() {
                       type="number"
                       min={0}
                       value={priceMin}
-                      onChange={(e) => { setPriceMin(Number(e.target.value)); setPage(1); }}
+                      onChange={(e) => {
+                        setPriceMin(Number(e.target.value));
+                        setPage(1);
+                      }}
                     />
                   </label>
                   <label className="small">
@@ -545,7 +622,10 @@ export default function Catalogue() {
                       type="number"
                       min={0}
                       value={priceMax}
-                      onChange={(e) => { setPriceMax(Number(e.target.value)); setPage(1); }}
+                      onChange={(e) => {
+                        setPriceMax(Number(e.target.value));
+                        setPage(1);
+                      }}
                     />
                   </label>
                 </div>
@@ -556,7 +636,9 @@ export default function Catalogue() {
             </div>
 
             <div className="filters-foot">
-              <button className="btn-ghost" onClick={resetAll}>Tout réinitialiser</button>
+              <button className="btn-ghost" onClick={resetAll}>
+                Tout réinitialiser
+              </button>
               <button className="btn-primary mobile-only" onClick={() => setMobileFiltersOpen(false)}>
                 Voir les résultats
               </button>
@@ -570,7 +652,9 @@ export default function Catalogue() {
             {/* Compteur + pills */}
             <div className="results-bar">
               <div className="count">
-                {loading ? "Chargement…" : `${filteredSorted.length} produit${filteredSorted.length > 1 ? "s" : ""} trouvés`}
+                {loading
+                  ? "Chargement…"
+                  : `${filteredSorted.length} produit${filteredSorted.length > 1 ? "s" : ""} trouvés`}
               </div>
 
               {activePills.length > 0 && (
@@ -588,7 +672,11 @@ export default function Catalogue() {
               )}
             </div>
 
-            {err && <p className="acc-alert error" style={{marginBottom:10}}>{err}</p>}
+            {err && (
+              <p className="acc-alert error" style={{ marginBottom: 10 }}>
+                {err}
+              </p>
+            )}
 
             {loading ? (
               <div className="grid">
@@ -608,7 +696,7 @@ export default function Catalogue() {
                     const isPack = String(p.category || "").toLowerCase() === "pack";
                     const to = `/${isPack ? "pack" : "produit"}/${p.slug || String(p.id)}`;
 
-                    // >>> images primaire + hover
+                    // images primaire + hover
                     const imgs = collectImages(p, 2);
                     const imgPrimary = imgs[0] || fallbackImg;
                     const imgHover = imgs[1] || imgPrimary;
@@ -621,7 +709,9 @@ export default function Catalogue() {
                             className="img primary"
                             src={imgPrimary}
                             alt={p.name}
-                            onError={(e) => { e.currentTarget.src = fallbackImg; }}
+                            onError={(e) => {
+                              e.currentTarget.src = fallbackImg;
+                            }}
                             loading="lazy"
                           />
                           {/* image hover */}
@@ -629,7 +719,9 @@ export default function Catalogue() {
                             className="img secondary"
                             src={imgHover}
                             alt=""
-                            onError={(e) => { e.currentTarget.src = fallbackImg; }}
+                            onError={(e) => {
+                              e.currentTarget.src = fallbackImg;
+                            }}
                             loading="lazy"
                           />
 
@@ -649,9 +741,7 @@ export default function Catalogue() {
 
                           <div className="badges">
                             {p.category && (
-                              <div className={`catBadge cat-${slugify(p.category)}`}>
-                                {p.category}
-                              </div>
+                              <div className={`catBadge cat-${slugify(p.category)}`}>{p.category}</div>
                             )}
                             {Array.isArray(p.skin_types) && p.skin_types.length > 0 && (
                               <div className="skinsGroup" aria-label="Types de peau">
@@ -701,7 +791,13 @@ export default function Catalogue() {
                       Page {pageClamped} / {pageCount}
                     </div>
                     <div className="pag-right">
-                      <select value={pageSize} onChange={(e) => { setPageSize(Number(e.target.value)); setPage(1); }}>
+                      <select
+                        value={pageSize}
+                        onChange={(e) => {
+                          setPageSize(Number(e.target.value));
+                          setPage(1);
+                        }}
+                      >
                         <option value={12}>12 / page</option>
                         <option value={24}>24 / page</option>
                         <option value={36}>36 / page</option>
