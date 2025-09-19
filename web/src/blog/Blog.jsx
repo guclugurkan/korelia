@@ -1,6 +1,6 @@
 // src/blog/Blog.jsx  (liste des articles)
 import { Link } from "react-router-dom";
-import { posts } from "./blogData";
+import { posts } from "./blogdata.js";
 import "./Blog.css";
 
 export default function Blog() {

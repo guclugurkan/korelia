@@ -1,54 +1,36 @@
-// src/blog/BlogPost.jsx  (page article)
-import { useParams, Link } from "react-router-dom";
+// web/src/blog/Blog.jsx
+import { Link } from "react-router-dom";
 import { posts } from "./blogdata.js";
 import "./Blog.css";
 
-// mini parser markdown ultra simple (titres, gras, listes, citation)
-function mdLite(md = "") {
-  return md
-    .replace(/^### (.*)$/gm, "<h3>$1</h3>")
-    .replace(/^\> (.*)$/gm, "<blockquote>$1</blockquote>")
-    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-    .replace(/^- (.*)$/gm, "<li>$1</li>")
-    .replace(/\n{2,}/g, "</p><p>")
-    .replace(/^1\) (.*)$/gm, "<ol><li>$1</li></ol>");
-}
-
-export default function BlogPost() {
-  const { slug } = useParams();
-  const post = posts.find((p) => p.slug === slug);
-
-  if (!post) {
-    return (
-      <section className="blog">
-        <p>Article introuvable.</p>
-        <Link to="/blog" className="readmore">← Retour au blog</Link>
-      </section>
-    );
-  }
-
+export default function Blog() {
   return (
-    <article className="post">
-      <header className="post-hero">
-        <img src={post.cover} alt={post.title} />
-        <div className="overlay">
-          <h1>{post.title}</h1>
-          <div className="meta">
-            <span className="cat">{post.category}</span>
-            <span className="dot">•</span>
-            <time>{new Date(post.date).toLocaleDateString()}</time>
+    <section className="blog-list">
+      {posts.map((p) => (
+        <article key={p.slug} className="card">
+          <Link to={`/blog/${p.slug}`} className="card-media">
+            <img src={p.cover} alt={p.title} />
+          </Link>
+
+          <div className="card-body">
+            <div className="meta">
+              <span className="cat">{p.category}</span>
+              <span className="dot">•</span>
+              <time>{new Date(p.date).toLocaleDateString()}</time>
+            </div>
+
+            <h2 className="card-title">
+              <Link to={`/blog/${p.slug}`}>{p.title}</Link>
+            </h2>
+
+            <p className="card-excerpt">{p.excerpt}</p>
+
+            <Link to={`/blog/${p.slug}`} className="readmore">
+              Lire l’article →
+            </Link>
           </div>
-        </div>
-      </header>
-
-      <div className="post-content">
-        <p dangerouslySetInnerHTML={{ __html: mdLite(post.content) }} />
-      </div>
-
-      <footer className="post-footer">
-        <Link to="/blog" className="pack-btn">← Tous les articles</Link>
-        <Link to="/packs" className="pack-btn">Découvrir nos Pack Routines</Link>
-      </footer>
-    </article>
+        </article>
+      ))}
+    </section>
   );
 }
