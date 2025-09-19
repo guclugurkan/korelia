@@ -1,4 +1,4 @@
-// src/blog/blogData.js
+// src/blog/blogdata.js
 // — Données d’articles (tu peux remplacer par une API plus tard)
 export const posts = [
   {
