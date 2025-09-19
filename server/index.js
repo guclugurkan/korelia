@@ -61,8 +61,8 @@ app.use((req, res, next) => {
   // si l'origine est autorisée par ta whitelist, on renvoie les headers
   const allowed = [
     "http://localhost:5173",
-    "https://korelia.vercel.app",
-    "https://korelia-hazel.vercel.app",
+    "https://korelia-zeta.vercel.app/",
+    "https://korelia.vercel.app"
   ];
   const isPreviewVercel = /^https:\/\/.*\.vercel\.app$/i.test(String(origin || ""));
   if (origin && (allowed.includes(origin) || isPreviewVercel)) {
