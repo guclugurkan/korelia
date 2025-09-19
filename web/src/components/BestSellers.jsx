@@ -8,6 +8,10 @@ import FavoriteButton from "../components/FavoriteButton";
 const API = import.meta.env.VITE_API_URL || "http://localhost:4242";
 const perPage = 4;
 
+function apiUrl(p) {
+  return `${String(API).replace(/\/$/, '')}/${String(p).replace(/^\//, '')}`;
+}
+
 /** <<< Choisis ici tes 16 best-sellers (slugs/ids) >>> */
 const POPULAR_IDS = [
   "anua-heartleaf-77-soothing-toner",
@@ -74,7 +78,7 @@ export default function BestSellers() {
         setLoading(true);
 
         // 1) Récupère la liste courte
-        const r = await fetch(`${API}/api/products`);
+        const r = await fetch(apiUrl(`${API}/api/products`));
         if (!r.ok) throw new Error("API produits indisponible");
         const data = await r.json();
 
