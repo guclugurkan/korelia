@@ -21,14 +21,24 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
+const allowed = [
+  "http://localhost:5173",
+  "https://korelia.onrender.com/"
+];
 
 
 
-
+app.use(cors({
+  origin: (origin, cb) => {
+    if (!origin || allowed.includes(origin)) cb(null, true);
+    else cb(new Error("Not allowed by CORS"));
+  },
+  credentials: true
+}));
 
 
 const PORT = process.env.PORT || 4242;
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
+
 const isProd = process.env.NODE_ENV === 'production';
 
 const USERS_PATH    = path.join(__dirname, 'users.json');
@@ -38,7 +48,7 @@ const PRODUCTS_PATH = path.join(__dirname, 'products.json');
 /* =======================
  * CORS / Cookies
  * ======================= */
-const ALLOWED_ORIGIN = CLIENT_URL;
+
 function cookieOpts(days = 7){
   const maxAge = days * 24 * 3600 * 1000;
   return { httpOnly: true, sameSite: 'lax', secure: isProd, maxAge };
@@ -498,13 +508,7 @@ app.use(helmet({
 }));
 if (isProd) app.use(helmet.hsts({ maxAge: 15552000 }));
 
-app.use(cors({
-  origin: (origin, cb) => {
-    if (!origin || origin === ALLOWED_ORIGIN) return cb(null, true);
-    return cb(new Error('CORS bloc: origin non autorisé'), false);
-  },
-  credentials: true
-}));
+
 app.use(cookieParser());
 
 // --- Unique endpoint CSRF (GET) AVANT activation du middleware ---
