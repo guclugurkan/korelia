@@ -5,7 +5,7 @@ const brands6 = [
   { id: 1, name: "Anua",         img1: "/img/anua/marquesimg2.png",  img2: "/img/anua/marquesimg3.png" },
   { id: 2, name: "Beauty of Joseon", img1: "/img/marquesimg4.png",       img2: "/img/marquesimg5.png" },
   { id: 3, name: "COSRX",        img1: "/img/marquesimg15.png",      img2: "/img/marquesimg16.png" },
-  { id: 4, name: "Skin1004",     img1: "/brands/imgSkin1004-5.png",  img2: "./brands/imgSkin1004-1.jpg" },
+  { id: 4, name: "Skin1004",     img1: "/img/skin1004/product5/img4.png",  img2: "./img/skin1004/product5/img2.png" },
   { id: 5, name: "Medicube",     img1: "/img/marquesimg9.png",       img2: "/img/marquesimg10.png" },
   { id: 6, name: "Torriden",     img1: "/img/marquesimg18.png",      img2: "/img/marquesimg17.png" },
 ];
@@ -17,7 +17,7 @@ export default function Marques() {
   return (
     <section className="marques marques--six" aria-label="Nos marques (6)">
       <div className="bs-header">
-        <h1 className="bs-title">Marques en tendance</h1>
+        <h1 className="bs-titlee">Marques en tendance</h1>
       </div>
 
       <div className="marques-grid-six">

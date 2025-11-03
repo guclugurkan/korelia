@@ -224,6 +224,97 @@ export function AuthProvider({ children }) {
     return data;
   }
 
+  async function listPromoCodes(){
+  const r = await apiFetch("/me/promo-codes", {
+    method: "GET",
+    headers: { Accept: "application/json" },
+  });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(data.error || "Impossible de charger les codes promo");
+  return data;
+}
+
+  async function listProductReviews(productId, { limit = 50 } = {}){
+    const r = await apiFetch(`/api/products/${productId}/reviews?limit=${limit}`, {
+      method: "GET",
+      headers: { Accept: "application/json" },
+    });
+    const data = await r.json().catch(()=>([]));
+    if (!r.ok) throw new Error(data.error || "Impossible de charger les avis");
+    return data;
+  }
+
+  async function submitProductReview({ productId, rating, content, authorName="", authorEmail="" }){
+    const r = await apiFetch('/reviews/submit', {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ productId, rating, content, authorName, authorEmail }),
+    });
+    const data = await r.json().catch(()=>({}));
+    if (!r.ok) throw new Error(data.error || "Impossible d’envoyer l’avis");
+    return data; // { ok:true, pending:true, id }
+  }
+
+
+
+
+  async function listAdminReviews({ status = "pending" } = {}) {
+  const r = await apiFetch(`/admin/reviews?status=${encodeURIComponent(status)}`, {
+    method: "GET",
+    headers: { Accept: "application/json" },
+  });
+  const data = await r.json().catch(() => ([]));
+  if (!r.ok) throw new Error(data.error || "Impossible de charger les avis");
+  return data;
+}
+
+async function approveReview(id) {
+  const r = await apiFetch(`/admin/reviews/${id}/approve`, {
+    method: "POST",
+    headers: { Accept: "application/json" },
+  });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(data.error || "Approbation impossible");
+  return data;
+}
+
+async function deleteReview(id) {
+  const r = await apiFetch(`/admin/reviews/${id}`, {
+    method: "DELETE",
+    headers: { Accept: "application/json" },
+  });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(data.error || "Suppression impossible");
+  return data;
+}
+
+
+// === ADMIN REVIEWS ===
+async function adminListReviews({ status = "pending", productId } = {}) {
+  const qs = new URLSearchParams({ status });
+  if (productId) qs.set("productId", String(productId));
+  const r = await apiFetch(`/admin/reviews?${qs.toString()}`, {
+    method: "GET",
+    headers: { Accept: "application/json" },
+  });
+  const data = await r.json().catch(() => ([]));
+  if (!r.ok) throw new Error(data.error || "Impossible de charger les avis");
+  return Array.isArray(data) ? data : [];
+}
+
+async function adminApproveReview(id) {
+  const r = await apiFetch(`/admin/reviews/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({ approve: true }),
+  });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(data.error || "Échec de l’approbation");
+  return data;
+}
+
+
+
   return (
     <AuthCtx.Provider
       value={{
@@ -243,6 +334,15 @@ export function AuthProvider({ children }) {
         fetchRewardsCatalog,
         redeemReward,
         addReviewPoints,
+        listPromoCodes,
+        listProductReviews,
+        submitProductReview,
+        listAdminReviews,
+        approveReview,
+        deleteReview,
+        adminListReviews,
+        adminApproveReview,
+        
       }}
     >
       {children}

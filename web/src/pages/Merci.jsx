@@ -1,10 +1,11 @@
 // src/pages/Merci.jsx
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import HeaderAll from "../components/HeaderAll";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useAuth } from "../auth/AuthContext";
 import "./Merci.css";
+import SiteHeader from "../components/SiteHeader"
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4242";
 
@@ -83,7 +84,7 @@ export default function Merci() {
   if (loading) {
     return (
       <main className="merci-wrap">
-        <HeaderAll />
+        <SiteHeader />
         <div className="merci-container">
           <section className="card center">
             <div className="big-emoji">❤️</div>
@@ -99,7 +100,7 @@ export default function Merci() {
   if (error) {
     return (
       <main className="merci-wrap">
-        <HeaderAll />
+        <SiteHeader />
         <div className="merci-container">
           <section className="card center">
             <div className="big-emoji">😬</div>
@@ -141,7 +142,7 @@ export default function Merci() {
 
   return (
     <main className="merci-wrap">
-      <HeaderAll />
+      <SiteHeader />
 
       <div className="merci-container">
         {/* HERO */}
@@ -174,7 +175,7 @@ export default function Merci() {
               {user ? (
                 <p className="muted">
                   Bravo&nbsp;! Cette commande vous rapporte <strong>+{earnedPoints} pts</strong>. 
-                  Cumulez vos points et échangez-les contre des <strong>codes promo</strong> (ex&nbsp;: 5€ dès 30€, 12€ dès 50€, 35€ dès 70€).
+                  Cumulez vos points et échangez-les contre des <strong>codes promo</strong> .
                 </p>
               ) : (
                 <p className="muted">

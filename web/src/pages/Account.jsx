@@ -5,13 +5,77 @@ import { useAuth } from "../auth/AuthContext";
 import VerifyEmailBanner from "../components/VerifyEmailBanner";
 import RewardsPanel from "../components/RewardsPanel";
 import OrdersPanel from "../components/OrdersPanel";
-import HeaderAll from "../components/HeaderAll";
+import PromoCodesPanel from "../components/PromoCodesPanel"; // 🆕
+
 import Footer from "../components/Footer";
 import "./Account.css";
 
-export default function Account(){
-  const { user, loading, logout, getAddress, saveAddress, updateProfileName, changePassword } = useAuth();
+import SiteHeader from "../components/SiteHeader";
 
+
+
+
+
+
+
+const fmtEur = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
+
+function SavedPacks() {
+  const { user } = useAuth();
+  const [packs, setPacks] = useState([]);
+
+  useEffect(() => {
+    if (!user) { setPacks([]); return; }
+    const uid = user.id || user.email || "user";
+    const key = `my_packs_${uid}`;
+    const data = JSON.parse(localStorage.getItem(key) || "[]");
+    setPacks(Array.isArray(data) ? data : []);
+  }, [user]);
+
+  if (!user) return null;
+
+  return (
+    <section style={{ marginTop: 16 }}>
+      <h2 style={{ marginBottom: 8 }}>Mes packs enregistrés</h2>
+      {packs.length === 0 ? (
+        <p style={{ color:"#6b7280" }}>Aucun pack enregistré pour l’instant.</p>
+      ) : (
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(260px,1fr))", gap:12 }}>
+          {packs.map((p) => (
+            <article key={p.id} style={{ border:"1px solid #eee", borderRadius:12, padding:12, background:"#fff" }}>
+              <div style={{ fontWeight:800 }}>{p.name || `Pack ${p.kind}`}</div>
+              <div style={{ color:"#6b7280", fontSize:13, margin:"4px 0 6px" }}>
+                {p.kind === "essentiel" ? "Essentiel (3)" : "Standard (5)"} · {new Date(p.created_at).toLocaleDateString("fr-BE")}
+              </div>
+              <div style={{ fontWeight:800 }}>
+                {fmtEur.format((p.final_cents || 0) / 100)}
+              </div>
+              <details style={{ marginTop:8 }}>
+                <summary>Voir les produits</summary>
+                <ul style={{ margin:"6px 0 0", paddingLeft:18 }}>
+                  {Object.values(p.selections || {}).map((prod) => (
+                    <li key={prod.id}>{prod.brand ? `${prod.brand} — ` : ""}{prod.name}</li>
+                  ))}
+                </ul>
+              </details>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+
+
+
+
+export default function Account(){
+  const { user, loading, logout, getAddress, saveAddress, updateProfileName, changePassword,
+    listPromoCodes // doit exister dans AuthContext (GET /me/promo-codes)
+  } = useAuth();
+
+  const [promoRefreshKey, setPromoRefreshKey] = useState(0); // 🆕
   const [addr, setAddr] = useState({ name:"", line1:"", line2:"", postal_code:"", city:"", country:"BE", phone:"" });
   const [profileName, setProfileName] = useState("");
   const [pwd, setPwd] = useState({ current_password:"", new_password:"" });
@@ -20,7 +84,7 @@ export default function Account(){
   const [err, setErr] = useState("");
   const [busy, setBusy] = useState(false);
 
-  // Drawer (panneau latéral) pour éditer les infos
+  // Drawer (panneau latéral)
   const [openDrawer, setOpenDrawer] = useState(false);
 
   useEffect(()=>{
@@ -38,7 +102,6 @@ export default function Account(){
   if (loading) return <main style={{padding:24}}>Chargement…</main>;
   if (!user)   return <main style={{padding:24}}>Non connecté.</main>;
 
-  // Sauvegardes (dans le drawer)
   async function saveAddressForm(e){
     e.preventDefault();
     try{
@@ -46,6 +109,15 @@ export default function Account(){
       const clean = { ...addr, country: (addr.country||'BE').toUpperCase() };
       await saveAddress(clean);
       setMsg("Adresse enregistrée ✅");
+       // 👇 Envoi (optionnel) vers Stripe pour pré-remplir les prochains checkouts
+      try {
+        const API = import.meta.env.VITE_API_URL || "http://localhost:4242";
+        await fetch(`${API}/me/sync-stripe-customer`, {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': (document.cookie.match(/csrf_token=([^;]+)/)?.[1] || '') }
+        });
+      } catch {}
     }catch(ex){ setErr(ex.message || "Impossible d’enregistrer l’adresse"); }
     finally{ setBusy(false); }
   }
@@ -70,7 +142,6 @@ export default function Account(){
     finally{ setBusy(false); }
   }
 
-  // Résumé lecture seule
   const infoRows = [
     ["Nom", user.name || "—"],
     ["Email", user.email],
@@ -82,7 +153,7 @@ export default function Account(){
 
   return (
     <main className="account-wrap">
-      <HeaderAll/>
+      <SiteHeader/>
 
       <div className="account-container">
         {/* HERO */}
@@ -102,7 +173,7 @@ export default function Account(){
         <VerifyEmailBanner/>
 
         {/* Quick actions */}
-        <section className="card quick-actions">
+        <section className="acc-card quick-actions">
           <div className="qa-title">Accès rapide</div>
           <div className="qa-grid">
             <Link className="qa-tile" to="/favoris">
@@ -124,17 +195,35 @@ export default function Account(){
         <div className="acc-grid">
           {/* Col gauche */}
           <div className="col">
-            {/* Récompenses (habillage + ton RewardsPanel à l’intérieur) */}
-            <section className="card rewards-shell">
-              <div className="rewards-head">
+            {/* Points & Récompenses */}
+            <section className="acc-card acc-rewards-shell">
+              <div className="acc-rewards-head">
                 <div>
-                  <h2 className="card-title">Points & Récompenses</h2>
+                  <h2 className="acc-card-title">Points & Récompenses</h2>
                   <p className="muted small">Cumule des points à chaque commande et échange-les contre des codes promo.</p>
                 </div>
                 <div className="badge-soft">🎁</div>
               </div>
-              <div className="rewards-body">
-                <RewardsPanel/>
+
+              <div className="acc-rewards-body">
+                {/* Historique limité + bouton “Tout afficher” */}
+                <RewardsPanel
+                  limit={5}
+                  showAllButton={true}
+                  onRedeemed={() => setPromoRefreshKey(k => k + 1)} // 🆕 quand un code est créé, refresh la liste
+                />
+              </div>
+
+              {/* 🔥 Bloc Code Promo */}
+              <div className="acc-rewards-body">
+                <PromoCodesPanel
+                  fetchCodes={typeof listPromoCodes === "function" ? listPromoCodes : null}
+                  refreshKey={promoRefreshKey} // 🆕 se met à jour après un redeem
+                  fallbackCodes={[
+                    { code: "WELCOME10", active: true,   created_at: "2025-09-01" },
+                    { code: "RETAKE5",   active: false,  created_at: "2025-08-12" },
+                  ]}
+                />
               </div>
             </section>
 
@@ -145,9 +234,9 @@ export default function Account(){
           {/* Col droite */}
           <div className="col">
             {/* MES INFOS (lecture seule) */}
-            <section className="card">
-              <div className="card-head">
-                <h2 className="card-title">Mes infos</h2>
+            <section className="acc-card">
+              <div className="acc-card-head">
+                <h2 className="acc-card-title">Mes infos</h2>
                 <button className="btn-ghost" onClick={()=>setOpenDrawer(true)}>Gérer mes infos</button>
               </div>
               <dl className="info-list">
@@ -159,10 +248,9 @@ export default function Account(){
                 ))}
               </dl>
               <p className="muted small">Pour modifier le nom, l’adresse ou le mot de passe, clique sur “Gérer mes infos”.</p>
+               <SavedPacks/>
             </section>
-
-        
-       
+            
           </div>
         </div>
       </div>
@@ -226,6 +314,7 @@ export default function Account(){
           </aside>
         </>
       )}
+     
 
       <Footer/>
     </main>

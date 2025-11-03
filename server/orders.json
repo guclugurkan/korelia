@@ -1234,5 +1234,1453 @@
     "rewards_credited_user_id": "197ea50c-3556-4001-ac0a-1c8aad4b5440",
     "rewards_backfill_done": true,
     "rewards_points": 83
+  },
+  {
+    "id": "cs_test_b1zGtBvrnwIfT75gfgVJZXS6JpO7vshZ9joEX1aLBs6F4GWicy59h8owf1",
+    "payment_status": "paid",
+    "amount_total": 11989,
+    "amount_subtotal": 11989,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "gurkan",
+    "items": [
+      {
+        "id": "anua-heartleaf-pore-control-cleansing-oil",
+        "qty": 1
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-27T14:04:29.757Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SByjQP7tRkRV6sZGHIpZUje",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-27T14:04:29.757Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 119,
+    "rewards_at": "2025-09-27T14:04:29.763Z"
+  },
+  {
+    "id": "cs_test_b14QgsvAr2VLM2fC7YGejeEoy08eL9NSCEOmHuYw06N5hcPe4DnQLfuyml",
+    "payment_status": "paid",
+    "amount_total": 11989,
+    "amount_subtotal": 11989,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "gurkan",
+    "items": [
+      {
+        "id": "anua-heartleaf-pore-control-cleansing-oil",
+        "qty": 1
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-27T14:06:51.576Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SBylkP7tRkRV6sZqJNuei55",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-27T14:06:51.576Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 119,
+    "rewards_at": "2025-09-27T14:06:51.586Z"
+  },
+  {
+    "id": "cs_test_b1XZvXrECaOmvobfdMyiyFi7hM1MtmOjWeU3SOpelAMwGt7YwOkT0ARdpD",
+    "payment_status": "paid",
+    "amount_total": 11989,
+    "amount_subtotal": 11989,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "gurkan",
+    "items": [
+      {
+        "id": "anua-heartleaf-pore-control-cleansing-oil",
+        "qty": 1
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-27T14:10:45.431Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SBypVP7tRkRV6sZeCXVfpT2",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-27T14:10:45.431Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 119,
+    "rewards_at": "2025-09-27T14:10:45.435Z"
+  },
+  {
+    "id": "cs_test_b16JEwWrh5a2FOBN5aJdnd6nGIQr9W4RXjCd9852OFnzercNsbceaesm5F",
+    "payment_status": "paid",
+    "amount_total": 27958,
+    "amount_subtotal": 27958,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "gurkan",
+    "items": [
+      {
+        "id": "anua-heartleaf-pore-control-cleansing-oil",
+        "qty": 4
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 2
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-28T03:40:23.201Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SCBSxP7tRkRV6sZ7u2epL4X",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-28T03:40:23.203Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 279,
+    "rewards_at": "2025-09-28T03:40:23.219Z"
+  },
+  {
+    "id": "cs_test_b1Ndw3AK2aGAUIQ6ZT9jQZRkuag1v66zXmIeRTj5tumyFfB0JUAHjoCCdZ",
+    "payment_status": "paid",
+    "amount_total": 49995,
+    "amount_subtotal": 49995,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "gurkan",
+    "items": [
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 5
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-28T04:01:02.135Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SCBmlP7tRkRV6sZyC0JnlIQ",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-28T04:01:02.135Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 499,
+    "rewards_at": "2025-09-28T04:01:02.144Z"
+  },
+  {
+    "id": "cs_test_b1vgAfabjLpXeitwkJQbEtj6J00hO7f3niRMp1vT5wgbFDp0eBvr4EiVrP",
+    "payment_status": "paid",
+    "amount_total": 59994,
+    "amount_subtotal": 59994,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "gurkan",
+    "items": [
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 6
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-28T04:07:02.461Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SCBsjP7tRkRV6sZ9GwgH412",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-28T04:07:02.461Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 599,
+    "rewards_at": "2025-09-28T04:07:02.472Z"
+  },
+  {
+    "id": "cs_test_b1aXPkKbFxvElhLjZbMiB0y9PZPeQC84sB3ps00mu2c7CQ2T3WFKwscKA5",
+    "payment_status": "paid",
+    "amount_total": 9999,
+    "amount_subtotal": 9999,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "gurkan",
+    "items": [
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-28T04:10:33.881Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SCBw6P7tRkRV6sZBZLUhHXk",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-28T04:10:33.881Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 99,
+    "rewards_at": "2025-09-28T04:10:33.889Z"
+  },
+  {
+    "id": "cs_test_b1oPPYonmACS3bhbcb8qH5BjL5qPOWNXlrC5ng7Bs78PtIiv02g78v7Lry",
+    "payment_status": "paid",
+    "amount_total": 19998,
+    "amount_subtotal": 19998,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "gurkan",
+    "items": [
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 2
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-28T04:15:49.267Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SCC1HP7tRkRV6sZq2j0kTRI",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-28T04:15:49.267Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 199,
+    "rewards_at": "2025-09-28T04:15:49.277Z"
+  },
+  {
+    "id": "cs_test_b1NehewrFg8mFHkyFXBKoh9nLHXv5MJijInJOXXBumxwlAyZWEpSbwrvYM",
+    "payment_status": "paid",
+    "amount_total": 29997,
+    "amount_subtotal": 29997,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "gurkan",
+    "items": [
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 3
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-28T04:21:21.242Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SCC6cP7tRkRV6sZpX69ntPB",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-28T04:21:21.242Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 299,
+    "rewards_at": "2025-09-28T04:21:21.251Z"
+  },
+  {
+    "id": "cs_test_b1y4EwM5FDoCVHu2QoHdQS7JlCZELLCU7yt5F3aLCB14TYA0t9wa2SLHl3",
+    "payment_status": "paid",
+    "amount_total": 29497,
+    "amount_subtotal": 29997,
+    "shipping_cost": -500,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "gurkan",
+    "items": [
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 3
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-09-29T18:29:05.868Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SClocP7tRkRV6sZ9gg79I1a",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-09-29T18:29:05.868Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 299,
+    "rewards_at": "2025-09-29T18:29:05.877Z"
+  },
+  {
+    "id": "cs_test_b1gzRPbcT7B94ZE0r5Azyk7AIysHmqLrgjumKOOeXlm3qAiRAKmLX989Dz",
+    "payment_status": "paid",
+    "amount_total": 95961,
+    "amount_subtotal": 95961,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan",
+    "items": [
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 6,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml",
+        "price_cents": 9999,
+        "brand": "Beauty of Joseon"
+      },
+      {
+        "id": "anua-heartleaf-pore-control-cleansing-oil",
+        "qty": 3,
+        "name": "Heartleaf Pore Control Cleansing Oil",
+        "price_cents": 1990,
+        "brand": "ANUA"
+      },
+      {
+        "id": "boj-revive-eye-serum-ginseng-retinal",
+        "qty": 3,
+        "name": "Revive Eye Serum : Ginseng + Retinal 30ml",
+        "price_cents": 9999,
+        "brand": "Beauty of Joseon"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-02T00:25:50.033Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SDaKrP7tRkRV6sZ4CmyOCMo",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-02T00:25:50.033Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 959,
+    "rewards_at": "2025-10-02T00:25:50.039Z"
+  },
+  {
+    "id": "cs_test_b1XY5Z8T1naKJXBfH5WifsugND2GGImZFbWQmhhjm6B5pbnOsgm3CaYd28",
+    "payment_status": "paid",
+    "amount_total": 19998,
+    "amount_subtotal": 19998,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan",
+    "items": [
+      {
+        "id": "cosrx-rice-overnight-spa-mask",
+        "qty": 2,
+        "name": "Ultimate Nourishing Rice Overnight Spa Mask 60ml",
+        "price_cents": 9999,
+        "brand": "COSRX"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-08T21:03:45.910Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SG4WDP7tRkRV6sZXQcNIack",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-08T21:03:45.910Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 199,
+    "rewards_at": "2025-10-08T21:03:45.917Z"
+  },
+  {
+    "id": "cs_test_b1wI3r3PsJEEWw6Ez6wQwIzNxdiRXvo1UqOfSBVvjLU0hcr0dmE8KGbrVj",
+    "payment_status": "paid",
+    "amount_total": 54644,
+    "amount_subtotal": 54644,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan",
+    "items": [
+      {
+        "id": "cosrx-rice-overnight-spa-mask",
+        "qty": 2,
+        "name": "Ultimate Nourishing Rice Overnight Spa Mask 60ml",
+        "price_cents": 9999,
+        "brand": "COSRX"
+      },
+      {
+        "id": "anua-heartleaf-quercetinol-pore-deep-cleansing-foam",
+        "qty": 9,
+        "name": "Heartleaf Quercetinol Pore Deep Cleansing Foam",
+        "price_cents": 1650,
+        "brand": "ANUA"
+      },
+      {
+        "id": "pack-peau-grasse-standard",
+        "qty": 1,
+        "name": "🧴 Pack Peau Grasse & Acnéique – Standard (5 produits)",
+        "price_cents": 5999,
+        "brand": null
+      },
+      {
+        "id": "pack-peau-seche-indispensable",
+        "qty": 1,
+        "name": "💧 Pack Peau Sèche – Indispensable (3 produits)",
+        "price_cents": 3999,
+        "brand": null
+      },
+      {
+        "id": "pack-peau-grasse-indispensable",
+        "qty": 1,
+        "name": "🧴 Pack Peau Grasse & Acnéique – Indispensable (3 produits)",
+        "price_cents": 4299,
+        "brand": null
+      },
+      {
+        "id": "pack-peau-seche-standard",
+        "qty": 1,
+        "name": "💧 Pack Peau Sèche – Standard (5 produits)",
+        "price_cents": 5499,
+        "brand": null
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-12T03:47:51.665Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SHGFxP7tRkRV6sZlQDxIxaP",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-12T03:47:51.665Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 546,
+    "rewards_at": "2025-10-12T03:47:51.673Z"
+  },
+  {
+    "id": "cs_test_b1iR2brehXfRRgtcucJGbVnTvf6ZD23pk60qigklvAfc1jwJOzWC8Jv9OC",
+    "payment_status": "paid",
+    "amount_total": 269451,
+    "amount_subtotal": 269451,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan",
+    "items": [
+      {
+        "id": "pack-peau-seche-standard",
+        "qty": 49,
+        "name": "💧 Pack Peau Sèche – Standard (5 produits)",
+        "price_cents": 5499,
+        "brand": null
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-14T23:03:07.511Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SIHEpP7tRkRV6sZcKlhGKE2",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-14T23:03:07.511Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 2694,
+    "rewards_at": "2025-10-14T23:03:07.517Z",
+    "stock_breakdown": [
+      {
+        "id": "cosrx-low-ph-good-morning-gel-cleanser",
+        "qty": 49,
+        "name": "Low pH Good Morning Gel Cleanser 150ml"
+      },
+      {
+        "id": "anua-rice-70-glow-milky-toner",
+        "qty": 49,
+        "name": "Rice 70% Glow Milky Toner"
+      },
+      {
+        "id": "iunik-beta-glucan-power-moisture-serum",
+        "qty": 49,
+        "name": "Beta-Glucan Power Moisture Serum"
+      },
+      {
+        "id": "iunik-beta-glucan-daily-moisture-cream",
+        "qty": 49,
+        "name": "Beta-Glucan Daily Moisture Cream"
+      },
+      {
+        "id": "cosrx-aloe-soothing-sun-cream",
+        "qty": 49,
+        "name": "Aloe Soothing Sun Cream SPF50+ PA++++ 50ml"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b11l8nrk1wCMU15CJaHM2UiZZGtYxiKP8RcPLXDss3RmCez0JglB974hRU",
+    "payment_status": "paid",
+    "amount_total": 18759,
+    "amount_subtotal": 18759,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan",
+    "items": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 4,
+        "name": "Heartleaf 77% Soothing Toner",
+        "price_cents": 2190,
+        "brand": "ANUA"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml",
+        "price_cents": 9999,
+        "brand": "Beauty of Joseon"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-18T20:25:16.472Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SJggVP7tRkRV6sZAiiDs9vw",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-18T20:25:16.472Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 187,
+    "rewards_at": "2025-10-18T20:25:16.476Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 4,
+        "name": "Heartleaf 77% Soothing Toner"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b16viACzvSYo6K07t60StWQpnMCqB1Kzi17Tu5sDPJZ4MUZVL7ZUuE8xgH",
+    "payment_status": "paid",
+    "amount_total": 18759,
+    "amount_subtotal": 18759,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan",
+    "items": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 4,
+        "name": "Heartleaf 77% Soothing Toner",
+        "price_cents": 2190,
+        "brand": "ANUA"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml",
+        "price_cents": 9999,
+        "brand": "Beauty of Joseon"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-18T20:26:41.268Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SJghqP7tRkRV6sZYw7NgqZy",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-18T20:26:41.268Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 187,
+    "rewards_at": "2025-10-18T20:26:41.271Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 4,
+        "name": "Heartleaf 77% Soothing Toner"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1p8A2vPAuuUmKsxFpfZWzFrsUennP8RrR3VnvrGAyIiAnf29wiuGetcD5",
+    "payment_status": "paid",
+    "amount_total": 20949,
+    "amount_subtotal": 20949,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "test1@gmail.com",
+    "customer_name": "test",
+    "items": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 5,
+        "name": "Heartleaf 77% Soothing Toner",
+        "price_cents": 2190,
+        "brand": "ANUA"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml",
+        "price_cents": 9999,
+        "brand": "Beauty of Joseon"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-18T20:33:22.854Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SJgnvP7tRkRV6sZlqagAyg1",
+    "client_reference_id": null,
+    "user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-18T20:33:22.854Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "rewards_points": 209,
+    "rewards_at": "2025-10-18T20:33:22.858Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 5,
+        "name": "Heartleaf 77% Soothing Toner"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1BC28izwyqU4jYSKnce1Eilx33lS5imr7a25NGE3WoNc5lDQArDGqyKFU",
+    "payment_status": "paid",
+    "amount_total": 19749,
+    "amount_subtotal": 20949,
+    "shipping_cost": -1200,
+    "currency": "eur",
+    "email": "test1@gmail.com",
+    "customer_name": "test",
+    "items": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 5,
+        "name": "Heartleaf 77% Soothing Toner",
+        "price_cents": 2190,
+        "brand": "ANUA"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml",
+        "price_cents": 9999,
+        "brand": "Beauty of Joseon"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-18T20:35:25.540Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SJgq6P7tRkRV6sZVwGHR021",
+    "client_reference_id": null,
+    "user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-18T20:35:25.540Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "rewards_points": 209,
+    "rewards_at": "2025-10-18T20:35:25.545Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 5,
+        "name": "Heartleaf 77% Soothing Toner"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1VmQUUPlAcfyvGj7fEcivS43DKbuRg0CcLXJm75yMSNyuaU1oUNJd65i3",
+    "payment_status": "paid",
+    "amount_total": 26568,
+    "amount_subtotal": 26568,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "test1@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 3,
+        "name": "Heartleaf 77% Soothing Toner",
+        "price_cents": 2190,
+        "brand": "ANUA"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 2,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml",
+        "price_cents": 9999,
+        "brand": "Beauty of Joseon"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-18T20:55:44.570Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SJh9sP7tRkRV6sZLkRRRs4J",
+    "client_reference_id": null,
+    "user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-18T20:55:44.570Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "rewards_points": 265,
+    "rewards_at": "2025-10-18T20:55:44.577Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 3,
+        "name": "Heartleaf 77% Soothing Toner"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 2,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b151QhQWEd4HOXeCWnZWfEHa2A3JHIqD5UraeKVK6IGSIScokHTonTe3Pn",
+    "payment_status": "paid",
+    "amount_total": 12189,
+    "amount_subtotal": 12189,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "test1@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 1,
+        "name": "Heartleaf 77% Soothing Toner",
+        "price_cents": 2190,
+        "brand": "ANUA"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml",
+        "price_cents": 9999,
+        "brand": "Beauty of Joseon"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-18T20:58:56.105Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SJhCuP7tRkRV6sZTJCWwPAF",
+    "client_reference_id": null,
+    "user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-18T20:58:56.105Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "rewards_points": 121,
+    "rewards_at": "2025-10-18T20:58:56.111Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 1,
+        "name": "Heartleaf 77% Soothing Toner"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1k9bYlXoF9pzEUnp56XUtrghICDBTbEgtxTMzN3xCIxadbilVPujWXFm5",
+    "payment_status": "paid",
+    "amount_total": 14379,
+    "amount_subtotal": 14379,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "test1@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 2,
+        "name": "Heartleaf 77% Soothing Toner",
+        "price_cents": 2190,
+        "brand": "ANUA"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml",
+        "price_cents": 9999,
+        "brand": "Beauty of Joseon"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-18T21:40:48.519Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SJhrTP7tRkRV6sZO591xG8f",
+    "client_reference_id": null,
+    "user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-18T21:40:48.519Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "rewards_points": 143,
+    "rewards_at": "2025-10-18T21:40:48.525Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 2,
+        "name": "Heartleaf 77% Soothing Toner"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1E7vPNz5aZdBjJSWKB9dPlUTUc8ZoM0IPosji9NtiBAa6YOuZXifJePRt",
+    "payment_status": "paid",
+    "amount_total": 16569,
+    "amount_subtotal": 16569,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "test1@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 3,
+        "name": "Heartleaf 77% Soothing Toner",
+        "price_cents": 2190,
+        "brand": "ANUA"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml",
+        "price_cents": 9999,
+        "brand": "Beauty of Joseon"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-18T21:43:10.047Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SJhtnP7tRkRV6sZVlXItKNf",
+    "client_reference_id": null,
+    "user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-18T21:43:10.047Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "rewards_points": 165,
+    "rewards_at": "2025-10-18T21:43:10.054Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 3,
+        "name": "Heartleaf 77% Soothing Toner"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1F907D0cpczFA92dbWcmybQF9arrCMvNmaMVoybwbWNahYHj4EGjDJ6es",
+    "payment_status": "paid",
+    "amount_total": 16569,
+    "amount_subtotal": 16569,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "test1@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 3,
+        "name": "Heartleaf 77% Soothing Toner",
+        "price_cents": 2190,
+        "brand": "ANUA"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml",
+        "price_cents": 9999,
+        "brand": "Beauty of Joseon"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-18T21:43:54.265Z",
+    "shipping": {
+      "name": null,
+      "address": null,
+      "phone": null
+    },
+    "shipping_option": "shr_1SJhuXP7tRkRV6sZc0gM1Ub0",
+    "client_reference_id": null,
+    "user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-18T21:43:54.266Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "rewards_points": 165,
+    "rewards_at": "2025-10-18T21:43:54.272Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 3,
+        "name": "Heartleaf 77% Soothing Toner"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1aCSLPkI0W3K4KkT1b7KfJEaycAZxG7MZnytSOQtkv7XsJAcqEQhdyzg2",
+    "payment_status": "paid",
+    "amount_total": 16569,
+    "amount_subtotal": 16569,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "test1@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 3,
+        "name": "Heartleaf 77% Soothing Toner",
+        "price_cents": 2190,
+        "brand": "ANUA"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml",
+        "price_cents": 9999,
+        "brand": "Beauty of Joseon"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-18T22:10:39.367Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "phone": "+32483111232",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame5ee 125",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      }
+    },
+    "shipping_option": "shr_1SJiKOP7tRkRV6sZT1zioJPv",
+    "client_reference_id": null,
+    "user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-18T22:10:39.367Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "rewards_points": 165,
+    "rewards_at": "2025-10-18T22:10:39.370Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-77-soothing-toner",
+        "qty": 3,
+        "name": "Heartleaf 77% Soothing Toner"
+      },
+      {
+        "id": "boj-relief-sun-rice-probiotics",
+        "qty": 1,
+        "name": "Relief Sun : Rice + Probiotics SPF50+ PA++++ 50ml"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1gFAOXblus3Q5mXSmrdkt7uX6KAokXTtX9gfESPRLpVuNH1v5DbmAn50d",
+    "payment_status": "paid",
+    "amount_total": 13930,
+    "amount_subtotal": 13930,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "test1@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "anua-heartleaf-pore-control-cleansing-oil",
+        "qty": 7,
+        "name": "Heartleaf Pore Control Cleansing Oil",
+        "price_cents": 1990,
+        "brand": "ANUA"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-19T00:13:12.870Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "phone": "+32483111232",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame5ee 125666",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      }
+    },
+    "shipping_option": "shr_1SJkElP7tRkRV6sZBL2Me1aM",
+    "client_reference_id": null,
+    "user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-19T00:13:12.870Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ff7baff7-7586-45db-b5f9-625438c0a973",
+    "rewards_points": 139,
+    "rewards_at": "2025-10-19T00:13:12.876Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-pore-control-cleansing-oil",
+        "qty": 7,
+        "name": "Heartleaf Pore Control Cleansing Oil"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1I7XThXb9umdeDyL0U2dnfQfNhJiESh1AoIngJK2aMbXXuX0WMQSKSTna",
+    "payment_status": "paid",
+    "amount_total": 67660,
+    "amount_subtotal": 67660,
+    "shipping_cost": 0,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "anua-heartleaf-pore-control-cleansing-oil",
+        "qty": 34,
+        "name": "Heartleaf Pore Control Cleansing Oil",
+        "price_cents": 1990,
+        "brand": "ANUA"
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-19T00:15:49.198Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "phone": "+32483111232",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      }
+    },
+    "shipping_option": "shr_1SJkHdP7tRkRV6sZJ5NdV6Sn",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-19T00:15:49.198Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 676,
+    "rewards_at": "2025-10-19T00:15:49.203Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-pore-control-cleansing-oil",
+        "qty": 34,
+        "name": "Heartleaf Pore Control Cleansing Oil"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b1L6D1Z01e8SSiaD9sIf7gxjHMA7BfwXQDQM0DHUpVQ4BeDwdsITWRUFIJ",
+    "payment_status": "paid",
+    "amount_total": 4489,
+    "amount_subtotal": 3999,
+    "shipping_cost": 490,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "id": "pack-peau-seche-indispensable",
+        "qty": 1,
+        "name": "💧 Pack Peau Sèche – Indispensable (3 produits)",
+        "price_cents": 3999,
+        "brand": null
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-10-20T17:54:28.922Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "phone": "+32483111232",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      }
+    },
+    "shipping_option": "shr_1SKNHhP7tRkRV6sZeMkBZ2fH",
+    "client_reference_id": null,
+    "user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-10-20T17:54:28.922Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_points": 39,
+    "rewards_at": "2025-10-20T17:54:28.931Z",
+    "stock_breakdown": [
+      {
+        "id": "cosrx-low-ph-good-morning-gel-cleanser",
+        "qty": 1,
+        "name": "Low pH Good Morning Gel Cleanser 150ml"
+      },
+      {
+        "id": "iunik-beta-glucan-daily-moisture-cream",
+        "qty": 1,
+        "name": "Beta-Glucan Daily Moisture Cream"
+      },
+      {
+        "id": "cosrx-aloe-soothing-sun-cream",
+        "qty": 1,
+        "name": "Aloe Soothing Sun Cream SPF50+ PA++++ 50ml"
+      }
+    ]
+  },
+  {
+    "id": "cs_test_b18bwT4WC0yNfpnsUCy87dctivZto7FNaPGoHrDBAIcnYbxdHcIkKCNTsx",
+    "payment_status": "paid",
+    "amount_total": 2335,
+    "amount_subtotal": 1845,
+    "shipping_cost": 490,
+    "currency": "eur",
+    "email": "guclugrkn@gmail.com",
+    "customer_name": "Gurkan Guclu",
+    "items": [
+      {
+        "type": "single",
+        "id": "anua-heartleaf-pore-control-cleansing-oil",
+        "qty": 1,
+        "name": "Heartleaf Pore Control Cleansing Oil",
+        "brand": "ANUA",
+        "price_cents": 1845
+      }
+    ],
+    "stripe_line_items": [],
+    "createdAt": "2025-11-02T14:21:27.091Z",
+    "shipping": {
+      "name": "Gurkan Guclu",
+      "phone": "+32483111232",
+      "address": {
+        "city": "Bruxelles",
+        "country": "BE",
+        "line1": "Parvis notre dame 12",
+        "line2": null,
+        "postal_code": "1020",
+        "state": null
+      }
+    },
+    "shipping_option": "shr_1SP29RP7tRkRV6sZy3483pxn",
+    "client_reference_id": null,
+    "user_id": null,
+    "status": "paid",
+    "status_history": [
+      {
+        "at": "2025-11-02T14:21:27.092Z",
+        "status": "paid",
+        "by": "system"
+      }
+    ],
+    "rewards_credited_email": "guclugrkn@gmail.com",
+    "rewards_points": 36,
+    "rewards_at": "2025-11-02T14:21:27.102Z",
+    "stock_breakdown": [
+      {
+        "id": "anua-heartleaf-pore-control-cleansing-oil",
+        "qty": 1,
+        "name": "Heartleaf Pore Control Cleansing Oil"
+      }
+    ],
+    "rewards_credited_user_id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
+    "rewards_backfill_done": true
   }
 ]

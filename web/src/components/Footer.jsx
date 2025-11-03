@@ -1,6 +1,8 @@
 import React from "react";
 import "./Footer.css";
 
+
+
 const CONTACT_EMAIL = "contact@korelia.be";
 const WHATSAPP_E164 = "+32400000000";
 
@@ -15,24 +17,23 @@ const PACK_GROUPS = [
 ];
 
 const TYPES = [
-  { label: "Huile nettoyante", href: "/catalogue?type=huile" },
-  { label: "Nettoyant", href: "/catalogue?type=nettoyant" },
-  { label: "Gommage", href: "/catalogue?type=gommage" },
-  { label: "Toner", href: "/catalogue?type=toner" },
-  { label: "Essence", href: "/catalogue?type=essence" },
-  { label: "Sérum", href: "/catalogue?type=serum" },
-  { label: "Crème", href: "/catalogue?type=creme" },
-  { label: "Masque tissu", href: "/catalogue?type=masque" },
-  { label: "Crème solaire (SPF)", href: "/catalogue?type=spf" },
-  { label: "Ampoule", href: "/catalogue?type=ampoule" },
+  
+  { label: "Nettoyant", href: "/catalogue?cat=nettoyant&catLabel=nettoyant" },
+  { label: "Toner", href: "/catalogue?cat=toner&catLabel=toner" },
+  { label: "Essence", href: "/catalogue?cat=essence&catLabel=essence" },
+  { label: "Sérum", href: "/catalogue?cat=serum&catLabel=serum"},
+  { label: "Crème", href: "/catalogue?cat=crème&catLabel=crème" },
+  { label: "Masque tissu", href: "/catalogue?cat=masque&catLabel=masque" },
+  { label: "Crème solaire (SPF)", href: "/catalogue?cat=spf&catLabel=spf" },
+
 ];
 
 const HELP = [
-  { label: "À propos", href: "/a-propos" },
+  { label: "À propos", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Suivi de commande", href: "/suivi-commande" },
   { label: "FAQ", href: "/faq" },
-  { label: "Livraison & retours", href: "/livraison-retours" },
+  { label: "Livraison & retours", href: "/livraison" },
   { label: "Paiement sécurisé", href: "/paiement-securise" },
   { label: "CGV / CGU", href: "/cgv" },
   { label: "Confidentialité & cookies", href: "/confidentialite" },
@@ -93,14 +94,14 @@ export default function Footer() {
               <li key={g.group} className="packs-item">
                 <span className="packs-group">{g.group}</span>
                 <span className="packs-links">
-                  <a href={`/packs/${g.std}`}>Standard</a>
+                  <a href={`/pack/${g.std}`}>Standard</a>
                   <span>·</span>
-                  <a href={`/packs/${g.full}`}>Complet</a>
+                  <a href={`/pack/${g.full}`}>Complet</a>
                 </span>
               </li>
             ))}
           </ul>
-          <a className="packs-all" href="/packs">Voir tous les packs →</a>
+          <a className="packs-all" href="/catalogue?cat=pack&catLabel=pack">Voir tous les packs →</a>
         </nav>
 
         {/* Produits par type */}
@@ -127,8 +128,8 @@ export default function Footer() {
       <div className="legal">
         <p>© {new Date().getFullYear()} Korelia. Tous droits réservés.</p>
         <div className="legal-links">
-          <a href="/confidentialite">Confidentialité</a><span>·</span>
-          <a href="/cookies">Cookies</a><span>·</span>
+          <a href="/confidentialite">Confidentialité - Cookies</a><span>·</span>
+          
           <a href="/mentions-legales">Mentions légales</a><span>·</span>
           <a href="/sitemap">Sitemap</a>
         </div>

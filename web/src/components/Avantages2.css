@@ -30,12 +30,12 @@
   justify-content: center;
   align-items: center;
   gap: 12px;
-  width: 230px;
-  height: 230px;
+  width: 200px;
+  height: 200px;
   background: var(--card);
   border: 1px solid rgba(0,0,0,.06);
   border-radius: 999px;
-  box-shadow: 0 12px 28px rgba(20,20,20,1);
+  box-shadow: 0 12px 28px rgba(20,20,20,0.5);
   padding: clamp(14px, 2vw, 18px);
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
@@ -73,12 +73,66 @@
   .avantages2{
     grid-template-columns: repeat(2, minmax(0,1fr));
   }
+
+  .avantages2 > div{
+  width: 180px;
+  height: 180px;
 }
-@media (max-width: 580px){
-  .avantages2{
-    grid-template-columns: 1fr;
-  }
 }
+
+@media (max-width: 910px){
+   .avantages2 > div{
+  width: 130px;
+  height: 130px;
+}
+}
+
+
+@media (max-width: 690px){
+   .avantages2 > div{
+  width: 105px;
+  height: 105px;
+  
+}
+}
+
+@media (max-width: 590px){
+   .avantages2 > div{
+  width: 85px;
+  height: 85px;
+  
+}
+}
+
+@media (max-width: 480px){
+   .avantages2 > div{
+  width: 70px;
+  height: 70px;
+
+
+}
+}
+
+@media (max-width: 410px){
+   .avantages2 > div{
+  width: 60px;
+  height: 60px;
+
+
+}
+}
+
+
+
+@media (max-width: 365px){
+   .avantages2 > div{
+  width: 50px;
+  height: 50px;
+}
+}
+
+
+
 
 /* Motion-safe */
 @media (prefers-reduced-motion: reduce){

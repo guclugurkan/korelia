@@ -1,7 +1,7 @@
 // src/pages/Brands.jsx
 import { Link } from "react-router-dom";
-import HeaderAll from "../components/HeaderAll";
 import Footer from "../components/Footer";
+import SiteHeader from "../components/SiteHeader";
 import "./Brands.css";
 
 const BRANDS = [
@@ -25,7 +25,7 @@ const BRANDS = [
 export default function Brands() {
   return (
     <main className="brandsPage-wrap">
-      <HeaderAll />
+      <SiteHeader />
 
       <section className="brandsPage-hero">
         <h1>Toutes nos marques</h1>

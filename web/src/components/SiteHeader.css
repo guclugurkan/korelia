@@ -1,0 +1,12 @@
+/* Desktop visible par défaut */
+.header-visible-desktop { display: block; }
+.header-visible-mobile  { display: none; }
+.header-visible-desktop {
+  width: 100%;
+}
+
+/* En mobile (≤768px environ), on inverse */
+@media (max-width:768px){
+  .header-visible-desktop { display: none; }
+  .header-visible-mobile  { display: block; }
+}

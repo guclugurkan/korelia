@@ -37,6 +37,13 @@ export default function AdminHome() {
             action={() => nav("/admin/dashboard")}
             linkTo="/admin/dashboard"
           />
+          <FeatureCard
+            title="Avis"
+            desc="Modère les avis et crédite les points."
+            action={() => nav("/admin/reviews")}
+            linkTo="/admin/reviews"
+          />
+
         </div>
       </section>
     </main>

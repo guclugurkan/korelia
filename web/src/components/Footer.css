@@ -1,8 +1,14 @@
 :root{
-  --ink:#2f2f2f; --muted:#6b5f50;
-  --nude-50:#fffaf3; --nude-100:#f7f2ea;
-  --gold-200:#e6dac8; --gold-400:#cdb68f;
+  --ink:#2f2f2f;
+  --muted:#6b5f50;
+  --nude-50:#fffaf3;
+  --nude-100:#f7f2ea;
+  --gold-200:#e6dac8;
+  --gold-400:#cdb68f;
   --radius:16px;
+  --shadow-card:0 8px 24px rgba(0,0,0,.06), inset 0 1px 0 rgba(255,255,255,.6);
+  --font-body:600 13.5px/1.4 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  --font-heading:800 14px/1.1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
 }
 
 .footer{
@@ -11,93 +17,452 @@
   border-top:1px solid var(--gold-200);
   color:var(--ink);
   width:100%;
- 
 }
 
 .footer-inner{
-  width:90%; margin:0 auto;
-  display:grid; gap:28px; padding:28px 0 18px;
+  width:90%;
+  margin:0 auto;
+  display:grid;
+  gap:28px;
+  padding:28px 0 18px;
   grid-template-columns: 1.2fr 1.4fr 1fr 1fr; /* Brand | Packs | Produits | Aide */
   align-items:start;
 }
 
-/* Colonne brand : bloc aligné et stable */
+/* ========== COLONNES GÉNÉRALES ========== */
+.col {
+  min-width: 0;
+}
+
+.col h3{
+  font:var(--font-heading);
+  letter-spacing:.2px;
+  margin:0 0 10px;
+  color:#3a332a;
+  text-transform:uppercase;
+}
+.col ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:8px;
+}
+.col a{
+  color:#3a332a;
+  text-decoration:none;
+  font:var(--font-body);
+}
+.col a:hover{
+  color:#000;
+  text-decoration:underline;
+}
+
+/* ========== BRAND BOX ========== */
 .brand .brand-box{
   width: 100%;
-  height: 400px;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border:1px solid var(--gold-200); border-radius:16px; padding:14px;
+
+  border:1px solid var(--gold-200);
+  border-radius:16px;
+  padding:14px;
   background:linear-gradient(180deg,#fffaf3,#f7f2ea);
-  box-shadow:0 8px 24px rgba(0,0,0,.06), inset 0 1px 0 rgba(255,255,255,.6);
+  box-shadow:var(--shadow-card);
+  text-align:center;
 }
+
 .logo{
-  font:900 22px/1 ui-serif,Georgia,"Times New Roman";
-  letter-spacing:.16em; color:#9b7f41; text-transform:uppercase;
+  font:900 22px/1 ui-serif,Georgia,"Times New Roman",serif;
+  letter-spacing:.16em;
+  color:#9b7f41;
+  text-transform:uppercase;
 }
-.tagline{ margin:2px 0 8px; color:var(--muted); font:500 14px/1.5 ui-sans-serif,system-ui; }
-.contact{ display:grid; gap:6px; margin:2px 0 4px; }
-.contact-link{ color:#3a332a; text-decoration:none; font:600 13.5px/1.4 ui-sans-serif,system-ui; }
-.contact-link:hover{ color:#000; text-decoration:underline; }
-
-.social{ display:flex; gap:10px; margin-top:4px; }
-.ico{ width:36px; height:36px; display:grid; place-items:center; border:1px solid var(--gold-200); border-radius:999px; color:#3a332a; }
-.ico:hover{ background:#fff; }
-
-/* Titres colonnes */
-.col h3{
-  font:800 14px/1.1 ui-sans-serif,system-ui; letter-spacing:.2px; margin:0 0 10px; color:#3a332a;
+.tagline{
+  margin:2px 0 8px;
+  color:var(--muted);
+  font:500 14px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  max-width: 240px;
 }
-.col ul{ list-style:none; padding:0; margin:0; display:grid; gap:8px; }
-.col a{ color:#3a332a; text-decoration:none; font:600 13.5px/1.4 ui-sans-serif,system-ui; }
-.col a:hover{ color:#000; text-decoration:underline; }
+.contact{
+  display:grid;
+  gap:6px;
+  margin:2px 0 4px;
+}
+.contact-link{
+  color:#3a332a;
+  text-decoration:none;
+  font:var(--font-body);
+  word-break: break-word;
+  text-align:center;
+}
+.contact-link:hover{
+  color:#000;
+  text-decoration:underline;
+}
+.social{
+  display:flex;
+  gap:10px;
+  margin-top:4px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.ico{
+  width:36px;
+  height:36px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--gold-200);
+  border-radius:999px;
+  color:#3a332a;
+  background:#fffaf3;
+  box-shadow:0 4px 10px rgba(0,0,0,.04);
+  transition:.18s;
+}
+.ico:hover{
+  background:#fff;
+  box-shadow:0 6px 16px rgba(0,0,0,.07);
+}
 
-/* Packs condensés */
-.packs .packs-list{ display:grid; gap:8px; }
+/* ========== PACKS ROUTINES ========== */
+.packs h3{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.packs .packs-list{
+  display:grid;
+  gap:8px;
+}
 .packs-item{
-  display:flex; justify-content:space-between; gap:10px; align-items:center;
-  border-bottom:1px dashed #e6dac8; padding:6px 0;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  border-bottom:1px dashed #e6dac8;
+  padding:6px 0;
 }
-.packs-item:last-child{ border-bottom:0; }
-.packs-group{ font-weight:800; color:#553421; }
-.packs-links{ display:flex; align-items:center; gap:8px; white-space:nowrap; }
-.packs-links span{ color:#6b5f50; }
+.packs-item:last-child{
+  border-bottom:0;
+}
+.packs-group{
+  font-weight:800;
+  color:#553421;
+  font-size:13px;
+  line-height:1.3;
+  max-width:60%;
+}
+.packs-links{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  white-space:nowrap;
+  font:var(--font-body);
+}
+.packs-links span{
+  color:#6b5f50;
+}
 .packs-all{
-  display:inline-block; margin-top:10px; font-weight:800; color:#9b7f41; text-decoration:none;
+  display:inline-block;
+  margin-top:10px;
+  font-weight:800;
+  color:#9b7f41;
+  text-decoration:none;
+  font-size:13px;
 }
-.packs-all:hover{ text-decoration:underline; }
+.packs-all:hover{
+  text-decoration:underline;
+}
 
-/* Produits / Aide : listes */
-.products ul, .help ul{ gap:8px; }
+/* ========== PRODUITS / AIDE ========== */
+.products ul,
+.help ul{
+  gap:8px;
+}
+.products li a,
+.help li a{
+  display:inline-block;
+  font:var(--font-body);
+  line-height:1.4;
+  color:#3a332a;
+}
+.products li a:hover,
+.help li a:hover{
+  color:#000;
+  text-decoration:underline;
+}
 
-/* Bas de page */
+/* ========== BAS DE PAGE LEGAL ========== */
 .legal{
   border-top:1px solid var(--gold-200);
   padding:12px 0 18px;
-  width:90%; max-width:1180px; margin:0 auto;
-  display:flex; gap:10px; justify-content:space-between; align-items:center; flex-wrap:wrap;
-  color:#6b5f50; font:500 12.5px/1.4 ui-sans-serif,system-ui;
-}
-.legal-links{ display:flex; gap:8px; align-items:center; }
-.legal-links a{ color:#6b5f50; text-decoration:none; }
-.legal-links a:hover{ text-decoration:underline; }
+  width:90%;
+  max-width:1180px;
+  margin:0 auto;
 
-/* Responsive */
-@media (max-width: 1080px){
-  .footer-inner{ grid-template-columns: 1fr 1fr; }
+  display:flex;
+  gap:10px;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+
+  color:#6b5f50;
+  font:500 12.5px/1.4 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
 }
-@media (max-width: 640px){
-  .footer-inner{ grid-template-columns: 1fr; }
-  .packs-item{ flex-direction:column; align-items:flex-start; gap:2px; }
-  .legal{ flex-direction:column; align-items:flex-start; gap:6px; }
+.legal p{
+  margin:0;
+}
+.legal-links{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.legal-links a{
+  color:#6b5f50;
+  text-decoration:none;
+  font-weight:500;
+  font-size:12.5px;
+  line-height:1.4;
+}
+.legal-links a:hover{
+  text-decoration:underline;
 }
 
-
-.packs ,.products,.help {
-  
+/* ========== PADDING COLONNES (desktop) ========== */
+.packs,
+.products,
+.help {
+  padding: 30px;
+}
+.brand {
   padding: 30px;
 }
 
 
+
+/* =====================================================
+   RESPONSIVE TABLETTE (≤1080px)
+   =====================================================
+
+   On passe en 2 colonnes :
+   [ brand ] [ packs ]
+   [ produits ] [ help ]
+
+   On arrondit chaque bloc texte avec une carte nude claire
+   pour éviter le mur de texte gris. Ça reste luxe / skincare.
+*/
+@media (max-width:1080px){
+
+  .footer-inner{
+    grid-template-columns: 1fr 1fr;
+    gap:24px;
+  }
+
+  .brand,
+  .packs,
+  .products,
+  .help{
+    padding:16px;
+    border:1px solid var(--gold-200);
+    border-radius:16px;
+    background:linear-gradient(180deg,#fffaf3,#f7f2ea);
+    box-shadow:var(--shadow-card);
+  }
+
+  /* la brand-box a déjà son fond nude + bordure,
+     donc on évite double-encapsuler un card dans un card */
+  .brand{
+    background:transparent;
+    border:0;
+    box-shadow:none;
+    padding:0;
+  }
+
+  /* Dans ce mode tablette :
+     Les packs deviennent plus verticaux.
+  */
+  .packs-item{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:2px;
+  }
+  .packs-group{
+    max-width:100%;
+    font-size:13.5px;
+    line-height:1.4;
+  }
+  .packs-links{
+    font-size:13px;
+    gap:6px;
+  }
+  .packs-links span{
+    line-height:1;
+  }
+
+  /* textes un peu plus grands et lisibles au doigt */
+  .col a{
+    font-size:14px;
+    line-height:1.45;
+  }
+  .col h3{
+    font-size:14px;
+    line-height:1.2;
+    margin-bottom:12px;
+  }
+
+  .legal{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+    font-size:12.5px;
+  }
+  .legal-links{
+    font-size:12.5px;
+  }
+}
+
+
+
+/* =====================================================
+   RESPONSIVE MOBILE (≤640px)
+   =====================================================
+
+   On passe en 1 seule colonne :
+   [ brand ]
+   [ packs ]
+   [ produits ]
+   [ help ]
+
+   Chaque bloc = une carte claire séparée avec bordure or,
+   comme des "sections" cliquables / scannables.
+   On centre les réseaux sociaux et facilite le clic.
+*/
+@media (max-width:640px){
+
+  .footer-inner{
+    grid-template-columns: 1fr;
+    width:90%;
+    gap:20px;
+  }
+
+  .brand,
+  .packs,
+  .products,
+  .help{
+    padding:16px;
+    border:1px solid var(--gold-200);
+    border-radius:16px;
+    background:linear-gradient(180deg,#fffaf3,#f7f2ea);
+    box-shadow:var(--shadow-card);
+  }
+
+  /* Brand: on évite carte-dans-carte en mobile aussi */
+  .brand{
+    background:transparent;
+    border:0;
+    box-shadow:none;
+    padding:0;
+  }
+
+  .brand .brand-box{
+    width:100%;
+    min-height:unset;
+    padding:18px 16px;
+  }
+
+  .logo{
+    font-size:20px;
+    line-height:1.1;
+    letter-spacing:.18em;
+  }
+
+  .tagline{
+    font-size:14px;
+    line-height:1.45;
+    max-width:260px;
+  }
+
+  .contact{
+    font-size:14px;
+  }
+  .contact-link{
+    font-size:14px;
+    line-height:1.4;
+  }
+
+  .social{
+    justify-content:center;
+  }
+  .ico{
+    width:40px;
+    height:40px;
+    font-size:0;
+  }
+
+  /* Packs : full vertical, lisible du premier coup d'œil */
+  .packs .packs-list{
+    gap:10px;
+  }
+  .packs-item{
+    flex-direction:column;
+    align-items:flex-start;
+    border-bottom:1px dashed #e6dac8;
+    padding:8px 0;
+  }
+  .packs-item:last-child{
+    border-bottom:0;
+  }
+  .packs-group{
+    font-size:14px;
+    line-height:1.4;
+    font-weight:800;
+    color:#553421;
+  }
+  .packs-links{
+    font-size:13.5px;
+    line-height:1.4;
+    gap:6px;
+  }
+  .packs-links a{
+    font-weight:600;
+  }
+  .packs-all{
+    font-size:13.5px;
+    margin-top:12px;
+  }
+
+  /* Produits / Help : on augmente la zone tactile */
+  .products ul,
+  .help ul{
+    gap:10px;
+  }
+  .products li a,
+  .help li a{
+    display:block;
+    padding:6px 0;
+    font-size:14px;
+    line-height:1.45;
+  }
+
+  /* zone légale en bas */
+  .legal{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+    width:90%;
+    font-size:12.5px;
+  }
+  .legal-links{
+    flex-wrap:wrap;
+    row-gap:4px;
+    column-gap:8px;
+  }
+  .legal-links a{
+    font-size:12.5px;
+    line-height:1.4;
+  }
+}

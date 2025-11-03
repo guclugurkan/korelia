@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import "./Login.css";
-
-import HeaderAll from "../components/HeaderAll";
+import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
+
+
 export default function Login(){
   const { login } = useAuth();
   const nav = useNavigate();
@@ -32,7 +33,7 @@ export default function Login(){
 
   return (
     <main className="login-wrap">
-      {<HeaderAll/>}
+      {<SiteHeader/>}
       <section className="login-card" aria-labelledby="login-title">
         <div className="form-side">
           <h1 id="login-title" className="form-title">Se connecter</h1>

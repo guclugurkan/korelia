@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import HeaderAll from "../components/HeaderAll";
+import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 import "./Login.css"; // on réutilise ton style doux
 
@@ -51,7 +51,7 @@ export default function Register(){
 
   return (
     <main className="login-wrap">
-      <HeaderAll/>
+      <SiteHeader/>
 
       <section className="login-card" aria-labelledby="register-title">
         <div className="form-side">

@@ -1,7 +1,7 @@
 
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import ProfilPage from './pages/ProfilPage';
+
 import FavoriPage from './pages/FavoriPage';
 import PanierPage from './pages/PanierPage';
 import Blog from './blog/Blog';
@@ -43,8 +43,16 @@ import Brands from './pages/Brands.jsx';
 
 import Contact from './pages/Contact.jsx';
 import About from './pages/About.jsx';
-import OrderTracking from './pages/OrderTracking.jsx';
+import SuiviCommande from './pages/SuiviCommande.jsx';
 import Sitemap from './pages/Sitemap.jsx';
+
+import FAQ from './pages/FAQ.jsx';
+import LivraisonRetours from './pages/LivraisonRetours.jsx';
+import PaiementSecurise from './pages/PaiementSecurise.jsx';
+import CGV_CGU from './pages/CGV_CGU.jsx';
+import Confidentialite from './pages/Confidentialite.jsx';
+import MentionsLegales from './pages/MentionsLegales.jsx';
+import AdminReviews from './pages/AdminReviews.jsx';
 
 
 function App () {
@@ -56,7 +64,7 @@ function App () {
     <Router>
       <Routes>
         <Route path="/" element= {<HomePage/>} />
-        <Route path="/ProfilPage" element = {<ProfilPage/>} />
+   
         <Route path='/favoris' element = {<FavoriPage/>} />
         <Route path='/panier' element = {<PanierPage/>} />
         <Route path='/blog' element={<Blog/>} />
@@ -91,8 +99,17 @@ function App () {
 
         <Route path='/contact' element={<Contact/>} /> 
         <Route path='/about' element={<About/>} />
-        <Route path='suivi-commande' element={<OrderTracking/>} />
-        <Route path='sitemap' element={<Sitemap/>} />
+        <Route path='/suivi-commande' element={<SuiviCommande/>} />
+        <Route path='/sitemap' element={<Sitemap/>} />
+        <Route path='/faq' element={<FAQ/>} />
+        <Route path='/livraison' element={<LivraisonRetours/>} />
+        <Route path='/retours' element={<LivraisonRetours/>} />
+        <Route path='/paiement-securise' element={<PaiementSecurise/>} />
+        <Route path='/cgv' element={<CGV_CGU/>} />
+        <Route path='/confidentialite' element={<Confidentialite/>} /> 
+        <Route path='/mentions-legales' element={<MentionsLegales/>} />
+
+        <Route path='/admin/reviews' element={<AdminReviews/>} />
       </Routes>
     </Router>
     </SearchProvider>

@@ -43,7 +43,7 @@ export default function Avantages () {
                         id='panel-quiz'
                         role='tabpanel'
                         aria-labelledby='tab-quiz'
-                        className={`cta-card ${tab === "quiz" ? "is-quiz" : "is-guide"}`}
+                        className={`cta-cardd ${tab === "quiz" ? "is-quiz" : "is-guide"}`}
                         href='/#'
                     >
                         <Link to='/quiz' className="cta-btn btn-left">
@@ -57,7 +57,7 @@ export default function Avantages () {
                         id="panel-guide"                // 48) Identifiant du panneau "guide".
                         role="tabpanel"                 // 49) role="tabpanel".
                         aria-labelledby="tab-guide"     // 50) Lie ce panneau à l’onglet "guide".
-                        className={`cta-card ${tab === "guide" ? "is-guide" : "is-quiz"}`}            // 51) Styles de carte.
+                        className={`cta-cardd ${tab === "guide" ? "is-guide" : "is-quiz"}`}            // 51) Styles de carte.
                         href="/skincare-coreen"         // 52) Cible : page du guide skincare coréenne.
                     > 
                     <Link to='/guide-skincare' className='cta-btn btn-right'>

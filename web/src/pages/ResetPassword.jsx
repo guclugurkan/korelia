@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 import "./Login.css";
-import HeaderAll from "../components/HeaderAll";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 export default function ResetPassword(){
@@ -53,7 +53,7 @@ export default function ResetPassword(){
 
   return (
     <main className="login-wrap">
-      <HeaderAll/>
+      <Header/>
 
       <section className="login-card" aria-labelledby="rp-title">
         <div className="form-side">

@@ -132,7 +132,7 @@ export default function OrdersPanel({ limit = Infinity, showAllButton = false })
                   <ul>
                     {o.items.map((it, i)=>(
                       <li key={i}>
-                        <span className="qty">×{it.qty}</span> {it.name || `Produit #${it.id}`}
+                        <span className="qty">{it.qty}.</span> {it.name || `Produit ${it.id}`}
                       </li>
                     ))}
                   </ul>

@@ -1,0 +1,28 @@
+/* src/pages/MentionsLegales.css */
+.ml-hero { text-align:center; padding:32px 16px 18px; }
+.ml-hero h1 { margin:0 0 10px; font-size:26px; }
+.ml-hero p { margin:0; color:#6b7280; }
+
+.ml-container { max-width:900px; margin:0 auto; padding:20px; line-height:1.65; }
+.ml-container h2 { margin-top:22px; font-size:20px; }
+
+.ml-container a { color:#111827; text-decoration: underline; }
+.fill { background: #fff7d1; padding: 0 4px; border-radius: 4px; }
+
+.ml-updated { margin-top:24px; font-size:14px; color:#6b7280; }
+
+@media (max-width: 680px) {
+    
+    .ml-hero h1 {
+        font-size: 24px;
+    }
+    .ml-hero p {
+        font-size: 14px;
+    }
+
+    .ml-container { 
+        font-size: 12px;
+     }
+    .ml-container h2 { font-size:20px; }
+    
+}

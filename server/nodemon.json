@@ -1,3 +1,13 @@
 {
-  "ignore": ["orders.json", "products.json", "processedEvents.json"]
+  "watch": ["index.js", "routes", "lib"],
+  "ext": "js,mjs,cjs",
+  "ignore": [
+    "orders.json",
+    "products.json",
+    "users.json",
+    "contacts.json",
+    "processedEvents.json",
+    "node_modules",
+    "**/*.log"
+  ]
 }

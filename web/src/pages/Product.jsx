@@ -1,522 +1,671 @@
 // src/pages/Product.jsx
-import { useEffect, useMemo, useState, useCallback } from "react";
-import { useParams } from "react-router-dom";
-import HeaderAll from "../components/HeaderAll";
+import { useEffect, useMemo, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+
+import SiteHeader from "../components/SiteHeader"
 import Footer from "../components/Footer";
 import { useCart } from "../cart/CartContext";
 import { useAuth } from "../auth/AuthContext";
-import { useFavorites } from "../favorites/FavoritesContext";
-import "./Product.css";
+import "./product.css";
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:4242";
 const fmtEur = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
 
-const fallbackImg =
-  "data:image/svg+xml;charset=UTF-8," +
-  encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'>
-      <rect width='100%' height='100%' fill='#f3f4f6'/>
-      <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='#9ca3af' font-family='system-ui,Segoe UI,Roboto,Arial' font-size='20'>
-        Image indisponible
-      </text>
-    </svg>`
-  );
-
-/** Résout un asset du dossier public/ en tenant compte du BASE_URL (prod sous sous-chemin) */
-function publicAsset(p) {
-  if (!p) return null;
-  if (/^https?:\/\//i.test(p)) return p; // absolu => on laisse
-  const base = import.meta.env.BASE_URL || "/";
-  const rel = String(p).replace(/^(\.\/|\.\.\/)+/, "").replace(/^\/+/, ""); // nettoie "./", "../" et "/" de tête
-  return (base.endsWith("/") ? base : base + "/") + rel; // ex: "/korelia/" + "img/..."
-}
-
-/** Récupère jusqu'à N images en PRIORISANT p.images[] puis repli sur p.image */
-function collectImages(entity, max = 5) {
-  const out = [];
-  if (Array.isArray(entity?.images)) out.push(...entity.images);
-  if (entity?.image) out.push(entity.image);
-  const uniq = Array.from(new Set(out.filter(Boolean).map(publicAsset)));
-  return (uniq.length ? uniq : [fallbackImg]).slice(0, max);
-}
+const skinTypeLabel = (st) => {
+  const map = {
+    seche: "sèche",
+    grasse: "grasse",
+    mixte: "mixte",
+    sensible: "sensible",
+    normale: "normale",
+    "très sèche": "très sèche",
+    "très sensible": "très sensible",
+    tous: "tous types",
+  };
+  return map[st?.toLowerCase?.()] || st;
+};
 
 export default function Product() {
   const { slug } = useParams();
   const { add } = useCart();
-  const { user, addReviewPoints } = useAuth();
-  const { has: isFav, toggle: toggleFav } = useFavorites();
 
-  const [p, setP] = useState(null);
+  // Auth (avis)
+  const {
+    user,
+    listProductReviews: _listProductReviews,
+    submitProductReview: _submitProductReview,
+  } = useAuth();
+
+  const listProductReviews =
+    _listProductReviews ||
+    (async (productId) => {
+      const r = await fetch(`${API}/reviews/by-product/${encodeURIComponent(productId)}`, {
+        credentials: "include",
+      });
+      const data = await r.json().catch(() => []);
+      if (!r.ok) throw new Error(data.error || "Impossible de charger les avis");
+      return data;
+    });
+
+  const submitProductReview =
+    _submitProductReview ||
+    (async (payload) => {
+      const r = await fetch(`${API}/reviews/submit`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(data.error || "Impossible d’envoyer l’avis");
+      return data;
+    });
+
+  // ====== State produit ======
   const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState("");
+  const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(1);
+  const [mainImg, setMainImg] = useState(null);
 
-  // Avis
+  // Accordéons
+  const [active, setActive] = useState({
+    desc: true,
+    how: true,
+    inci: false,
+    skinrec: true,
+  });
+
+  // Feedback “ajouté au panier”
+  const [addedOk, setAddedOk] = useState(false);
+
+  // ====== State avis ======
+  const [reviews, setReviews] = useState([]);
+  const [revLoading, setRevLoading] = useState(true);
+  const [revErr, setRevErr] = useState("");
+
+  const [formOpen, setFormOpen] = useState(false);
   const [rating, setRating] = useState(5);
-  const [content, setContent] = useState("");
-  const [reviewMsg, setReviewMsg] = useState("");
+  const [text, setText] = useState("");
+  const [authorName, setAuthorName] = useState("");
+  const [authorEmail, setAuthorEmail] = useState("");
+  const [sending, setSending] = useState(false);
+  const [sentMsg, setSentMsg] = useState("");
 
-  // Galerie
-  const [idx, setIdx] = useState(0);
-  const changeIdx = useCallback((i) => setIdx(i), []);
-  const nextImg = useCallback((len) => setIdx((i) => (i + 1) % len), []);
-  const prevImg = useCallback((len) => setIdx((i) => (i - 1 + len) % len), []);
+  // ====== Chargement du produit ======
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(`${API}/api/products/${slug}`, { cache: "no-store" });
+        if (!res.ok) throw new Error(`API error ${res.status}`);
+        const data = await res.json();
+        if (mounted) setProduct(data);
+      } catch (e) {
+        console.error(e);
+        if (mounted) setProduct(null);
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, [slug]);
+
+  // Images
+  const images = useMemo(() => {
+    if (!product) return ["/img/placeholder.png"];
+    const list = Array.isArray(product.images) && product.images.length ? product.images : [];
+    return list.length ? list : [product.image || "/img/placeholder.png"];
+  }, [product]);
 
   useEffect(() => {
+    setMainImg(images?.[0] || null);
+  }, [JSON.stringify(images)]);
+
+  // Charger les avis
+  useEffect(() => {
+    if (!product?.id) {
+      setReviews([]);
+      setRevLoading(false);
+      return;
+    }
     let cancelled = false;
     (async () => {
       try {
-        setErr(""); setLoading(true);
-        const r = await fetch(`${API}/api/products/${slug}`, { headers: { Accept: "application/json" } });
-        const data = await r.json().catch(() => ({}));
-        if (!r.ok) throw new Error(data.error || "Produit introuvable");
-        if (!cancelled) {
-          setP(data);
-          setIdx(0); // reset la galerie au changement de produit
-        }
+        setRevErr("");
+        setRevLoading(true);
+        const data = await listProductReviews(String(product.id));
+        if (!cancelled) setReviews(Array.isArray(data) ? data : []);
       } catch (e) {
-        if (!cancelled) setErr(e.message || "Erreur");
+        if (!cancelled) {
+          setRevErr(e.message || "Impossible de charger les avis");
+          setReviews([]);
+        }
       } finally {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) setRevLoading(false);
       }
     })();
-    return () => { cancelled = true; };
-  }, [slug]);
+    return () => {
+      cancelled = true;
+    };
+  }, [product?.id, listProductReviews]);
 
-  const gallery = useMemo(() => collectImages(p, 5), [p]);
-
-  const inStock = useMemo(() => {
-    if (!p) return false;
-    return typeof p.stock === "number" ? p.stock > 0 : true;
-  }, [p]);
-
-  const earnedPoints = useMemo(() => {
-    if (!p) return 0;
-    return Math.floor((p.price_cents || 0) / 100); // 1 point/€
-  }, [p]);
-
-  const addToCart = () => {
-    if (!p) return;
-    add({
-      id: String(p.id),
-      name: p.name,
-      brand: p.brand,
-      image: gallery[idx] || gallery[0] || fallbackImg, // image visible au moment de l'ajout
-      slug: p.slug,
-      price_cents: p.price_cents,
-      qty: Math.max(1, Math.min(99, Number(qty) || 1)),
-    });
-  };
-
-  const submitReview = async (e) => {
-    e.preventDefault();
-    setReviewMsg("");
-    try {
-      await addReviewPoints({ productId: String(p.id), rating, content });
-      setReviewMsg("Merci ! Tes points ont été ajoutés (si éligible).");
-      setContent("");
-      setRating(5);
-    } catch (ex) {
-      setReviewMsg(ex.message || "Impossible d’envoyer l’avis");
+  // Pré-remplir nom/email si connecté
+  useEffect(() => {
+    if (user) {
+      setAuthorName(user.name || "");
+      setAuthorEmail(user.email || "");
+    } else {
+      setAuthorName("");
+      setAuthorEmail("");
     }
-  };
+  }, [user]);
 
-  if (loading) return (<main><HeaderAll/><div style={{ padding: 24 }}>Chargement…</div><Footer/></main>);
-  if (err) return (<main><HeaderAll/><div style={{ padding: 24 }}><p style={{ color: "#c33" }}>{err}</p></div><Footer/></main>);
-  if (!p) return (<main><HeaderAll/><Footer/></main>);
+  const stock = Number.isFinite(product?.stock) ? product.stock : null;
+  const inStock = stock === null ? true : stock > 0;
+  const lowStockMsg = stock === 1 ? "Plus que 1 en stock" : stock === 2 ? "Plus que 2 en stock" : null;
 
-  const fav = isFav(p.id);
-  const mainImg = gallery[idx] || fallbackImg;
+  // Clamp quantité au stock
+  useEffect(() => {
+    if (stock !== null) setQty((q) => Math.max(1, Math.min(q, Math.max(1, stock))));
+  }, [stock]);
+
+  // Empêcher + au-delà du stock
+  const canInc = stock === null ? true : qty < stock;
+
+  const points = Math.max(1, Math.floor((product?.price_cents || 0) / 100));
+
+  // ====== Données enrichies depuis le nouveau JSON ======
+  const descSummary = product?.description?.summary || "";
+  const descDetailed = product?.description?.detailed || "";
+
+  const useSummary = product?.how_to_use?.summary || "";
+  const useSteps = Array.isArray(product?.how_to_use?.steps) ? product.how_to_use.steps : [];
+  const usePrecautions = Array.isArray(product?.how_to_use?.precautions)
+    ? product.how_to_use.precautions
+    : [];
+
+  const inciList = Array.isArray(product?.ingredients?.list) ? product.ingredients.list : [];
+  const keyRoles =
+    product?.ingredients?.key_ingredients_roles && typeof product.ingredients.key_ingredients_roles === "object"
+      ? product.ingredients.key_ingredients_roles
+      : {};
+
+  const benefits = Array.isArray(product?.benefits) ? product.benefits : [];
+
+  const skinRec = product?.skin_types_recommendation || {};
+  const recFor = Array.isArray(skinRec.recommended_for) ? skinRec.recommended_for : [];
+  const cautionFor = Array.isArray(skinRec.use_with_caution) ? skinRec.use_with_caution : [];
+
+  // ====== ADD TO CART handler ======
+  function handleAddToCart() {
+    if (!product) return;
+    if (!inStock) return;
+
+    const preview =
+      mainImg ||
+      (Array.isArray(product.images) && product.images[0]) ||
+      product.image ||
+      "/img/placeholder.png";
+
+    const item = {
+      id: String(product.id),
+      name: product.name,
+      price_cents: Number(product.price_cents || 0),
+      image: preview,
+      slug: product.slug || slug,
+      brand: product.brand || "",
+    };
+
+    add(item, qty);
+    setAddedOk(true);
+    setTimeout(() => setAddedOk(false), 1500);
+  }
 
   return (
-    <main style={{ background: "#fff" }} className="product-container">
-      <HeaderAll />
+    <>
+      <div className="product-big-container">
+        <SiteHeader/>
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "24px 16px" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 0.9fr)",
-            gap: 24,
-          }}
-        >
-          {/* ===== VISUEL + GALERIE ===== */}
-          <div style={{ position: "relative" }}>
-            {/* Image principale */}
-            <div
-              style={{
-                border: "1px solid #eee",
-                borderRadius: 14,
-                overflow: "hidden",
-                boxShadow: "0 10px 30px rgba(0,0,0,.05)",
-                background: "#f9fafb",
-                position: "relative",
-              }}
-            >
-              <img
-                src={mainImg}
-                alt={`${p.brand ? p.brand + " " : ""}${p.name} — visuel ${idx + 1}`}
-                onError={(e) => (e.currentTarget.src = fallbackImg)}
-                style={{ width: "100%", display: "block", aspectRatio: "1/1", objectFit: "cover" }}
-              />
+        <main className="product-container">
+          <div className="back-row">
+            <Link to="/catalogue" className="btn-back">← Retour au catalogue</Link>
+          </div>
 
-              {/* Flèches galerie */}
-              {gallery.length > 1 && (
-                <>
-                  <button
-                    type="button"
-                    aria-label="Image précédente"
-                    onClick={() => prevImg(gallery.length)}
-                    style={arrowBtnStyle("left")}
+          {loading && <div className="product-loading">Chargement du produit…</div>}
+          {!loading && !product && <div className="product-notfound">Produit introuvable.</div>}
+
+          {!loading && product && (
+            <>
+              <div className="product-wrapper">
+                {/* Galerie */}
+                <section className="product-gallery">
+                  <div className="product-main-image">
+                    {mainImg ? <img src={mainImg} alt={product.name} /> : <div style={{ height: 300 }} />}
+                    {!inStock && (
+                      <div className="oos-over">
+                        <span>Victime de succès</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {images.length > 1 && (
+                    <div className="product-thumbs">
+                      {images.map((src, i) => (
+                        <button
+                          key={i}
+                          className={`thumb ${src === mainImg ? "active" : ""}`}
+                          onClick={() => setMainImg(src)}
+                          aria-label={`Voir l’image ${i + 1}`}
+                        >
+                          <img src={src} alt={`thumb-${i + 1}`} />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </section>
+
+                {/* Infos / Achat */}
+                <section className="product-info">
+                  <div className="pi-header">
+                    {product.brand && <div className="pi-brand">{product.brand}</div>}
+                    <h1 className="pi-name">{product.name}</h1>
+                    {lowStockMsg && <div className="low-stock-pill">{lowStockMsg}</div>}
+                  </div>
+
+                  {benefits.length > 0 && (
+                    <div className="pi-benefits">
+                      <div className="pi-benefits-title">Avantages clés</div>
+                      <ul className="pi-benefits-list">
+                        {benefits.map((b, i) => (
+                          <li key={i}>{b}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className="pi-purchase">
+                    <div className="qty-row">
+                      <label htmlFor="qty">Quantité</label>
+                      <div className="qty-controls">
+                        <button
+                          type="button"
+                          onClick={() => setQty((q) => Math.max(1, q - 1))}
+                          aria-label="Diminuer"
+                        >
+                          −
+                        </button>
+                        <input
+                          id="qty"
+                          type="number"
+                          min="1"
+                          value={qty}
+                          onChange={(e) => {
+                            const v = Math.max(1, parseInt(e.target.value || "1", 10));
+                            setQty(stock === null ? v : Math.min(v, Math.max(1, stock)));
+                          }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => canInc && setQty((q) => q + 1)}
+                          disabled={!canInc}
+                          aria-label="Augmenter"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div className="price-row">
+                      <span className={`price ${addedOk ? "pulse" : ""}`}>
+                        {fmtEur.format((product.price_cents || 0) / 100)}
+                      </span>
+                      <button
+                        className={`btn-primarya ${addedOk ? "ok" : ""}`}
+                        disabled={!inStock}
+                        onClick={handleAddToCart}
+                        aria-live="polite"
+                        title={inStock ? "Ajouter au panier" : "Rupture de stock"}
+                      >
+                        {inStock ? (addedOk ? "Ajouté ✓" : "Ajouter au panier") : "Rupture"}
+                      </button>
+
+                      <div className={`cart-toast ${addedOk ? "show" : ""}`} role="status" aria-live="polite">
+                        Produit ajouté au panier ✓
+                      </div>
+                    </div>
+
+                    <div className="pi-points-block">
+                      À l’achat : <strong>{points}</strong> points gagnés
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              {/* ====== Sections riches ====== */}
+              <section className="product-sections">
+
+                {/* Description — résumé + détaillé */}
+                <div className="pi-section">
+                  <div
+                    className="acc-head"
+                    onClick={() => setActive((s) => ({ ...s, desc: !s.desc }))}
+                    role="button"
+                    aria-expanded={active.desc}
+                    tabIndex={0}
                   >
-                    ‹
-                  </button>
-                  <button
-                    type="button"
-                    aria-label="Image suivante"
-                    onClick={() => nextImg(gallery.length)}
-                    style={arrowBtnStyle("right")}
+                    <h2>Description & Bénéfices</h2>
+                    <span className={`chev ${active.desc ? "open" : ""}`}>⌄</span>
+                  </div>
+                  {active.desc && (
+                    <div className="acc-body">
+                      {descSummary && (
+                        <div className="box block">
+                          <div className="box-title">En bref</div>
+                          <p className="box-text">{descSummary}</p>
+                        </div>
+                      )}
+                      {descDetailed && (
+                        <div className="box block">
+                          <div className="box-title">En profondeur</div>
+                          <p className="box-text">{descDetailed}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Utilisation — résumé + étapes + précautions */}
+                <div className="pi-section">
+                  <div
+                    className="acc-head"
+                    onClick={() => setActive((s) => ({ ...s, how: !s.how }))}
+                    role="button"
+                    aria-expanded={active.how}
+                    tabIndex={0}
                   >
-                    ›
+                    <h2>Utilisation</h2>
+                    <span className={`chev ${active.how ? "open" : ""}`}>⌄</span>
+                  </div>
+                  {active.how && (
+                    <div className="acc-body">
+                      {useSummary && (
+                        <div className="box block">
+                          <div className="box-title">Essentiel</div>
+                          <p className="box-text">{useSummary}</p>
+                        </div>
+                      )}
+
+                      {useSteps.length > 0 && (
+                        <div className="box block">
+                          <div className="box-title">Étapes</div>
+                          <ol className="steps">
+                            {useSteps.map((s, i) => (
+                              <li key={i}>{s}</li>
+                            ))}
+                          </ol>
+                        </div>
+                      )}
+
+                      {usePrecautions.length > 0 && (
+                        <div className="box block warn">
+                          <div className="box-title">Précautions</div>
+                          <ul className="list">
+                            {usePrecautions.map((p, i) => (
+                              <li key={i}>{p}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Ingrédients — clés + INCI complet */}
+                <div className="pi-section">
+                  <div
+                    className="acc-head"
+                    onClick={() => setActive((s) => ({ ...s, inci: !s.inci }))}
+                    role="button"
+                    aria-expanded={active.inci}
+                    tabIndex={0}
+                  >
+                    <h2>Ingrédients</h2>
+                    <span className={`chev ${active.inci ? "open" : ""}`}>⌄</span>
+                  </div>
+                  {active.inci && (
+                    <div className="acc-body">
+                      {/* Ingrédients clés */}
+                      {Object.keys(keyRoles).length > 0 && (
+                        <div className="key-ingredients">
+                          {Object.entries(keyRoles).map(([name, role]) => (
+                            <div className="key-card" key={name}>
+                              <div className="key-name">{name}</div>
+                              <div className="key-role">{String(role)}</div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Liste INCI complète */}
+                      {inciList.length > 0 && (
+                        <div className="box block">
+                          <div className="box-title">INCI complet</div>
+                          <p className="box-text">
+                            {inciList.join(", ")}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Recommandations par type de peau */}
+                {(recFor.length > 0 || cautionFor.length > 0) && (
+                  <div className="pi-section">
+                    <div
+                      className="acc-head"
+                      onClick={() => setActive((s) => ({ ...s, skinrec: !s.skinrec }))}
+                      role="button"
+                      aria-expanded={active.skinrec}
+                      tabIndex={0}
+                    >
+                      <h2>Compatibilité peau</h2>
+                      <span className={`chev ${active.skinrec ? "open" : ""}`}>⌄</span>
+                    </div>
+                    {active.skinrec && (
+                      <div className="acc-body">
+                        {recFor.length > 0 && (
+                          <div className="box block">
+                            <div className="box-title">Recommandé pour</div>
+                            <div className="rec-grid">
+                              {recFor.map((r, i) => (
+                                <div className="rec-card ok" key={i}>
+                                  <div className="rec-type">{skinTypeLabel(r.type || r.Type || "")}</div>
+                                  <div className="rec-reason">{r.reason || r.Raison || ""}</div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {cautionFor.length > 0 && (
+                          <div className="box block warn">
+                            <div className="box-title">À utiliser avec précaution</div>
+                            <div className="rec-grid">
+                              {cautionFor.map((r, i) => (
+                                <div className="rec-card warn" key={i}>
+                                  <div className="rec-type">{skinTypeLabel(r.type || r.Type || "")}</div>
+                                  <div className="rec-reason">{r.reason || r.Raison || ""}</div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </section>
+
+              {/* ====== AVIS ====== */}
+              <section className="reviews">
+                <div className="reviews-head">
+                  <h2 className="reviews-title">Avis</h2>
+                  <button className="btn-ghost" onClick={() => setFormOpen((o) => !o)} type="button">
+                    {formOpen ? "Fermer" : "Laisser un avis"}
                   </button>
-                </>
-              )}
-            </div>
+                </div>
 
-            {/* Bouton favoris */}
-            <button
-              type="button"
-              aria-pressed={fav}
-              aria-label={fav ? "Retirer des favoris" : "Ajouter aux favoris"}
-              title={fav ? "Retirer des favoris" : "Ajouter aux favoris"}
-              onClick={() => toggleFav(p.id)}
-              style={{
-                position: "absolute",
-                right: 12,
-                top: 12,
-                width: 40,
-                height: 40,
-                borderRadius: 999,
-                border: "1px solid #e5e7eb",
-                background: fav ? "#fff5f5" : "#ffffffd9",
-                color: fav ? "#ef4444" : "#9ca3af",
-                display: "grid",
-                placeItems: "center",
-                cursor: "pointer",
-                boxShadow: "0 6px 16px rgba(0,0,0,.08)",
-                backdropFilter: "blur(2px)",
-              }}
-            >
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                <path
-                  d="M12 21s-6.716-4.35-9.428-7.062C.86 12.226 1 9.5 3.2 7.8A5 5 0 0 1 12 8a5 5 0 0 1 8.8-.2c2.2 1.7 2.34 4.427.628 6.138C18.716 16.65 12 21 12 21z"
-                  fill="currentColor"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                />
-              </svg>
-            </button>
+                {formOpen && (
+                  <form
+                    className="review-form"
+                    onSubmit={async (e) => {
+                      e.preventDefault();
+                      try {
+                        setSending(true);
+                        setSentMsg("");
+                        setRevErr("");
 
-            {/* Vignettes */}
-            <div
-              style={{
-                marginTop: 10,
-                display: "grid",
-                gridTemplateColumns: `repeat(${Math.min(gallery.length, 5)}, 1fr)`,
-                gap: 10,
-              }}
-            >
-              {gallery.map((src, i) => {
-                const active = i === idx;
-                return (
-                  <button
-                    key={i}
-                    type="button"
-                    aria-label={`Voir image ${i + 1}`}
-                    aria-current={active}
-                    onClick={() => changeIdx(i)}
-                    style={{
-                      padding: 0,
-                      borderRadius: 10,
-                      overflow: "hidden",
-                      border: active ? "2px solid #111827" : "1px solid #e5e7eb",
-                      outline: "none",
-                      cursor: "pointer",
-                      background: "#fff",
+                        const payload = {
+                          productId: String(product.id),
+                          rating: Number(rating),
+                          content: text,
+                          authorName: authorName.trim(),
+                          authorEmail: authorEmail.trim(),
+                        };
+                        if (!payload.authorName || !payload.authorEmail) {
+                          throw new Error("Nom et email sont requis.");
+                        }
+
+                        await submitProductReview(payload);
+                        setSentMsg("Merci ! Votre avis sera publié après validation.");
+                        setText("");
+                        setRating(5);
+                        if (!user) {
+                          setAuthorName("");
+                          setAuthorEmail("");
+                        } else {
+                          setAuthorName(user.name || "");
+                          setAuthorEmail(user.email || "");
+                        }
+                        setFormOpen(false);
+                      } catch (err) {
+                        setRevErr(err.message || "Impossible d’envoyer l’avis");
+                      } finally {
+                        setSending(false);
+                      }
                     }}
                   >
-                    <img
-                      src={src}
-                      alt={`Vignette ${i + 1}`}
-                      onError={(e) => (e.currentTarget.src = fallbackImg)}
-                      style={{ width: "100%", display: "block", aspectRatio: "1/1", objectFit: "cover" }}
-                    />
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+                    <div className="rf-row two">
+                      <label>
+                        <span>Nom à afficher</span>
+                        <input
+                          value={authorName}
+                          onChange={(e) => setAuthorName(e.target.value)}
+                          placeholder="Ex: Marie D."
+                          required
+                        />
+                      </label>
+                      <label>
+                        <span>Email</span>
+                        <input
+                          type="email"
+                          value={authorEmail}
+                          onChange={(e) => setAuthorEmail(e.target.value)}
+                          required
+                          readOnly={!!user}
+                        />
+                      </label>
+                    </div>
 
-          {/* ===== META / ACHAT ===== */}
-          <div>
-            {p.brand && (
-              <div style={{ color: "#6b7280", fontWeight: 700, letterSpacing: 0.3, textTransform: "uppercase" }}>
-                {p.brand}
-              </div>
-            )}
-            <h1 style={{ margin: "6px 0 12px", lineHeight: 1.2 }}>{p.name}</h1>
+                    <div className="rf-row">
+                      <label>
+                        <span>Note</span>
+                        <div className="stars">
+                          {[5, 4, 3, 2, 1].map((v) => (
+                            <label key={v} className={`star ${rating >= v ? "on" : ""}`}>
+                              <input
+                                type="radio"
+                                name="rating"
+                                value={v}
+                                checked={rating === v}
+                                onChange={() => setRating(v)}
+                              />
+                              <span>★</span>
+                            </label>
+                          ))}
+                        </div>
+                      </label>
+                    </div>
 
-            {/* Prix + badge stock */}
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-              <div style={{ fontSize: 26, fontWeight: 800 }}>
-                {fmtEur.format((p.price_cents || 0) / 100)}
-              </div>
-              <div>
-                {inStock ? (
-                  <span style={badge(true)}>En stock</span>
-                ) : (
-                  <span style={badge(false)}>Épuisé</span>
+                    <div className="rf-row">
+                      <label>
+                        <span>Votre avis</span>
+                        <textarea
+                          rows={4}
+                          value={text}
+                          onChange={(e) => setText(e.target.value)}
+                          placeholder="Partage ton expérience…"
+                          required
+                        />
+                      </label>
+                    </div>
+
+                    <div className="rf-actions">
+                      <button className="btn-primarya" type="submit" disabled={sending}>
+                        {sending ? "Envoi…" : "Envoyer"}
+                      </button>
+                      <div className="rf-hint">
+                        Les avis sont publiés après validation.<br />
+                        10 pts sont crédités une seule fois aux acheteurs vérifiés.
+                      </div>
+                    </div>
+                  </form>
                 )}
-              </div>
-            </div>
 
-            {/* Type (catégorie) */}
-            {p.category && (
-              <div style={{ margin: "6px 0 10px" }}>
-                <span style={tagStyle}>Type : {p.category}</span>
-              </div>
-            )}
+                {revErr && <p className="acc-alert error" style={{ marginTop: 8 }}>{revErr}</p>}
+                {sentMsg && <p className="acc-alert ok" style={{ marginTop: 8 }}>{sentMsg}</p>}
 
-            {/* Types de peau */}
-            {Array.isArray(p.skin_types) && p.skin_types.length > 0 && (
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", margin: "10px 0 14px" }}>
-                {p.skin_types.map((t) => (
-                  <span key={t} style={chipStyle}>{t}</span>
-                ))}
-              </div>
-            )}
-
-            {/* Points fidélité */}
-            <div
-              style={{
-                marginTop: 4,
-                color: "#065f46",
-                background: "#ecfdf5",
-                padding: "10px 12px",
-                borderRadius: 10,
-                fontWeight: 600,
-              }}
-            >
-              💎 À l’achat : <b>{earnedPoints} point{earnedPoints > 1 ? "s" : ""}</b>
-            </div>
-
-            {/* Achat */}
-            <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 16 }}>
-              <input
-                type="number"
-                min={1}
-                max={99}
-                value={qty}
-                onChange={(e) => setQty(e.target.value)}
-                style={{
-                  width: 90,
-                  padding: "10px 12px",
-                  borderRadius: 10,
-                  border: "1px solid #e5e7eb",
-                }}
-                aria-label="Quantité"
-              />
-              <button
-                onClick={addToCart}
-                disabled={!inStock}
-                style={{
-                  padding: "12px 16px",
-                  background: inStock ? "#111827" : "#9ca3af",
-                  color: "#fff",
-                  border: 0,
-                  borderRadius: 10,
-                  fontWeight: 700,
-                  cursor: inStock ? "pointer" : "not-allowed",
-                  boxShadow: "0 8px 18px rgba(17,24,39,.18)",
-                }}
-              >
-                Ajouter au panier
-              </button>
-            </div>
-
-            {/* Description / Détails */}
-            {p.description && (
-              <section style={{ marginTop: 18 }}>
-                <h2 style={h2Style}>Description</h2>
-                <p style={{ lineHeight: 1.6, color: "#374151" }}>{p.description}</p>
+                <div className="reviews-list">
+                  {revLoading ? (
+                    <p>Chargement des avis…</p>
+                  ) : reviews.length === 0 ? (
+                    <p className="muted">Aucun avis pour l’instant.</p>
+                  ) : (
+                    reviews.map((r) => (
+                      <article key={r.id} className="review-item">
+                        <div className="ri-head">
+                          <div className="ri-author">
+                            <div className="ri-avatar">{(r.authorName || "C")[0].toUpperCase()}</div>
+                            <div>
+                              <div className="ri-name">{r.authorName || "Client"}</div>
+                              <div className="ri-when">
+                                {new Date(r.createdAt).toLocaleDateString("fr-BE")}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="ri-right">
+                            <div className="ri-stars" aria-label={`${r.rating} sur 5`}>
+                              {"★★★★★".slice(0, r.rating)}
+                              <span className="ri-dim">{"★★★★★".slice(r.rating)}</span>
+                            </div>
+                            {r.verifiedPurchase && <span className="ri-badge">Achat vérifié</span>}
+                          </div>
+                        </div>
+                        <p className="ri-text">{r.content}</p>
+                      </article>
+                    ))
+                  )}
+                </div>
               </section>
-            )}
-
-            {(Array.isArray(p.highlights) && p.highlights.length > 0) && (
-              <section style={{ marginTop: 16 }}>
-                <h2 style={h2Style}>Points forts</h2>
-                <ul style={{ paddingLeft: 18, color: "#374151", lineHeight: 1.6 }}>
-                  {p.highlights.map((h, i) => <li key={i}>{h}</li>)}
-                </ul>
-              </section>
-            )}
-
-            <section style={{ marginTop: 16 }}>
-              <h2 style={h2Style}>Caractéristiques</h2>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, color: "#374151" }}>
-                {p.category && <Field k="Type" v={p.category} />}
-                {Array.isArray(p.skin_types) && p.skin_types.length > 0 && (
-                  <Field k="Peaux" v={p.skin_types.join(", ")} />
-                )}
-                {p.volume_ml && <Field k="Contenance" v={`${p.volume_ml} ml`} />}
-                {p.made_in && <Field k="Origine" v={p.made_in} />}
-              </div>
-            </section>
-
-            {(p.how_to_use || p.ingredients) && (
-              <section style={{ marginTop: 16 }}>
-                {p.how_to_use && (
-                  <>
-                    <h2 style={h2Style}>Conseils d’utilisation</h2>
-                    {Array.isArray(p.how_to_use) ? (
-                      <ul style={{ paddingLeft: 18, color: "#374151", lineHeight: 1.6 }}>
-                        {p.how_to_use.map((s, i) => <li key={i}>{s}</li>)}
-                      </ul>
-                    ) : (
-                      <p style={{ color: "#374151", lineHeight: 1.6 }}>{p.how_to_use}</p>
-                    )}
-                  </>
-                )}
-                {p.ingredients && (
-                  <>
-                    <h2 style={{ ...h2Style, marginTop: 12 }}>Ingrédients</h2>
-                    <p style={{ color: "#374151", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>{p.ingredients}</p>
-                  </>
-                )}
-              </section>
-            )}
-          </div>
-        </div>
-
-        {/* Avis : démo (crédite +10 pts via /reviews/add) */}
-        <section style={{ marginTop: 32 }}>
-          <h2 style={h2Style}>Laisser un avis</h2>
-          {!user ? (
-            <p style={{ color: "#6b7280" }}>Connecte-toi pour laisser un avis et gagner des points.</p>
-          ) : (
-            <form onSubmit={submitReview} style={{ display: "grid", gap: 10, maxWidth: 560 }}>
-              <label>
-                Note :
-                <select
-                  value={rating}
-                  onChange={(e) => setRating(Number(e.target.value))}
-                  style={{ marginLeft: 8 }}
-                >
-                  {[5, 4, 3, 2, 1].map((n) => (
-                    <option key={n} value={n}>{n} ★</option>
-                  ))}
-                </select>
-              </label>
-
-              <textarea
-                rows={4}
-                placeholder="Ton avis (facultatif)"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                style={{ padding: 10, borderRadius: 8, border: "1px solid #e5e7eb" }}
-              />
-
-              <div>
-                <button
-                  type="submit"
-                  style={{
-                    padding: "10px 14px",
-                    borderRadius: 8,
-                    border: 0,
-                    background: "#111827",
-                    color: "#fff",
-                    fontWeight: 700,
-                    cursor: "pointer",
-                  }}
-                >
-                  Envoyer l’avis (+10 pts)
-                </button>
-                {reviewMsg && <span style={{ marginLeft: 10, color: "#065f46" }}>{reviewMsg}</span>}
-              </div>
-
-              <p style={{ color: "#6b7280", marginTop: 6, fontSize: 13 }}>
-                Anti-abus : 1 avis / produit / 24h.
-              </p>
-            </form>
+            </>
           )}
-        </section>
+        </main>
+
+        <Footer />
       </div>
-
-      <Footer />
-    </main>
+    </>
   );
-}
-
-/* ==== Petits composants / styles utilitaires ==== */
-function Field({ k, v }) {
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: "120px 1fr", gap: 6 }}>
-      <div style={{ color: "#6b7280" }}>{k}</div>
-      <div>{v}</div>
-    </div>
-  );
-}
-
-function badge(ok) {
-  return {
-    display: "inline-block",
-    padding: "2px 10px",
-    borderRadius: 999,
-    fontSize: 12,
-    fontWeight: 700,
-    color: ok ? "#065f46" : "#7f1d1d",
-    background: ok ? "#d1fae5" : "#fee2e2",
-    border: `1px solid ${ok ? "#a7f3d0" : "#fecaca"}`,
-  };
-}
-
-const h2Style = { fontSize: 18, fontWeight: 800, margin: "16px 0 8px" };
-
-const chipStyle = {
-  display: "inline-block",
-  padding: "4px 10px",
-  borderRadius: 999,
-  background: "#f3f4f6",
-  color: "#374151",
-  fontWeight: 700,
-  fontSize: 12,
-};
-
-const tagStyle = {
-  display: "inline-block",
-  padding: "4px 10px",
-  borderRadius: 8,
-  background: "#eef2ff",
-  color: "#3730a3",
-  fontWeight: 700,
-  fontSize: 12,
-};
-
-function arrowBtnStyle(side) {
-  return {
-    position: "absolute",
-    top: "50%",
-    [side]: 8,
-    transform: "translateY(-50%)",
-    width: 36,
-    height: 36,
-    borderRadius: 999,
-    border: "1px solid rgba(0,0,0,.12)",
-    background: "rgba(255,255,255,.92)",
-    display: "grid",
-    placeItems: "center",
-    fontSize: 18,
-    cursor: "pointer",
-    boxShadow: "0 8px 16px rgba(0,0,0,.12)",
-  };
 }

@@ -1,35 +1,38 @@
 // src/pages/Catalogue.jsx
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import HeaderAll from "../components/HeaderAll";
+
 import Footer from "../components/Footer";
 import "./Catalogue.css";
 import "./../components/BestSellers.css"; // réutilise le CSS .thumb .img.primary/.secondary
 import { apiGet } from "../lib/api";
+import FavoriteButton from "../components/FavoriteButton";
+import { useCart } from "../cart/CartContext";
+import SiteHeader from "../components/SiteHeader";
 
 // --- Héros de marque
 const BRAND_HERO = {
-  ANUA:             "/img/hero/brands/anua-hero.jpg",
-  "Beauty of Joseon": "/img/hero/brands/beauty-of-joseon-hero.jpg",
-  Biodance:         "/img/hero/brands/biodance-hero.jpg",
-  COSRX:            "/img/hero/brands/cosrx-hero.jpg",
-  "Dr Althea":      "/img/hero/brands/dr-althea-hero.jpg",
-  "Haruharu Wonder": "/img/hero/brands/haruharu-wonder-hero.jpg",
-  "I'm From":       "/img/hero/brands/im-from-hero.jpg",
-  iUNIK:            "/img/hero/brands/iunik-hero.jpg",
-  Laneige:          "/img/hero/brands/laneige-hero.jpg",
-  Medicube:         "/img/hero/brands/medicube-hero.jpg",
-  Mixsoon:          "/img/hero/brands/mixsoon-hero.jpg",
-  "Round Lab":      "/img/hero/brands/round-lab-hero.jpg",
-  SKIN1004:         "/img/hero/brands/skin1004-hero.jpg",
-  "Some By Mi":     "/img/hero/brands/some-by-mi-hero.jpg",
-  Torriden:         "/img/hero/brands/torriden-hero.jpg",
+  ANUA:             "/img/hero/anuahero.png",
+  "Beauty of Joseon": "/img/hero/bojhero.png",
+  Biodance:         "/img/hero/biodancehero.png",
+  COSRX:            "/img/hero/cosrxhero.png",
+  "Dr Althea":      "/img/hero/draltheahero.png",
+  "Haruharu Wonder": "/img/hero/haruharuhero.png",
+  "I'm From":       "/img/hero/imfromhero.png",
+  iUNIK:            "/img/hero/iunikhero.png",
+  Laneige:          "/img/hero/laneigehero.png",
+  Medicube:         "/img/hero/medicubehero.png",
+  Mixsoon:          "/img/hero/mixsoonhero.png",
+  "Round Lab":      "/img/hero/roundlabhero.png",
+  SKIN1004:         "/img/hero/skin1004hero.png",
+  "Some By Mi":     "/img/hero/somebymihero.png",
+  Torriden:         "/img/hero/torridenhero.png",
 };
-const GLOBAL_HERO = "/img/hero/all-brands-hero.jpg";
+const GLOBAL_HERO = "/img/hero/imgcat1.png";
 
 // Image héros pour la catégorie "pack"
 const CATEGORY_HERO = {
-  pack: "/img/hero/categories/pack-hero.jpg",
+  pack: "/img/hero/packhero.png",
 };
 
 function BrandHero({ brand, category }) {
@@ -50,7 +53,7 @@ function BrandHero({ brand, category }) {
         <div className="cat-hero-badge">{badge}</div>
         <h1 className="cat-hero-title">{title}</h1>
         {!brand && !category && (
-          <p className="cat-hero-sub">Skincare coréenne — sélection de marques reconnues</p>
+          <p className="cat-hero-sub"></p>
         )}
       </div>
     </section>
@@ -125,6 +128,20 @@ export default function Catalogue() {
   const [sort, setSort] = useState("reco");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZE_DEFAULT);
+
+
+  const { add } = useCart();
+
+  const addFromCard = (p) => {
+    const imgs = collectImages(p, 1);
+    const preview = imgs[0] || fallbackImg;
+    add(
+      { id: String(p.id), name: p.name, price_cents: Number(p.price_cents || 0), image: preview, slug: p.slug || null, brand: p.brand || "" },
+      1
+    );
+  };
+  
+
 
   // Mobile overlay
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -475,7 +492,7 @@ export default function Catalogue() {
 
   return (
     <main className="cat-wrap">
-      <HeaderAll />
+      <SiteHeader/>
       <BrandHero brand={activeBrand} category={activeCategory} />
 
       <div className="cat-container">
@@ -650,6 +667,7 @@ export default function Catalogue() {
             <h1 className="page-title">Catalogue</h1>
 
             {/* Compteur + pills */}
+            {/* Compteur + pills */}
             <div className="results-bar">
               <div className="count">
                 {loading
@@ -660,17 +678,27 @@ export default function Catalogue() {
               {activePills.length > 0 && (
                 <div className="pills">
                   {activePills.map((p, i) => (
-                    <button key={i} className="pill" onClick={p.onRemove} title="Retirer ce filtre">
-                      <span>{p.label}</span>
-                      <span className="x">✕</span>
+                    <button
+                      key={i}
+                      className={`pill pill-${p.type || "generic"}`}
+                      onClick={p.onRemove}
+                      title="Retirer ce filtre"
+                    >
+                      <span className="pill-label">{p.label}</span>
+                      <span className="x" aria-hidden>✕</span>
                     </button>
                   ))}
-                  <button className="pill reset" onClick={resetAll} title="Réinitialiser tous les filtres">
+                  <button
+                    className="pill reset"
+                    onClick={resetAll}
+                    title="Réinitialiser tous les filtres"
+                  >
                     Tout effacer
                   </button>
                 </div>
               )}
             </div>
+
 
             {err && (
               <p className="acc-alert error" style={{ marginBottom: 10 }}>
@@ -692,48 +720,74 @@ export default function Catalogue() {
               <>
                 <div className="grid">
                   {current.map((p) => {
-                    const inStock = Number.isFinite(p.stock) ? p.stock > 0 : true;
+                    const outOfStock = Number.isFinite(p.stock) ? p.stock <= 0 : false;
                     const isPack = String(p.category || "").toLowerCase() === "pack";
                     const to = `/${isPack ? "pack" : "produit"}/${p.slug || String(p.id)}`;
 
-                    // images primaire + hover
+                    // images
                     const imgs = collectImages(p, 2);
                     const imgPrimary = imgs[0] || fallbackImg;
                     const imgHover = imgs[1] || imgPrimary;
 
+                    // message faible stock UNIQUEMENT pour 1 ou 2
+                    const lowStockMsg =
+                      Number.isFinite(p.stock) && (p.stock === 1 || p.stock === 2)
+                        ? `Plus que ${p.stock} en stock`
+                        : null;
+
                     return (
                       <Link key={p.id} to={to} className="card">
-                        <div className="thumb">
-                          {/* image principale */}
+                        <div className={`thumb ${outOfStock ? "is-oos" : ""}`}>
+                          {/* IMAGES */}
                           <img
                             className="img primary"
                             src={imgPrimary}
                             alt={p.name}
-                            onError={(e) => {
-                              e.currentTarget.src = fallbackImg;
-                            }}
+                            onError={(e) => { e.currentTarget.src = fallbackImg; }}
                             loading="lazy"
                           />
-                          {/* image hover */}
                           <img
                             className="img secondary"
                             src={imgHover}
                             alt=""
-                            onError={(e) => {
-                              e.currentTarget.src = fallbackImg;
-                            }}
+                            onError={(e) => { e.currentTarget.src = fallbackImg; }}
                             loading="lazy"
                           />
 
-                          {/* Ruban -10% pour les packs */}
-                          {isPack && <div className="cat-ribbon">-10%</div>}
+                          {/* BOUTON (désactivé si OOS) */}
+                          <button
+                            className="addBtn"
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              if (outOfStock) return;
+                              addFromCard(p);
+                            }}
+                            disabled={outOfStock}
+                            aria-disabled={outOfStock ? "true" : "false"}
+                            aria-label={outOfStock ? `${p.name} indisponible` : `Ajouter ${p.name} au panier`}
+                            title={outOfStock ? "Rupture de stock" : "Ajouter au panier"}
+                          >
+                            {outOfStock ? "Indisponible" : "Ajouter au panier"}
+                          </button>
 
-                          {/* Pastille PACK */}
-                          {isPack && <div className="cat-pill">PACK</div>}
+                          {/* TOPBAR chips + fav */}
+                          <div className="thumb-topbar">
+                            <div className="chips">
+                              {isPack && <div className="chip chip-discount">-10%</div>}
+                              {isPack && <div className="chip chip-pack">PACK</div>}
+                            </div>
+                            <div className="thumb-fav">
+                              <FavoriteButton product={p} size={38} />
+                            </div>
+                          </div>
 
-                          <span className={`badge ${inStock ? "ok" : "ko"}`}>
-                            {inStock ? "En stock" : "Épuisé"}
-                          </span>
+                          {/* OVERLAY OOS pleine image */}
+                          {outOfStock && (
+                            <div className="oos-cover">
+                              <span>Victime de succès</span>
+                            </div>
+                          )}
                         </div>
 
                         <div className="meta">
@@ -755,11 +809,18 @@ export default function Catalogue() {
                           </div>
 
                           <div className="name">{p.name}</div>
-                          <div className="price">{fmtEur.format((p.price_cents || 0) / 100)}</div>
+
+                          <div className="price">
+                            {fmtEur.format((p.price_cents || 0) / 100)}
+                            {/* UNIQUEMENT 1 ou 2 */}
+                            {lowStockMsg && <span className="stock-hint">{lowStockMsg}</span>}
+                          </div>
                         </div>
                       </Link>
                     );
                   })}
+
+
                 </div>
 
                 {!current.length && !loading && (

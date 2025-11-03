@@ -1,12 +1,10 @@
 // src/components/PackHomePage.jsx
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./BestSellers.css"; // on réutilise le même CSS (cartes, .thumb, .img.primary/.secondary, flèches, dots…)
+import "./BestSellers.css"; // on continue de réutiliser les styles
 import { useCart } from "../cart/CartContext";
 import FavoriteButton from "../components/FavoriteButton";
 import { apiGet } from "../lib/api";
-
-const perPage = 4;
 
 const fallbackImg =
   "data:image/svg+xml;charset=UTF-8," +
@@ -19,16 +17,16 @@ const fallbackImg =
     </svg>`
   );
 
-/** Résout un asset du dossier public/ en tenant compte du BASE_URL (prod sous sous-chemin) */
+// résout l'URL d'une image (pour public/)
 function publicAsset(p) {
   if (!p) return null;
-  if (/^https?:\/\//i.test(p)) return p; // URL absolue -> on laisse
+  if (/^https?:\/\//i.test(p)) return p;
   const base = import.meta.env.BASE_URL || "/";
   const rel = String(p).replace(/^(\.\/|\.\.\/)+/, "").replace(/^\/+/, "");
-  return (base.endsWith("/") ? base : base + "/") + rel; // ex: "/korelia/" + "img/..."
+  return (base.endsWith("/") ? base : base + "/") + rel;
 }
 
-/** Récupère 1 ou 2 images en PRIORISANT p.images[] puis repli sur p.image */
+// récupère jusqu'à 2 images
 function collectImages(entity, max = 2) {
   const out = [];
   if (Array.isArray(entity?.images)) out.push(...entity.images);
@@ -37,31 +35,30 @@ function collectImages(entity, max = 2) {
   return (uniq.length ? uniq : [fallbackImg]).slice(0, max);
 }
 
+const euro = (cents) =>
+  (Number(cents || 0) / 100).toFixed(2) + " €";
+
 export default function PackHomePage() {
   const [packs, setPacks] = useState([]);
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const [page, setPage] = useState(0);
-  const [dir, setDir] = useState("next"); // "next" | "prev"
-
   const { add } = useCart();
 
-  // Charge TOUS les produits puis garde seulement les packs, puis ENRICHIT (pour avoir au moins 2 images)
+  // charge tous les produits et isole ceux en catégorie "pack"
   useEffect(() => {
     (async () => {
       try {
         setErr("");
         setLoading(true);
 
-        // 1) Liste brute
         const data = await apiGet("/api/products");
 
         const onlyPacks = (Array.isArray(data) ? data : []).filter(
           (p) => String(p.category || "").toLowerCase() === "pack"
         );
 
-        // 2) Enrichissement: pour les packs n’ayant pas encore 2 images, on fetch les détails
+        // enrichir si besoin d'images sup
         const enriched = await Promise.all(
           onlyPacks.map(async (p) => {
             const hasTwo = Array.isArray(p.images) && p.images.length >= 2;
@@ -69,8 +66,10 @@ export default function PackHomePage() {
             try {
               const key = String(p.slug || p.id);
               const full = await apiGet(`/api/products/${key}`);
+
               const images = Array.isArray(full.images) ? full.images : p.images;
               const image = full.image ?? p.image;
+
               return { ...p, images, image };
             } catch {
               return p;
@@ -87,31 +86,20 @@ export default function PackHomePage() {
     })();
   }, []);
 
-  const pageCount = Math.max(1, Math.ceil(packs.length / perPage));
-  const start = page * perPage;
-  const visible = useMemo(() => packs.slice(start, start + perPage), [packs, start]);
-
-  const prev = () => {
-    setDir("prev");
-    setPage((p) => (p - 1 + pageCount) % pageCount);
-  };
-  const next = () => {
-    setDir("next");
-    setPage((p) => (p + 1) % pageCount);
-  };
-
-  // Ajoute le pack au panier — image d’aperçu = première image résolue
+  // ajoute le pack au panier
   const addFromCard = (p) => {
     const preview = collectImages(p, 1)[0] || fallbackImg;
-    const item = {
-      id: String(p.id),
-      name: p.name,
-      price_cents: Number(p.price_cents || 0),
-      image: preview,
-      slug: p.slug || null,
-      brand: p.brand || "Pack",
-    };
-    add(item, 1);
+    add(
+      {
+        id: String(p.id),
+        name: p.name,
+        price_cents: Number(p.price_cents || 0),
+        image: preview,
+        slug: p.slug || null,
+        brand: p.brand || "Pack",
+      },
+      1
+    );
   };
 
   if (err) {
@@ -148,47 +136,39 @@ export default function PackHomePage() {
   }
 
   return (
-    <section
-      className="bestSellers"
-      aria-labelledby="packs-title"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "ArrowLeft") prev();
-        if (e.key === "ArrowRight") next();
-      }}
-    >
-      {/* Titre centré + barre dessous */}
+    <section className="bestSellers" aria-labelledby="packs-title">
+      {/* Titre centré + barre */}
       <div className="bs-header">
         <h1 id="packs-title" className="bs-title">
           Packs routines
         </h1>
       </div>
 
-      {/* Scène avec flèches */}
-      <div className="bs-stage">
-        <button className="bs-arrow left" onClick={prev} aria-label="Packs précédents" type="button">
-          ‹
-        </button>
-
-        <div
-          id="packs-grid"
-          className="bs-grid"
-          role="list"
-          aria-live="polite"
-          data-dir={dir}
-          key={`${page}-${dir}`}
-        >
-          {visible.map((p, i) => {
+      {/* swipe horizontal comme BestSellers */}
+      <div className="bs-rail-wrapper">
+        <div className="bs-rail" role="list" aria-live="polite">
+          {packs.map((p, i) => {
             const slug = p.slug || String(p.id);
             const imgs = collectImages(p, 2);
             const imgPrimary = imgs[0] || fallbackImg;
             const imgHover = imgs[1] || imgPrimary;
 
+            const oos = Number.isFinite(p.stock) && p.stock <= 0;
+
             return (
-              <article key={p.id} className="card" role="listitem" style={{ "--i": i }}>
-                {/* Lien vers /pack/:slug */}
-                <Link className="thumb" to={`/pack/${slug}`} aria-label={`${p.brand || "Pack"} ${p.name}`}>
-                  {/* Image principale */}
+              <article
+                key={p.id}
+                className="bs-card"
+                role="listitem"
+                style={{ "--i": i }}
+              >
+                {/* vignette image du pack */}
+                <Link
+                  className={`thumb ${oos ? "is-oos" : ""}`}
+                  to={`/pack/${slug}`}
+                  aria-label={`${p.brand || "Pack"} ${p.name}`}
+                >
+                  {/* image principale */}
                   <img
                     className="img primary"
                     src={imgPrimary}
@@ -198,7 +178,7 @@ export default function PackHomePage() {
                       e.currentTarget.src = fallbackImg;
                     }}
                   />
-                  {/* Image au hover */}
+                  {/* image hover */}
                   <img
                     className="img secondary"
                     src={imgHover}
@@ -209,7 +189,7 @@ export default function PackHomePage() {
                     }}
                   />
 
-                  {/* Badge -10% pack (visuel simple) */}
+                  {/* badge -10% pack */}
                   <div
                     style={{
                       position: "absolute",
@@ -221,62 +201,70 @@ export default function PackHomePage() {
                       fontWeight: 800,
                       padding: "4px 8px",
                       borderRadius: 999,
+                      zIndex: 2,
                     }}
                   >
                     -10% pack
                   </div>
 
-                  {/* bouton ajout panier */}
+                  {/* bouton panier */}
                   <button
                     className="addBtn"
                     type="button"
                     onClick={(e) => {
                       e.preventDefault();
+                      if (oos) return;
                       addFromCard(p);
                     }}
+                    disabled={oos}
+                    aria-disabled={oos ? "true" : "false"}
+                    title={oos ? "Rupture de stock" : "Ajouter au panier"}
                   >
-                    Ajouter au panier
+                    {oos ? "Indisponible" : "Ajouter au panier"}
                   </button>
 
                   {/* favoris */}
-                  <div className="thumb-fav">
-                    <FavoriteButton product={p} size={22} />
+                  <div className="bs-fav">
+                    <FavoriteButton product={p} size={22} className="bs-fav-btn" />
                   </div>
+
+                  {/* overlay rupture */}
+                  {oos && (
+                    <div className="oos-cover">
+                      <span>Victime de succès</span>
+                    </div>
+                  )}
                 </Link>
 
+                {/* texte sous la vignette */}
                 <div className="meta">
                   <div className="brand">{p.brand || "Pack"}</div>
+
                   <h3 className="name">{p.name}</h3>
-                  <div className="price">{(Number(p.price_cents || 0) / 100).toFixed(2)} €</div>
+
+                  <div className="priceRow">
+                    <span className="pricee">{euro(p.price_cents)}</span>
+
+                    {Number.isFinite(p.stock) &&
+                      (p.stock === 1 || p.stock === 2) && (
+                        <span className="stock-hint">
+                          Plus que {p.stock} en stock
+                        </span>
+                      )}
+                  </div>
                 </div>
               </article>
             );
           })}
         </div>
-
-        <button className="bs-arrow right" onClick={next} aria-label="Packs suivants" type="button">
-          ›
-        </button>
       </div>
 
-      {/* Dots + CTA */}
+      {/* CTA final */}
       <div className="bs-footer">
-        <div className="bs-dots" role="tablist" aria-label="Pages de packs">
-          {Array.from({ length: pageCount }).map((_, i) => (
-            <button
-              key={i}
-              className={`dot ${i === page ? "is-active" : ""}`}
-              aria-label={`Aller à la page ${i + 1}`}
-              aria-selected={i === page}
-              role="tab"
-              onClick={() => {
-                setDir(i > page ? "next" : "prev");
-                setPage(i);
-              }}
-            />
-          ))}
-        </div>
-        <Link className="bs-more" to="/catalogue?cat=pack&catLabel=pack">
+        <Link
+          className="bs-more"
+          to="/catalogue?cat=pack&catLabel=pack"
+        >
           Voir tous les packs
         </Link>
       </div>

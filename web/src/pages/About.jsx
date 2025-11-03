@@ -1,50 +1,50 @@
-import React from "react";
+// src/pages/AboutPage.jsx
+import SiteHeader from "../components/SiteHeader";
+import Footer from "../components/Footer";
 import "./About.css";
 
-export default function About() {
+export default function AboutPage() {
   return (
-    <main className="about-page">
-      <header className="about-hero">
-        <h1>À propos de Korelia</h1>
-        <p>Notre mission : rendre la skincare coréenne accessible, claire et efficace pour tous les types de peaux.</p>
-      </header>
+    <main className="about-wrap">
+      <SiteHeader />
 
-      <section className="about-grid">
-        <article className="about-card">
+      <section className="about-hero">
+        <h1>À propos de Korelia</h1>
+        <p>Notre passion pour la skincare coréenne, votre peau au centre de nos soins.</p>
+      </section>
+
+      <section className="about-content">
+        <div className="about-text">
           <h2>Notre histoire</h2>
           <p>
-            Korelia est née d’une passion pour la K-beauty et d’un constat : trop de choix, peu d’explications, des routines compliquées. 
-            Nous avons décidé de sélectionner des marques fiables et des produits cohérents, puis d’expliquer les routines simplement.
+            Nous sommes un jeune couple animé par une véritable passion pour la skincare coréenne.
+            Fascinés par l’efficacité et la douceur des rituels de beauté asiatiques, nous avons
+            décidé de créer <strong>Korelia</strong> afin de partager avec vous le meilleur de la cosmétique coréenne.
           </p>
-          <p>
-            Aujourd’hui, nous aidons des centaines de clients à bâtir une routine adaptée à leur peau, avec des packs clairs (Standard / Complet) 
-            et des conseils concrets.
-          </p>
-        </article>
 
-        <article className="about-card">
-          <h2>Nos engagements</h2>
-          <ul className="bullet">
-            <li>🧪 Sélection rigoureuse des formules et des textures.</li>
-            <li>🔎 Transparence : description simple et utile (type de peau, usage).</li>
-            <li>🛡️ Authenticité : produits d’origine, circuits officiels.</li>
-            <li>🌱 Respect : priorité aux formules douces, non agressives.</li>
+          <h2>Notre vision</h2>
+          <p>
+            Notre objectif est simple : <em>commencer petit, mais avec de grandes ambitions</em>.
+            Nous croyons qu’avec de la passion, de la transparence et une sélection rigoureuse,
+            Korelia peut devenir, à terme, <strong>l’un des plus grands revendeurs de skincare coréenne en Europe</strong>.
+          </p>
+
+          <h2>Nos valeurs</h2>
+          <ul>
+            <li>✨ <strong>Authenticité</strong> : uniquement des produits originaux et de qualité.</li>
+            <li>🤍 <strong>Passion</strong> : chaque produit est choisi parce qu’il nous inspire confiance.</li>
+            <li>🚀 <strong>Ambition</strong> : grandir pas à pas, toujours en pensant à votre peau.</li>
           </ul>
-        </article>
 
-        <article className="about-card">
-          <h2>Pourquoi la K-beauty ?</h2>
           <p>
-            Des routines progressives, une priorité à l’hydratation et à la barrière cutanée, 
-            des textures sensorielles qui donnent envie d’être réguliers. Résultat : une peau plus stable, plus lumineuse.
+            Merci de nous accompagner dans cette aventure. Votre confiance est notre plus belle
+            récompense, et nous avons hâte de faire découvrir à toute l’Europe les bienfaits
+            de la K-beauty.
           </p>
-        </article>
+        </div>
       </section>
 
-      <section className="about-cta">
-        <a className="btn" href="/packs">Découvrir les packs</a>
-        <a className="btn alt" href="/contact">Parler à un conseiller</a>
-      </section>
+      <Footer />
     </main>
   );
 }

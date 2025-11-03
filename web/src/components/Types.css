@@ -79,7 +79,7 @@
 /* Carte type */
 .type-card{
   flex: 0 0 calc((100% - (4 * var(--types-gap))) / 5);
-  aspect-ratio: 1 / 1.5;         /* carré */
+  aspect-ratio: 2 / 3;         /* carré */
   min-height: 180px;           /* fallback */
   position: relative;
   scroll-snap-align: start;
@@ -110,14 +110,14 @@
   background-position:center; 
   background-size:cover;
   filter: grayscale(10%) contrast(0.95) brightness(0.95);
-  opacity: .8;
+  opacity: 0.9;
 }
 
 /* Overlay pour lisibilité */
 .type-overlay{
   position:absolute; inset:0;
   background: radial-gradient(ellipse at center, rgba(0,0,0,.15), rgba(0,0,0,.35));
-  opacity:.55; 
+  opacity:.0; 
   transition: opacity .2s ease;
 }
 
@@ -162,3 +162,57 @@
 /* On cache l’ancien rendu (thumb/label) */
 .type-card .label{ display:none; }
 .thumb{ display:none; }
+
+
+/* Scroller */
+.types-scroller{
+  display:flex;
+  gap:var(--types-gap);
+  overflow-x:auto;
+
+  /* ✅ le snap devient obligatoire + s’arrête sur chaque carte */
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  padding:8px;
+  border:1px solid var(--gold-200);
+  border-radius:calc(var(--radius) + 8px);
+  background:linear-gradient(180deg, var(--nude-50), var(--nude-100));
+  box-shadow:var(--shadow), var(--inset);
+}
+.types-scroller::-webkit-scrollbar{ display:none; }
+.types-scroller{ -ms-overflow-style:none; scrollbar-width:none; }
+
+/* Carte type */
+.type-card{
+  /* largeur d’une carte = fraction ; les media queries dessous
+     réduisent le nombre visible, mais une “unité” reste la carte */
+  flex: 0 0 calc((100% - (4 * var(--types-gap))) / 5);
+  aspect-ratio: 2 / 3;
+  min-height: 180px;
+  position: relative;
+
+  /* ✅ aligne et force l’arrêt sur l’item */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--gold-200);
+  box-shadow: var(--shadow), var(--inset);
+  background: linear-gradient(135deg, #faf6f2 0%, #f3ede7 100%);
+}
+
+/* Réactivité : ajuste combien de cartes visibles,
+   mais le “pas” reste 1 carte grâce au JS */
+@media (max-width: 1200px){
+  .type-card{ flex-basis: calc((100% - (3 * var(--types-gap))) / 4); }
+}
+@media (max-width: 900px){
+  .type-card{ flex-basis: calc((100% - (2 * var(--types-gap))) / 3); }
+}
+@media (max-width: 640px){
+  .type-card{ flex-basis: calc((100% - (1 * var(--types-gap))) / 2); }
+}
+@media (max-width: 426px){
+  .type-card{ flex-basis: 100%; }
+}

@@ -1,61 +1,149 @@
 .header2 {
-    background-color: #f8f8f8;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    width: 90%;
-    margin:0 auto;
-    text-align: center;
-    
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  /* option: coller sous le Header en scroll */
+  /* position: sticky; top: 0; z-index: 50; */
 }
 
 .header2 ul {
-    width: 90%;
-    height: 70px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    list-style: none;
-    margin: 0 auto;
-    text-transform: uppercase;
-    text-decoration: none;
+  width: 90%;
+  height: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  margin: 0 auto;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0;             /* reset */
+  gap: 0;                 /* desktop : espacement via space-around */
 }
+
 .header2 ul li {
-    font-size: 15px;
-    padding: 0 15px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: #553421;;
-    position: relative;
-    transition: all 0.3s ease;
-    font-weight: 700;
-   
-    
+  font-size: 15px;
+  padding: 0 15px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #553421;
+  position: relative;
+  transition: color 0.25s ease;
+  font-weight: 700;
 }
+
 .header2 ul li::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background-color: #e6b8a2; /* couleur d’accent */
-    transition: width 0.3s ease;
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: #e6b8a2;
+  transition: width 0.25s ease;
 }
 
-.header2 ul li:hover {
-    color: #e6b8a2;
-}
+.header2 ul li:hover { color: #e6b8a2; }
+.header2 ul li:hover::after { width: 100%; }
 
-.header2 ul li:hover::after {
-    width: 100%;
-}
 .header2 a {
-  text-decoration: none; /* enlève le souligné */
-  color: inherit;        /* garde la même couleur que le parent */
+  text-decoration: none;
+  color: inherit;
+}
+.header2 a:visited { color: inherit; }
+
+/* Focus visible (accessibilité clavier) */
+.header2 a:focus-visible {
+  outline: 2px solid #e6b8a2;
+  outline-offset: 3px;
+  border-radius: 8px;
 }
 
-.header2 a:visited {
-  color: inherit;        /* évite que ça devienne violet après clic */
+/* ===========================
+   TABLETTE (768–1023px)
+   =========================== */
+@media (max-width: 1023px) {
+  .header2 ul {
+    width: 94%;
+    height: auto;           /* peut passer sur 2 lignes si besoin */
+    padding: 8px 8px;
+    gap: 6px 10px;
+    flex-wrap: wrap;        /* autorise le retour à la ligne */
+    justify-content: center;
+  }
+
+  .header2 ul li {
+    height: 42px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  .header2 ul li::after {
+    height: 2px;           /* trait plus fin */
+  }
+}
+
+/* ===========================
+   MOBILE (<= 767px)
+   =========================== */
+@media (max-width: 767px) {
+  .header2 {
+    width: 94%;
+    border-radius: 14px;
+  }
+
+  .header2 ul {
+    width: 100%;
+    height: auto;
+    padding: 10px 12px;
+    gap: 8px;
+    margin: 0;
+    justify-content: flex-start;   /* départ à gauche */
+    flex-wrap: nowrap;             /* une seule ligne */
+    overflow-x: auto;              /* défilement horizontal */
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity; /* snap doux */
+  }
+
+  /* Masque la scrollbar quand c'est possible */
+  .header2 ul::-webkit-scrollbar { display: none; }
+  .header2 ul { scrollbar-width: none; }
+
+  /* "Pills" cliquables */
+  .header2 ul li {
+    height: auto;
+    padding: 8px 12px;
+    font-size: 13.5px;
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    white-space: nowrap;           /* évite les retours */
+    scroll-snap-align: start;      /* aligne chaque item */
+    transition: transform .15s ease, color .15s ease, box-shadow .15s ease;
+  }
+
+  /* Sur mobile, on retire le souligné animé au survol (pas pertinent au tactile) */
+  .header2 ul li::after { display: none; }
+
+  .header2 ul li:active {
+    transform: scale(0.98);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+}
+
+/* Respecte "réduire les animations" du système */
+@media (prefers-reduced-motion: reduce) {
+  .header2 ul li,
+  .header2 ul li::after {
+    transition: none !important;
+  }
+}
+/* La barre nav du dessous disparaît aussi en mobile, remplacée par le burger */
+@media (max-width:767px){
+  .header2{
+    display:none;
+  }
 }

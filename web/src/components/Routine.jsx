@@ -1,20 +1,21 @@
 // Routine.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import "./Routine.css";
+import { Link } from "react-router-dom";
 
 export default function Routine() {
   const [tab, setTab] = useState("essentielle");
   const [page, setPage] = useState(0);
-  const [openIndex, setOpenIndex] = useState(null); // pour mobile/clavier
+  const [openIndex, setOpenIndex] = useState(null); // pour mobile/clavier sur desktop view
   const PAGE_SIZE = 5;
 
-  // --- DATA ENRICHIE : chaque étape a des détails pédagogiques ---
+  // DATA
   const data = useMemo(
     () => ({
       essentielle: [
         {
           title: "Nettoyant",
-          img: "/img/routineimg1.jpg",
+          img: "/img/routineimg/nettoyant/routineimg1.png",
           note: "Nettoie en douceur",
           when: "Matin & soir",
           qty: "Une noisette",
@@ -23,7 +24,7 @@ export default function Routine() {
         },
         {
           title: "Toner",
-          img: "/img/routineimg2.jpg",
+          img: "/img/routineimg/toner/routineimg1.png",
           note: "Rééquilibre & prépare",
           when: "Matin & soir",
           qty: "3–5 gouttes",
@@ -32,7 +33,7 @@ export default function Routine() {
         },
         {
           title: "Sérum",
-          img: "/img/routineimg3.jpg",
+          img: "/img/routineimg/serum/routineimg1.png",
           note: "Actifs ciblés",
           when: "Matin & soir",
           qty: "2–3 gouttes",
@@ -41,7 +42,7 @@ export default function Routine() {
         },
         {
           title: "Crème hydratante",
-          img: "/img/routineimg4.jpg",
+          img: "/img/routineimg/creme/routineimg1.png",
           note: "Nourrit & scelle",
           when: "Matin & soir",
           qty: "Une noisette",
@@ -50,7 +51,7 @@ export default function Routine() {
         },
         {
           title: "SPF",
-          img: "/img/routineimg5.png",
+          img: "/img/routineimg/spf/routineimg1.png",
           note: "Protection UV (matin)",
           when: "Matin (dernier geste)",
           qty: "2 phalanges",
@@ -61,7 +62,7 @@ export default function Routine() {
       matin: [
         {
           title: "Nettoyant moussant",
-          img: "/img/images/routine/cleanser-foam.jpg",
+          img: "/img/routineimg/nettoyant/routineimg1.png",
           note: "Doux pour le matin",
           when: "Matin",
           qty: "Une noisette",
@@ -70,7 +71,7 @@ export default function Routine() {
         },
         {
           title: "Toner",
-          img: "/img/images/routine/toner.jpg",
+          img: "/img/routineimg/toner/routineimg1.png",
           note: "Hydrate léger",
           when: "Matin",
           qty: "3–4 gouttes",
@@ -79,7 +80,7 @@ export default function Routine() {
         },
         {
           title: "Essence",
-          img: "/img/images/routine/essence.jpg",
+          img: "/img/routineimg/essence/routineimg1.png",
           note: "Hydratation profonde",
           when: "Matin (après toner)",
           qty: "3–4 gouttes",
@@ -88,7 +89,7 @@ export default function Routine() {
         },
         {
           title: "Sérum",
-          img: "/images/routine/serum.jpg",
+          img: "/img/routineimg/serum/routineimg1.png",
           note: "Cible vos besoins",
           when: "Matin",
           qty: "2–3 gouttes",
@@ -97,7 +98,7 @@ export default function Routine() {
         },
         {
           title: "Contour des yeux",
-          img: "/images/routine/eye.jpg",
+          img: "/img/routineimg/contour-des-yeux/routineimg1.png",
           note: "Délicat & ciblé",
           when: "Matin",
           qty: "1/2 pompe",
@@ -106,7 +107,7 @@ export default function Routine() {
         },
         {
           title: "Crème hydratante",
-          img: "/images/routine/cream.jpg",
+          img: "/img/routineimg/creme/routineimg1.png",
           note: "Confort & souplesse",
           when: "Matin",
           qty: "Une noisette",
@@ -115,7 +116,7 @@ export default function Routine() {
         },
         {
           title: "SPF",
-          img: "/images/routine/spf.jpg",
+          img: "/img/routineimg/spf/routineimg1.png",
           note: "Indispensable",
           when: "Matin (dernier geste)",
           qty: "2 phalanges",
@@ -126,7 +127,7 @@ export default function Routine() {
       soir: [
         {
           title: "Huile nettoyante",
-          img: "/images/routine/oil.jpg",
+          img: "/img/routineimg/huile-nettoyante/routineimg1.png",
           note: "Démaquille & dissout le SPF",
           when: "Soir (1/2)",
           qty: "2–3 pressions",
@@ -135,7 +136,7 @@ export default function Routine() {
         },
         {
           title: "Nettoyant moussant",
-          img: "/images/routine/cleanser-foam.jpg",
+          img: "/img/routineimg/nettoyant/routineimg1.png",
           note: "Double nettoyage",
           when: "Soir (2/2)",
           qty: "Une noisette",
@@ -144,7 +145,7 @@ export default function Routine() {
         },
         {
           title: "Exfoliant (1–2x/sem)",
-          img: "/images/routine/exfoliant.jpg",
+          img: "/img/routineimg/exfoliant/routineimg1.png",
           note: "Lisse & illumine",
           when: "Soir, 1–2× semaine",
           qty: "1–2 pompes / disque",
@@ -153,7 +154,7 @@ export default function Routine() {
         },
         {
           title: "Toner",
-          img: "/images/routine/toner.jpg",
+          img: "/img/routineimg/toner/routineimg1.png",
           note: "Rééquilibre",
           when: "Soir",
           qty: "3–5 gouttes",
@@ -162,7 +163,7 @@ export default function Routine() {
         },
         {
           title: "Essence",
-          img: "/images/routine/essence.jpg",
+          img: "/img/routineimg/essence/routineimg1.png",
           note: "Booster d'hydratation",
           when: "Soir (après toner)",
           qty: "3–4 gouttes",
@@ -171,7 +172,7 @@ export default function Routine() {
         },
         {
           title: "Sérum",
-          img: "/images/routine/serum.jpg",
+          img: "/img/routineimg/serum/routineimg1.png",
           note: "Traitement ciblé",
           when: "Soir",
           qty: "2–3 gouttes",
@@ -180,7 +181,7 @@ export default function Routine() {
         },
         {
           title: "Masque (1–2x/sem)",
-          img: "/images/routine/mask.jpg",
+          img: "/img/routineimg/mask/routineimg1.png",
           note: "Coup d'éclat",
           when: "Soir, 1–2× semaine",
           qty: "Une couche fine (sleeping) / 1 tissu",
@@ -189,7 +190,7 @@ export default function Routine() {
         },
         {
           title: "Contour des yeux",
-          img: "/images/routine/eye.jpg",
+          img: "/img/routineimg/contour-des-yeux/routineimg1.png",
           note: "Anti-poches/rides",
           when: "Soir",
           qty: "1/2 pompe",
@@ -198,7 +199,7 @@ export default function Routine() {
         },
         {
           title: "Crème hydratante",
-          img: "/images/routine/cream.jpg",
+          img: "/img/routineimg/creme/routineimg1.png",
           note: "Scelle les soins",
           when: "Soir (dernier geste)",
           qty: "Noisette à généreuse",
@@ -211,8 +212,9 @@ export default function Routine() {
   );
 
   const steps = data[tab];
-  const totalPages = Math.ceil(steps.length / PAGE_SIZE);
 
+  // pagination desktop
+  const totalPages = Math.ceil(steps.length / PAGE_SIZE);
   useEffect(() => {
     setPage(0);
     setOpenIndex(null);
@@ -224,22 +226,19 @@ export default function Routine() {
   const prevPage = () => setPage((p) => (p - 1 + totalPages) % totalPages);
   const nextPage = () => setPage((p) => (p + 1) % totalPages);
 
-  // Toggle pour mobile/clavier (pas de hover)
+  // état "open" pour les détails (desktop et mobile rail)
   const toggleOpen = (idx) => {
     setOpenIndex((cur) => (cur === idx ? null : idx));
   };
 
   return (
     <div className="routine">
+      {/* header */}
       <div className="bs-header">
         <h1 className="bs-title">Routine Skincare</h1>
-        <p className="bs-sub">
-          Survole une étape (desktop) ou appuie dessus (mobile) pour découvrir <strong>Quand</strong>, <strong>Combien</strong>,
-          <strong> Comment</strong> et une <strong>Astuce</strong>.
-        </p>
       </div>
 
-      {/* Onglets */}
+      {/* onglets */}
       <div className="tabs" role="tablist" aria-label="Choisir le type de routine">
         <button
           className={tab === "essentielle" ? "tab active" : "tab"}
@@ -267,33 +266,116 @@ export default function Routine() {
         </button>
       </div>
 
-      {/* Grille avec flèches */}
-      <div className="routine-slider">
-        {steps.length > PAGE_SIZE && (
-          <button className="nav-arrow left" onClick={prevPage} aria-label="Étapes précédentes">
-            ‹
-          </button>
-        )}
+      {/*
+        DESKTOP/TABLET VIEW (inchangé visuellement pour toi)
+        - flèches gauche/droite
+        - grille responsive
+        - pagination par PAGE_SIZE
+      */}
+      <div className="routine-desktopView">
+        <div className="routine-slider">
+          {steps.length > PAGE_SIZE && (
+            <button
+              className="nav-arrow left"
+              onClick={prevPage}
+              aria-label="Étapes précédentes"
+            >
+              ‹
+            </button>
+          )}
 
-        <div className="routine-grid">
-          {visible.map((s, i) => {
-            const globalIndex = start + i;
-            const isOpen = openIndex === globalIndex;
+          <div className="routine-grid">
+            {visible.map((s, i) => {
+              const globalIndex = start + i;
+              const isOpen = openIndex === globalIndex;
+              return (
+                <div
+                  key={globalIndex}
+                  className={`card fade-in ${isOpen ? "open" : ""}`}
+                >
+                  <button
+                    className="card-hit"
+                    onClick={() => toggleOpen(globalIndex)}
+                    aria-expanded={isOpen}
+                    aria-controls={`details-${globalIndex}`}
+                  >
+                    <span className="sr-only">Afficher détails</span>
+                  </button>
+
+                  <div className="badge">{globalIndex + 1}</div>
+
+                  <div className="mediaa">
+                    <img src={s.img} alt={s.title} loading="lazy" />
+                  </div>
+
+                  <div className="body">
+                    <h3 className="title">{s.title}</h3>
+                    {s.note && <p className="note">{s.note}</p>}
+                  </div>
+
+                  <div
+                    id={`details-${globalIndex}`}
+                    className="details"
+                    aria-hidden={!isOpen}
+                  >
+                    <div className="details-inner">
+                      <p>
+                        <strong>Quand :</strong> {s.when}
+                      </p>
+                      <p>
+                        <strong>Combien :</strong> {s.qty}
+                      </p>
+                      <p>
+                        <strong>Comment :</strong> {s.how}
+                      </p>
+                      <p className="tip">
+                        <strong>Astuce :</strong> {s.tip}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {steps.length > PAGE_SIZE && (
+            <button
+              className="nav-arrow right"
+              onClick={nextPage}
+              aria-label="Étapes suivantes"
+            >
+              ›
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/*
+        MOBILE VIEW
+        - pas de flèches
+        - pas de pagination
+        - TOUTES les étapes dans un rail horizontal scrollable
+        - cartes ~50% de largeur => 2 visibles
+      */}
+      <div className="routine-mobileView">
+        <div className="routine-rail" role="list">
+          {steps.map((s, idx) => {
+            const isOpen = openIndex === idx;
             return (
               <div
-                key={globalIndex}
-                className={`card fade-in ${isOpen ? "open" : ""}`}
+                key={idx}
+                className={`card routine-rail-card ${isOpen ? "open" : ""}`}
               >
                 <button
                   className="card-hit"
-                  onClick={() => toggleOpen(globalIndex)}
+                  onClick={() => toggleOpen(idx)}
                   aria-expanded={isOpen}
-                  aria-controls={`details-${globalIndex}`}
+                  aria-controls={`m-details-${idx}`}
                 >
                   <span className="sr-only">Afficher détails</span>
                 </button>
 
-                <div className="badge">{globalIndex + 1}</div>
+                <div className="badge">{idx + 1}</div>
 
                 <div className="mediaa">
                   <img src={s.img} alt={s.title} loading="lazy" />
@@ -304,33 +386,40 @@ export default function Routine() {
                   {s.note && <p className="note">{s.note}</p>}
                 </div>
 
-                {/* Overlay infos détaillées (visible au hover ou si .open) */}
                 <div
-                  id={`details-${globalIndex}`}
+                  id={`m-details-${idx}`}
                   className="details"
                   aria-hidden={!isOpen}
                 >
                   <div className="details-inner">
-                    <p><strong>Quand :</strong> {s.when}</p>
-                    <p><strong>Combien :</strong> {s.qty}</p>
-                    <p><strong>Comment :</strong> {s.how}</p>
-                    <p className="tip"><strong>Astuce :</strong> {s.tip}</p>
+                    <p>
+                      <strong>Quand :</strong> {s.when}
+                    </p>
+                    <p>
+                      <strong>Combien :</strong> {s.qty}
+                    </p>
+                    <p>
+                      <strong>Comment :</strong> {s.how}
+                    </p>
+                    <p className="tip">
+                      <strong>Astuce :</strong> {s.tip}
+                    </p>
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
-
-        {steps.length > PAGE_SIZE && (
-          <button className="nav-arrow right" onClick={nextPage} aria-label="Étapes suivantes">
-            ›
-          </button>
-        )}
       </div>
 
+      {/* CTA packs */}
       <div className="cta-pack">
-        <a className="pack-btn1" href="/packs">Découvrir nos Pack Routines</a>
+        <Link
+          to="/catalogue?cat=pack&catLabel=pack"
+          className="pack-btn1"
+        >
+          Découvrir nos Pack Routines
+        </Link>
       </div>
     </div>
   );

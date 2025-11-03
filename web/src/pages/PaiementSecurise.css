@@ -1,0 +1,42 @@
+/* src/pages/PaiementSecurise.css */
+.pay-wrap { --ink:#111827; --muted:#6b7280; --line:#e5e7eb; --bg:#ffffff; }
+
+.pay-hero { text-align:center; padding:32px 16px 18px; }
+.pay-hero h1 { margin:0 0 6px; font-size:28px; }
+.pay-hero p { margin:0; color:var(--muted); }
+
+.pay-container { max-width:980px; margin:0 auto; padding: 6px 16px 36px; }
+.pay-sec { margin: 22px 0; }
+.pay-sec h2 { margin:0 0 10px; font-size:22px; }
+.pay-sec p { margin:8px 0; }
+
+.grid { display:grid; gap:12px; grid-template-columns: repeat(3, 1fr); }
+.card { border:1px solid var(--line); border-radius:12px; background:#fff; padding:14px; }
+.card h3 { margin:0 0 6px; font-size:16px; }
+
+.muted { color:var(--muted); }
+.tiny { font-size:12px; }
+
+.steps { padding-left:18px; margin:8px 0; }
+.steps li { margin:6px 0; }
+
+.qa { border:1px solid var(--line); border-radius:10px; background:#fff; padding:10px 12px; margin:8px 0; }
+.qa summary { cursor:pointer; list-style:none; font-weight:600; }
+.qa summary::-webkit-details-marker { display:none; }
+
+.pay-logos { display:flex; gap:10px; flex-wrap:wrap; padding:0; margin:10px 0; list-style:none; }
+.pay-logos .logo { position:relative; padding:8px 12px; border:1px solid var(--line); border-radius:999px; background:#fafafa; font-size:12px; }
+.pay-logos .logo span { opacity:0.9; }
+
+/* Optionnel: petites pastilles stylées selon la méthode */
+.logo.cb { }
+.logo.bancontact { }
+.logo.applepay { }
+.logo.googlepay { }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}

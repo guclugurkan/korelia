@@ -1,9 +1,62 @@
-import React from "react";
+// src/pages/Contact.jsx
+import React, { useState } from "react";
 import "./Contact.css";
+import Footer from "../components/Footer";
+import { apiJson } from "../lib/api.js";
+import SiteHeader from "../components/SiteHeader.jsx";
+
+const API = import.meta.env.VITE_API_URL || "http://localhost:4242";
+
+function getCsrfFromCookie() {
+  const m = document.cookie.match(/(?:^|;\s*)csrf_token=([^;]+)/);
+  return m ? decodeURIComponent(m[1]) : "";
+}
 
 export default function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [busy, setBusy] = useState(false);
+  const [okMsg, setOkMsg] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+
+  async function ensureCsrf() {
+    try {
+      // si déjà set par ailleurs, pas grave, l’endpoint renvoie le même cookie
+      await fetch(`${API}/auth/csrf`, { credentials: "include" });
+    } catch {}
+    return getCsrfFromCookie();
+  }
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    setOkMsg("");
+    setErrMsg("");
+
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const message = form.message.trim();
+    const subject = form.subject.trim();
+
+    if (!name || !email || !message) {
+      setErrMsg("Merci de remplir nom, e-mail et message.");
+      return;
+    }
+
+    setBusy(true);
+    try {
+      const csrf = await ensureCsrf();
+      await apiJson("POST", "/contact", { name, email, subject, message }, { csrf });
+      setOkMsg("Merci ! Votre message a bien été envoyé. Nous revenons vers vous sous 24–48h ouvrées.");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch (e) {
+      setErrMsg(e.message || "Envoi impossible pour le moment.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
     <main className="contact-page">
+      <SiteHeader/>
       <header className="contact-hero">
         <h1>Contact</h1>
         <p>Une question sur un produit, une routine ou une commande ? On te répond avec plaisir.</p>
@@ -24,39 +77,63 @@ export default function Contact() {
 
         <article className="contact-card">
           <h2>Formulaire</h2>
-          <form className="contact-form" onSubmit={(e)=>e.preventDefault()}>
+
+          <form className="contact-form" onSubmit={onSubmit}>
             <div className="row">
               <label>Nom</label>
-              <input type="text" placeholder="Votre nom" required />
+              <input
+                type="text"
+                placeholder="Votre nom"
+                value={form.name}
+                onChange={(e)=> setForm(f => ({...f, name:e.target.value}))}
+                required
+              />
             </div>
             <div className="row">
               <label>E-mail</label>
-              <input type="email" placeholder="Votre e-mail" required />
+              <input
+                type="email"
+                placeholder="Votre e-mail"
+                value={form.email}
+                onChange={(e)=> setForm(f => ({...f, email:e.target.value}))}
+                required
+              />
             </div>
             <div className="row">
               <label>Objet</label>
-              <input type="text" placeholder="Ex. Conseil routine, commande #1234…" />
+              <input
+                type="text"
+                placeholder="Ex. Conseil routine, commande #1234…"
+                value={form.subject}
+                onChange={(e)=> setForm(f => ({...f, subject:e.target.value}))}
+              />
             </div>
             <div className="row">
               <label>Message</label>
-              <textarea rows="5" placeholder="Votre message…"></textarea>
+              <textarea
+                rows="5"
+                placeholder="Votre message…"
+                value={form.message}
+                onChange={(e)=> setForm(f => ({...f, message:e.target.value}))}
+                required
+              />
             </div>
-            <button className="btn" type="submit">Envoyer</button>
-          </form>
-          <p className="small">En envoyant, vous acceptez notre <a href="/confidentialite">politique de confidentialité</a>.</p>
-        </article>
 
-        <article className="contact-card">
-          <h2>Horaires</h2>
-          <ul className="hours">
-            <li>Lun–Ven : 9:00 – 18:00</li>
-            <li>Sam : 10:00 – 14:00</li>
-            <li>Dim : fermé</li>
-          </ul>
-          <h3 className="mt16">Besoin d’un conseil routine ?</h3>
-          <p>Décris ta peau + objectifs, on te propose une routine personnalisée.</p>
+            <button className="btn" type="submit" disabled={busy}>
+              {busy ? "Envoi…" : "Envoyer"}
+            </button>
+
+            {okMsg && <p className="ok">{okMsg}</p>}
+            {errMsg && <p className="err">{errMsg}</p>}
+          </form>
+
+          <p className="small">
+            En envoyant, vous acceptez notre <a href="/confidentialite">politique de confidentialité</a>.
+          </p>
         </article>
       </section>
+
+      <Footer/>
     </main>
   );
 }

@@ -1,0 +1,44 @@
+/* src/pages/LivraisonRetours.css */
+.lr-wrap { --ink:#111827; --muted:#6b7280; --line:#e5e7eb; --bg:#ffffff; }
+
+.lr-hero { text-align:center; padding:32px 16px 18px; }
+.lr-hero h1 { margin:0 0 6px; font-size:28px; }
+.lr-hero p { margin:0; color:var(--muted); }
+
+.lr-toc { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; padding:0 16px 14px; }
+.lr-toc a { text-decoration:none; border:1px solid var(--line); padding:8px 12px; border-radius:999px; color:var(--ink); background:#fafafa; }
+.lr-toc a:hover { background:#fff; }
+
+.lr-container { max-width:980px; margin:0 auto; padding: 6px 16px 36px; }
+.lr-sec { margin: 22px 0; }
+.lr-sec h2 { margin:0 0 8px; font-size:22px; }
+.lr-sec p { margin:8px 0; }
+
+.lr-card { border:1px solid var(--line); border-radius:12px; background:#fff; padding:14px; margin:12px 0; }
+.lr-list { margin:8px 0; padding-left:18px; }
+.lr-list li { margin:6px 0; }
+
+.lr-table { width:100%; border:1px solid var(--line); border-radius:10px; overflow:hidden; margin-top:8px; }
+.lr-table .row { display:grid; grid-template-columns: 1fr 160px 1fr; border-top:1px solid var(--line); }
+.lr-table .row:first-child { border-top:none; }
+.lr-table .row > div { padding:10px 12px; }
+.lr-table .head { background:#fafafa; font-weight:700; }
+
+.lr-muted { color:var(--muted); }
+.tiny { font-size:12px; }
+
+.lr-steps { display:flex; flex-direction:column; gap:12px; margin-top:10px; }
+.step { display:flex; gap:12px; align-items:flex-start; border:1px solid var(--line); border-radius:12px; padding:12px; background:#fff; }
+.step .badge { flex: 0 0 auto; width:28px; height:28px; border-radius:999px; background:#111827; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+.step h3 { margin:0 0 4px; font-size:16px; }
+
+.addr { background:#f8fafc; border:1px dashed var(--line); padding:10px; border-radius:8px; white-space:pre-wrap; margin:8px 0 0; }
+
+.lr-details { border:1px solid var(--line); border-radius:10px; background:#fff; padding:10px 12px; margin-top:8px; }
+.lr-details summary { cursor:pointer; list-style:none; font-weight:600; }
+.lr-details summary::-webkit-details-marker { display:none; }
+.lr-formula pre { margin:10px 0 0; padding:10px; background:#f8fafc; border:1px dashed var(--line); border-radius:8px; white-space:pre-wrap; }
+
+@media (max-width: 680px) {
+  .lr-table .row { grid-template-columns: 1fr 120px 1fr; }
+}

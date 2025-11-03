@@ -14,6 +14,7 @@ import Routine from '../components/Routine';
 import Blog from '../blog/Blog';
 import Footer from '../components/Footer';
 import PackHomePage from '../components/PackHomePage';
+import MobileHeader from '../components/MobileHeader';
 
 
 
@@ -64,6 +65,7 @@ const HomePage = () => {
                 <header>
                     {header}
                     {header2}
+                    {<MobileHeader/>}
                 </header>
 
                 <main>

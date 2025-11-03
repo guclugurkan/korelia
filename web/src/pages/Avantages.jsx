@@ -1,5 +1,6 @@
 // src/pages/Avantages.jsx
-import HeaderAll from "../components/HeaderAll";
+
+import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import "./Avantages.css";
@@ -7,7 +8,7 @@ import "./Avantages.css";
 export default function Avantages(){
   return (
     <main className="adv-wrap">
-      <HeaderAll/>
+      <SiteHeader/>
 
       <section className="adv-hero">
         <div className="adv-hero-content">
@@ -38,8 +39,8 @@ export default function Avantages(){
           <article className="adv-card">
             <div className="adv-icon" aria-hidden>📝</div>
             <h3>Avis</h3>
-            <p><b>+10 points</b> pour chaque avis publié.</p>
-            <div className="adv-note">Anti-abus : 1 avis / produit / 24h.</div>
+            <p><b>+10 points</b> pour chaque avis publié sur un produit acheté.</p>
+            <div className="adv-note">Anti-abus : 1 avis / produit </div>
           </article>
 
           <article className="adv-card">
@@ -84,10 +85,10 @@ export default function Avantages(){
           <article className="gift-card">
             <div className="gift-img">
               <img src="/img/loyalty/gift-mask.jpg" alt="Masque offert" onError={(e)=>e.currentTarget.style.display="none"} />
-              <span className="gift-badge">Dès 40€</span>
+             
             </div>
             <div className="gift-meta">
-              <h3>Masque tissu hydratant</h3>
+              <h3>1 Masque tissu hydratant</h3>
               <p>Offert dès 40€ d’achat.</p>
             </div>
           </article>
@@ -95,22 +96,22 @@ export default function Avantages(){
           <article className="gift-card">
             <div className="gift-img">
               <img src="/img/loyalty/gift-minis.jpg" alt="Miniatures offertes" onError={(e)=>e.currentTarget.style.display="none"} />
-              <span className="gift-badge">Dès 70€</span>
+           
             </div>
             <div className="gift-meta">
-              <h3>Duo de miniatures</h3>
-              <p>2 miniatures (selon stock) dès 70€ d’achat.</p>
+               <h3>2 Masque tissu hydratant</h3>
+              <p>Offert dès 70€ d’achat.</p>
             </div>
           </article>
 
           <article className="gift-card">
             <div className="gift-img">
               <img src="/img/loyalty/gift-pouch.jpg" alt="Pochette skincare" onError={(e)=>e.currentTarget.style.display="none"} />
-              <span className="gift-badge">Dès 100€</span>
+            
             </div>
             <div className="gift-meta">
-              <h3>Pochette skincare</h3>
-              <p>Pochette + 1 mini supplémentaire dès 100€.</p>
+               <h3>3 Masque tissu hydratant</h3>
+              <p>Offert dès 100€ d’achat.</p>
             </div>
           </article>
         </div>
@@ -151,7 +152,7 @@ export default function Avantages(){
         <div className="adv-faq">
           <details>
             <summary>Comment utiliser mes points ?</summary>
-            <p>Au checkout : si tu as assez de points pour un palier, le bouton “Utiliser mes points” apparaît. Choisis 5€, 12€ ou 35€.</p>
+            <p>Tu peux les transformer en code promo dans ton profil</p>
           </details>
           <details>
             <summary>Les points expirent-ils ?</summary>
@@ -159,7 +160,7 @@ export default function Avantages(){
           </details>
           <details>
             <summary>Les avis sont-ils limités ?</summary>
-            <p>+10 pts par avis, limité à 1 avis / produit / 24h afin d’éviter les abus.</p>
+            <p>+10 pts par avis, limité à 1 avis / produit afin d’éviter les abus.</p>
           </details>
           <details>
             <summary>Les cadeaux sont-ils cumulables avec les remises points ?</summary>

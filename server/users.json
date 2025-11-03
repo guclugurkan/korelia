@@ -13,7 +13,97 @@
       "city": "Bruxelles",
       "country": "BE",
       "phone": "0483111232"
-    }
+    },
+    "points": 1381,
+    "rewards_history": [
+      {
+        "id": "7bdda4b9-0c41-4565-a71a-33ef66e022e9",
+        "at": "2025-10-19T00:13:12.871Z",
+        "delta": 139,
+        "reason": "order",
+        "orderId": "cs_test_b1gFAOXblus3Q5mXSmrdkt7uX6KAokXTtX9gfESPRLpVuNH1v5DbmAn50d"
+      },
+      {
+        "id": "1ff596fd-5d4c-4609-8112-2807708aac4a",
+        "at": "2025-10-18T22:10:39.368Z",
+        "delta": 165,
+        "reason": "order",
+        "orderId": "cs_test_b1aCSLPkI0W3K4KkT1b7KfJEaycAZxG7MZnytSOQtkv7XsJAcqEQhdyzg2"
+      },
+      {
+        "id": "5b44dd2e-2b6e-4150-adb9-705375d332d4",
+        "at": "2025-10-18T21:43:54.267Z",
+        "delta": 165,
+        "reason": "order",
+        "orderId": "cs_test_b1F907D0cpczFA92dbWcmybQF9arrCMvNmaMVoybwbWNahYHj4EGjDJ6es"
+      },
+      {
+        "id": "f7f3fb52-8fdc-44c5-bd5b-a920ad01adaf",
+        "at": "2025-10-18T21:43:10.049Z",
+        "delta": 165,
+        "reason": "order",
+        "orderId": "cs_test_b1E7vPNz5aZdBjJSWKB9dPlUTUc8ZoM0IPosji9NtiBAa6YOuZXifJePRt"
+      },
+      {
+        "id": "86959ce8-4703-4aaf-9085-b7d194240999",
+        "at": "2025-10-18T21:40:48.521Z",
+        "delta": 143,
+        "reason": "order",
+        "orderId": "cs_test_b1k9bYlXoF9pzEUnp56XUtrghICDBTbEgtxTMzN3xCIxadbilVPujWXFm5"
+      },
+      {
+        "id": "1b2dd373-5883-49ae-93f5-4c2aa6ab7f16",
+        "at": "2025-10-18T20:58:56.106Z",
+        "delta": 121,
+        "reason": "order",
+        "orderId": "cs_test_b151QhQWEd4HOXeCWnZWfEHa2A3JHIqD5UraeKVK6IGSIScokHTonTe3Pn"
+      },
+      {
+        "id": "7248d44e-d123-4aab-aced-9f6e8cb1ac81",
+        "at": "2025-10-18T20:55:44.572Z",
+        "delta": 265,
+        "reason": "order",
+        "orderId": "cs_test_b1VmQUUPlAcfyvGj7fEcivS43DKbuRg0CcLXJm75yMSNyuaU1oUNJd65i3"
+      },
+      {
+        "id": "e97d6248-e41f-4a8f-8a8d-4c3ea3217fa9",
+        "at": "2025-10-18T20:35:25.542Z",
+        "delta": 209,
+        "reason": "order",
+        "orderId": "cs_test_b1BC28izwyqU4jYSKnce1Eilx33lS5imr7a25NGE3WoNc5lDQArDGqyKFU"
+      },
+      {
+        "id": "002e03a1-2fa5-4831-b601-a202d4748349",
+        "at": "2025-10-18T20:34:41.194Z",
+        "delta": -200,
+        "reason": "redeem:200_12",
+        "stripe_coupon_id": "CVvYmFNz",
+        "stripe_promotion_code_id": "promo_1SJgpoP7tRkRV6sZmptIBphR",
+        "code": "KORELIA-12-A60FF2",
+        "amount_off_cents": 1200,
+        "min_amount_cents": 7000
+      },
+      {
+        "id": "65866fb4-4b31-465a-8b20-c91f8daa23de",
+        "at": "2025-10-18T20:33:22.855Z",
+        "delta": 209,
+        "reason": "order",
+        "orderId": "cs_test_b1p8A2vPAuuUmKsxFpfZWzFrsUennP8RrR3VnvrGAyIiAnf29wiuGetcD5"
+      }
+    ],
+    "reviews_meta": {
+      "lastPerProduct": {},
+      "awardedPerProduct": {}
+    },
+    "shipping_address": {
+      "name": "Gurkan Guclu",
+      "line1": "Parvis notre dame5ee 125",
+      "line2": "",
+      "postal_code": "1020",
+      "city": "Bruxelles",
+      "country": "BE"
+    },
+    "phone": "0483111232"
   },
   {
     "id": "29de0ddc-1dcd-4bdd-b43f-c39d7b936a68",
@@ -34,14 +124,302 @@
   {
     "id": "ebe9dd7c-7cf5-4eae-9ff2-9ddc659c2dd3",
     "email": "guclugrkn@gmail.com",
-    "name": "gurkan",
+    "name": "Gurkan",
     "password_hash": "$2b$10$/bVR8sCpijONgfJHUpqc2eGx3NpKJxcC..UUOAlZfV7GQzBwDMNhm",
     "role": "admin",
     "createdAt": "2025-09-03T11:03:25.474Z",
     "email_verified": true,
     "email_verify": null,
-    "points": 1,
+    "points": 6774,
     "rewards_history": [
+      {
+        "id": "cc65f1ce-59a4-4d4b-a92c-10f2f5564686",
+        "at": "2025-11-02T14:26:28.420Z",
+        "delta": 18,
+        "reason": "order_backfill",
+        "orderId": "cs_test_b18bwT4WC0yNfpnsUCy87dctivZto7FNaPGoHrDBAIcnYbxdHcIkKCNTsx"
+      },
+      {
+        "id": "81952bfd-3d96-411d-b096-88cc39de85dc",
+        "at": "2025-11-02T14:21:27.095Z",
+        "delta": 18,
+        "reason": "order",
+        "orderId": "cs_test_b18bwT4WC0yNfpnsUCy87dctivZto7FNaPGoHrDBAIcnYbxdHcIkKCNTsx"
+      },
+      {
+        "id": "ad469f0d-8034-427c-82d9-6ba12aff4d40",
+        "at": "2025-10-20T17:54:28.924Z",
+        "delta": 39,
+        "reason": "order",
+        "orderId": "cs_test_b1L6D1Z01e8SSiaD9sIf7gxjHMA7BfwXQDQM0DHUpVQ4BeDwdsITWRUFIJ"
+      },
+      {
+        "id": "3136d088-80fb-4961-9dc9-850bcbfdc6c2",
+        "at": "2025-10-19T00:15:49.200Z",
+        "delta": 676,
+        "reason": "order",
+        "orderId": "cs_test_b1I7XThXb9umdeDyL0U2dnfQfNhJiESh1AoIngJK2aMbXXuX0WMQSKSTna"
+      },
+      {
+        "id": "4fdaac46-591a-410b-8ef0-75ed57f845a0",
+        "at": "2025-10-18T20:26:41.269Z",
+        "delta": 187,
+        "reason": "order",
+        "orderId": "cs_test_b16viACzvSYo6K07t60StWQpnMCqB1Kzi17Tu5sDPJZ4MUZVL7ZUuE8xgH"
+      },
+      {
+        "id": "14fd36e8-4ccf-4e33-bc25-d95267713dfd",
+        "at": "2025-10-18T20:25:16.473Z",
+        "delta": 187,
+        "reason": "order",
+        "orderId": "cs_test_b11l8nrk1wCMU15CJaHM2UiZZGtYxiKP8RcPLXDss3RmCez0JglB974hRU"
+      },
+      {
+        "id": "a3301066-13e6-4f92-8cc7-72e069729f68",
+        "at": "2025-10-15T19:18:42.709Z",
+        "delta": -200,
+        "reason": "redeem:200_12",
+        "stripe_coupon_id": "taqkUFPL",
+        "stripe_promotion_code_id": "promo_1SIaDeP7tRkRV6sZ9daW69Q0",
+        "code": "KORELIA-12-B924C9",
+        "amount_off_cents": 1200,
+        "min_amount_cents": 7000
+      },
+      {
+        "id": "720ef11f-dcdc-41e1-abf2-b73ff7c92341",
+        "at": "2025-10-15T19:18:35.107Z",
+        "delta": -100,
+        "reason": "redeem:100_5",
+        "stripe_coupon_id": "YU1rCtqH",
+        "stripe_promotion_code_id": "promo_1SIaDWP7tRkRV6sZ7PUvkxrs",
+        "code": "KORELIA-5-7C7055",
+        "amount_off_cents": 500,
+        "min_amount_cents": 5000
+      },
+      {
+        "id": "1984d9be-d9bb-4b4b-9b7b-55edc48ca0e2",
+        "at": "2025-10-14T23:03:07.513Z",
+        "delta": 2694,
+        "reason": "order",
+        "orderId": "cs_test_b1iR2brehXfRRgtcucJGbVnTvf6ZD23pk60qigklvAfc1jwJOzWC8Jv9OC"
+      },
+      {
+        "id": "b2ba1cef-0a2c-437e-aab2-3c5b9419f6c4",
+        "at": "2025-10-12T03:47:51.667Z",
+        "delta": 546,
+        "reason": "order",
+        "orderId": "cs_test_b1wI3r3PsJEEWw6Ez6wQwIzNxdiRXvo1UqOfSBVvjLU0hcr0dmE8KGbrVj"
+      },
+      {
+        "id": "8f52bd73-dd39-4c1f-b4d8-a34f826fa5ab",
+        "at": "2025-10-08T21:03:45.912Z",
+        "delta": 199,
+        "reason": "order",
+        "orderId": "cs_test_b1XY5Z8T1naKJXBfH5WifsugND2GGImZFbWQmhhjm6B5pbnOsgm3CaYd28"
+      },
+      {
+        "id": "f4b4203a-2c16-43dc-8dab-924a4957301a",
+        "at": "2025-10-08T20:56:48.801Z",
+        "delta": 10,
+        "reason": "review_approved",
+        "productId": "boj-relief-sun-rice-probiotics",
+        "reviewId": "c7198c33-a6ab-48f9-ae70-b87cacdf0a5d"
+      },
+      {
+        "id": "b913ac96-e7bd-485f-95cf-605460561922",
+        "at": "2025-10-08T20:36:07.329Z",
+        "delta": 10,
+        "reason": "review_approved",
+        "productId": "boj-relief-sun-rice-probiotics",
+        "reviewId": "d84040de-c12a-41f6-b045-7aabc878ade4"
+      },
+      {
+        "id": "70024fcc-c527-4f1a-9eb5-47627123b450",
+        "at": "2025-10-02T00:25:50.034Z",
+        "delta": 959,
+        "reason": "order",
+        "orderId": "cs_test_b1gzRPbcT7B94ZE0r5Azyk7AIysHmqLrgjumKOOeXlm3qAiRAKmLX989Dz"
+      },
+      {
+        "id": "26fbd729-f43e-4c21-ab46-a07805bfe579",
+        "at": "2025-10-01T04:12:06.419Z",
+        "delta": -100,
+        "reason": "redeem:100_5",
+        "stripe_coupon_id": "zXZiJCPC",
+        "stripe_promotion_code_id": "promo_1SDHOaP7tRkRV6sZD9qE0bNb",
+        "code": "KORELIA-5-51BF29",
+        "amount_off_cents": 500,
+        "min_amount_cents": 3000
+      },
+      {
+        "id": "fb3acbc9-8060-4376-b82c-3f5f7628ebbb",
+        "at": "2025-10-01T04:09:40.083Z",
+        "delta": -100,
+        "reason": "redeem:100_5",
+        "stripe_coupon_id": "Q4G2njLI",
+        "stripe_promotion_code_id": "promo_1SDHMDP7tRkRV6sZnLkWKcZ6",
+        "code": "KORELIA-5-EA0AE2",
+        "amount_off_cents": 500,
+        "min_amount_cents": 3000
+      },
+      {
+        "id": "10302073-33ec-400a-bc78-a1c8c21facff",
+        "at": "2025-10-01T04:08:25.576Z",
+        "delta": -100,
+        "reason": "redeem:100_5",
+        "stripe_coupon_id": "68ly0NmQ",
+        "stripe_promotion_code_id": "promo_1SDHL1P7tRkRV6sZ0zpsEw57",
+        "code": "KORELIA-5-956697",
+        "amount_off_cents": 500,
+        "min_amount_cents": 3000
+      },
+      {
+        "id": "384f9698-853e-4fd3-a901-a1813c9f0933",
+        "at": "2025-09-29T18:29:05.870Z",
+        "delta": 299,
+        "reason": "order",
+        "orderId": "cs_test_b1y4EwM5FDoCVHu2QoHdQS7JlCZELLCU7yt5F3aLCB14TYA0t9wa2SLHl3"
+      },
+      {
+        "id": "31781b51-3cf7-46f8-b242-cee4b416b1f7",
+        "at": "2025-09-29T18:20:47.662Z",
+        "delta": -100,
+        "reason": "redeem:100_5",
+        "stripe_coupon_id": "Sds5ByvT",
+        "stripe_promotion_code_id": "promo_1SClgpP7tRkRV6sZLiq3Kzkb",
+        "code": "KORELIA-5-104E2B",
+        "amount_off_cents": 500,
+        "min_amount_cents": 3000
+      },
+      {
+        "id": "a071edca-e829-434e-98a9-7aa8c0c7a7f0",
+        "at": "2025-09-29T17:49:10.857Z",
+        "delta": -100,
+        "reason": "redeem:100_5",
+        "stripe_coupon_id": "fzKObQrs",
+        "stripe_promotion_code_id": "promo_1SClCEP7tRkRV6sZkt9rzyvh",
+        "code": "KORELIA-5-8FE0CA",
+        "amount_off_cents": 500,
+        "min_amount_cents": 3000
+      },
+      {
+        "id": "a1f955fd-abce-4637-9e7b-dc402de12e02",
+        "at": "2025-09-28T04:21:21.245Z",
+        "delta": 299,
+        "reason": "order",
+        "orderId": "cs_test_b1NehewrFg8mFHkyFXBKoh9nLHXv5MJijInJOXXBumxwlAyZWEpSbwrvYM"
+      },
+      {
+        "id": "f1fc29c2-a4d9-418c-a30e-38baa092e181",
+        "at": "2025-09-28T04:15:49.269Z",
+        "delta": 199,
+        "reason": "order",
+        "orderId": "cs_test_b1oPPYonmACS3bhbcb8qH5BjL5qPOWNXlrC5ng7Bs78PtIiv02g78v7Lry"
+      },
+      {
+        "id": "b7b92884-30d6-4b14-a95a-0708bd3cf7ca",
+        "at": "2025-09-28T04:10:33.883Z",
+        "delta": 99,
+        "reason": "order",
+        "orderId": "cs_test_b1aXPkKbFxvElhLjZbMiB0y9PZPeQC84sB3ps00mu2c7CQ2T3WFKwscKA5"
+      },
+      {
+        "id": "82830532-c72c-4732-9279-e1876c87576e",
+        "at": "2025-09-28T04:07:02.463Z",
+        "delta": 599,
+        "reason": "order",
+        "orderId": "cs_test_b1vgAfabjLpXeitwkJQbEtj6J00hO7f3niRMp1vT5wgbFDp0eBvr4EiVrP"
+      },
+      {
+        "id": "7484dece-4f2d-4d6b-b2c1-bcb4fef7e20c",
+        "at": "2025-09-28T04:01:02.137Z",
+        "delta": 499,
+        "reason": "order",
+        "orderId": "cs_test_b1Ndw3AK2aGAUIQ6ZT9jQZRkuag1v66zXmIeRTj5tumyFfB0JUAHjoCCdZ"
+      },
+      {
+        "id": "fcf1eeae-7b33-4df4-a6ed-3d1e4d9eb498",
+        "at": "2025-09-28T03:46:06.181Z",
+        "delta": -100,
+        "reason": "redeem:100_5",
+        "stripe_coupon_id": "uLOJr5bH",
+        "stripe_promotion_code_id": "promo_1SCBYmP7tRkRV6sZPElq72d2",
+        "code": "KORELIA-5-66A86E",
+        "amount_off_cents": 500,
+        "min_amount_cents": 3000
+      },
+      {
+        "id": "3d2a96a6-53c2-4d54-948a-3e54da06f957",
+        "at": "2025-09-28T03:45:59.999Z",
+        "delta": -100,
+        "reason": "redeem:100_5",
+        "stripe_coupon_id": "hLSzItCc",
+        "stripe_promotion_code_id": "promo_1SCBYgP7tRkRV6sZBeItvRHd",
+        "code": "KORELIA-5-485D58",
+        "amount_off_cents": 500,
+        "min_amount_cents": 3000
+      },
+      {
+        "id": "9f961ce9-2fbb-473e-a74d-31c9621e0ef3",
+        "at": "2025-09-28T03:41:48.661Z",
+        "delta": -100,
+        "reason": "redeem:100_5",
+        "stripe_coupon_id": "Pfpnx3BV",
+        "stripe_promotion_code_id": "promo_1SCBUdP7tRkRV6sZg8iAPg9F",
+        "code": "KORELIA-5-F2EF49",
+        "amount_off_cents": 500,
+        "min_amount_cents": 3000
+      },
+      {
+        "id": "fd48a183-e963-4283-a85a-c5665ea2bf43",
+        "at": "2025-09-28T03:40:23.205Z",
+        "delta": 279,
+        "reason": "order",
+        "orderId": "cs_test_b16JEwWrh5a2FOBN5aJdnd6nGIQr9W4RXjCd9852OFnzercNsbceaesm5F"
+      },
+      {
+        "id": "4ba04e50-d862-455d-b5d6-b581af782e80",
+        "at": "2025-09-27T14:17:34.237Z",
+        "delta": -100,
+        "reason": "redeem:100_5",
+        "stripe_coupon_id": "IJWQDMOS",
+        "stripe_promotion_code_id": "promo_1SBywLP7tRkRV6sZSh8VSwA0",
+        "code": "KORELIA-5-0402F9",
+        "amount_off_cents": 500,
+        "min_amount_cents": 3000
+      },
+      {
+        "id": "309847a2-29a4-43f0-a8df-df964503c0e9",
+        "at": "2025-09-27T14:10:45.432Z",
+        "delta": 119,
+        "reason": "order",
+        "orderId": "cs_test_b1XZvXrECaOmvobfdMyiyFi7hM1MtmOjWeU3SOpelAMwGt7YwOkT0ARdpD"
+      },
+      {
+        "id": "565683d8-187b-4c46-9f4e-f5f00f007c16",
+        "at": "2025-09-27T14:07:59.459Z",
+        "delta": -200,
+        "reason": "redeem:200_12",
+        "stripe_coupon_id": "8CbwwbKM",
+        "stripe_promotion_code_id": "promo_1SByn5P7tRkRV6sZEbbhNHTX",
+        "code": "KORELIA-12-2463A5",
+        "amount_off_cents": 1200,
+        "min_amount_cents": 5000
+      },
+      {
+        "id": "84e4bc6a-beb2-4f0f-b4a8-6c9d65ddac2f",
+        "at": "2025-09-27T14:06:51.578Z",
+        "delta": 119,
+        "reason": "order",
+        "orderId": "cs_test_b14QgsvAr2VLM2fC7YGejeEoy08eL9NSCEOmHuYw06N5hcPe4DnQLfuyml"
+      },
+      {
+        "id": "60dd0a1c-fdb8-4aed-bcc7-1b5171126766",
+        "at": "2025-09-27T14:04:29.758Z",
+        "delta": 119,
+        "reason": "order",
+        "orderId": "cs_test_b1zGtBvrnwIfT75gfgVJZXS6JpO7vshZ9joEX1aLBs6F4GWicy59h8owf1"
+      },
       {
         "id": "3e1667df-913c-4513-a2bf-31d311301ee0",
         "at": "2025-09-16T20:28:32.271Z",
@@ -295,11 +673,14 @@
       }
     ],
     "reviews_meta": {
-      "lastPerProduct": {}
+      "lastPerProduct": {},
+      "awardedPerProduct": {
+        "cosrx-rice-overnight-spa-mask": true
+      }
     },
     "shipping_address": {
       "name": "Gurkan Guclu",
-      "line1": "sdfghjkjhgdsqdfgh",
+      "line1": "Parvis notre dame 12",
       "line2": "",
       "postal_code": "1020",
       "city": "Bruxelles",
@@ -566,5 +947,31 @@
       "country": "BE"
     },
     "phone": "04831112302"
+  },
+  {
+    "id": "cd1269c0-de5f-4a4b-9700-17936b4578fc",
+    "email": "test41@gmail.com",
+    "name": "test41",
+    "password_hash": "$2a$10$fDvIe8leC5VQ6AbFHyrO7.WnqtSHoyw48DXIB3SAGd7QMDlCcc7Fy",
+    "role": "user",
+    "createdAt": "2025-10-01T03:49:01.718Z",
+    "email_verified": false,
+    "email_verify": {
+      "token_hash": "cd806e28c286278380d0d81ff238390f121d14a113aec8cc6f4597c6b10900d0",
+      "expiresAt": 1759376941718
+    },
+    "token_version": 0,
+    "points": 50,
+    "rewards_history": [
+      {
+        "id": "3c5cb9b0-7738-4361-a0a0-4fa467eba91f",
+        "at": "2025-10-01T03:49:01.718Z",
+        "delta": 50,
+        "reason": "signup"
+      }
+    ],
+    "reviews_meta": {
+      "lastPerProduct": {}
+    }
   }
 ]

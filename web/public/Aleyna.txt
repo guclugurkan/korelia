@@ -64,3 +64,33 @@ Sérum : Cosrx BHA Blackhead Power Liquid (2-3x/semaine) ou Medicube Super Cica 
 autres jours
 Crème : Cosrx Oil-Free Ultra-Moisturizing Lotion
 SPF : Anua Heartleaf Silky Moisture Sun Cream SPF50 (léger, non comédogène)
+
+
+
+
+
+
+
+
+
+
+
+
+1. 
+"products_included": [
+    "boj-ginseng-cleansing-oil",
+    "imfrom-rice-toner",
+    "cosrx-advanced-snail-96-mucin-power-essence",
+    "boj-dynasty-cream",
+    "cosrx-aloe-soothing-sun-cream"
+  ]
+
+
+2. 
+"products": [
+    "cosrx-low-ph-good-morning-gel-cleanser",
+    "anua-rice-70-glow-milky-toner",
+    "iunik-beta-glucan-power-moisture-serum",
+    "iunik-beta-glucan-daily-moisture-cream",
+    "cosrx-aloe-soothing-sun-cream"
+  ],

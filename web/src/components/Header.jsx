@@ -73,7 +73,7 @@ export default function Header() {
 
   return (
     <div className="header" ref={boxRef}>
-      <div className="nomDuSite">
+      <div className="nomDuSitee">
         <Link to={"/"}><h1>KORELIA</h1></Link>
       </div>
 

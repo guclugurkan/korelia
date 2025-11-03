@@ -11,19 +11,20 @@
   --white:     #fff;
 }
 
-/* Wrapper */
+/* Wrapper global (page de login) */
 .login-wrap{
   min-height: 100dvh;
   width: 100%;
-  padding-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+    background-color:#FFF8F4;
   
+ 
 }
 
-/* Carte */
+/* Carte du login */
 .login-card{
   width: 680px;
   background: var(--white);
@@ -33,22 +34,22 @@
     0 10px 30px rgba(0,0,0,.06),
     0 2px 8px rgba(0,0,0,.04);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-
-/* Côté formulaire (droit) */
+/* Côté formulaire */
 .form-side{
   padding: 32px;
-
 }
 
 .form-title{
-
   margin: 8px 0 18px;
   font-size: clamp(22px, 2.3vw, 26px);
   color: var(--ink);
   text-align: center;
-  
+  font-weight: 700;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
 }
 
 /* Erreur */
@@ -59,6 +60,8 @@
   padding: 10px 12px;
   border-radius: 10px;
   margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 /* Form */
@@ -72,6 +75,8 @@
   font-size: 13px;
   color: var(--muted);
   margin-bottom: 6px;
+  font-weight: 500;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
 }
 
 .field input{
@@ -83,8 +88,13 @@
   color: var(--ink);
   outline: none;
   transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+  font-size: 15px;
+  line-height: 1.4;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
 }
-.field input::placeholder{ color: #a3a3a3; }
+.field input::placeholder{
+  color: #a3a3a3;
+}
 
 .field input:focus{
   border-color: var(--beige-200);
@@ -92,7 +102,7 @@
   background: #fff;
 }
 
-/* Mot de passe + toggle */
+/* Mot de passe + bouton œil */
 .pwd-box{
   position: relative;
   display: grid;
@@ -107,10 +117,13 @@
   cursor: pointer;
   font-size: 18px;
   opacity: .8;
+  line-height: 1;
 }
-.pwd-toggle:hover{ opacity: 1; }
+.pwd-toggle:hover{
+  opacity: 1;
+}
 
-/* Boutons */
+/* Bouton principal */
 .btn-primary{
   appearance: none;
   border: none;
@@ -122,15 +135,20 @@
   cursor: pointer;
   transition: transform .06s ease, opacity .15s ease, box-shadow .15s ease;
   box-shadow: 0 6px 18px rgba(17,24,39,.18);
+  font-size: 15px;
+  line-height: 1.2;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
 }
-.btn-primary:hover{ transform: translateY(-1px); }
+.btn-primary:hover{
+  transform: translateY(-1px);
+}
 .btn-primary:disabled{
   opacity: .65;
   cursor: not-allowed;
   box-shadow: none;
 }
 
-/* Liens secondaires */
+/* Liens secondaires sous le bouton */
 .links{
   display: flex;
   gap: 8px;
@@ -138,16 +156,26 @@
   flex-wrap: wrap;
   color: var(--muted);
   font-size: 14px;
+  line-height: 1.4;
+  justify-content: center;
+  text-align: center;
 }
 .links .link{
   color: var(--ink);
   text-underline-offset: 3px;
+  text-decoration: none;
+  font-weight: 500;
 }
-.links .link:hover{ text-decoration: underline; }
-.links .sep{ opacity: .5; }
+.links .link:hover{
+  text-decoration: underline;
+}
+.links .sep{
+  opacity: .5;
+}
 
 .home-link{
   margin-top: 4px;
+  text-align: center;
 }
 .btn-ghost{
   display: inline-block;
@@ -157,9 +185,125 @@
   border: 1px solid var(--beige-200);
   border-radius: 10px;
   text-decoration: none;
-  transition: background .15s ease, transform .06s ease;
+  transition: background .15s ease, transform .06s ease, box-shadow .15s ease;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.3;
+  box-shadow: 0 4px 12px rgba(0,0,0,.07);
 }
 .btn-ghost:hover{
   background: var(--beige-200);
   transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+/* ==========================================================
+   RESPONSIVE TABLETTE
+   (on réduit la largeur de la carte, on augmente le padding)
+   ========================================================== */
+
+@media (max-width: 900px){
+  .login-card{
+    width: min(500px, 92%);
+    border-radius: 16px;
+  }
+
+  .form-side{
+    padding: 28px 24px;
+  }
+
+  .form-title{
+    font-size: clamp(20px, 2.4vw, 24px);
+  }
+
+  .btn-primary{
+    font-size: 15px;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE MOBILE
+   (plein écran, style carte douce nude, lisible au doigt)
+   ========================================================== */
+
+@media (max-width: 768px){
+  .login-wrap{
+    /* on laisse le gradient, mais on rajoute un petit espace
+       en bas pour que le footer respire */
+    padding-top: 16px;
+    gap: 16px;
+  }
+
+  /* Carte devient quasi full-width avec un look "carte posée" */
+  .login-card{
+    width: 90%;
+    max-width: 400px;
+    border-radius: 16px;
+    border: 1px solid var(--beige-200);
+
+    /* fond nude très léger pour rappeler ton univers pastel */
+    background: linear-gradient(
+      180deg,
+      var(--beige-50) 0%,
+      var(--white) 60%,
+      var(--beige-100) 100%
+    );
+
+    box-shadow:
+      0 16px 36px rgba(0,0,0,.08),
+      0 3px 10px rgba(0,0,0,.05);
+  }
+
+  .form-side{
+    padding: 24px 20px;
+  }
+
+  .form-title{
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .field > span{
+    font-size: 13px;
+  }
+
+  .field input{
+    font-size: 15px;
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+
+  .pwd-toggle{
+    font-size: 17px;
+    right: 10px;
+  }
+
+  .btn-primary{
+    font-size: 15px;
+    padding: 13px 16px;
+    border-radius: 12px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .links{
+    flex-direction: row;
+    justify-content: center;
+    font-size: 13.5px;
+  }
+  .links .link{
+    font-size: 13.5px;
+  }
+  .links .sep{
+    font-size: 13.5px;
+  }
+
+  .btn-ghost{
+    font-size: 13.5px;
+    padding: 11px 14px;
+    width: 100%;
+    text-align: center;
+    border-radius: 12px;
+  }
 }

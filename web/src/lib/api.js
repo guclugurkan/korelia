@@ -18,19 +18,22 @@ function readCsrfCookie() {
   return m ? decodeURIComponent(m[1]) : "";
 }
 
-/** Va chercher /auth/csrf si besoin pour obtenir/renouveler le cookie, et renvoie le token */
+/** Va chercher /auth/csrf, récupère le token depuis la réponse JSON (fallback cookie si besoin) */
 export async function getCsrf() {
-  // si déjà présent, on le renvoie
+  // 1) Si déjà en mémoire via cookie non-HttpOnly, on le renvoie
   let token = readCsrfCookie();
   if (token) return token;
 
-  // sinon on appelle l'endpoint qui pose le cookie et renvoie { csrf }
+  // 2) Sinon on appelle l’endpoint qui pose le cookie ET renvoie { csrf }
   try {
     const res = await fetch(apiUrl("/auth/csrf"), { credentials: "include" });
-    // on tente de lire le JSON, mais même si ça échoue, le cookie peut avoir été posé
-    await res.json().catch(() => ({}));
-  } catch {}
-  // re-lecture après l'appel
+    const data = await res.json().catch(() => ({}));
+    if (data?.csrf) return String(data.csrf);
+  } catch {
+    // ignore
+  }
+
+  // 3) Dernier recours : relire le cookie (si pas HttpOnly en dev)
   token = readCsrfCookie();
   return token || "";
 }
@@ -60,7 +63,7 @@ export async function apiGet(pathOrUrl, init = {}) {
 }
 
 /** Appels JSON pour méthodes en écriture: POST/PUT/PATCH/DELETE */
-async function apiJson(method, pathOrUrl, body) {
+export async function apiJson(method, pathOrUrl, body) {
   // Assure un token CSRF (double-submit cookie)
   const csrf = await getCsrf();
   const headers = {
@@ -89,4 +92,3 @@ export const apiPost = (pathOrUrl, body) => apiJson("POST", pathOrUrl, body);
 export const apiPut = (pathOrUrl, body) => apiJson("PUT", pathOrUrl, body);
 export const apiPatch = (pathOrUrl, body) => apiJson("PATCH", pathOrUrl, body);
 export const apiDelete = (pathOrUrl, body) => apiJson("DELETE", pathOrUrl, body);
-

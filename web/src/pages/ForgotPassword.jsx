@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 import "./Login.css";
-import HeaderAll from "../components/HeaderAll";
 import Footer from "../components/Footer";
+import SiteHeader from "../components/SiteHeader";
 
 export default function ForgotPassword(){
   const { forgotPassword } = useAuth();
@@ -31,7 +31,7 @@ export default function ForgotPassword(){
 
   return (
     <main className="login-wrap">
-      <HeaderAll/>
+      <SiteHeader/>
 
       <section className="login-card" aria-labelledby="fp-title">
         <div className="form-side">

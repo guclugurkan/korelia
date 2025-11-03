@@ -1,15 +1,10 @@
-// src/components/BestSellers.jsx
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./BestSellers.css";
 import { useCart } from "../cart/CartContext";
-import FavoriteButton from "./FavoriteButton"; // composant dans le même dossier
-import { apiGet } from "../lib/api"; // alias @ → src (vite.config.js) ; sinon '../lib/api'
+import FavoriteButton from "./FavoriteButton";
+import { apiGet } from "../lib/api";
 
-// Nombre d’articles par page du carrousel
-const perPage = 4;
-
-/** <<< Choisis ici tes 16 best-sellers (slugs/ids) >>> */
 const POPULAR_IDS = [
   "anua-heartleaf-77-soothing-toner",
   "anua-heartleaf-pore-control-cleansing-oil",
@@ -40,109 +35,124 @@ const fallbackImg =
     </svg>`
   );
 
-/** Résout un asset du dossier public/ en tenant compte du BASE_URL (prod sous sous-chemin) */
 function publicAsset(p) {
   if (!p) return null;
-  if (/^https?:\/\//i.test(p)) return p; // URL absolue -> on laisse
+  if (/^https?:\/\//i.test(p)) return p;
   const base = import.meta.env.BASE_URL || "/";
   const rel = String(p).replace(/^(\.\/|\.\.\/)+/, "").replace(/^\/+/, "");
-  return (base.endsWith("/") ? base : base + "/") + rel; // ex: "/korelia/" + "img/..."
+  return (base.endsWith("/") ? base : base + "/") + rel;
 }
 
-/** Récupère 1 ou 2 images en PRIORISANT p.images[] puis en repliant sur p.image */
 function collectImages(entity, max = 2) {
   const out = [];
-  if (Array.isArray(entity?.images)) out.push(...entity.images); // priorité au tableau complet
-  if (entity?.image) out.push(entity.image);                     // secours: ancienne propriété
+  if (Array.isArray(entity?.images)) out.push(...entity.images);
+  if (entity?.image) out.push(entity.image);
   const uniq = Array.from(new Set(out.filter(Boolean).map(publicAsset)));
   return (uniq.length ? uniq : [fallbackImg]).slice(0, max);
 }
+
+const euro = (c) => (Number(c || 0) / 100).toFixed(2) + " €";
+
+// classes CSS stables
+const slugify = (s) =>
+  String(s || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 
 export default function BestSellers() {
   const [all, setAll] = useState([]);
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const [page, setPage] = useState(0);
-  const [dir, setDir] = useState("next"); // "next" | "prev"
+  // ouverture des peaux sur mobile (par produit)
+  // { [productId]: boolean }
+  const [openSkins, setOpenSkins] = useState({});
 
   const { add } = useCart();
 
   useEffect(() => {
-    (async () => {
-      try {
-        setErr("");
-        setLoading(true);
+  (async () => {
+    try {
+      setErr("");
+      setLoading(true);
 
-        // 1) Liste des produits
-        const list = await apiGet("/api/products");
+      const list = await apiGet("/api/products");
 
-        // 2) Filtre + ordre selon POPULAR_IDS
-        const baseArr = (Array.isArray(list) ? list : []).filter((p) => {
-          const idOrSlug = String(p.slug || p.id || "");
-          return POPULAR_IDS.includes(idOrSlug);
-        });
-        baseArr.sort((a, b) => {
-          const ia = POPULAR_IDS.indexOf(String(a.slug || a.id || ""));
-          const ib = POPULAR_IDS.indexOf(String(b.slug || b.id || ""));
-          return ia - ib;
-        });
+      const baseArr = (Array.isArray(list) ? list : []).filter((p) => {
+        const idOrSlug = String(p.slug || p.id || "");
+        return POPULAR_IDS.includes(idOrSlug);
+      });
 
-        // 3) Enrichissement : récupère les images manquantes via /api/products/:slug
-        const enriched = await Promise.all(
-          baseArr.map(async (p) => {
-            const hasTwo = Array.isArray(p.images) && p.images.length >= 2;
-            if (hasTwo) return p;
+      // respecter l'ordre POPULAR_IDS
+      baseArr.sort((a, b) => {
+        const ia = POPULAR_IDS.indexOf(String(a.slug || a.id || ""));
+        const ib = POPULAR_IDS.indexOf(String(b.slug || b.id || ""));
+        return ia - ib;
+      });
 
-            try {
-              const key = String(p.slug || p.id);
-              const full = await apiGet(`/api/products/${key}`);
+      // enrichir si besoin
+      const enriched = await Promise.all(
+        baseArr.map(async (p) => {
+          const needDetails =
+            !(Array.isArray(p.images) && p.images.length >= 2) ||
+            !p.category ||
+            !Array.isArray(p.skin_types);
 
-              const images = Array.isArray(full.images) ? full.images : p.images;
-              const image = full.image ?? p.image;
+          if (!needDetails) return p;
 
-              return { ...p, images, image };
-            } catch {
-              return p; // on garde tel quel si ça rate
-            }
-          })
-        );
+          try {
+            const key = String(p.slug || p.id);
+            const full = await apiGet(`/api/products/${key}`);
 
-        setAll(enriched);
-      } catch (e) {
-        setErr(e.message || "Erreur");
-      } finally {
-        setLoading(false);
-      }
-    })();
+            const images = Array.isArray(full.images) ? full.images : p.images;
+            const image = full.image ?? p.image;
+            const category = full.category ?? p.category ?? null;
+            const skin_types = Array.isArray(full.skin_types)
+              ? full.skin_types
+              : Array.isArray(p.skin_types)
+              ? p.skin_types
+              : [];
+
+            return { ...p, images, image, category, skin_types };
+          } catch {
+            return p;
+          }
+        })
+      );
+
+      setAll(enriched);
+    } catch (e) {
+      setErr(e.message || "Erreur");
+    } finally {
+      setLoading(false);
+    }
+  })();
   }, []);
 
-  const pageCount = Math.max(1, Math.ceil(all.length / perPage));
-  const start = page * perPage;
-  const visible = useMemo(() => all.slice(start, start + perPage), [all, start]);
-
-  const prev = () => {
-    setDir("prev");
-    setPage((p) => (p - 1 + pageCount) % pageCount);
-  };
-  const next = () => {
-    setDir("next");
-    setPage((p) => (p + 1) % pageCount);
-  };
-
-  // ajoute au panier (aperçu image = même logique que l'affichage)
   const addFromCard = (p) => {
     const preview = collectImages(p, 1)[0] || fallbackImg;
-    const productForCart = {
-      id: String(p.id),
-      name: p.name,
-      price_cents: Number(p.price_cents || 0),
-      image: preview,
-      slug: p.slug || null,
-      brand: p.brand || "",
-    };
-    add(productForCart, 1);
+    add(
+      {
+        id: String(p.id),
+        name: p.name,
+        price_cents: Number(p.price_cents || 0),
+        image: preview,
+        slug: p.slug || null,
+        brand: p.brand || "",
+      },
+      1
+    );
   };
+
+  function toggleSkins(pId) {
+    setOpenSkins((prev) => ({
+      ...prev,
+      [pId]: !prev[pId],
+    }));
+  }
 
   if (err) {
     return (
@@ -154,7 +164,6 @@ export default function BestSellers() {
       </section>
     );
   }
-
   if (loading) {
     return (
       <section className="bestSellers">
@@ -165,7 +174,6 @@ export default function BestSellers() {
       </section>
     );
   }
-
   if (!all.length) {
     return (
       <section className="bestSellers">
@@ -178,46 +186,40 @@ export default function BestSellers() {
   }
 
   return (
-    <section
-      className="bestSellers"
-      aria-labelledby="bs-title"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "ArrowLeft") prev();
-        if (e.key === "ArrowRight") next();
-      }}
-    >
-      {/* Titre centré + barre noire dessous */}
+    <section className="bestSellers" aria-labelledby="bs-title">
       <div className="bs-header">
         <h1 id="bs-title" className="bs-title">
           Best Sellers
         </h1>
       </div>
 
-      {/* Scène avec flèches gauche/droite */}
-      <div className="bs-stage">
-        <button className="bs-arrow left" onClick={prev} aria-label="Produits précédents" type="button">
-          ‹
-        </button>
-
-        <div
-          id="bs-grid"
-          className="bs-grid"
-          role="list"
-          aria-live="polite"
-          data-dir={dir}
-          key={`${page}-${dir}`}
-        >
-          {visible.map((p, i) => {
+      {/* rail swipe horizontal */}
+      <div className="bs-rail-wrapper">
+        <div className="bs-rail" role="list" aria-live="polite">
+          {all.map((p, i) => {
             const slug = p.slug || String(p.id);
             const imgs = collectImages(p, 2);
             const imgPrimary = imgs[0] || fallbackImg;
             const imgHover = imgs[1] || imgPrimary;
+            const oos = Number.isFinite(p.stock) && p.stock <= 0;
+
+            const skins = Array.isArray(p.skin_types) ? p.skin_types : [];
+            const hasSkins = skins.length > 0;
+            const isOpen = !!openSkins[p.id];
 
             return (
-              <article key={p.id} className="card" role="listitem" style={{ "--i": i }}>
-                {/* Lien vers la fiche produit par slug */}
-                <Link className="thumb" to={`/produit/${slug}`} aria-label={`${p.brand || ""} ${p.name}`}>
+              <article
+                key={p.id}
+                className="bs-card"
+                role="listitem"
+                style={{ "--i": i }}
+              >
+                {/* vignette image / favoris / panier */}
+                <Link
+                  className={`thumb ${oos ? "is-oos" : ""}`}
+                  to={`/produit/${slug}`}
+                  aria-label={`${p.brand || ""} ${p.name}`}
+                >
                   <img
                     className="img primary"
                     src={imgPrimary}
@@ -237,56 +239,130 @@ export default function BestSellers() {
                     }}
                   />
 
-                  {/* bouton ajout panier */}
                   <button
                     className="addBtn"
                     type="button"
                     onClick={(e) => {
                       e.preventDefault();
+                      if (oos) return;
                       addFromCard(p);
                     }}
+                    disabled={oos}
+                    aria-disabled={oos ? "true" : "false"}
+                    title={oos ? "Rupture de stock" : "Ajouter au panier"}
                   >
-                    Ajouter au panier
+                    {oos ? "Indisponible" : "Ajouter au panier"}
                   </button>
 
-                  {/* bouton favoris (overlay) */}
-                  <div className="thumb-fav">
-                    <FavoriteButton product={p} size={22} />
+                  {oos && (
+                    <div className="oos-cover">
+                      <span>Victime de succès</span>
+                    </div>
+                  )}
+
+                  <div className="bs-fav">
+                    <FavoriteButton
+                      product={p}
+                      size={22}
+                      className="bs-fav-btn"
+                    />
                   </div>
                 </Link>
 
+                {/* bloc texte sous la photo */}
                 <div className="meta">
                   {p.brand && <div className="brand">{p.brand}</div>}
+
                   <h3 className="name">{p.name}</h3>
-                  <div className="price">{(Number(p.price_cents || 0) / 100).toFixed(2)} €</div>
+
+                  <div className="priceRow">
+                    <span className="pricee">{euro(p.price_cents)}</span>
+                    {Number.isFinite(p.stock) &&
+                      (p.stock === 1 || p.stock === 2) && (
+                        <span className="stock-hint">
+                          Plus que {p.stock} en stock
+                        </span>
+                      )}
+                  </div>
+
+                  {/* --- Version desktop/tablette : full badges --- */}
+                  <div className="badges badges-desktop">
+                    {p.category && (
+                      <div
+                        className={`catBadge cat-${slugify(p.category)}`}
+                      >
+                        {p.category}
+                      </div>
+                    )}
+
+                    {hasSkins && (
+                      <div
+                        className="skinsGroup"
+                        aria-label="Types de peau"
+                      >
+                        {skins.map((s, k) => (
+                          <span
+                            key={k}
+                            className={`skinChip skin-${slugify(s)}`}
+                          >
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* --- Version mobile : compact --- */}
+                  <div className="badges badges-mobile">
+                    {/* Catégorie en mini */}
+                    {p.category && (
+                      <div
+                        className={`catBadge mini cat-${slugify(
+                          p.category
+                        )}`}
+                      >
+                        {p.category}
+                      </div>
+                    )}
+
+                    {/* Peau : [+] */}
+                    {hasSkins && (
+                      <div className="skinsMobile">
+                        <span className="skinsLabel">Peau :</span>
+
+                        <button
+                          type="button"
+                          className="moreSkinsBtn"
+                          aria-expanded={isOpen}
+                          onClick={() => toggleSkins(p.id)}
+                        >
+                          {isOpen ? "−" : "+"}
+                        </button>
+                      </div>
+                    )}
+
+                    {/* liste des peaux déroulée si ouvert */}
+                    {hasSkins && isOpen && (
+                      <div className="skinsMobileList">
+                        {skins.map((s, idx) => (
+                          <span
+                            key={idx}
+                            className={`skinChipMini skin-${slugify(s)}`}
+                          >
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </article>
             );
           })}
         </div>
-
-        <button className="bs-arrow right" onClick={next} aria-label="Produits suivants" type="button">
-          ›
-        </button>
       </div>
 
-      {/* Dots + CTA */}
       <div className="bs-footer">
-        <div className="bs-dots" role="tablist" aria-label="Pages">
-          {Array.from({ length: pageCount }).map((_, i) => (
-            <button
-              key={i}
-              className={`dot ${i === page ? "is-active" : ""}`}
-              aria-label={`Aller à la page ${i + 1}`}
-              aria-selected={i === page}
-              role="tab"
-              onClick={() => {
-                setDir(i > page ? "next" : "prev");
-                setPage(i);
-              }}
-            />
-          ))}
-        </div>
         <Link className="bs-more" to="/catalogue">
           Voir tous les produits
         </Link>

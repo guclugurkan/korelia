@@ -1,131 +1,140 @@
 // src/quiz/quizConfig.js
+// ✅ Quiz simplifié, questions concrètes, compatibilité 100% avec ton composant
 
-// clés internes normalisées
-export const TP = { SECHE:"seche", NORMALE:"normale", MIXTE:"mixte", GRASSE:"grasse" };
+// Clés internes normalisées (inchangées)
+export const TP = { SECHE: "seche", NORMALE: "normale", MIXTE: "mixte", GRASSE: "grasse" };
 export const CONCERNS = {
-  SENSIBLE:"sensible",
-  DESHYDRATEE:"deshydratee",
-  ACNE:"acne",
-  PORES:"pores",
-  TERNE:"terne_taches",
-  MATURE:"mature",
+  SENSIBLE: "sensible",
+  DESHYDRATEE: "deshydratee",
+  ACNE: "acne",
+  PORES: "pores",
+  TERNE: "terne_taches",
+  MATURE: "mature",
 };
 
-// Chaque question = { id, title, options: [{label, effects}] }
-// effects: { tp?:{...}, concerns?:{...} } -> incrémente les scores
+/**
+ * RATIONNEL
+ * - 12 questions courtes, vocabulaire simple
+ * - Chaque option pousse doucement un “type de peau” et/ou des préoccupations
+ * - On propose souvent une option “Ça dépend / je ne sais pas” (ne biaise pas le score)
+ * - On garde des incréments faibles (1–3) → résultat plus naturel, moins “tranché”
+ */
+
 const Q = [
   {
-    id: "brillance",
-    title: "En fin de journée, ta peau…",
+    id: "fin_journee",
+    title: "En fin de journée, ta peau est plutôt…",
     options: [
-      { label: "Tire, inconfortable", effects: { tp:{[TP.SECHE]:2} } },
-      { label: "RAS / équilibrée", effects: { tp:{[TP.NORMALE]:1} } },
-      { label: "Légèrement brillante sur la zone T", effects: { tp:{[TP.MIXTE]:2, [TP.GRASSE]:0} } },
-      { label: "Brille sur tout le visage", effects: { tp:{[TP.GRASSE]:2} } },
+      { label: "Qui tiraille / inconfortable", effects: { tp: { [TP.SECHE]: 2 }, concerns: { [CONCERNS.DESHYDRATEE]: 1 } } },
+      { label: "Normale / confortable", effects: { tp: { [TP.NORMALE]: 1 } } },
+      { label: "Brillante sur le front/nez (zone T)", effects: { tp: { [TP.MIXTE]: 2 } } },
+      { label: "Brillante partout", effects: { tp: { [TP.GRASSE]: 2 } } },
     ],
   },
   {
-    id: "pores",
+    id: "apres_nettoyage",
+    title: "Après le nettoyage, ta peau…",
+    options: [
+      { label: "Tire facilement", effects: { tp: { [TP.SECHE]: 2 }, concerns: { [CONCERNS.DESHYDRATEE]: 2 } } },
+      { label: "Se sent bien", effects: { tp: { [TP.NORMALE]: 1 } } },
+      { label: "Devient vite luisante", effects: { tp: { [TP.GRASSE]: 1, [TP.MIXTE]: 1 } } },
+      { label: "Je ne sais pas / ça dépend", effects: {} },
+    ],
+  },
+  {
+    id: "pores_visibles",
     title: "Tes pores sont…",
     options: [
-      { label: "Peu visibles", effects: { tp:{[TP.NORMALE]:1, [TP.SECHE]:1} } },
-      { label: "Visibles sur la zone T", effects: { tp:{[TP.MIXTE]:2}, concerns:{pores:1} } },
-      { label: "Assez visibles globalement", effects: { tp:{[TP.GRASSE]:2}, concerns:{pores:2} } },
+      { label: "Peu visibles", effects: { tp: { [TP.NORMALE]: 1, [TP.SECHE]: 1 } } },
+      { label: "Visibles surtout sur la zone T", effects: { tp: { [TP.MIXTE]: 2 }, concerns: { [CONCERNS.PORES]: 1 } } },
+      { label: "Assez visibles partout", effects: { tp: { [TP.GRASSE]: 2 }, concerns: { [CONCERNS.PORES]: 2 } } },
+      { label: "Je ne sais pas", effects: {} },
     ],
   },
   {
-    id: "tiraillements",
-    title: "Après la douche ou le nettoyage…",
+    id: "boutons",
+    title: "Les boutons / points noirs, c’est…",
     options: [
-      { label: "Ça tiraille souvent", effects: { tp:{[TP.SECHE]:2}, concerns:{deshydratee:2} } },
-      { label: "Parfois", effects: { tp:{[TP.SECHE]:1}, concerns:{deshydratee:1} } },
-      { label: "Rarement", effects: { tp:{[TP.NORMALE]:1} } },
-      { label: "Jamais", effects: { tp:{[TP.GRASSE]:1, [TP.MIXTE]:1} } },
+      { label: "Rare", effects: {} },
+      { label: "Par périodes (surtout zone T)", effects: { tp: { [TP.MIXTE]: 1 }, concerns: { [CONCERNS.ACNE]: 2 } } },
+      { label: "Souvent", effects: { tp: { [TP.GRASSE]: 2 }, concerns: { [CONCERNS.ACNE]: 3 } } },
+      { label: "Je ne sais pas", effects: {} },
     ],
   },
   {
     id: "sensibilite",
-    title: "Ta peau réagit (rougeurs, picotements)…",
+    title: "Rougeurs, picotements ou réactions…",
     options: [
-      { label: "Souvent", effects: { concerns:{sensible:3} } },
-      { label: "Parfois", effects: { concerns:{sensible:2} } },
-      { label: "Rarement", effects: { concerns:{sensible:1} } },
-      { label: "Jamais", effects: { } },
-    ],
-  },
-  {
-    id: "imperfections",
-    title: "Boutons / points noirs…",
-    options: [
-      { label: "Très rarement", effects: { } },
-      { label: "Par périodes (zone T)", effects: { tp:{[TP.MIXTE]:2}, concerns:{acne:2} } },
-      { label: "Fréquents", effects: { tp:{[TP.GRASSE]:2}, concerns:{acne:3} } },
-    ],
-  },
-  {
-    id: "eclat",
-    title: "Ton teint est plutôt…",
-    options: [
-      { label: "Lumineux et homogène", effects: { } },
-      { label: "Un peu terne", effects: { concerns:{terne_taches:2} } },
-      { label: "Avec taches / irrégularités", effects: { concerns:{terne_taches:3} } },
-    ],
-  },
-  {
-    id: "mature",
-    title: "Marques / fermeté…",
-    options: [
-      { label: "Non concerné", effects: { } },
-      { label: "Fines lignes visibles", effects: { concerns:{mature:2} } },
-      { label: "Rides marquées / perte de fermeté", effects: { concerns:{mature:3} } },
+      { label: "Souvent", effects: { concerns: { [CONCERNS.SENSIBLE]: 3 } } },
+      { label: "Parfois", effects: { concerns: { [CONCERNS.SENSIBLE]: 2 } } },
+      { label: "Rarement / jamais", effects: {} },
     ],
   },
   {
     id: "apres_creme",
     title: "Après ta crème hydratante…",
     options: [
-      { label: "Vite absorbée, besoin de ré-appliquer", effects: { tp:{[TP.SECHE]:2}, concerns:{deshydratee:2} } },
-      { label: "Bien équilibré", effects: { tp:{[TP.NORMALE]:1} } },
-      { label: "Luisant / collant", effects: { tp:{[TP.GRASSE]:2, [TP.MIXTE]:1} } },
+      { label: "Toujours besoin d’en remettre", effects: { tp: { [TP.SECHE]: 2 }, concerns: { [CONCERNS.DESHYDRATEE]: 2 } } },
+      { label: "C’est bien équilibré", effects: { tp: { [TP.NORMALE]: 1 } } },
+      { label: "Ça brille vite / sensation collante", effects: { tp: { [TP.GRASSE]: 2, [TP.MIXTE]: 1 } } },
+      { label: "Je ne sais pas", effects: {} },
     ],
   },
   {
-    id: "zoneT",
-    title: "Zone T (front/nez/menton)…",
+    id: "mi_journee",
+    title: "Vers midi, ta zone T (front/nez/menton)…",
     options: [
-      { label: "Sèche/inconfortable", effects: { tp:{[TP.SECHE]:1} } },
-      { label: "Normale", effects: { tp:{[TP.NORMALE]:1} } },
-      { label: "Légèrement brillante", effects: { tp:{[TP.MIXTE]:2} } },
-      { label: "Très brillante", effects: { tp:{[TP.GRASSE]:2} } },
+      { label: "Reste confortable", effects: { tp: { [TP.NORMALE]: 1 } } },
+      { label: "Légèrement brillante", effects: { tp: { [TP.MIXTE]: 2 } } },
+      { label: "Très brillante", effects: { tp: { [TP.GRASSE]: 2 } } },
+      { label: "Plutôt sèche", effects: { tp: { [TP.SECHE]: 1 } } },
     ],
   },
   {
     id: "saisons",
-    title: "En hiver / été, ta peau…",
+    title: "Ta peau réagit aux saisons…",
     options: [
-      { label: "Hiver : tiraille / Été : ok", effects: { tp:{[TP.SECHE]:2}, concerns:{deshydratee:1} } },
-      { label: "Hiver : ok / Été : brille", effects: { tp:{[TP.GRASSE]:1, [TP.MIXTE]:1} } },
-      { label: "Peu de variations", effects: { tp:{[TP.NORMALE]:1} } },
+      { label: "Hiver : tiraille / Été : ok", effects: { tp: { [TP.SECHE]: 2 }, concerns: { [CONCERNS.DESHYDRATEE]: 1 } } },
+      { label: "Hiver : ok / Été : plus de brillance", effects: { tp: { [TP.GRASSE]: 1, [TP.MIXTE]: 1 } } },
+      { label: "Peu de variations", effects: { tp: { [TP.NORMALE]: 1 } } },
     ],
   },
   {
-    id: "actifs",
-    title: "Tolérance aux actifs (acides, Vit C, rétinoïdes)…",
+    id: "eclat",
+    title: "Ton teint est…",
     options: [
-      { label: "Irritations faciles", effects: { concerns:{sensible:2} } },
-      { label: "Parfois", effects: { concerns:{sensible:1} } },
-      { label: "Ça va", effects: { } },
+      { label: "Lumineux / homogène", effects: {} },
+      { label: "Un peu terne", effects: { concerns: { [CONCERNS.TERNE]: 2 } } },
+      { label: "Avec taches / irrégularités", effects: { concerns: { [CONCERNS.TERNE]: 3 } } },
+    ],
+  },
+  {
+    id: "age_signes",
+    title: "Signes du temps (rides/fermeté)…",
+    options: [
+      { label: "Peu / pas visible", effects: {} },
+      { label: "Fines lignes visibles", effects: { concerns: { [CONCERNS.MATURE]: 2 } } },
+      { label: "Rides marquées / perte de fermeté", effects: { concerns: { [CONCERNS.MATURE]: 3 } } },
+    ],
+  },
+  {
+    id: "tol_actifs",
+    title: "Ta tolérance aux actifs (acides, Vit C, rétinoïdes)…",
+    options: [
+      { label: "Irritations faciles", effects: { concerns: { [CONCERNS.SENSIBLE]: 2 } } },
+      { label: "Parfois", effects: { concerns: { [CONCERNS.SENSIBLE]: 1 } } },
+      { label: "Ça va", effects: {} },
     ],
   },
   {
     id: "objectif",
     title: "Ton objectif prioritaire",
     options: [
-      { label: "Hydrater / confort", effects: { tp:{[TP.SECHE]:1}, concerns:{deshydratee:2} } },
-      { label: "Limiter brillance / pores", effects: { tp:{[TP.GRASSE]:2}, concerns:{pores:2} } },
-      { label: "Apaiser / réduire rougeurs", effects: { concerns:{sensible:2} } },
-      { label: "Éclat / taches", effects: { concerns:{terne_taches:2} } },
-      { label: "Anti-âge", effects: { concerns:{mature:2} } },
+      { label: "Hydrater / confort", effects: { tp: { [TP.SECHE]: 1 }, concerns: { [CONCERNS.DESHYDRATEE]: 2 } } },
+      { label: "Moins de brillance / pores", effects: { tp: { [TP.GRASSE]: 2 }, concerns: { [CONCERNS.PORES]: 2 } } },
+      { label: "Apaiser / réduire les rougeurs", effects: { concerns: { [CONCERNS.SENSIBLE]: 2 } } },
+      { label: "Éclat / taches", effects: { concerns: { [CONCERNS.TERNE]: 2 } } },
+      { label: "Anti-âge", effects: { concerns: { [CONCERNS.MATURE]: 2 } } },
     ],
   },
 ];

@@ -1,106 +1,85 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap');
 
-
-.panneau {
+.panneau{
   position: relative;
   width: 90%;
   aspect-ratio: 1500/1000;
   overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   text-align: center;
   padding: 2rem;
-  margin: 0 auto;
-  margin-bottom: 70px;
+  margin: 0 auto 70px;
   flex-direction: column;
   text-transform: uppercase;
+           /* léger arrondi pour matcher le reste du site */
 }
 
-.bg-deco {
+.bg-deco{
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
   transform-origin: center;
   transform: scale(1.03);
-  filter: blur(0px) saturate(1.05);
+  filter: saturate(1.05);
   z-index: 0;
   animation: zoomBg 10s ease-in-out infinite alternate;
 }
 
-.overlay {
+.overlay{
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.25),
-    rgba(255, 220, 230, 0.18)
-  );
+  background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,220,230,.16));
   z-index: 1;
   pointer-events: none;
 }
 
-.petals {
+.petals{
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 2;
 }
 
-.petal {
+.petal{
   position: absolute;
   top: -10%;
   left: var(--left, 0%);
   width: var(--size, 24px);
   height: calc(var(--size, 24px) * 0.66);
-  background: linear-gradient(
-    180deg,
-    rgb(255, 255, 255),
-    rgba(255, 255, 255, 0.5)
-  );
+  background: linear-gradient(180deg, #fff, rgba(255,255,255,.55));
   border-radius: 60% 40% 50% 50% / 60% 40% 50% 50%;
   transform: rotate(var(--rot));
-  opacity: 0.95;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.08));
+  opacity: .95;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,.08));
   will-change: transform, opacity;
   animation: fall var(--dur, 8s) linear forwards;
 }
 
-@keyframes fall {
-  0% {
-    transform: translateY(-20vh) rotate(var(--rot));
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.95;
-  }
-  100% {
-    transform: translateY(120vh) translateX(var(--driftX, 20px))
-      rotate(calc(var(--rot) + 720deg));
-    opacity: 0.6;
-  }
+@keyframes fall{
+  0%   { transform: translateY(-20vh) rotate(var(--rot)); opacity: 1; }
+  50%  { opacity: .95; }
+  100% { transform: translateY(120vh) translateX(var(--driftX, 20px)) rotate(calc(var(--rot) + 720deg)); opacity: .6; }
 }
 
-.content {
+.content{
   position: relative;
   z-index: 3;
-  max-width: 900px;
+  max-width: 980px;
   color: #3b2a30;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); 
+  text-shadow: 0 1px 0 rgba(255,255,255,.6);
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: space-around;
-  align-items: end;
-  
+  gap: 16px;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 1.2rem;
 }
 
-
-
-
-
-.btn {
+.btn{
   display: inline-block;
   padding: 12px 24px;
   background: #fff;
@@ -108,42 +87,58 @@
   border-radius: 30px;
   text-decoration: none;
   font-weight: 600;
-  box-shadow: 0 6px 18px rgba(200, 80, 120, 0.12);
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  box-shadow: 0 6px 18px rgba(200,80,120,.12);
+  transition: transform .22s ease, box-shadow .22s ease, background-color .2s ease;
 }
-
-.btn:hover {
+.btn:hover{
   transform: translateY(-4px);
-  box-shadow: 0 10px 28px rgba(200, 80, 120, 0.14);
+  box-shadow: 0 10px 28px rgba(200,80,120,.14);
+}
+.btn:focus-visible{
+  outline: 2px solid #e6b8a2;
+  outline-offset: 3px;
 }
 
-@keyframes zoomBg {
-  from {
-    transform: scale(1.03);
-  }
-  to {
-    transform: scale(1.09);
-  }
+@keyframes zoomBg{
+  from { transform: scale(1.03); }
+  to   { transform: scale(1.09); }
 }
 
-@media (max-width: 700px) {
-  .panneau {
-    height: 300px;
+/* === Responsive === */
+@media (max-width: 1024px){
+  .panneau{ aspect-ratio: 16/9; padding: 1.6rem; }
+  .content{ gap: 12px; }
+}
+
+@media (max-width: 768px){
+  .panneau{
+    width: 100%;
+    aspect-ratio: 3/2;      /* ratio plus haut pour mieux caser les boutons */
     padding: 1.2rem;
+    margin-bottom: 50px;
   }
-  .panneau h1 {
-    font-size: 1.6rem;
+  .content{
+    display: flex;
+    align-items: end;
+    gap: 10px;
+    padding-bottom: .6rem;
+  }
+  .btn{
+    width: min(170px, 92%);
+    text-align: center;
+    padding: 12px 18px;
+    font-size: 12px;
+    
   }
 }
 
-  
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 4px 12px rgba(255, 150, 170, 0.3);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 6px 18px rgba(255, 150, 170, 0.4);
-  }
+/* Réduit le mouvement pour les utilisateurs qui le préfèrent */
+@media (prefers-reduced-motion: reduce){
+  .bg-deco{ animation: none !important; }
+  .petal{ animation: none !important; }
+}
+
+/* Si le JS a détecté reduced-motion, on peut aussi cibler */
+.petals[data-reduced="true"] + .content .btn {
+  /* tu peux ajouter un léger style alternatif si tu veux */
 }

@@ -64,7 +64,7 @@ curl -X POST http://localhost:4242/admin/promote \
 
 
 
-
+ 
 
 
 
@@ -220,7 +220,7 @@ Une fois que tout est fini, je dois perfectionner chaque page.
 1.c OK
 
 2.OK
-3.
+3. OK
 3.A OK
 3.B OK
 
@@ -233,7 +233,7 @@ Une fois que tout est fini, je dois perfectionner chaque page.
 10.
 11.OK
 12.
-13. 
+13.OK
 14.
 15.
 
@@ -276,3 +276,161 @@ COSRX Aloe Soothing Sun Cream SPF50 → hydratant et protecteur.
 
 
 
+
+
+
+Produit :
+
+
+Marque
+Nom du produit 
+Type de produit 
+
+
+ Quantité / AJOUTER AU PANIER / Prix 
+
+Pour quelle type de peau? 
+    réponse
+
+Infos : à l'achat x points ! 
+
+Bouton qui s'ouvre au clic : 
+
+Description 
+Comment l'utiliser? 
+Ingrédients
+
+
+Pour le bloc, "Pour quels types de peau?", j'aimerai que tu m'écris des phrases pour décrire plutot que de me mettre des mots clés.
+Ensuite, le bloc " à l'achat : x points", met le dans un bloc différent, juste en dessous.
+
+concernant les 3 boutons description etc, j'aimerai qu'ils ne change pas de taille quand on appuie dessus, j'aimerai qu'ils soient directement grand, car là ils sont petit
+Et pour le style de la page, ça m'a l'air trop mort, j'aimerai que tu me fais quelque chose de plus luxueux, que tu me mets certaines choses en avant
+
+
+
+
+
+A FAIRE
+
+Profil 
+    => Point & récompenses => Modifier la div : 
+        Raison 
+        Ajouter un bloc pour les codes promos 
+        Historique : Afficher seulement 5 actions 
+
+    => Mes commandes 
+    Modifier la div 
+
+
+<<<<<<<<<<<<<<<<OK>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+Catalogue 
+    => Les produits : 
+        Les polices des produits à gerer 
+        Ajouter bouton favoris sur les produits 
+        Ajouter bouton "Ajouter au pannier" sur les produits
+<<<<<<<<ok>>>>>>>>>>>>>>>>>>
+    
+    => Filtres 
+        ALigner les filtres 
+        Afficher les filtres séléctionner correctement 
+<<<<<<<<<<<<<<<ok>>>>>>>>>>>>>
+
+    => Pack 
+        Css à gerer : EN stock / -10% et PACK s'entremele 
+<<<<<<<<<<ok>>>>>>>>>>>>>
+
+
+
+Les produits 
+    => Ajouter section Avis
+    => Retouche Css 
+    => Bouton "Ajouter au panier" ne marche pas 
+    <<<<<<<<<<<<<<<<<<<<<<<<<<OK>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+HeaderAll 
+    => à changer par Header, sinon faut faire les routes 
+<<<<<<<<<<<<<<<<<ok>>>>>>>>>>>>>>>>>>>
+
+
+BestSellers- Pack routine 
+    => Ajouter le type de produit et de peau au produit 
+    => Ajuste bouton Ajouter au panier 
+<<<<<<<<<<<<<<<<<OK>>>>>>>>>>>>>>>>>
+
+
+
+Favoris 
+    => Mettre l'image au hover
+    => Ajouter le type de produit et de peau au produit 
+    => Enlever boutton "voir le produit"
+<<<<<<<<<<<<<<<<<<<<<ok>>>>>>>>>>>>>>>>>>>>>>>
+
+Paiement 
+    => Faut gérer la page merci après paiement 
+
+Homepage Catégorie 
+    => peut être changer les images etc 
+    <<<<<<<<<<<<<<<ok>>>>>>>>>>>>>>>>
+
+HomePage RoutineSKincare
+    => Images à finir 
+    <<<<<<<<<<<<<<<<<<<<<<<ok>>>>>>>>>>>>>>>>>>>
+
+Blog 
+    => Blog, écrire des blogs, gérer les chemins 
+    <<<<<<<<<<<<<<<<<<<<<<<<ok>>>>>>>>>>>>>>>>>>>>
+
+Composer mon pack 
+    => tout faire 
+    <<<<<<90% fini >>>>>
+
+    quand je veux acheter le pack crée, j'ai une erreur à régler.
+
+Guide 
+    à faire 
+
+    <<<<<<<90% ok>>>>>>>>>
+
+Quiz
+    à faire 
+90% ok
+Nos avantages 
+    à faire 
+90% ok 
+
+Marques 
+    à faire 
+
+
+Merci à refaire 
+90% ok
+
+Version Mobile 
+
+
+Catalogue 
+    Ajouter au panier ne marche pas
+
+Les packs routines ne marchent pas
+
+
+après paiement, faut vider le panier
+
+Quand le panier atteint un certain nombre d'eur, rajouté un masque etc ( les cadeaux que jeveux donner)
+
+Je sais acheter même si pas en stock
+
+Dans le panier, quand y'a pas un produit où quoi, faut mettre un jolie message
+
+Favori à gérer 
+
+Catalogue, quand je pars dérrière, ça réinitialise 
+
+
+mentions légales à compléter

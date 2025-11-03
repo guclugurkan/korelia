@@ -1,7 +1,7 @@
 // src/pages/QuizSkinType.jsx
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import HeaderAll from "../components/HeaderAll";
+import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 import Q, { TP, CONCERNS } from "../quiz/quizConfig";
 import "./QuizSkinType.css";
@@ -110,7 +110,7 @@ export default function QuizSkinType(){
   if (!done) {
     return (
       <main className="quiz-wrap">
-        <HeaderAll/>
+        <SiteHeader/>
 
         <section className="quiz-container">
           <div className="quiz-head">
@@ -170,7 +170,7 @@ export default function QuizSkinType(){
 
   return (
     <main className="quiz-wrap">
-      <HeaderAll/>
+      <SiteHeader/>
 
       <section className="quiz-container">
         <div className="quiz-result card">
@@ -228,7 +228,7 @@ export default function QuizSkinType(){
           {/* CTA */}
           <div className="res-cta">
             {packSlug && (
-              <Link to={`/pack/${packSlug}`} className="btn-primary">Voir le pack recommandé (-10%)</Link>
+              <Link to={`/pack/${packSlug}`} className="btn-primary">Voir nos pack (-10%)</Link>
             )}
             <Link to="/composer-pack" className="btn-ghost">Composer mon pack (-10%)</Link>
             <Link to="/catalogue" className="btn-link">Parcourir le catalogue</Link>
