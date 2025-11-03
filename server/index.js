@@ -72,7 +72,8 @@ app.use((req, res, next) => {
   const allowed = [
     "http://localhost:5173",
     "https://korelia-zeta.vercel.app/",
-    "https://korelia.vercel.app"
+    "https://korelia.vercel.app",
+    "https://korelia.be"
   ];
   const isPreviewVercel = /^https:\/\/.*\.vercel\.app$/i.test(String(origin || ""));
   if (origin && (allowed.includes(origin) || isPreviewVercel)) {
