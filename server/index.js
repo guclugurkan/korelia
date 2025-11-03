@@ -30,30 +30,31 @@ const app = express();
 const PORT = process.env.PORT || 4242;
 const isProd = process.env.NODE_ENV === 'production';
 
-const FRONT_ORIGIN = process.env.CLIENT_URL || ""; // ex: https://korelia-seven.vercel.app
-// On considère cross-site si origin front défini ET different de l'API
-const CROSS_SITE = !!(FRONT_ORIGIN && !FRONT_ORIGIN.includes('localhost'));
+// IMPORTANT: définis cette variable sur Render => CLIENT_URL=https://korelia.be
+const FRONT_ORIGIN = (process.env.CLIENT_URL || "").replace(/\/$/, ""); // enlève un / final
 
+app.set('trust proxy', 1);
 
-app.set('trust proxy', 1); // requis pour secure cookies derrière proxy
+// ---------- CORS ----------
+const allowedRegexes = [
+  /^http:\/\/localhost:\d+$/,
+  /^https:\/\/([a-z0-9-]+\.)?vercel\.app$/i,   // tous les previews Vercel
+  /^https:\/\/(www\.)?korelia\.be$/i,          // domaine + www
+];
 
-// --- CORS whitelist ---
-const allowed = [
-  "http://localhost:5173",
-  "https://korelia.vercel.app",
-  "https://korelia-seven.vercel.app",
-  "https://*.vercel.app",
-].filter(Boolean);
+if (FRONT_ORIGIN) {
+  try {
+    const url = new URL(FRONT_ORIGIN);
+    const esc = url.origin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    allowedRegexes.unshift(new RegExp("^" + esc + "$", "i")); // prioritaire
+  } catch {}
+}
 
 const corsOptions = {
   origin(origin, cb) {
-    if (!origin) return cb(null, true); // Postman/cURL
-    const ok = allowed.some((pat) =>
-      pat.includes("*")
-        ? new RegExp("^" + pat.replace(".", "\\.").replace("*", ".*") + "$").test(origin)
-        : pat === origin
-    );
-    cb(ok ? null : new Error("Not allowed by CORS"));
+    if (!origin) return cb(null, true); // Postman/cURL, SSR, etc.
+    const ok = allowedRegexes.some(rx => rx.test(origin));
+    return cb(ok ? null : new Error("Not allowed by CORS"));
   },
   credentials: true,
   methods: ["GET","POST","PUT","PATCH","DELETE","OPTIONS"],
@@ -63,32 +64,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
-
-
-// --- CORS safety net: ensure headers on ALL responses, even 401/403
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  // si l'origine est autorisée par ta whitelist, on renvoie les headers
-  const allowed = [
-    "http://localhost:5173",
-    "https://korelia-zeta.vercel.app/",
-    "https://korelia.vercel.app",
-    "https://korelia.be"
-  ];
-  const isPreviewVercel = /^https:\/\/.*\.vercel\.app$/i.test(String(origin || ""));
-  if (origin && (allowed.includes(origin) || isPreviewVercel)) {
-    res.header("Access-Control-Allow-Origin", origin);
-    res.header("Vary", "Origin");
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-CSRF-Token, x-csrf-token");
-    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS");
-  }
-  // Répond proprement aux preflights (au cas où)
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
-  next();
-});
 
 
 
