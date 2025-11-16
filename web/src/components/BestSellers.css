@@ -277,38 +277,28 @@
 
 
 
-/* ---------- Badges ---------- */
+/* ---------- Badges (fix exclusif mobile/desktop) ---------- */
 
-/* On commence par TOUT cacher par défaut */
-.badges-desktop,
+/* Par défaut (mobile-first) : mobile visible, desktop caché */
+.badges-desktop { 
+  display: none !important;
+}
 .badges-mobile {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
 }
 
-/* Version desktop/tablette : tout afficher (catégorie + toutes les peaux) */
-@media (min-width:768px){
-  .meta .badges-desktop{
-    display: grid;
+/* >= 768px : desktop visible, mobile caché */
+@media (min-width: 768px) {
+  .badges-desktop {
+    display: grid !important;
     gap: 6px;
     text-align: center;
   }
-
-  .meta .badges-mobile{
-    display: none;
-  }
-}
-
-/* Version mobile : vue compacte (catégorie mini + "Peau : [+]") */
-@media (max-width:767px){
-  .meta .badges-desktop{
-    display: none;
-  }
-
-  .meta .badges-mobile{
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    text-align: center;
+  .badges-mobile {
+    display: none !important;
   }
 }
 
@@ -331,7 +321,7 @@
   border-radius:8px;
 }
 
-/* Groupe peaux (desktop/tablette) */
+/* Groupe peaux (desktop) */
 .skinsGroup{
   display:flex;
   flex-wrap:wrap;
@@ -351,51 +341,27 @@
   opacity:.8;
 }
 
-/* variations couleurs */
+/* Variations couleurs */
 .skinChip.skin-grasse,
-.skinChipMini.skin-grasse{
-  background:#eefdf7;
-  border-color:#d3f7ea;
-}
+.skinChipMini.skin-grasse{ background:#eefdf7; border-color:#d3f7ea; }
 .skinChip.skin-mixte,
-.skinChipMini.skin-mixte{
-  background:#eef4ff;
-  border-color:#dbe7ff;
-}
+.skinChipMini.skin-mixte{ background:#eef4ff; border-color:#dbe7ff; }
 .skinChip.skin-seche,
 .skinChip.skin-sechee,
 .skinChipMini.skin-seche,
-.skinChipMini.skin-sechee{
-  background:#fff5ee;
-  border-color:#ffe4cf;
-}
+.skinChipMini.skin-sechee{ background:#fff5ee; border-color:#ffe4cf; }
 .skinChip.skin-sensible,
-.skinChipMini.skin-sensible{
-  background:#fff0f0;
-  border-color:#ffdede;
-}
+.skinChipMini.skin-sensible{ background:#fff0f0; border-color:#ffdede; }
 .skinChip.skin-normale,
-.skinChipMini.skin-normale{
-  background:#f1f5f9;
-  border-color:#e2e8f0;
-}
+.skinChipMini.skin-normale{ background:#f1f5f9; border-color:#e2e8f0; }
 .skinChip.skin-acneique,
-.skinChipMini.skin-acneique{
-  background:#f0fff4;
-  border-color:#dcfce7;
-}
+.skinChipMini.skin-acneique{ background:#f0fff4; border-color:#dcfce7; }
 .skinChip.skin-deshydratee,
-.skinChipMini.skin-deshydratee{
-  background:#f0fdfa;
-  border-color:#ccfbf1;
-}
+.skinChipMini.skin-deshydratee{ background:#f0fdfa; border-color:#ccfbf1; }
 .skinChip.skin-mature,
-.skinChipMini.skin-mature{
-  background:#f8fafc;
-  border-color:#e2e8f0;
-}
+.skinChipMini.skin-mature{ background:#f8fafc; border-color:#e2e8f0; }
 
-/* Bloc mobile : "Peau : [+]" */
+/* Bloc mobile "Peau : [+]" */
 .skinsMobile{
   display:flex;
   align-items:center;
@@ -412,8 +378,6 @@
   font-weight:600;
   color:#444;
 }
-
-/* bouton + / - */
 .moreSkinsBtn{
   border:1px solid #ddd;
   background:#fff;
@@ -429,8 +393,6 @@
   justify-content:center;
   padding:0;
 }
-
-/* Liste déroulée des peaux (mobile après clic sur +) */
 .skinsMobileList{
   display:flex;
   flex-wrap:wrap;

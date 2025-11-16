@@ -130,8 +130,22 @@
     "createdAt": "2025-09-03T11:03:25.474Z",
     "email_verified": true,
     "email_verify": null,
-    "points": 6774,
+    "points": 6776,
     "rewards_history": [
+      {
+        "id": "64887d5d-f1a5-4629-8bc2-1e003f2aa2ac",
+        "at": "2025-11-16T02:15:43.875Z",
+        "delta": 1,
+        "reason": "order",
+        "orderId": "cs_test_b1zY7C0YJcrn6Cu4iOy7DGzazyjg1wReVcgZ3JRWtadja80OTFW82kpcWr"
+      },
+      {
+        "id": "7f33d180-09a6-4f0b-9143-ce0b136ebfb0",
+        "at": "2025-11-14T05:07:54.495Z",
+        "delta": 1,
+        "reason": "order",
+        "orderId": "cs_test_b1nwpFc8j3K6K2PyepwSbFWHA0mseBSC7JqcoQaLVmcZtDtS3qJutAg2nH"
+      },
       {
         "id": "cc65f1ce-59a4-4d4b-a92c-10f2f5564686",
         "at": "2025-11-02T14:26:28.420Z",

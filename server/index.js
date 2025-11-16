@@ -168,9 +168,9 @@ function getUserSafe(u){
  * Rewards: catalogue + helpers
  * ======================= */
 const REWARD_TIERS = {
-  "100_5":  { cost: 100, amount_off_cents: 500,  min_amount_cents: 5000, label: "5€ de réduction"  },
-  "200_12": { cost: 200, amount_off_cents: 1200, min_amount_cents: 7000, label: "12€ de réduction" },
-  "500_35": { cost: 500, amount_off_cents: 3500, min_amount_cents: 10000, label: "35€ de réduction" },
+  "100_5":  { cost: 100, amount_off_cents: 500,  min_amount_cents: 6500, label: "5€ de réduction"  },
+  "200_12": { cost: 200, amount_off_cents: 1000, min_amount_cents: 10000, label: "10€ de réduction" },
+  "500_35": { cost: 500, amount_off_cents: 2500, min_amount_cents: 13000, label: "25€ de réduction" },
 };
 
 function ensureRewardsShape(u){
@@ -279,19 +279,41 @@ async function hasBoughtProduct({ userId=null, email=null, productId }){
   return false;
 }
 
+
+
+
+
 /* =======================
  * Stripe & Mail
  * ======================= */
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-const mailer = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT || 587),
-  secure: false,
-  auth: process.env.SMTP_USER ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS } : undefined,
-  logger: false,
-  debug: false,
-});
+/**
+ * Transport d’email:
+ * - Si GMAIL_USER défini => Gmail (App Password)
+ * - Sinon => fallback SMTP_* (compat)
+ */
+const useGmail = !!process.env.GMAIL_USER;
+
+const mailer = useGmail
+  ? nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD,
+      },
+    })
+  : nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT || 587),
+      secure: Number(process.env.SMTP_PORT) === 465, // true si 465
+      auth: process.env.SMTP_USER
+        ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
+        : undefined,
+      logger: false,
+      debug: false,
+    });
+
 
 // =========================
 // Emails — implémentations
@@ -401,7 +423,12 @@ async function sendOrderEmail(order) {
 }
 
 (async () => {
-  try { await mailer.verify(); console.log('📮 SMTP OK :', process.env.SMTP_HOST, process.env.SMTP_PORT); }
+  try { await mailer.verify(); 
+    console.log(
+      '📮 SMTP OK :',
+      useGmail ? `Gmail as ${process.env.GMAIL_USER}` : `${process.env.SMTP_HOST} : ${process.env.SMTP_PORT}`
+    ); 
+  }
   catch (e) { console.error('❌ SMTP KO :', e?.message || e); }
 })();
 
@@ -906,7 +933,7 @@ app.use(express.json());
 // Test SMTP rapide
 app.get('/dev/mail-test', async (req, res) => {
   try {
-    const to = req.query.to || process.env.TEST_TO || process.env.SMTP_USER;
+    const to = req.query.to || process.env.TEST_TO || process.env.GMAIL_USER || process.env.SMTP_USER;
     await mailer.sendMail({
       from: process.env.MAIL_FROM,
       to,

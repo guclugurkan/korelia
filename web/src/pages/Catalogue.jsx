@@ -1,10 +1,10 @@
 // src/pages/Catalogue.jsx
 import { useEffect, useMemo, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import "./Catalogue.css";
-import "./../components/BestSellers.css"; // réutilise le CSS .thumb .img.primary/.secondary
+import "./../components/BestSellers.css"; // réutilise les styles .thumb .img.primary/.secondary
 import { apiGet } from "../lib/api";
 import FavoriteButton from "../components/FavoriteButton";
 import { useCart } from "../cart/CartContext";
@@ -12,23 +12,23 @@ import SiteHeader from "../components/SiteHeader";
 
 // --- Héros de marque
 const BRAND_HERO = {
-  ANUA:             "/img/hero/anuahero.png",
+  ANUA: "/img/hero/anuahero.png",
   "Beauty of Joseon": "/img/hero/bojhero.png",
-  Biodance:         "/img/hero/biodancehero.png",
-  COSRX:            "/img/hero/cosrxhero.png",
-  "Dr Althea":      "/img/hero/draltheahero.png",
-  "Haruharu Wonder": "/img/hero/haruharuhero.png",
-  "I'm From":       "/img/hero/imfromhero.png",
-  iUNIK:            "/img/hero/iunikhero.png",
-  Laneige:          "/img/hero/laneigehero.png",
-  Medicube:         "/img/hero/medicubehero.png",
-  Mixsoon:          "/img/hero/mixsoonhero.png",
-  "Round Lab":      "/img/hero/roundlabhero.png",
-  SKIN1004:         "/img/hero/skin1004hero.png",
-  "Some By Mi":     "/img/hero/somebymihero.png",
-  Torriden:         "/img/hero/torridenhero.png",
+  Biodance: "/img/hero/biodancehero.png",
+  COSRX: "/img/hero/cosrxhero.png",
+  "Dr. Althea": "/img/hero/draltheahero.png",
+  "HaruHaru Wonder": "/img/hero/haruharuhero.png",
+  "I'M FROM": "/img/hero/imfromhero.png",
+  iUNIK: "/img/hero/iunikhero.png",
+  Laneige: "/img/hero/laneigehero.png",
+  Medicube: "/img/hero/medicubehero.png",
+  Mixsoon: "/img/hero/mixsoonhero.png",
+  "Round Lab": "/img/hero/roundlabhero.png",
+  SKIN1004: "/img/hero/skin1004hero.png",
+  "SOME BY MI": "/img/hero/somebymihero.png",
+  TORRIDEN: "/img/hero/img3.png",
 };
-const GLOBAL_HERO = "/img/hero/imgcat1.png";
+const GLOBAL_HERO = "/img/hero/imgcat3.png";
 
 // Image héros pour la catégorie "pack"
 const CATEGORY_HERO = {
@@ -47,14 +47,18 @@ function BrandHero({ brand, category }) {
 
   return (
     <section className="cat-hero" role="img" aria-label={label}>
-      <img src={publicAsset(src)} alt="" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+      <img
+        src={publicAsset(src)}
+        alt=""
+        onError={(e) => {
+          e.currentTarget.style.display = "none";
+        }}
+      />
       <div className="cat-hero-overlay" />
       <div className="cat-hero-inner">
         <div className="cat-hero-badge">{badge}</div>
         <h1 className="cat-hero-title">{title}</h1>
-        {!brand && !category && (
-          <p className="cat-hero-sub"></p>
-        )}
+        {!brand && !category && <p className="cat-hero-sub"></p>}
       </div>
     </section>
   );
@@ -111,8 +115,45 @@ function norm(s) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
+/** Prix pack = somme produits inclus + remisé -10% */
+function computePackPricing(allItems, pack) {
+  if (!pack || !Array.isArray(pack.products_included)) {
+    return { detailSumCents: 0, discountedCents: 0 };
+  }
+  const keys = new Set(pack.products_included.map(String));
+  const included = allItems.filter(
+    (p) => keys.has(String(p.id)) || keys.has(String(p.slug))
+  );
+  const detailSumCents = included.reduce((s, p) => s + Number(p.price_cents || 0), 0);
+  const discountedCents = Math.round(detailSumCents * 0.9);
+  return { detailSumCents, discountedCents };
+}
+
+/** Prix effectif (produit = prix normal, pack = prix remisé) */
+function effectivePriceCents(allItems, item) {
+  const isPack = String(item.category || "").toLowerCase() === "pack";
+  if (!isPack) return Number(item.price_cents || 0);
+  const { discountedCents } = computePackPricing(allItems, item);
+  return discountedCents || Number(item.price_cents || 0);
+}
+
+// --- Helpers URL <-> State
+function splitCsv(v) {
+  return (v || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+function joinCsv(setOrArr) {
+  const arr = Array.isArray(setOrArr) ? setOrArr : Array.from(setOrArr || []);
+  return arr.join(",");
+}
+
 export default function Catalogue() {
   const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [hydratedFromURL, setHydratedFromURL] = useState(false);
 
   const [items, setItems] = useState([]);
   const [err, setErr] = useState("");
@@ -129,24 +170,39 @@ export default function Catalogue() {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZE_DEFAULT);
 
-
   const { add } = useCart();
 
-  const addFromCard = (p) => {
-    const imgs = collectImages(p, 1);
-    const preview = imgs[0] || fallbackImg;
-    add(
-      { id: String(p.id), name: p.name, price_cents: Number(p.price_cents || 0), image: preview, slug: p.slug || null, brand: p.brand || "" },
-      1
-    );
-  };
-  
-
+  // feedback visuel : id du dernier produit ajouté au panier
+  const [addedId, setAddedId] = useState(null);
 
   // Mobile overlay
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  // Charge les produits + ENRICHIT (pour avoir au moins 2 images)
+  // add to cart avec prix effectif + petit feedback
+  const addFromCard = (p) => {
+    const imgs = collectImages(p, 1);
+    const preview = imgs[0] || fallbackImg;
+    const price_cents = effectivePriceCents(items, p);
+    add(
+      {
+        id: String(p.id),
+        name: p.name,
+        price_cents: Number(price_cents || 0),
+        image: preview,
+        slug: p.slug || null,
+        brand: p.brand || "",
+      },
+      1
+    );
+
+    // feedback "Ajouté ✓" sur ce produit pendant ~1,2s
+    setAddedId(p.id);
+    setTimeout(() => {
+      setAddedId((current) => (current === p.id ? null : current));
+    }, 1200);
+  };
+
+  // Charge les produits + enrichit
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -159,27 +215,35 @@ export default function Catalogue() {
 
         const arr = Array.isArray(data) ? data : [];
 
-        // Enrichissement: pour ceux qui n'ont pas encore 2 images, on va chercher les détails
         const enriched = await Promise.all(
           arr.map(async (p) => {
-            const hasTwo = Array.isArray(p.images) && p.images.length >= 2;
-            if (hasTwo) return p;
-            try {
-              const key = String(p.slug || p.id);
-              const full = await apiGet(`/api/products/${key}`);
-              const images = Array.isArray(full.images) ? full.images : p.images;
-              const image = full.image ?? p.image;
-              return { ...p, images, image };
-            } catch {
-              return p;
+            const isPack = String(p.category || "").toLowerCase() === "pack";
+            const needImages = !(Array.isArray(p.images) && p.images.length >= 2);
+
+            if (isPack || needImages) {
+              try {
+                const key = String(p.slug || p.id);
+                const full = await apiGet(`/api/products/${key}`);
+                return {
+                  ...p,
+                  images: Array.isArray(full.images) ? full.images : p.images,
+                  image: full.image ?? p.image,
+                  products_included: Array.isArray(full.products_included)
+                    ? full.products_included
+                    : p.products_included,
+                };
+              } catch {
+                return p;
+              }
             }
+            return p;
           })
         );
 
         setItems(enriched);
 
-        // bornes prix initiales à partir de la liste enrichie
-        const prices = enriched.map((p) => Number(p.price_cents || 0) / 100);
+        // bornes prix initiales à partir des PRIX EFFECTIFS
+        const prices = enriched.map((it) => effectivePriceCents(enriched, it) / 100);
         const min = prices.length ? Math.floor(Math.min(...prices)) : 0;
         const max = prices.length ? Math.ceil(Math.max(...prices)) : 0;
         setPriceMin(min);
@@ -246,7 +310,7 @@ export default function Catalogue() {
     return { brands, skinTypes, categories };
   }, [items]);
 
-  // Marque active (pour le hero)
+  // Marque/Catégorie actives (pour le hero)
   const activeBrand = useMemo(() => {
     if (brandSel.size === 1) return Array.from(brandSel)[0];
     const q = String(search || "").trim().toLowerCase();
@@ -260,54 +324,48 @@ export default function Catalogue() {
     return null;
   }, [catSel]);
 
-  // Applique paramètres URL
+  // === 1) LECTURE URL => STATE
   useEffect(() => {
-    const sp = new URLSearchParams(location.search);
-    const q = sp.get("q") || "";
-    const catSlug = sp.get("cat") || "";
-    const catLabel = sp.get("catLabel") || "";
-    const brandParam = sp.get("brand") || "";
-    const skinSlug = sp.get("skin") || "";
-    const skinLabel = sp.get("skinLabel") || "";
+    // On a besoin des bornes pour comparer défauts
+    const prices = items.map((it) => effectivePriceCents(items, it) / 100);
+    const globalMin = prices.length ? Math.floor(Math.min(...prices)) : 0;
+    const globalMax = prices.length ? Math.ceil(Math.max(...prices)) : 0;
 
-    if (q) {
-      setSearch(q);
-      setPage(1);
-    }
+    // Lecture query
+    const q = searchParams.get("q") || "";
+    const brandsParam = splitCsv(searchParams.get("brands"));
+    const skinsParam = splitCsv(searchParams.get("skins"));
+    const catsParam = splitCsv(searchParams.get("cats"));
+    const sortParam = searchParams.get("sort") || "reco";
+    const pageParam = Number(searchParams.get("page") || 1);
+    const sizeParam = Number(searchParams.get("size") || PAGE_SIZE_DEFAULT);
+    const pminParam = Number(searchParams.get("pmin") ?? globalMin);
+    const pmaxParam = Number(searchParams.get("pmax") ?? (globalMax || 0));
 
-    if (catSlug || catLabel) {
-      setTimeout(() => {
-        const target = catLabel || catSlug;
-        const found = facets.categories.find(
-          (c) => String(c).toLowerCase() === String(target).toLowerCase()
-        );
-        const value = found || target;
-        setCatSel(new Set([String(value)]));
-        setPage(1);
-      }, 0);
-    }
+    // mapping insensibles à la casse pour brands/skins/cats
+    const mapCase = (arr, pool) => {
+      if (!arr.length) return [];
+      const lowerPool = new Map(pool.map((v) => [String(v).toLowerCase(), v]));
+      return arr
+        .map((s) => lowerPool.get(String(s).toLowerCase()) || s)
+        .filter(Boolean);
+    };
 
-    if (brandParam) {
-      setTimeout(() => {
-        const foundBrand = facets.brands.find((b) => b.toLowerCase() === brandParam.toLowerCase());
-        const value = foundBrand || brandParam;
-        setBrandSel(new Set([String(value)]));
-        setPage(1);
-      }, 0);
-    }
+    setSearch(q);
+    setBrandSel(new Set(mapCase(brandsParam, facets.brands)));
+    setSkinSel(new Set(mapCase(skinsParam, facets.skinTypes)));
+    setCatSel(new Set(mapCase(catsParam, facets.categories)));
+    setSort(sortParam);
+    setPage(Number.isFinite(pageParam) && pageParam > 0 ? pageParam : 1);
+    setPageSize([12, 24, 36].includes(sizeParam) ? sizeParam : PAGE_SIZE_DEFAULT);
 
-    if (skinSlug || skinLabel) {
-      setTimeout(() => {
-        const target = skinLabel || skinSlug;
-        const foundSkin = facets.skinTypes.find(
-          (s) => String(s).toLowerCase() === String(target).toLowerCase()
-        );
-        const value = foundSkin || target;
-        setSkinSel(new Set([String(value)]));
-        setPage(1);
-      }, 0);
-    }
-  }, [location.search, facets.categories, facets.brands, facets.skinTypes]);
+    // prix: si pas dans l'URL, on remet bornes globales
+    setPriceMin(Number.isFinite(pminParam) ? pminParam : globalMin);
+    setPriceMax(Number.isFinite(pmaxParam) ? pmaxParam : (globalMax || 0));
+
+    setHydratedFromURL(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, facets.brands, facets.skinTypes, facets.categories, items.length]);
 
   // Helpers
   const toggleSet = (set, value) => {
@@ -359,17 +417,23 @@ export default function Catalogue() {
       });
     }
 
+    // filtre prix (PRIX EFFECTIF)
     list = list.filter((p) => {
-      const eur = Number(p.price_cents || 0) / 100;
+      const eur = effectivePriceCents(items, p) / 100;
       return eur >= priceMin && eur <= priceMax;
     });
 
+    // tri
     switch (sort) {
       case "price_asc":
-        list = [...list].sort((a, b) => (a.price_cents || 0) - (b.price_cents || 0));
+        list = [...list].sort(
+          (a, b) => effectivePriceCents(items, a) - effectivePriceCents(items, b)
+        );
         break;
       case "price_desc":
-        list = [...list].sort((a, b) => (b.price_cents || 0) - (a.price_cents || 0));
+        list = [...list].sort(
+          (a, b) => effectivePriceCents(items, b) - effectivePriceCents(items, a)
+        );
         break;
       case "name_asc":
         list = [...list].sort((a, b) =>
@@ -388,6 +452,48 @@ export default function Catalogue() {
   const pageClamped = Math.min(Math.max(1, page), pageCount);
   const start = (pageClamped - 1) * pageSize;
   const current = filteredSorted.slice(start, start + pageSize);
+
+  // === 2) STATE => ÉCRITURE URL (après calcul de pageClamped)
+  useEffect(() => {
+    if (!hydratedFromURL || items.length === 0) return;
+    const prices = items.map((it) => effectivePriceCents(items, it) / 100);
+    const globalMin = prices.length ? Math.floor(Math.min(...prices)) : 0;
+    const globalMax = prices.length ? Math.ceil(Math.max(...prices)) : 0;
+
+    const sp = new URLSearchParams();
+
+    if (search.trim()) sp.set("q", search.trim());
+    if (brandSel.size) sp.set("brands", joinCsv(Array.from(brandSel)));
+    if (skinSel.size) sp.set("skins", joinCsv(Array.from(skinSel)));
+    if (catSel.size) sp.set("cats", joinCsv(Array.from(catSel)));
+    if (sort !== "reco") sp.set("sort", sort);
+    if (pageClamped > 1) sp.set("page", String(pageClamped));
+    if (pageSize !== PAGE_SIZE_DEFAULT) sp.set("size", String(pageSize));
+
+    // N'écrit pmin/pmax que s'ils diffèrent des bornes globales
+    const overrideMin = priceMin !== globalMin;
+    const overrideMax = priceMax !== (globalMax || 0);
+    if (overrideMin) sp.set("pmin", String(priceMin));
+    if (overrideMax) sp.set("pmax", String(priceMax));
+
+    const next = sp.toString();
+    if (next !== searchParams.toString()) {
+      setSearchParams(sp, { replace: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    search,
+    brandSel,
+    skinSel,
+    catSel,
+    sort,
+    pageClamped, // 👈 clé: on écrit la page clamped
+    pageSize,
+    priceMin,
+    priceMax,
+    items.length,
+    hydratedFromURL,
+  ]);
 
   // Pills
   const activePills = useMemo(() => {
@@ -447,7 +553,7 @@ export default function Catalogue() {
         });
       }
     }
-    const prices = items.map((p) => Number(p.price_cents || 0) / 100);
+    const prices = items.map((it) => effectivePriceCents(items, it) / 100);
     const globalMin = prices.length ? Math.floor(Math.min(...prices)) : 0;
     const globalMax = prices.length ? Math.ceil(Math.max(...prices)) : 0;
     const priceChanged = priceMin !== globalMin || (priceMax !== globalMax && globalMax !== 0);
@@ -481,7 +587,7 @@ export default function Catalogue() {
     setBrandSel(new Set());
     setSkinSel(new Set());
     setCatSel(new Set());
-    const prices = items.map((p) => Number(p.price_cents || 0) / 100);
+    const prices = items.map((it) => effectivePriceCents(items, it) / 100);
     const min = prices.length ? Math.floor(Math.min(...prices)) : 0;
     const max = prices.length ? Math.ceil(Math.max(...prices)) : 0;
     setPriceMin(min);
@@ -490,9 +596,13 @@ export default function Catalogue() {
     setPage(1);
   }
 
+  // Conserver la query quand on ouvre un produit
+  const currentQuery = searchParams.toString();
+  const withQuery = (path) => (currentQuery ? `${path}?${currentQuery}` : path);
+
   return (
     <main className="cat-wrap">
-      <SiteHeader/>
+      <SiteHeader />
       <BrandHero brand={activeBrand} category={activeCategory} />
 
       <div className="cat-container">
@@ -589,7 +699,7 @@ export default function Catalogue() {
                         <input
                           type="checkbox"
                           checked={skinSel.has(s)}
-                          onChange={() => setSkinSel((v) => toggleSet(v, s))}
+                          onChange={(e) => setSkinSel((v) => toggleSet(v, s))}
                         />
                         <span className="capitalize">{s}</span>
                       </label>
@@ -609,7 +719,7 @@ export default function Catalogue() {
                         <input
                           type="checkbox"
                           checked={catSel.has(c)}
-                          onChange={() => setCatSel((v) => toggleSet(v, String(c)))}
+                          onChange={(e) => setCatSel((v) => toggleSet(v, String(c)))}
                         />
                         <span className="capitalize">{c}</span>
                       </label>
@@ -667,7 +777,6 @@ export default function Catalogue() {
             <h1 className="page-title">Catalogue</h1>
 
             {/* Compteur + pills */}
-            {/* Compteur + pills */}
             <div className="results-bar">
               <div className="count">
                 {loading
@@ -675,6 +784,7 @@ export default function Catalogue() {
                   : `${filteredSorted.length} produit${filteredSorted.length > 1 ? "s" : ""} trouvés`}
               </div>
 
+              {/* Pills */}
               {activePills.length > 0 && (
                 <div className="pills">
                   {activePills.map((p, i) => (
@@ -685,20 +795,17 @@ export default function Catalogue() {
                       title="Retirer ce filtre"
                     >
                       <span className="pill-label">{p.label}</span>
-                      <span className="x" aria-hidden>✕</span>
+                      <span className="x" aria-hidden>
+                        ✕
+                      </span>
                     </button>
                   ))}
-                  <button
-                    className="pill reset"
-                    onClick={resetAll}
-                    title="Réinitialiser tous les filtres"
-                  >
+                  <button className="pill reset" onClick={resetAll} title="Réinitialiser tous les filtres">
                     Tout effacer
                   </button>
                 </div>
               )}
             </div>
-
 
             {err && (
               <p className="acc-alert error" style={{ marginBottom: 10 }}>
@@ -722,7 +829,8 @@ export default function Catalogue() {
                   {current.map((p) => {
                     const outOfStock = Number.isFinite(p.stock) ? p.stock <= 0 : false;
                     const isPack = String(p.category || "").toLowerCase() === "pack";
-                    const to = `/${isPack ? "pack" : "produit"}/${p.slug || String(p.id)}`;
+                    const basePath = `/${isPack ? "pack" : "produit"}/${p.slug || String(p.id)}`;
+                    const to = withQuery(basePath);
 
                     // images
                     const imgs = collectImages(p, 2);
@@ -735,6 +843,13 @@ export default function Catalogue() {
                         ? `Plus que ${p.stock} en stock`
                         : null;
 
+                    // prix effectif
+                    const { detailSumCents, discountedCents } = isPack
+                      ? computePackPricing(items, p)
+                      : { detailSumCents: 0, discountedCents: Number(p.price_cents || 0) };
+
+                    const isJustAdded = !outOfStock && addedId === p.id;
+
                     return (
                       <Link key={p.id} to={to} className="card">
                         <div className={`thumb ${outOfStock ? "is-oos" : ""}`}>
@@ -743,20 +858,24 @@ export default function Catalogue() {
                             className="img primary"
                             src={imgPrimary}
                             alt={p.name}
-                            onError={(e) => { e.currentTarget.src = fallbackImg; }}
+                            onError={(e) => {
+                              e.currentTarget.src = fallbackImg;
+                            }}
                             loading="lazy"
                           />
                           <img
                             className="img secondary"
                             src={imgHover}
                             alt=""
-                            onError={(e) => { e.currentTarget.src = fallbackImg; }}
+                            onError={(e) => {
+                              e.currentTarget.src = fallbackImg;
+                            }}
                             loading="lazy"
                           />
 
                           {/* BOUTON (désactivé si OOS) */}
                           <button
-                            className="addBtn"
+                            className={`addBtn ${isJustAdded ? "ok" : ""}`}
                             type="button"
                             onClick={(e) => {
                               e.preventDefault();
@@ -765,10 +884,20 @@ export default function Catalogue() {
                             }}
                             disabled={outOfStock}
                             aria-disabled={outOfStock ? "true" : "false"}
-                            aria-label={outOfStock ? `${p.name} indisponible` : `Ajouter ${p.name} au panier`}
+                            aria-label={
+                              outOfStock
+                                ? `${p.name} indisponible`
+                                : isJustAdded
+                                ? `${p.name} ajouté au panier`
+                                : `Ajouter ${p.name} au panier`
+                            }
                             title={outOfStock ? "Rupture de stock" : "Ajouter au panier"}
                           >
-                            {outOfStock ? "Indisponible" : "Ajouter au panier"}
+                            {outOfStock
+                              ? "Indisponible"
+                              : isJustAdded
+                              ? "Ajouté ✓"
+                              : "Ajouter au panier"}
                           </button>
 
                           {/* TOPBAR chips + fav */}
@@ -810,17 +939,21 @@ export default function Catalogue() {
 
                           <div className="name">{p.name}</div>
 
+                          {/* PRIX (produit normal ou pack avec barré) */}
                           <div className="price">
-                            {fmtEur.format((p.price_cents || 0) / 100)}
-                            {/* UNIQUEMENT 1 ou 2 */}
+                            {fmtEur.format((discountedCents || 0) / 100)}
+                            {isPack && detailSumCents > 0 && discountedCents < detailSumCents && (
+                              <s className="stock-hint" style={{ marginLeft: 6 }}>
+                                {fmtEur.format(detailSumCents / 100)}
+                              </s>
+                            )}
+                            {/* low stock UNIQUEMENT pour 1 ou 2 */}
                             {lowStockMsg && <span className="stock-hint">{lowStockMsg}</span>}
                           </div>
                         </div>
                       </Link>
                     );
                   })}
-
-
                 </div>
 
                 {!current.length && !loading && (

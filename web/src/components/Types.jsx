@@ -36,7 +36,7 @@ export default function Types() {
           {types.map((t) => (
             <article key={t.key} className="type-card" role="listitem">
               <Link
-                to={`/catalogue?q=${encodeURIComponent(t.label)}`}
+                to={`/catalogue?cats=${encodeURIComponent(t.label)}`}
                 className="type-link"
                 aria-label={`Voir ${t.label}`}
               >

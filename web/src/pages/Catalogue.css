@@ -613,7 +613,7 @@
 .oos-cover{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.45);
+  background:rgba(0,0,0,0.2);
   color:#fff;
   display:grid;
   place-items:center;
@@ -875,4 +875,15 @@
     order:2;
     text-align:center;
   }
+}
+
+
+
+.addBtn.ok {
+  transform: scale(1.03);
+  font-weight: 600;
+}
+
+.addBtn.ok {
+  transition: transform 0.15s ease, background-color 0.15s ease;
 }

@@ -159,7 +159,7 @@ export default function HeaderDesktop() {
       {/* Barre du bas (ex-Header2) */}
       <nav className="headerDesktop-bottom" aria-label="Navigation secondaire">
         <ul>
-          <li><Link to="/catalogue?cat=pack&catLabel=pack">Pack Routine</Link></li>
+          <li><Link to="/catalogue?cats=pack">Pack Routine</Link></li>
           <li><Link to="/composer-pack">Compose ton pack</Link></li>
           <li><Link to="/guide-skincare">Guide</Link></li>
           <li><Link to="/quiz">Quiz</Link></li>

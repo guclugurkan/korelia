@@ -48,7 +48,7 @@ export default function SkincareGuide() {
             <Link to="/quiz" className="sgi-btn sgi-btn--ghost">Faire le quiz</Link>
           </div>
           <div className="sgi-heroNote">
-            Packs <strong>3 produits</strong> : −10% &nbsp;•&nbsp; Packs <strong>5 produits</strong> : −15%
+            Packs <strong>3 produits</strong> : −5% &nbsp;•&nbsp; Packs <strong>5 produits</strong> : −10%
           </div>
         </div>
         <div className="sgi-heroMedia" aria-hidden>
@@ -75,7 +75,7 @@ export default function SkincareGuide() {
 
           <div className="sgi-card sgi-highlight">
             <div className="sgi-hTitle">Nouveau ✨</div>
-            <p>Crée ton pack sur-mesure et profite de <strong>−10%</strong> (3) ou <strong>−15%</strong> (5).</p>
+            <p>Crée ton pack sur-mesure et profite de <strong>−5%</strong> (3) ou <strong>−10%</strong> (5).</p>
             <Link to="/composer-pack" className="sgi-btn sgi-btn--primary sgi-btn--full">
               Composer mon pack
             </Link>
@@ -121,7 +121,7 @@ export default function SkincareGuide() {
               ctas={
                 <>
                   <Link to="/composer-pack" className="sgi-btn sgi-btn--primary">Composer mon pack</Link>
-                  <span className="sgi-pill">3 : −10% • 5 : −15%</span>
+                  <span className="sgi-pill">3 : −5% • 5 : −10%</span>
                 </>
               }
             >
@@ -229,7 +229,7 @@ export default function SkincareGuide() {
                 <>
                   <Link to="/pack" className="sgi-btn sgi-btn--ghost">Voir les packs prêts</Link>
                   <Link to="/composer-pack" className="sgi-btn sgi-btn--primary">Composer le mien</Link>
-                  <span className="sgi-pill">3 produits : −10% • 5 produits : −15%</span>
+                  <span className="sgi-pill">3 produits : −5% • 5 produits : −10%</span>
                 </>
               }
             >
@@ -267,7 +267,7 @@ export default function SkincareGuide() {
           <section className="sgi-ctaFinal">
             <h2>Prêt·e à démarrer une routine luxueuse & efficace ?</h2>
             <div className="sgi-inlineCtas">
-              <Link to="/composer-pack" className="sgi-btn sgi-btn--primary">Composer mon pack (−10% / −15%)</Link>
+              <Link to="/composer-pack" className="sgi-btn sgi-btn--primary">Composer mon pack (−5% / −10%)</Link>
               <Link to="/catalogue" className="sgi-btn sgi-btn--ghost">Parcourir le catalogue</Link>
               <Link to="/quiz" className="sgi-btn sgi-btn--ghost">Faire le quiz</Link>
             </div>

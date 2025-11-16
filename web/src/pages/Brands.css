@@ -41,15 +41,10 @@
 .brandsPage-bg{
   position:absolute; inset:0;
   background-position:center; background-size:cover;
-  filter: grayscale(10%) contrast(0.9) brightness(0.9);
-  opacity: 0.7;
+  
+
 }
-.brandsPage-overlay{
-  position:absolute; inset:0;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,.12), rgba(0,0,0,.35));
-  opacity: 0.55;
-  transition: opacity .2s ease;
-}
+
 
 /* Nom */
 .brandsPage-name{

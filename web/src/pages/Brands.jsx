@@ -5,21 +5,21 @@ import SiteHeader from "../components/SiteHeader";
 import "./Brands.css";
 
 const BRANDS = [
-  { name: "ANUA",             slug: "anua",             img: "/img/brands/anua.jpg" },
-  { name: "Beauty of Joseon", slug: "beauty-of-joseon", img: "/img/brands/beauty-of-joseon.jpg" },
-  { name: "Biodance",         slug: "biodance",         img: "/img/brands/biodance.jpg" },
-  { name: "COSRX",            slug: "cosrx",            img: "/img/brands/cosrx.jpg" },
-  { name: "Dr Althea",        slug: "dr-althea",        img: "/img/brands/dr-althea.jpg" },
-  { name: "Haruharu Wonder",  slug: "haruharu-wonder",  img: "/img/brands/haruharu-wonder.jpg" },
-  { name: "I'm From",         slug: "im-from",          img: "/img/brands/im-from.jpg" },
-  { name: "iUNIK",            slug: "iunik",            img: "/img/brands/iunik.jpg" },
-  { name: "Laneige",          slug: "laneige",          img: "/img/brands/laneige.jpg" },
-  { name: "Medicube",         slug: "medicube",         img: "/img/brands/medicube.jpg" },
-  { name: "Mixsoon",          slug: "mixsoon",          img: "/img/brands/mixsoon.jpg" },
-  { name: "Round Lab",        slug: "round-lab",        img: "/img/brands/round-lab.jpg" },
-  { name: "SKIN1004",         slug: "skin1004",         img: "/img/brands/skin1004.jpg" },
-  { name: "Some By Mi",       slug: "some-by-mi",       img: "/img/brands/some-by-mi.jpg" },
-  { name: "Torriden",         slug: "torriden",         img: "/img/brands/torriden.jpg" },
+  { name: "ANUA",             slug: "anua",             img: "/img/brandsimg/anuaimg2.png" },
+  { name: "Beauty of Joseon", slug: "beauty-of-joseon", img: "/img/brandsimg/bojimg.png" },
+  { name: "Biodance",         slug: "biodance",         img: "/img/brandsimg/biodanceimg.png" },
+  { name: "COSRX",            slug: "cosrx",            img: "/img/brandsimg/cosrximg.png" },
+  { name: "Dr Althea",        slug: "dr-althea",        img: "/img/brandsimg/draltheaimg.png"},
+  { name: "Haruharu Wonder",  slug: "haruharu-wonder",  img: "/img/brandsimg/haruharuimg.png" },
+  { name: "I'm From",         slug: "im-from",          img: "/img/brandsimg/imfromimg.png" },
+  { name: "iUNIK",            slug: "iunik",            img: "/img/brandsimg/iunikimg.png" },
+  { name: "Laneige",          slug: "laneige",          img: "/img/brandsimg/laneigeimg.png" },
+  { name: "Medicube",         slug: "medicube",         img: "/img/brandsimg/medicubeimg.png" },
+  { name: "Mixsoon",          slug: "mixsoon",          img: "/img/brandsimg/mixsoonimg.png" },
+  { name: "Round Lab",        slug: "round-lab",        img: "/img/brandsimg/roundlabimg.png"},
+  { name: "SKIN1004",         slug: "skin1004",         img: "/img/brandsimg/skin1004img.png" },
+  { name: "Some By Mi",       slug: "some-by-mi",       img: "/img/brandsimg/somebymiimg.png" },
+  { name: "Torriden",         slug: "torriden",         img: "/img/brandsimg/torridenimg.png" },
 ];
 
 export default function Brands() {

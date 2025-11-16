@@ -93,7 +93,7 @@ const isExcludedCat = (name) => {
   // ——— Kind (Essentiel = 3, Standard = 5)
   const [kind, setKind] = useState("essentiel");
   const requiredCount = kind === "essentiel" ? 3 : 5;
-  const discountPct = kind === "essentiel" ? 0.10 : 0.15;
+  const discountPct = kind === "essentiel" ? 0.05 : 0.10;
 
   // ——— Produits
   const [items, setItems] = useState([]);
@@ -346,7 +346,7 @@ const byCat = useMemo(() => {
                 style={{ backgroundImage: `url(${publicAsset("/img/compose-pack-img/pack-3-produit/img1.png") || ""})` }}
               >
                 <div className="kc-overlay">
-                  <div className="kc-badge">−10%</div>
+                  <div className="kc-badge">−5%</div>
                   <div className="kc-text">
                     <div className="kc-title">Pack Essentiel</div>
                     <div className="kc-sub">3 produits </div>
@@ -365,7 +365,7 @@ const byCat = useMemo(() => {
                 style={{ backgroundImage: `url(${publicAsset("/img/compose-pack-img/pack-5-produit/img1.png") || ""})` }}
               >
                 <div className="kc-overlay">
-                  <div className="kc-badge">−15%</div>
+                  <div className="kc-badge">−10%</div>
                   <div className="kc-text">
                     <div className="kc-title">Pack Standard</div>
                     <div className="kc-sub">5 produits </div>

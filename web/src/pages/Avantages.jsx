@@ -61,16 +61,19 @@ export default function Avantages(){
             <div className="r-pts">100 pts</div>
             <div className="r-eq">=</div>
             <div className="r-amt">5€</div>
+            <div>à partir de 65 € d'achat</div>
           </div>
           <div className="reward">
             <div className="r-pts">200 pts</div>
             <div className="r-eq">=</div>
-            <div className="r-amt">12€</div>
+            <div className="r-amt">10€ + 1 masque</div>
+            <div>à partir de 100 € d'achat</div>
           </div>
           <div className="reward">
             <div className="r-pts">500 pts</div>
             <div className="r-eq">=</div>
-            <div className="r-amt">35€</div>
+            <div className="r-amt">25€ + 5 masque</div>
+            <div>à partir de 130 € d'achat</div>
           </div>
         </div>
 
@@ -99,8 +102,8 @@ export default function Avantages(){
            
             </div>
             <div className="gift-meta">
-               <h3>2 Masque tissu hydratant</h3>
-              <p>Offert dès 70€ d’achat.</p>
+               <h3>1 Masque tissu hydratant</h3>
+              <p>Offert dès 80€ d’achat.</p>
             </div>
           </article>
 
@@ -110,8 +113,8 @@ export default function Avantages(){
             
             </div>
             <div className="gift-meta">
-               <h3>3 Masque tissu hydratant</h3>
-              <p>Offert dès 100€ d’achat.</p>
+               <h3>1 mini-produit</h3>
+              <p>Offert dès 110€ d’achat.</p>
             </div>
           </article>
         </div>

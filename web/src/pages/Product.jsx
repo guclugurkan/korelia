@@ -1,6 +1,6 @@
 // src/pages/Product.jsx
 import { useEffect, useMemo, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation} from "react-router-dom";
 
 import SiteHeader from "../components/SiteHeader"
 import Footer from "../components/Footer";
@@ -25,9 +25,22 @@ const skinTypeLabel = (st) => {
   return map[st?.toLowerCase?.()] || st;
 };
 
+function BackToCatalogue() {
+  const location = useLocation();
+  const backTo = location.search ? `/catalogue${location.search}` : "/catalogue";
+  return (
+    <Link to={backTo} className="btn-back">
+      ← Retour au catalogue
+    </Link>
+  );
+}
+
+
 export default function Product() {
   const { slug } = useParams();
   const { add } = useCart();
+  const location = useLocation();
+  const backHref = `/catalogue${location.search || ""}`;
 
   // Auth (avis)
   const {
@@ -231,7 +244,7 @@ export default function Product() {
 
         <main className="product-container">
           <div className="back-row">
-            <Link to="/catalogue" className="btn-back">← Retour au catalogue</Link>
+            <BackToCatalogue />
           </div>
 
           {loading && <div className="product-loading">Chargement du produit…</div>}

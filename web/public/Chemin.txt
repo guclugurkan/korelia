@@ -434,3 +434,21 @@ Catalogue, quand je pars dérrière, ça réinitialise
 
 
 mentions légales à compléter
+
+
+
+
+
+
+
+
+
+
+
+
+
+"/img/anua/product3/img2.png",
+"/img/anua/product9/img2.png",
+"/img/boj/product1/img2.png",
+"/img/boj/product14/img2.png",
+"/img/imfrom/product1/img2.png"
