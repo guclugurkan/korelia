@@ -8,7 +8,7 @@ export default function Header2() {
       <ul>
         <li>
           {/* Filtre uniquement les packs dans le catalogue */}
-          <Link to="/catalogue?cat=pack&catLabel=pack">Pack Routine</Link>
+          <Link to="/catalogue?cats=pack">Pack Routine</Link>
         </li>
 
         <li>

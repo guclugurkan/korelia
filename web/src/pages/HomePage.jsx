@@ -86,7 +86,32 @@ const HomePage = () => {
                 <footer>
                     {footer1}
                 </footer>
+
+
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "Korelia",
+                        "url": "https://korelia.be",
+                        "logo": "https://korelia.be/img/logokorelia1.png",
+                        // "sameAs": ["https://www.instagram.com/toncompte"],
+                        "contactPoint": [{
+                            "@type": "ContactPoint",
+                            "contactType": "customer support",
+                            "email": "koreliacontact@gmail.com",
+                            "areaServed": "BE"
+                        }]
+                        })
+                    }}
+                    />
             </div>
 
+
 }
+
+
 export default HomePage;
+

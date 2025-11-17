@@ -679,6 +679,31 @@ export default function Product() {
 
         <Footer />
       </div>
+      {product && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Product",
+              "name": product.name,
+              "brand": product.brand ? { "@type": "Brand", "name": product.brand } : undefined,
+              "image": Array.isArray(product.images) && product.images.length ? product.images : [product.image || "https://korelia.be/img/placeholder.png"],
+              "description": product?.description?.summary || "",
+              "sku": product.id,
+              "url": `https://korelia.be/produit/${product.slug}`,
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "EUR",
+                "price": (product.price_cents || 0) / 100,
+                "availability": (product.stock ?? 0) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+                "url": `https://korelia.be/produit/${product.slug}`
+              }
+            })}}
+          />
+        )}
+
     </>
+    
   );
+  
 }
