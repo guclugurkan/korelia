@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Footer from "../components/Footer";
 import "./FAQ.css";
 import SiteHeader from "../components/SiteHeader";
+import { Helmet } from 'react-helmet-async';
 
 const SECTIONS = [
   {
@@ -179,6 +180,27 @@ export default function FAQ() {
 
   return (
     <main className="faq-wrap">
+
+
+      <Helmet>
+        <title>FAQ — Korelia</title>
+        <meta
+          name="description"
+          content="Questions fréquentes : livraison, retours, paiement, conseils produits."
+        />
+        <link rel="canonical" href="https://korelia.be/faq" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="FAQ — Korelia" />
+        <meta property="og:description" content="Toutes les réponses aux questions les plus fréquentes." />
+        <meta property="og:url" content="https://korelia.be/faq" />
+        <meta property="og:image" content="https://korelia.be/img/og-cover.jpg" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+
+
       <SiteHeader/>
 
       <header className="faq-hero">

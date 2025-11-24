@@ -9,6 +9,7 @@ import { apiGet } from "../lib/api";
 import FavoriteButton from "../components/FavoriteButton";
 import { useCart } from "../cart/CartContext";
 import SiteHeader from "../components/SiteHeader";
+import { Helmet } from 'react-helmet-async';
 
 // --- Héros de marque
 const BRAND_HERO = {
@@ -602,6 +603,31 @@ export default function Catalogue() {
 
   return (
     <main className="cat-wrap">
+
+
+
+      <Helmet>
+        <title>Catalogue — Korelia</title>
+        <meta
+          name="description"
+          content="Parcourez notre catalogue de skincare coréenne : nettoyants, sérums, crèmes, SPF. Livraison en Belgique, France, Luxembourg."
+        />
+        <link rel="canonical" href="https://korelia.be/catalogue" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Catalogue — Korelia" />
+        <meta property="og:description" content="Tous nos produits skincare coréenne, en stock, expédiés rapidement." />
+        <meta property="og:url" content="https://korelia.be/catalogue" />
+        <meta property="og:image" content="https://korelia.be/img/og-cover.jpg" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+
+
+
+
       <SiteHeader />
       <BrandHero brand={activeBrand} category={activeCategory} />
 

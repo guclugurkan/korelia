@@ -4,6 +4,7 @@ import "./Contact.css";
 import Footer from "../components/Footer";
 import { apiJson } from "../lib/api.js";
 import SiteHeader from "../components/SiteHeader.jsx";
+import { Helmet } from 'react-helmet-async';
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:4242";
 
@@ -56,6 +57,50 @@ export default function Contact() {
 
   return (
     <main className="contact-page">
+
+
+
+      <Helmet>
+        <title>Contact — Korelia</title>
+        <meta
+          name="description"
+          content="Besoin d’aide ? Contactez Korelia : questions sur une commande, conseils produits, retours et SAV."
+        />
+        <link rel="canonical" href="https://korelia.be/contact" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Contact — Korelia" />
+        <meta property="og:description" content="Nous répondons rapidement à vos questions et demandes." />
+        <meta property="og:url" content="https://korelia.be/contact" />
+        <meta property="og:image" content="https://korelia.be/img/og-cover.jpg" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+
+        {/* (Optionnel) JSON-LD ContactPage */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "name": "Contact — Korelia",
+            "url": "https://korelia.be/contact",
+            "about": "Support client Korelia",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "Korelia",
+              "url": "https://korelia.be",
+              "contactPoint": [{
+                "@type": "ContactPoint",
+                "contactType": "customer support",
+                "email": "koreliacontact@gmail.com",
+                "areaServed": "BE"
+              }]
+            }
+          })}
+        </script>
+      </Helmet>
+
       <SiteHeader/>
       <header className="contact-hero">
         <h1>Contact</h1>
@@ -69,9 +114,9 @@ export default function Contact() {
             Tu peux nous joindre par e-mail ou WhatsApp. Nous répondons sous 24–48h ouvrées.
           </p>
           <ul className="contact-list">
-            <li><strong>E-mail :</strong> <a href="mailto:contact@korelia.be">contact@korelia.be</a></li>
+            <li><strong>E-mail :</strong> <a href="mailto:koreliacontact@gmail.com">koreliacontact@gmail.com</a></li>
             <li><strong>WhatsApp :</strong> <a href="https://wa.me/32400000000" target="_blank" rel="noreferrer">+32 400 00 00 00</a></li>
-            <li><strong>Instagram :</strong> <a href="https://instagram.com" target="_blank" rel="noreferrer">@korelia</a></li>
+            <li><strong>Instagram :</strong> <a href="https://instagram.com/korelia.be/" target="_blank" rel="noreferrer">@korelia.be</a></li>
           </ul>
         </article>
 

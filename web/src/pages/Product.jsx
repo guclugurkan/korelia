@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { useCart } from "../cart/CartContext";
 import { useAuth } from "../auth/AuthContext";
 import "./Product.css";
+import { Helmet } from 'react-helmet-async';
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:4242";
 const fmtEur = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
@@ -237,9 +238,51 @@ export default function Product() {
     setTimeout(() => setAddedOk(false), 1500);
   }
 
+
+
+
+  const canonicalUrl = `https://korelia.be/produit/${product?.slug || slug}`;
+
+  const hasReviews = Array.isArray(reviews) && reviews.length > 0;
+  const avgRating = hasReviews
+    ? Number((reviews.reduce((s, r) => s + (r.rating || 0), 0) / reviews.length).toFixed(1))
+    : null;
+  const ratingCount = hasReviews ? reviews.length : 0;
+
+  const ogImage =
+    (Array.isArray(product?.images) && product.images[0]) ||
+    product?.image ||
+    "https://korelia.be/img/placeholder.png";
+
+  const metaDesc =
+    product?.description?.summary ||
+    "Découvrez ce produit chez Korelia.";
+
+
   return (
     <>
       <div className="product-big-container">
+
+
+        {product && (
+          <Helmet>
+            <title>{`${product.name} — ${product.brand ? product.brand + " — " : ""}Korelia`}</title>
+            <meta name="description" content={metaDesc} />
+            <link rel="canonical" href={canonicalUrl} />
+
+            {/* Open Graph */}
+            <meta property="og:type" content="product" />
+            <meta property="og:title" content={`${product.name} — Korelia`} />
+            <meta property="og:description" content={metaDesc} />
+            <meta property="og:url" content={canonicalUrl} />
+            <meta property="og:image" content={ogImage} />
+
+            {/* Twitter */}
+            <meta name="twitter:card" content="summary_large_image" />
+          </Helmet>
+        )}
+
+
         <SiteHeader/>
 
         <main className="product-container">
@@ -680,27 +723,39 @@ export default function Product() {
         <Footer />
       </div>
       {product && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Product",
               "name": product.name,
               "brand": product.brand ? { "@type": "Brand", "name": product.brand } : undefined,
-              "image": Array.isArray(product.images) && product.images.length ? product.images : [product.image || "https://korelia.be/img/placeholder.png"],
+              "image": Array.isArray(product.images) && product.images.length
+                ? product.images
+                : [product.image || "https://korelia.be/img/placeholder.png"],
               "description": product?.description?.summary || "",
               "sku": product.id,
-              "url": `https://korelia.be/produit/${product.slug}`,
+              "url": canonicalUrl,
+              ...(hasReviews ? {
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": avgRating,
+                  "ratingCount": ratingCount
+                }
+              } : {}),
               "offers": {
                 "@type": "Offer",
                 "priceCurrency": "EUR",
                 "price": (product.price_cents || 0) / 100,
                 "availability": (product.stock ?? 0) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-                "url": `https://korelia.be/produit/${product.slug}`
+                "url": canonicalUrl
               }
-            })}}
-          />
-        )}
+            })
+          }}
+        />
+      )}
+
 
     </>
     

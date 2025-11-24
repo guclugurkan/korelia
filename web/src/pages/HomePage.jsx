@@ -15,7 +15,7 @@ import Blog from '../blog/Blog';
 import Footer from '../components/Footer';
 import PackHomePage from '../components/PackHomePage';
 import MobileHeader from '../components/MobileHeader';
-
+import { Helmet } from 'react-helmet-async';
 
 
 const HomePage = () => {
@@ -62,6 +62,29 @@ const HomePage = () => {
     const footer1 = <Footer />
 
     return <div className='homepage'>
+
+
+                <Helmet>
+                    <title>Korelia — Skincare coréenne  en Belgique</title>
+                    <meta name="description" content="Catalogue de skincare coréenne : sérums, SPF, nettoyants… Livraison BE/FR/LU." />
+                    <link rel="canonical" href="https://korelia.be/" />
+                    <script type="application/ld+json">
+                        {JSON.stringify({
+                        "@context":"https://schema.org",
+                        "@type":"Organization",
+                        "name":"Korelia",
+                        "url":"https://korelia.be",
+                        "logo":"https://korelia.be/img/logokorelia1.png",
+                        "contactPoint":[{ "@type":"ContactPoint", "contactType":"customer support", "email":"koreliacontact@gmail.com", "areaServed":"BE" }]
+                        })}
+                    </script>
+                    {/* Open Graph / réseaux */}
+                    <meta property="og:type" content="website" />
+                    <meta property="og:title" content="Korelia — Skincare coréenne" />
+                    <meta property="og:url" content="https://korelia.be/" />
+                    <meta property="og:image" content="https://korelia.be/img/og-cover.jpg" />
+                    <meta name="twitter:card" content="summary_large_image" />
+                    </Helmet>
                 <header>
                     {header}
                     {header2}
@@ -86,27 +109,6 @@ const HomePage = () => {
                 <footer>
                     {footer1}
                 </footer>
-
-
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "Organization",
-                        "name": "Korelia",
-                        "url": "https://korelia.be",
-                        "logo": "https://korelia.be/img/logokorelia1.png",
-                        // "sameAs": ["https://www.instagram.com/toncompte"],
-                        "contactPoint": [{
-                            "@type": "ContactPoint",
-                            "contactType": "customer support",
-                            "email": "koreliacontact@gmail.com",
-                            "areaServed": "BE"
-                        }]
-                        })
-                    }}
-                    />
             </div>
 
 
