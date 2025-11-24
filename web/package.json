@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/generate-sitemap.mjs", 
+    "prebuild": "node scripts/generate-sitemap.mjs",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -14,8 +14,9 @@
     "express-rate-limit": "^8.1.0",
     "helmet": "^8.1.0",
     "nodemailer": "^7.0.6",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.7.1"
   },
   "devDependencies": {
